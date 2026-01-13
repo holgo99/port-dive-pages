@@ -78,14 +78,14 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: "img/docusaurus-social-card.jpg",
+      image: "img/port-dive-social-card.jpg",
       colorMode: {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: "My Site",
+        title: "PortDive",
         logo: {
-          alt: "My Site Logo",
+          alt: "port-dive Logo",
           src: "img/logo.svg",
         },
         items: [
@@ -119,16 +119,12 @@ const config = {
             title: "Community",
             items: [
               {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com/questions/tagged/docusaurus",
+                label: "X",
+                href: "https://x.com/Holgo99",
               },
               {
                 label: "Discord",
                 href: "https://discordapp.com/invite/docusaurus",
-              },
-              {
-                label: "X",
-                href: "https://x.com/docusaurus",
               },
             ],
           },
@@ -139,14 +135,10 @@ const config = {
                 label: "Blog",
                 to: "/blog",
               },
-              {
-                label: "GitHub",
-                href: "https://github.com/facebook/docusaurus",
-              },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} RetailRebels, UG. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,
