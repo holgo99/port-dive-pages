@@ -1,13 +1,17 @@
 import Layout from "@theme-original/Layout";
-import { useLocation } from "@docusaurus/router";
-import clsx from "clsx";
+import { useLocation } from "react-router-dom";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 
 export default function LayoutWrapper(props) {
   const { pathname } = useLocation();
-  const isHomepage = pathname.replace(/\/$/, "") === "";
+  const baseUrl = useBaseUrl("/");
 
-  // Add a class to the main wrapper if on homepage
-  const mainWrapperClass = isHomepage ? "layout--homepage" : "";
+  // Check if we're on the home page
+  const isBaseUrl =
+    pathname === "/" || pathname === baseUrl.replace(/\/$/, "/");
+
+  // Add layout--homepage tag if on base
+  const mainWrapperClass = isBaseUrl ? "layout--homepage" : "";
 
   return (
     <div className={mainWrapperClass}>

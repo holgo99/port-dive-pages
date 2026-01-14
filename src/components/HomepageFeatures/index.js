@@ -1,14 +1,14 @@
 import clsx from "clsx";
 import Heading from "@theme/Heading";
 import styles from "./styles.module.css";
-import Rocket from "@site/static/img/multi-rocket.png";
-import Workstation from "@site/static/img/workstation.png";
-import Gains from "@site/static/img/gains.png";
+import rocketImg from "@site/static/img/multi-rocket.png";
+import workstationImg from "@site/static/img/workstation.png";
+import gainsImg from "@site/static/img/gains.png";
 
 const FeatureList = [
   {
     title: "Our Mission",
-    Png: Rocket,
+    Png: rocketImg,
     description: (
       <>
         The PortDive idea came to live, after retail was tricked out of a winnig
@@ -20,7 +20,7 @@ const FeatureList = [
   },
   {
     title: "Focus on What Matters",
-    Png: Workstation,
+    Png: workstationImg,
     description: (
       <>
         PortDive lets you focus on your investments, while we handle the
@@ -31,7 +31,7 @@ const FeatureList = [
   },
   {
     title: "Gain from Conviction",
-    Png: Gains,
+    Png: gainsImg,
     description: (
       <>
         Leverage our AI-driven platform to build conviction and maximize
