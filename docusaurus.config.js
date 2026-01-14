@@ -97,7 +97,7 @@ const config = {
           },
           { to: "/blog", label: "Blog", position: "left" },
           {
-            href: "https://github.com/facebook/docusaurus",
+            href: "https://github.com/holgo99/port-dive-pages",
             label: "GitHub",
             position: "right",
           },
