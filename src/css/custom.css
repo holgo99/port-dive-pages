@@ -28,9 +28,15 @@ body {
 
 /* navbar */
 nav.navbar {
-    --ifm-navbar-background-color: rgba(255, 255, 255, 0.25) !important;
+    background-color: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+}
+
+nav.navbar-sidebar--show {
+    background-color: var(--ifm-navbar-background-color) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
 }
 
 footer {
@@ -61,7 +67,7 @@ footer {
 }
 
 [data-theme="dark"] nav.navbar {
-    --ifm-navbar-background-color: rgba(0, 0, 0, 0.25) !important;
+    background-color: rgba(0, 0, 0, 0.25);
 }
 
 [data-theme="dark"] .main-wrapper {
