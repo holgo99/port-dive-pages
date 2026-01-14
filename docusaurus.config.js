@@ -10,7 +10,7 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "🐙 PortDive — AI driven portfolio deep dives.",
+  title: "PortDive — AI driven portfolio deep dives.",
   tagline:
     "Get the facts straight, build conviction and gain from your investments.",
   favicon: "img/favicon.ico",
@@ -47,11 +47,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: "./sidebars.js",
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          //editUrl:
-          //  "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          sidebarPath: require.resolve("./sidebars.js"), // ← Must point to correct file
         },
         blog: {
           showReadingTime: true,
@@ -82,23 +78,46 @@ const config = {
       colorMode: {
         respectPrefersColorScheme: true,
       },
+      sidebar: {
+        hideable: true, // Make sidebar hideable on all sizes
+        autoCollapseCategories: false,
+      },
       navbar: {
         title: "PortDive",
         logo: {
           alt: "port-dive Logo",
           src: "img/logo.svg",
         },
+        // Auto-hide navbar on scroll (optional)
+        hideOnScroll: false,
         items: [
           {
             type: "docSidebar",
-            sidebarId: "tutorialSidebar",
+            sidebarId: "docs",
             position: "left",
             label: "Analytics",
           },
+          /*
+          {
+            type: "dropdown",
+            label: "Resources",
+            position: "left",
+            items: [
+              { label: "Analytics", to: "docs" },
+              { label: "NVO", to: "docs/nvo" },
+              { label: "ZETA", to: "docs/zeta" },
+            ],
+            },*/
+
+          // Right items
           { to: "/blog", label: "Blog", position: "left" },
           {
             href: "https://github.com/holgo99/port-dive-pages",
             label: "GitHub",
+            position: "right",
+          },
+          {
+            type: "search",
             position: "right",
           },
         ],
@@ -136,6 +155,7 @@ const config = {
         ],
         copyright: `Copyright © ${new Date().getFullYear()} RetailRebels, UG. Built with Docusaurus.`,
       },
+      // Theme config
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
