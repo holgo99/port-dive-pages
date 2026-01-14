@@ -29,7 +29,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "RetailRebels UG.", // Usually your GitHub org/user name.
-  projectName: "port-dive", // Usually your repo name.
+  projectName: "PortDive", // Usually your repo name.
 
   onBrokenLinks: "throw",
 
@@ -50,8 +50,8 @@ const config = {
           sidebarPath: "./sidebars.js",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          //editUrl:
+          //  "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
         },
         blog: {
           showReadingTime: true,
@@ -61,15 +61,15 @@ const config = {
           },
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          //editUrl:
+          //  "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
           // Useful options to enforce blogging best practices
           onInlineTags: "warn",
           onInlineAuthors: "warn",
           onUntruncatedBlogPosts: "warn",
         },
         theme: {
-          customCss: "./src/css/custom.css",
+          customCss: [require.resolve("./src/css/custom.css")],
         },
       }),
     ],
@@ -78,7 +78,6 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
       image: "img/port-dive-social-card.jpg",
       colorMode: {
         respectPrefersColorScheme: true,
@@ -94,7 +93,7 @@ const config = {
             type: "docSidebar",
             sidebarId: "tutorialSidebar",
             position: "left",
-            label: "Reports",
+            label: "Analytics",
           },
           { to: "/blog", label: "Blog", position: "left" },
           {
@@ -108,10 +107,10 @@ const config = {
         style: "dark",
         links: [
           {
-            title: "Docs",
+            title: "Analytics",
             items: [
               {
-                label: "Reports",
+                label: "Analytics",
                 to: "/docs/intro",
               },
             ],

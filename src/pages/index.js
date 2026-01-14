@@ -12,6 +12,12 @@ function HomepageHeader() {
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
+        {/* Centered image */}
+        <img
+          src="/img/hero-image.png"
+          alt="Hero"
+          className={styles.heroImage}
+        />
         <Heading as="h1" className="hero__title">
           {siteConfig.title}
         </Heading>
@@ -21,7 +27,7 @@ function HomepageHeader() {
             className="button button--secondary button--lg"
             to="/docs/intro"
           >
-            LFG 🚀
+            Lets f*cking go - LFG 🚀
           </Link>
         </div>
       </div>
@@ -35,6 +41,7 @@ export default function Home() {
     <Layout
       title={`Hello from ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />"
+      className="layout--homepage"
     >
       <HomepageHeader />
       <main>
