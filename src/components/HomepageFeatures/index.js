@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import Heading from "@theme/Heading";
 import styles from "./styles.module.css";
-import rocketImg from "@site/static/img/multi-rocket.png";
+import rocketImg from "@site/static/img/rocket.png";
 import workstationImg from "@site/static/img/workstation.png";
 import gainsImg from "@site/static/img/gains.png";
 

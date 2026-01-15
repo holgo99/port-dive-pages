@@ -6,7 +6,6 @@
 
 /* You can override the default Infima variables here. */
 :root {
-    --ifm-background-color: #fff;
     --ifm-color-primary: #c026d3;
     --ifm-color-primary-dark: #ac22be;
     --ifm-color-primary-darker: #a220b3;
@@ -20,10 +19,12 @@
 }
 
 body {
+    background-color: none !important;
     background-image: url("/img/wallpaper.png");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    height: 100%;
 }
 
 /* navbar */
@@ -39,23 +40,24 @@ nav.navbar-sidebar--show {
     -webkit-backdrop-filter: none !important;
 }
 
+.main-wrapper {
+    --ifm-background-color: #fff;
+    background-color: var(--ifm-background-color);
+}
+
+div#__docusaurus:has(.layout--homepage) .main-wrapper {
+    --ifm-background-color: none !important;
+    background-color: none !important;
+}
+
 footer {
     --ifm-footer-background-color: #fff;
     --ifm-footer-link-color: #000;
     --ifm-footer-title-color: #000;
 }
 
-.main-wrapper {
-    background-color: var(--ifm-background-color);
-}
-
-.layout--homepage .main-wrapper {
-    background: none !important;
-}
-
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme="dark"] {
-    --ifm-background-color: #000;
     --ifm-color-primary: #e879f9;
     --ifm-color-primary-dark: #e55df7;
     --ifm-color-primary-darker: #e34af6;
@@ -71,6 +73,7 @@ footer {
 }
 
 [data-theme="dark"] .main-wrapper {
+    --ifm-background-color: #1e1e1e;
     background-color: var(--ifm-background-color);
 }
 
