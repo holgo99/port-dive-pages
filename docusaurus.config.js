@@ -10,9 +10,9 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "PortDive — AI driven portfolio deep dives.",
+  title: "PortDive — AI driven portfolio deep-dives.",
   tagline:
-    "Get the facts straight, build conviction and gain from your investments.",
+    "Get the facts straight, build conviction, find your entries + exits and gain from your investments.",
   favicon: "img/favicon.ico",
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
