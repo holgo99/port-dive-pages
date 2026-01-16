@@ -6,19 +6,6 @@
 
 /* You can override the default Infima variables here. */
 :root {
-    --ifm-color-primary: #c026d3;
-    --ifm-color-primary-dark: #ac22be;
-    --ifm-color-primary-darker: #a220b3;
-    --ifm-color-primary-darkest: #861b93;
-    --ifm-color-primary-light: #d42ae8;
-    --ifm-color-primary-lighter: #d93bed;
-    --ifm-color-primary-lightest: #e461f1;
-    --ifm-code-font-size: 95%;
-    --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-    --ifm-font-family-base: "Roboto", sans-serif;
-}
-
-:root {
     /* Primary - Teal/Green */
     --ifm-color-primary: #0d9488;
     --ifm-color-primary-dark: #0b847a;
@@ -83,6 +70,10 @@
     --ifm-menu-color-background-hover: rgba(13, 148, 136, 0.05);
     --ifm-toc-border-color: #e6f5f3;
     --ifm-hr-border-color: #d1eae7;
+
+    --ifm-button-border-radius: 50px;
+    /* Add RGB version of your primary color for rgba() usage */
+    --ifm-color-primary-rgb: 45, 212, 191;
 }
 
 /* Dark theme */
@@ -177,23 +168,6 @@
     );
 }
 
-/* CTA Button styling */
-.portdive-cta {
-    background-color: var(--ifm-button-background-color);
-    color: var(--ifm-button-color);
-    border-radius: var(--ifm-button-border-radius);
-    padding: 0.75rem 1.5rem;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.portdive-cta:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
-}
-
 [data-theme="dark"] .portdive-cta:hover {
     box-shadow: 0 0 15px var(--ifm-card-glow-color);
 }
@@ -268,4 +242,13 @@ nav.navbar-sidebar--show {
 
 [data-theme="dark"] .main-wrapper {
     background-color: var(--ifm-background-color);
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .btn-primary {
+    color: var(--ifm-font-color-base-inverse, #0f172a);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+    background: rgba(var(--ifm-color-primary-rgb), 0.1);
 }

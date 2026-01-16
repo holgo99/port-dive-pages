@@ -10,7 +10,7 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "PortDive — AI driven portfolio deep-dives.",
+  title: "PortDive",
   tagline: "Build Conviction, Not Anxiety",
   favicon: "img/favicon.ico",
 
@@ -27,7 +27,7 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "RetailRebels UG.", // Usually your GitHub org/user name.
+  organizationName: "PortDive UG.", // Usually your GitHub org/user name.
   projectName: "PortDive", // Usually your repo name.
 
   onBrokenLinks: "throw",
@@ -152,7 +152,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} RetailRebels, UG. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} PortDive. All rights reserved. Built with Docusaurus.`,
       },
       // Theme config
       prism: {

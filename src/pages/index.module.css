@@ -27,27 +27,27 @@
 }
 
 .heroTitle {
-    font-size: 2.8rem;
-    font-weight: 600;
-    color: #e8f0f0;
+    color: var(--ifm-color-primary-light);
+    font-size: 4rem;
+    font-weight: 800;
     line-height: 1.2;
     margin-bottom: 1.5rem;
 }
 
-.heroSubtitle {
-    font-size: 1.1rem;
-    color: #a0b5b5;
-    margin-bottom: 2rem;
-    line-height: 1.6;
+.heroTagline {
+    color: var(--ifm-heading-color);
+    font-size: 2.4rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
 }
 
-.buttons .button {
-    background-color: #2d9a8c;
-    border: none;
-    color: #0d2b2b;
-    font-weight: 600;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
+.heroSubheading {
+    color: var(--ifm-heading-color);
+    font-size: 2.4rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    line-height: 1.6;
 }
 
 .heroImageWrapper {
@@ -70,27 +70,80 @@
     gap: 0.33em;
 }
 
+/* CTA Button styling */
+.ctaButtons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+.ctaButtons div {
+    display: inline-block;
+}
+
+.ctaButtons a {
+    display: inline-block;
+    cursor: pointer;
+    padding: 12px 24px;
+    font-size: var(--ifm-h4-font-size) !important;
+    font-weight: var(--ifm-font-weight-semibold);
+    font-family: var(--ifm-font-family-base);
+    border-radius: var(--ifm-button-border-radius, 50px);
+}
+
+/* Primary filled button */
+.ctaPrimary a {
+    background: linear-gradient(
+        135deg,
+        var(--ifm-color-primary),
+        var(--ifm-color-primary-light)
+    );
+    color: var(--ifm-background-color);
+    border: none;
+    transition: all var(--ifm-transition-fast)
+        var(--ifm-transition-timing-default);
+    box-shadow: 0 0 20px rgba(var(--ifm-color-primary-rgb), 0.3);
+}
+
+.ctaPrimary a:hover {
+    box-shadow: 0 0 30px rgba(var(--ifm-color-primary-rgb), 0.5);
+    transform: translateY(-2px);
+    background: linear-gradient(
+        135deg,
+        var(--ifm-color-primary-dark),
+        var(--ifm-color-primary)
+    );
+}
+
+/* Secondary outline button */
+.ctaSecondary a {
+    background: transparent;
+    color: var(--ifm-color-primary);
+    border: 1.5px solid var(--ifm-color-primary);
+    transition: all var(--ifm-transition-fast)
+        var(--ifm-transition-timing-default);
+}
+
+.ctaSecondary a:hover {
+    color: var(--ifm-color-primary-darkest);
+    background: var(--ifm-color-primary-lightest);
+    box-shadow: 0 0 20px rgba(var(--ifm-color-primary-rgb), 0.2);
+}
+
+.ctaButtons .ctaPrimary a,
+.ctaButtons .ctaPrimary a:hover {
+    text-decoration: none;
+}
+
+.ctaButtons .ctaSecondary a,
+.ctaButtons .ctaSecondary a:hover {
+    text-decoration: none;
+}
+
 /* light theme overrides */
-
 [data-theme="light"] .heroBanner {
-    background: linear-gradient(135deg, #f8fbfb 0%, #eef5f5 100%);
-}
-
-[data-theme="light"] .heroTitle {
-    color: #1a2f2f;
-}
-
-[data-theme="light"] .heroSubtitle {
-    color: #4a6565;
-}
-
-[data-theme="light"] .buttons .button {
-    background-color: #1a2f2f;
-    color: #ffffff;
-}
-
-[data-theme="light"] .buttons .button:hover {
-    background-color: #2d4a4a;
+    background: linear-gradient(135deg, #f8fbfb 0%, #ddf3f3 100%);
 }
 
 /* Responsive - stack on mobile */

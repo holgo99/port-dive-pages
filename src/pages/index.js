@@ -16,18 +16,20 @@ function HomepageHeader() {
         {/* Left side - Text content */}
         <div className={styles.heroContent}>
           <Heading as="h1" className={styles.heroTitle}>
-            <span>PortDive</span>
-            <span> — </span>
-            <span>AI driven portfolio deep-dives.</span>
+            {siteConfig.tagline}
           </Heading>
-          <p className={styles.heroSubtitle}>{siteConfig.tagline}</p>
-          <div className={styles.buttons}>
-            <Link
-              className="button button--primary button--lg portdive-cta"
-              to="/docs/intro"
-            >
-              Start Deep Diving
-            </Link>
+          <h2 className={styles.heroTagline}>AI-driven Portfolio Deep Dives</h2>
+          <h3 className={styles.heroSubheading}>
+            Consensus analysis. Clear entries. Disciplined exits. Better
+            returns.
+          </h3>
+          <div className={styles.ctaButtons}>
+            <div className={styles.ctaPrimary}>
+              <Link to="/docs/intro">Start Deep Diving</Link>
+            </div>
+            <div className={styles.ctaSecondary}>
+              <Link to="/docs/intro">Explore Analytics Directory</Link>
+            </div>
           </div>
         </div>
 
