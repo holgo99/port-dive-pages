@@ -12,22 +12,28 @@ function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
-      <div className="container">
-        {/* Centered image */}
-        <img src={heroImg} alt="Hero" className={styles.heroImage} />
-        <Heading as="h1" className="hero__title">
-          <span>PortDive</span>
-          <span>—</span>
-          <span>AI-driven portfolio deep-dives.</span>
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro"
-          >
-            Lets f*cking go - LFG 🚀
-          </Link>
+      <div className={styles.heroContainer}>
+        {/* Left side - Text content */}
+        <div className={styles.heroContent}>
+          <Heading as="h1" className={styles.heroTitle}>
+            <span>PortDive</span>
+            <span> — </span>
+            <span>AI driven portfolio deep dives.</span>
+          </Heading>
+          <p className={styles.heroSubtitle}>{siteConfig.tagline}</p>
+          <div className={styles.buttons}>
+            <Link
+              className="button button--primary button--lg portdive-cta"
+              to="/docs/intro"
+            >
+              Lets f*cking go - LFG 🚀
+            </Link>
+          </div>
+        </div>
+
+        {/* Right side - Hero image */}
+        <div className={styles.heroImageWrapper}>
+          <img src={heroImg} alt="Hero" className={styles.heroImage} />
         </div>
       </div>
     </header>

@@ -1,14 +1,14 @@
 import clsx from "clsx";
 import Heading from "@theme/Heading";
 import styles from "./styles.module.css";
-import rocketImg from "@site/static/img/rocket.png";
+import consensusConvergenceImg from "@site/static/img/consensus-convergence.png";
+import dashboardsImg from "@site/static/img/dashboards.png";
 import workstationImg from "@site/static/img/workstation.png";
-import gainsImg from "@site/static/img/gains.png";
 
 const FeatureList = [
   {
     title: "Our Mission",
-    Png: rocketImg,
+    Png: dashboardsImg,
     description: (
       <>
         The PortDive idea came to live, after retail was tricked out of a winnig
@@ -20,7 +20,7 @@ const FeatureList = [
   },
   {
     title: "Focus on What Matters",
-    Png: workstationImg,
+    Png: consensusConvergenceImg,
     description: (
       <>
         PortDive lets you focus on your investments, while we handle the
@@ -31,7 +31,7 @@ const FeatureList = [
   },
   {
     title: "Gain from Conviction",
-    Png: gainsImg,
+    Png: workstationImg,
     description: (
       <>
         Leverage our AI-driven platform to build conviction and maximize
@@ -43,7 +43,7 @@ const FeatureList = [
 
 function Feature({ Png, title, description }) {
   return (
-    <div className={clsx("col col--4")}>
+    <div className={clsx("col col--4 .portdive-accent-gradient")}>
       <div className="text--center">
         <img src={Png} className={styles.featurePng} role="img" />
       </div>

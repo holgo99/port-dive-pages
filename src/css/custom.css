@@ -18,6 +18,186 @@
     --ifm-font-family-base: "Roboto", sans-serif;
 }
 
+:root {
+    /* Primary - Teal/Green */
+    --ifm-color-primary: #0d9488;
+    --ifm-color-primary-dark: #0b847a;
+    --ifm-color-primary-darker: #0a7d73;
+    --ifm-color-primary-darkest: #08675f;
+    --ifm-color-primary-light: #0fa596;
+    --ifm-color-primary-lighter: #10ac9d;
+    --ifm-color-primary-lightest: #14c6b4;
+
+    /* Secondary/Accent - Coral/Salmon */
+    --ifm-color-secondary: #f87171;
+    --ifm-color-secondary-dark: #f65454;
+    --ifm-color-secondary-darker: #f54545;
+    --ifm-color-secondary-darkest: #f21919;
+    --ifm-color-secondary-light: #fa8e8e;
+    --ifm-color-secondary-lighter: #fb9d9d;
+    --ifm-color-secondary-lightest: #fdc7c7;
+
+    /* Background & Surface */
+    --ifm-background-color: #f8faf9;
+    --ifm-background-surface-color: #ffffff;
+    --ifm-navbar-background-color: #ffffff;
+    --ifm-footer-background-color: #ffffff;
+
+    /* Cards */
+    --ifm-card-background-color: #e6f5f3;
+    --ifm-card-border-color: #d1eae7;
+
+    /* Text */
+    --ifm-font-color-base: #1a1a1a;
+    --ifm-font-color-secondary: #4b5563;
+    --ifm-heading-color: #111827;
+
+    /* Links */
+    --ifm-link-color: #0d9488;
+    --ifm-link-hover-color: #0b847a;
+
+    /* Buttons */
+    --ifm-button-background-color: #1a1a1a;
+    --ifm-button-color: #ffffff;
+    --ifm-button-border-radius: 8px;
+
+    /* Code */
+    --ifm-code-font-size: 95%;
+    --docusaurus-highlighted-code-line-bg: rgba(13, 148, 136, 0.1);
+
+    /* Typography */
+    --ifm-font-family-base:
+        "Inter", "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    --ifm-heading-font-family:
+        "Inter", "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+
+    /* Borders & Shadows */
+    --ifm-global-border-radius: 12px;
+    --ifm-global-shadow-lw: 0 2px 8px rgba(13, 148, 136, 0.08);
+    --ifm-global-shadow-md: 0 4px 16px rgba(13, 148, 136, 0.12);
+
+    /* Misc */
+    --ifm-menu-color-background-active: rgba(13, 148, 136, 0.1);
+    --ifm-menu-color-background-hover: rgba(13, 148, 136, 0.05);
+    --ifm-toc-border-color: #e6f5f3;
+    --ifm-hr-border-color: #d1eae7;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+    /* Primary - Brighter Teal/Cyan */
+    --ifm-color-primary: #2dd4bf;
+    --ifm-color-primary-dark: #20c9b3;
+    --ifm-color-primary-darker: #1ebfaa;
+    --ifm-color-primary-darkest: #189e8c;
+    --ifm-color-primary-light: #4addc9;
+    --ifm-color-primary-lighter: #5be1cf;
+    --ifm-color-primary-lightest: #85eadc;
+
+    /* Secondary/Accent - Coral/Peach */
+    --ifm-color-secondary: #fb7185;
+    --ifm-color-secondary-dark: #fa4d66;
+    --ifm-color-secondary-darker: #fa3b57;
+    --ifm-color-secondary-darkest: #f80a2b;
+    --ifm-color-secondary-light: #fc95a4;
+    --ifm-color-secondary-lighter: #fda7b3;
+    --ifm-color-secondary-lightest: #fecdd5;
+
+    /* Background & Surface */
+    --ifm-background-color: #0a1a1f;
+    --ifm-background-surface-color: #0f2429;
+    --ifm-navbar-background-color: #0a1a1f;
+    --ifm-footer-background-color: #061114;
+
+    /* Cards */
+    --ifm-card-background-color: #0f2429;
+    --ifm-card-border-color: #1a4a4a;
+
+    /* Text */
+    --ifm-font-color-base: #e5e7eb;
+    --ifm-font-color-secondary: #9ca3af;
+    --ifm-heading-color: #f9fafb;
+
+    /* Links */
+    --ifm-link-color: #2dd4bf;
+    --ifm-link-hover-color: #4addc9;
+
+    /* Buttons */
+    --ifm-button-background-color: #2dd4bf;
+    --ifm-button-color: #0a1a1f;
+
+    /* Code */
+    --docusaurus-highlighted-code-line-bg: rgba(45, 212, 191, 0.15);
+
+    /* Borders & Shadows */
+    --ifm-global-shadow-lw: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --ifm-global-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+
+    /* Glow effects for cards (custom) */
+    --ifm-card-glow-color: rgba(45, 212, 191, 0.3);
+    --ifm-card-glow-shadow: 0 0 20px var(--ifm-card-glow-color);
+
+    /* Misc */
+    --ifm-menu-color-background-active: rgba(45, 212, 191, 0.15);
+    --ifm-menu-color-background-hover: rgba(45, 212, 191, 0.08);
+    --ifm-toc-border-color: #1a4a4a;
+    --ifm-hr-border-color: #1a4a4a;
+}
+
+/* Additional utility classes for PortDive brand elements */
+.portdive-card {
+    background: var(--ifm-card-background-color);
+    border: 1px solid var(--ifm-card-border-color);
+    border-radius: var(--ifm-global-border-radius);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .portdive-card {
+    box-shadow: var(--ifm-card-glow-shadow);
+}
+
+.portdive-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--ifm-global-shadow-md);
+}
+
+[data-theme="dark"] .portdive-card:hover {
+    box-shadow: 0 0 30px var(--ifm-card-glow-color);
+}
+
+/* Accent gradient for special elements */
+.portdive-accent-gradient {
+    background: linear-gradient(
+        135deg,
+        var(--ifm-color-primary),
+        var(--ifm-color-secondary)
+    );
+}
+
+/* CTA Button styling */
+.portdive-cta {
+    background-color: var(--ifm-button-background-color);
+    color: var(--ifm-button-color);
+    border-radius: var(--ifm-button-border-radius);
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.portdive-cta:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+[data-theme="dark"] .portdive-cta:hover {
+    box-shadow: 0 0 15px var(--ifm-card-glow-color);
+}
+
 html,
 body,
 #__docusaurus,
@@ -27,6 +207,7 @@ body,
     min-height: 100dvh;
 }
 
+/*
 html {
     background-image: url("/img/wallpaper.png");
     background-attachment: fixed;
@@ -34,9 +215,9 @@ html {
     background-position: center;
     background-repeat: no-repeat;
 }
-
+*/
 body {
-    background: transparent;
+    background: var(--ifm-background-color);
     display: flex;
     flex-direction: column;
 }
@@ -78,26 +259,7 @@ nav.navbar-sidebar--show {
 }
 
 .main-wrapper {
-    --ifm-background-color: #f7f5f5;
     background-color: var(--ifm-background-color);
-}
-
-footer {
-    --ifm-footer-background-color: #fff;
-    --ifm-footer-link-color: #000;
-    --ifm-footer-title-color: #000;
-}
-
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme="dark"] {
-    --ifm-color-primary: #e879f9;
-    --ifm-color-primary-dark: #e55df7;
-    --ifm-color-primary-darker: #e34af6;
-    --ifm-color-primary-darkest: #dc12f3;
-    --ifm-color-primary-light: #eb95fb;
-    --ifm-color-primary-lighter: #eda8fc;
-    --ifm-color-primary-lightest: #f2c9fd;
-    --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
 [data-theme="dark"] nav.navbar {
@@ -105,12 +267,5 @@ footer {
 }
 
 [data-theme="dark"] .main-wrapper {
-    --ifm-background-color: #1e1e1e;
     background-color: var(--ifm-background-color);
-}
-
-[data-theme="dark"] footer {
-    --ifm-footer-background-color: #000;
-    --ifm-footer-link-color: #fff;
-    --ifm-footer-title-color: #fff;
 }

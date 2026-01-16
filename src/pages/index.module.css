@@ -3,44 +3,113 @@
  * and scoped locally.
  */
 
-.heroImage {
-    max-width: 480px;
-    max-height: 320px;
-    width: 100%;
-    object-fit: contain;
+.heroBanner {
+    background: linear-gradient(135deg, #0d2b2b 0%, #101f2e 100%);
+    padding: 4rem 2rem;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
 }
 
-.heroBanner {
-    padding: 4rem 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    background: none;
-    margin-bottom: 1em;
+.heroContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 3rem;
+    width: 100%;
+}
+
+.heroContent {
+    flex: 1;
+    max-width: 500px;
+}
+
+.heroTitle {
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: #e8f0f0;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+.heroSubtitle {
+    font-size: 1.1rem;
+    color: #a0b5b5;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.buttons .button {
+    background-color: #2d9a8c;
+    border: none;
+    color: #0d2b2b;
+    font-weight: 600;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+}
+
+.heroImageWrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heroImage {
+    max-width: 100%;
+    height: auto;
 }
 
 .heroBanner h1 {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+    align-items: left;
+    justify-content: left;
     gap: 0.33em;
 }
 
-@media (max-width: 996px) {
-    .heroBanner h1 {
+/* light theme overrides */
+
+[data-theme="light"] .heroBanner {
+    background: linear-gradient(135deg, #f8fbfb 0%, #eef5f5 100%);
+}
+
+[data-theme="light"] .heroTitle {
+    color: #1a2f2f;
+}
+
+[data-theme="light"] .heroSubtitle {
+    color: #4a6565;
+}
+
+[data-theme="light"] .buttons .button {
+    background-color: #1a2f2f;
+    color: #ffffff;
+}
+
+[data-theme="light"] .buttons .button:hover {
+    background-color: #2d4a4a;
+}
+
+/* Responsive - stack on mobile */
+@media (max-width: 768px) {
+    .heroContainer {
         flex-direction: column;
+        text-align: center;
     }
-}
 
-@media screen and (max-width: 996px) {
-    .heroBanner {
-        padding: 2rem;
+    .heroContent {
+        max-width: 100%;
     }
-}
 
-.buttons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    .heroTitle {
+        font-size: 2rem;
+    }
+
+    .heroBanner h1 {
+        align-items: center;
+        justify-content: center;
+    }
 }
