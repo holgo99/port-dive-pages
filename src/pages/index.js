@@ -18,7 +18,7 @@ function HomepageHeader() {
         <Heading as="h1" className="hero__title">
           <span>PortDive</span>
           <span>—</span>
-          <span>AI driven portfolio deep dives.</span>
+          <span>AI-driven portfolio deep-dives.</span>
         </Heading>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
