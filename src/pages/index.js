@@ -18,7 +18,7 @@ function HomepageHeader() {
           <Heading as="h1" className={styles.heroTitle}>
             <span>PortDive</span>
             <span> — </span>
-            <span>AI driven portfolio deep dives.</span>
+            <span>AI driven portfolio deep-dives.</span>
           </Heading>
           <p className={styles.heroSubtitle}>{siteConfig.tagline}</p>
           <div className={styles.buttons}>
@@ -26,7 +26,7 @@ function HomepageHeader() {
               className="button button--primary button--lg portdive-cta"
               to="/docs/intro"
             >
-              Lets f*cking go - LFG 🚀
+              Start Deep Diving
             </Link>
           </div>
         </div>
