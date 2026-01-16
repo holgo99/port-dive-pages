@@ -1,6 +1,6 @@
 {
-  "name": "port-dive-pages",
-  "version": "0.1.0",
+  "name": "portdive-pages",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
