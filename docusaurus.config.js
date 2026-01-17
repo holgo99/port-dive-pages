@@ -11,7 +11,7 @@ import { themes as prismThemes } from "prism-react-renderer";
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "PortDive",
-  tagline: "Build Conviction, Not Anxiety",
+  tagline: "AI-driven portfolio deep dives. Build Conviction, Not Anxiety.",
   favicon: "img/favicon.ico",
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -73,7 +73,42 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      image: "img/portdive-social-card.jpg",
+      image: "img/og-image-1200x630.png",
+      // Meta config
+      metadata: [
+        {
+          name: "description",
+          content:
+            "Build conviction without anxiety. PortDive synthesizes Multi-AI models analyzing macro trends, technicals, sentiment, and fundamentals into unified investment decisions.",
+        },
+        {
+          name: "keywords",
+          content:
+            "portfolio analysis, AI investing, consensus view, investment tools, fintech",
+        },
+        {
+          property: "og:type",
+          content: "website",
+        },
+        {
+          property: "og:image",
+          content:
+            "https://holgo99.github.io/portdive-pages/img/og-image-1200x630.png",
+        },
+        {
+          name: "twitter:card",
+          content: "summary_large_image",
+        },
+        {
+          name: "twitter:image",
+          content:
+            "https://holgo99.github.io/portdive-pages/img/social-card-1200x675.png",
+        },
+        {
+          name: "theme-color",
+          content: "#1FA39B",
+        },
+      ],
       colorMode: {
         respectPrefersColorScheme: true,
       },
@@ -84,7 +119,7 @@ const config = {
       navbar: {
         title: "PortDive",
         logo: {
-          alt: "portdive Logo",
+          alt: "PortDive Logo",
           src: "img/portdive-logo-primary.svg",
         },
         // Auto-hide navbar on scroll (optional)

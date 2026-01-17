@@ -16,7 +16,7 @@ function HomepageHeader() {
         {/* Left side - Text content */}
         <div className={styles.heroContent}>
           <Heading as="h1" className={styles.heroTitle}>
-            {siteConfig.tagline}
+            Build Conviction, Not Anxiety
           </Heading>
           <h2 className={styles.heroTagline}>AI-driven Portfolio Deep Dives</h2>
           <h3 className={styles.heroSubheading}>
@@ -46,8 +46,8 @@ export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      title={`${siteConfig.title} — ${siteConfig.tagline}`}
+      description="Build conviction without anxiety. PortDive synthesizes Multi-AI models analyzing macro trends, technicals, sentiment, and fundamentals into unified investment decisions. Start your deep dive today."
       className="layout--homepage"
     >
       <HomepageHeader />

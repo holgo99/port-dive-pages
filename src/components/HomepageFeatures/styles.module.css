@@ -16,8 +16,62 @@
     object-fit: contain;
 }
 
+/* Additional utility classes for PortDive brand elements */
+.portdiveCard {
+    background: var(--ifm-card-background-color);
+    border: 1px solid var(--ifm-card-border-color);
+    border-radius: none;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.portdiveCard:first-child {
+    border-top-left-radius: var(--ifm-global-border-radius);
+    border-bottom-left-radius: var(--ifm-global-border-radius);
+}
+
+.portdiveCard:last-child {
+    border-top-right-radius: var(--ifm-global-border-radius);
+    border-bottom-right-radius: var(--ifm-global-border-radius);
+}
+
+.portdiveCard:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--ifm-global-shadow-md);
+}
+
+/* Accent gradient for special elements */
+.portdiveAccentGradient {
+    background: linear-gradient(
+        135deg,
+        var(--ifm-background-color),
+        var(--ifm-card-background-color)
+    );
+}
+
 /* dark mode. */
 [data-theme="dark"] .features {
     background-color: rgba(0, 0, 0, 0.25) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .portdiveCard {
+    box-shadow: var(--ifm-card-glow-shadow);
+}
+
+[data-theme="dark"] .portdiveCard:hover {
+    box-shadow: 0 0 30px var(--ifm-card-glow-color);
+}
+
+/* Responsive - stack on mobile */
+@media (max-width: 768px) {
+    .portdiveCard:first-child {
+        border-top-left-radius: var(--ifm-global-border-radius);
+        border-top-right-radius: var(--ifm-global-border-radius);
+    }
+
+    .portdiveCard:last-child {
+        border-bottom-left-radius: var(--ifm-global-border-radius);
+        border-bottom-right-radius: var(--ifm-global-border-radius);
+    }
 }

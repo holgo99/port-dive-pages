@@ -45,7 +45,13 @@ const FeatureList = [
 
 function Feature({ Png, title, description }) {
   return (
-    <div className={clsx("col col--4 .portdive-accent-gradient")}>
+    <div
+      className={clsx(
+        "col col--4",
+        styles.portdiveCard,
+        styles.portdiveAccentGradient,
+      )}
+    >
       <div className="text--center">
         <img src={Png} className={styles.featurePng} role="img" />
       </div>

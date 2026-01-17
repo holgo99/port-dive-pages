@@ -146,37 +146,6 @@
     background: linear-gradient(135deg, #f8fbfb 0%, #ddf3f3 100%);
 }
 
-/* Additional utility classes for PortDive brand elements */
-.portdive-card {
-    background: var(--ifm-card-background-color);
-    border: 1px solid var(--ifm-card-border-color);
-    border-radius: var(--ifm-global-border-radius);
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-}
-
-[data-theme="dark"] .portdive-card {
-    box-shadow: var(--ifm-card-glow-shadow);
-}
-
-.portdive-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--ifm-global-shadow-md);
-}
-
-[data-theme="dark"] .portdive-card:hover {
-    box-shadow: 0 0 30px var(--ifm-card-glow-color);
-}
-
-/* Accent gradient for special elements */
-.portdive-accent-gradient {
-    background: linear-gradient(
-        135deg,
-        var(--ifm-color-primary),
-        var(--ifm-color-secondary)
-    );
-}
-
 /* Responsive - stack on mobile */
 @media (max-width: 768px) {
     .heroContainer {
@@ -188,12 +157,12 @@
         max-width: 100%;
     }
 
-    .heroTitle {
-        font-size: 2rem;
-    }
-
     .heroBanner h1 {
         align-items: center;
+        justify-content: center;
+    }
+
+    .ctaButtons {
         justify-content: center;
     }
 }
