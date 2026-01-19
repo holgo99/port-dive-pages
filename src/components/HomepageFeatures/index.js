@@ -11,9 +11,9 @@ const FeatureList = [
     Png: dashboardsImg,
     description: (
       <>
-        Multiple AI models converge on one decision. No single perspective
-        dominates. Just rigorous consensus from macro trends, technicals,
-        sentiment, and fundamentals. Your portfolio deserves that depth.
+        Conviction isn't certainty. It's preparation. PortDive reveals which
+        signals align with your thesis and which contradict it. Strong entry
+        thesis but weak technicals? You know. That's the edge.
       </>
     ),
   },
@@ -22,10 +22,10 @@ const FeatureList = [
     Png: consensusConvergenceImg,
     description: (
       <>
-        Market analysis doesn't happen in a vacuum. PortDive synthesizes macro
-        trends, technical patterns, sentiment indicators, and fundamental
-        metrics—then converges on a unified conviction you can act on. That's
-        deep-dive analysis.
+        Macro trends support your thesis. But do the technicals? What's the
+        sentiment telling you? PortDive answers all simultaneously, showing
+        where your conviction aligns across perspectives — and where it faces
+        headwinds. That's the analysis that changes decisions.
       </>
     ),
   },

@@ -1,0 +1,236 @@
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    z-index: 9998;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal Container */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 600px;
+    width: calc(100% - 40px);
+    max-height: calc(100vh - 40px);
+    background: var(--ifm-background-surface-color);
+    border-radius: var(--ifm-global-border-radius);
+    box-shadow:
+        var(--ifm-global-shadow-md),
+        0 0 40px rgba(13, 148, 136, 0.2);
+    z-index: 9999;
+    overflow: hidden;
+    animation: centerFadeIn 0.4s ease-out;
+    border: 2px solid var(--ifm-color-primary);
+}
+
+/* Content */
+.content {
+    padding: 2rem;
+    overflow-y: auto;
+    max-height: calc(100vh - 80px);
+}
+
+/* Icon */
+.icon {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Title */
+.title {
+    margin: 0 0 1.5rem 0;
+    color: var(--ifm-heading-color);
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* Text Content */
+.text {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: var(--ifm-font-color-base);
+}
+
+.text p {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.text p:last-child {
+    margin-bottom: 0;
+}
+
+.highlight {
+    padding: 0.75rem;
+    background: rgba(248, 113, 113, 0.1);
+    border-left: 3px solid var(--ifm-color-secondary);
+    border-radius: 4px;
+    margin-top: 1rem !important;
+}
+
+/* Copyright */
+.copyright {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(13, 148, 136, 0.05);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(13, 148, 136, 0.2);
+}
+
+.copyright p {
+    margin: 0.25rem 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ifm-font-color-secondary);
+}
+
+.copyright p:first-child {
+    color: var(--ifm-color-primary);
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: stretch;
+}
+
+.buttons button {
+    flex: 1;
+    padding: 0.875rem 1.5rem;
+    border: none;
+    border-radius: var(--ifm-button-border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.rejectButton {
+    background: transparent;
+    color: var(--ifm-font-color-base);
+    border: 2px solid var(--ifm-toc-border-color);
+}
+
+.rejectButton:hover {
+    background: rgba(248, 113, 113, 0.1);
+    border-color: var(--ifm-color-secondary);
+    color: var(--ifm-color-secondary);
+    transform: translateY(-2px);
+}
+
+.acceptButton {
+    background: var(--ifm-color-primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+}
+
+.acceptButton:hover {
+    background: var(--ifm-color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(13, 148, 136, 0.4);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes centerFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Dark Mode Adjustments */
+[data-theme="dark"] .modal {
+    box-shadow:
+        var(--ifm-global-shadow-md),
+        0 0 40px rgba(45, 212, 191, 0.2);
+}
+
+[data-theme="dark"] .highlight {
+    background: rgba(251, 113, 133, 0.15);
+}
+
+[data-theme="dark"] .copyright {
+    background: rgba(45, 212, 191, 0.08);
+    border-color: rgba(45, 212, 191, 0.2);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .modal {
+        width: calc(100% - 20px);
+        max-width: 100%;
+        max-height: 90vh;
+    }
+
+    .content {
+        padding: 1.5rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .text p {
+        font-size: 0.9rem;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+
+    .buttons button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .icon {
+        font-size: 2.5rem;
+    }
+
+    .content {
+        padding: 1.25rem;
+    }
+
+    .title {
+        font-size: 1.25rem;
+    }
+}
