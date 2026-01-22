@@ -1,9 +1,28 @@
 ---
 id: nbis-elliot-waves-analysis
-title: Elliott Wave Principle Analysis
+sidebar_title: Elliott Wave Principle Analysis
 sidebar_position: 1
+hide_title: true
+title: " Elliott Wave Analysis"
+description: "NBIS, Interactive Elliott Wave analysis. Wave counts with Fibonacci levels and technical alerts."
+keywords: ["Elliott Wave", "Technical Analysis", "Wave Counting", "Market Cycles"]
+image: ./assets/20260122/elliott-wave-preview.png
 ---
 
-import NBISElliottWaveChat from './assets/20260122/OpenAI-NBISElliottWaveChart.jsx'
+import NBISElliottWaveChartWrapper from './assets/20260122/NBISElliottWaveChartWrapper.jsx'
+import { ShareElliotWave } from '@site/src/components/ShareElliotWave.jsx'
+import { AnalysisCard } from '@site/src/components/AnalysisCard.jsx'
+import OHLCV_DATA from "./assets/20260122/ohlcv-data.json";
 
-<NBISElliottWaveChat />
+<ShareElliotWave />
+
+<NBISElliottWaveChartWrapper />
+
+
+<AnalysisCard 
+  title="NBIS - Elliott Wave Analysis"
+  description="Complete wave count analysis with target levels and risk management"
+  symbol="NBIS"  
+  attribution={`${OHLCV_DATA.length} daily candles • Projection to Jun 2026 • Last updated: Jan 22, 2026`}
+  analysisDate="2026-01-22"
+/>
