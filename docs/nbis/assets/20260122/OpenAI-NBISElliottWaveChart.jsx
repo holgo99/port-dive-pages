@@ -1899,7 +1899,7 @@ export default function NBISElliottWaveChart({ colorMode = "dark" }) {
       ref={containerRef}
       style={{
         background: theme.bg,
-        padding: "24px",
+        marginBottom: "24px",
         fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
         color: theme.text,
         borderRadius: "16px",
