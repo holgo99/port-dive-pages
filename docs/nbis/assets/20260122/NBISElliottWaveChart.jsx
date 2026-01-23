@@ -43,7 +43,8 @@ const PORTDIVE_COLORS = {
     grid: "rgba(248, 250, 249, 0.04)",
     hover: "rgba(31, 163, 155, 0.15)",
     primaryGradient: "linear-gradient(135deg, #1a2a35 0%, #0f1a1f 100%)",
-    secondaryGradient: "linear-gradient(135deg, #fa3b57  0%, #1a2a35 100%)",
+    secondaryGradient:
+      "linear-gradient(135deg, rgb(255, 107, 107, 0.5) 0%, #1a2a35 100%)",
   },
   primary: "#1FA39B",
   primaryLight: "#25b8ae",
@@ -86,6 +87,31 @@ const WAVE_COUNTS = {
     projectedTargetBand: { startPrice: 135.83, endPrice: 158.45 },
     description:
       "5-wave impulse (1)-(2)-(3)-(4) complete, now in (5) early stages",
+    metrics: [
+      {
+        label: "Expected Value",
+        value: "+12.9%",
+        sublabel: "Wave (5) Continuation",
+        indicator: true,
+      },
+      {
+        label: "Sharpe Ratio",
+        value: "0.54",
+        sublabel: "EV / Hard-Stop Risk",
+        color: "gradient",
+      },
+      {
+        label: "Price Momentum",
+        value: "+6.2%",
+        sublabel: "From minor ii low ($93.10)",
+      },
+      {
+        label: "Risk",
+        value: "-9.6%",
+        sublabel: "Probability-Weighted (Hard Stop)",
+        negative: true,
+      },
+    ],
   },
   alt1: {
     id: "alt1",
@@ -104,6 +130,32 @@ const WAVE_COUNTS = {
     projectedStart: { idx: 197, price: 110.5 },
     projectedTargetBand: { startPrice: 60, endPrice: 75.25 },
     description: "A–B–C / W–X–Y corrective regime",
+    metrics: [
+      {
+        label: "Expected Value",
+        value: "-9.1%",
+        sublabel: "ABC / WXY Downside Risk",
+        indicator: true,
+      },
+      {
+        label: "Sharpe Ratio",
+        value: "-0.38",
+        sublabel: "EV / Worst-Case Risk",
+        color: "gradient",
+      },
+      {
+        label: "Price Momentum",
+        value: "-10.5%",
+        sublabel: "Below prior swing high ($110.50)",
+        negative: true,
+      },
+      {
+        label: "Risk",
+        value: "-12.6%",
+        sublabel: "Probability-Weighted (C Target)",
+        negative: true,
+      },
+    ],
   },
   alt2: {
     id: "alt2",
@@ -123,6 +175,7 @@ const WAVE_COUNTS = {
     projectedStart: { idx: 130, price: 141.1 },
     projectedTargetBand: { startPrice: 65, endPrice: 75.25 },
     description: "Wave (4) complex not finished (triangle/combination)",
+    metrics: [],
   },
 };
 
@@ -1367,7 +1420,9 @@ const CurrentPriceCard = memo(
             style={{
               fontSize: "48px",
               fontWeight: 700,
-              color: PORTDIVE_COLORS.primary,
+              color: isTargetPositive
+                ? PORTDIVE_COLORS.primaryLight
+                : PORTDIVE_COLORS.secondaryLight,
               fontFamily: "system-ui, -apple-system, sans-serif",
             }}
           >
@@ -1556,34 +1611,7 @@ const FibonacciLevelsPanel = memo(({ currentPrice, theme }) => {
 // ============================================================================
 // ANALYSIS METRICS ROW
 // ============================================================================
-const AnalysisMetricsRow = memo(({ theme }) => {
-  const metrics = [
-    {
-      label: "Expected Value",
-      value: "+45.2%",
-      sublabel: "MACD Divergence",
-      indicator: true,
-    },
-    {
-      label: "Sharpe Ratio",
-      value: "2.1",
-      sublabel: "MACD Crossdown",
-      color: "gradient",
-    },
-    {
-      label: "Price Momentum",
-      value: "-18%",
-      sublabel: "Risk-Adjusted",
-      negative: true,
-    },
-    {
-      label: "Risk",
-      value: "-18%",
-      sublabel: "Probability-Weighted",
-      negative: true,
-    },
-  ];
-
+const AnalysisMetricsRow = memo(({ metrics, theme }) => {
   return (
     <div
       style={{
@@ -2278,7 +2306,9 @@ export default function NBISElliottWaveChart({ colorMode = "dark" }) {
           isDarkMode={isDarkMode}
         />
         <FibonacciLevelsPanel currentPrice={currentPrice} theme={theme} />
-        <AnalysisMetricsRow theme={theme} />
+        {activeCount.metrics.length && (
+          <AnalysisMetricsRow metrics={activeCount.metrics} theme={theme} />
+        )}
         <TechnicalAlertsPanel theme={theme} />
       </div>
     </div>
