@@ -11,18 +11,17 @@ image: ./assets/20260122/elliott-wave-preview.png
 
 import NBISElliottWaveChartWrapper from './assets/20260122/NBISElliottWaveChartWrapper.jsx'
 import { ShareElliotWave } from '@site/src/components/ShareElliotWave.jsx'
-import { AnalysisCard } from '@site/src/components/AnalysisCard.jsx'
+import { AnalysisCard } from '@site/src/components/AnalysisCard'
 import OHLCV_DATA from "./assets/20260122/ohlcv-data.json";
 
 <ShareElliotWave />
 
 <NBISElliottWaveChartWrapper />
 
-
 <AnalysisCard 
   title="NBIS - Elliott Wave Analysis"
   description="Complete wave count analysis with target levels and risk management"
   symbol="NBIS"  
-  attribution={`${OHLCV_DATA.length} daily candles • Projection to Jun 2026 • Last updated: Jan 22, 2026`}
+  attribution={`${OHLCV_DATA.length} daily candles • Projection to Jun 2026 • Last updated: Jan 23, 2026`}
   analysisDate="2026-01-22"
 />

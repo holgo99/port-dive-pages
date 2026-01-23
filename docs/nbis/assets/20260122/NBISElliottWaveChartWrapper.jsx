@@ -1,4 +1,4 @@
-import NBISElliottWaveChart from "./OpenAI-NBISElliottWaveChart.jsx";
+import NBISElliottWaveChart from "./NBISElliottWaveChart.jsx";
 import { useColorMode } from "@docusaurus/theme-common";
 
 export default function NBISElliottWaveChartWrapper(props) {
