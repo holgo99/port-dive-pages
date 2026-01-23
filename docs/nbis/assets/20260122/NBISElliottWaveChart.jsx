@@ -304,6 +304,17 @@ const PortDiveLogo = memo(({ size = 60, showWordmark = false, theme }) => (
 const TickerIcon = memo(({ size = 48, showWordmark = false, theme }) => (
   <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
     <img src={tickerIconUrl} alt="NBIS Icon" width="48px" />
+    <span
+      style={{
+        fontSize: size * 0.6,
+        fontWeight: 700,
+        color: theme.text,
+        letterSpacing: "-0.02em",
+      }}
+    >
+      NBIS
+      {showWordmark && <>&nbsp;,</>}
+    </span>
     {showWordmark && (
       <span
         style={{
@@ -313,7 +324,7 @@ const TickerIcon = memo(({ size = 48, showWordmark = false, theme }) => (
           letterSpacing: "-0.02em",
         }}
       >
-        NBIS, Nebius Group N.V.
+        Nebius Group N.V.
       </span>
     )}
   </div>
@@ -1911,6 +1922,7 @@ export default function NBISElliottWaveChart({ colorMode = "dark" }) {
   const [activeWaveCount, setActiveWaveCount] = useState("primary");
   const containerRef = useRef(null);
   const [containerWidth, setContainerWidth] = useState(1000);
+  const [showWordmark, setShowWordmark] = useState(true);
 
   const [analysisState, setAnalysisState] = useState({
     showMotiveWaves: true,
@@ -1927,6 +1939,7 @@ export default function NBISElliottWaveChart({ colorMode = "dark" }) {
     const updateWidth = () => {
       if (containerRef.current) {
         setContainerWidth(containerRef.current.offsetWidth);
+        setShowWordmark(containerRef.current.offsetWidth >= 764);
       }
     };
 
@@ -1973,7 +1986,7 @@ export default function NBISElliottWaveChart({ colorMode = "dark" }) {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-          <TickerIcon showWordmark={true} theme={theme} />
+          <TickerIcon showWordmark={showWordmark} theme={theme} />
           <div
             style={{
               borderLeft: `2px solid ${theme.border}`,
