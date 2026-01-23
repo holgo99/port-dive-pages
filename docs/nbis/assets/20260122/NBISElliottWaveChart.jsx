@@ -6,7 +6,7 @@ import React, {
   useRef,
   useEffect,
 } from "react";
-import VerdictPanel from '@site/src/components/VerdictPanel';
+import VerdictPanel from "@site/src/components/VerdictPanel";
 
 // ============================================================================
 // OHLCV DATA - DO NOT MODIFY VALUES
@@ -31,7 +31,8 @@ const PORTDIVE_COLORS = {
     grid: "rgba(10, 26, 31, 0.06)",
     hover: "rgba(31, 163, 155, 0.08)",
     primaryGradient: "linear-gradient(135deg, #ffffff 0%, #f0f4f2 100%)",
-    secondaryGradient: "linear-gradient(135deg, rgba(255, 107, 107, 0.25) 0%, #ffffff 100%)",
+    secondaryGradient:
+      "linear-gradient(135deg, rgba(255, 107, 107, 0.25) 0%, #ffffff 100%)",
   },
   dark: {
     bg: "#0a1a1f",
@@ -145,7 +146,7 @@ const WAVE_COUNTS = {
         isNegative: true,
       },
     ],
-    verdict: `# Primary scenario plan
+    verdict: `# Primary scenario: Bullish Continuation
 
 ## Thesis
 
@@ -154,7 +155,7 @@ const WAVE_COUNTS = {
 ## **Invalidation**
 
 * **Minor degree invalidation:** Below **75.25** breaks structure
-* **Structural warning:** Loss of **93.10** increases bearish odds`
+* **Structural warning:** Loss of **93.10** increases bearish odds`,
   },
   alt1: {
     id: "alt1",
@@ -248,7 +249,7 @@ The vertical Sep–Oct expansion behaves like a terminal/mania leg. Under this c
 
 ## **Invalidation**
 
-* Clean impulsive break and hold **above 141.10** with rising momentum (would strongly favor the primary “(5)” continuation).`
+* Clean impulsive break and hold **above 141.10** with rising momentum (would strongly favor the primary “(5)” continuation).`,
   },
   alt2: {
     id: "alt2",
@@ -319,22 +320,22 @@ This is a “time-correction” scenario:
 
 ## **Invalidation**
 
-* A clean 5-wave rise on 1D through **125–133** and especially **141**.`
-  }
+* A clean 5-wave rise on 1D through **125–133** and especially **141**.`,
+  },
 };
 
 function formatTimestamp(timestamp) {
-  return new Date(timestamp * 1000).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
+  return new Date(timestamp * 1000).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
   });
 }
 
 // ============================================================================
 // PORTDIVE LOGO COMPONENT
 // ============================================================================
-const PortDiveLogo = memo(({ size = 60, showWordmark = false, theme }) => (
+const PortDiveLogo = memo(({ size = 48, showWordmark = false, theme }) => (
   <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
     <img src={portdiveLogoUrl} alt="PortDive Logo" width="48px" />
     {showWordmark && (
@@ -356,30 +357,47 @@ const PortDiveLogo = memo(({ size = 60, showWordmark = false, theme }) => (
 // TICKER ICON COMPONENT
 // ============================================================================
 const TickerIcon = memo(({ size = 48, showWordmark = false, theme }) => (
-  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-    <img src={tickerIconUrl} alt="NBIS Icon" width="48px" />
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      gap: "10px",
+      whiteSpace: "nowrap",
+      flexShrink: 0,
+    }}
+  >
+    <img
+      src={tickerIconUrl}
+      alt="NBIS Icon"
+      width="48px"
+      style={{ flexShrink: 0 }}
+    />
     <span
       style={{
         fontSize: size * 0.6,
         fontWeight: 700,
         color: theme.text,
         letterSpacing: "-0.02em",
+        flexShrink: 0,
       }}
     >
       NBIS
-      {showWordmark && <>&nbsp;,</>}
     </span>
     {showWordmark && (
-      <span
-        style={{
-          fontSize: size * 0.6,
-          fontWeight: 700,
-          color: theme.text,
-          letterSpacing: "-0.02em",
-        }}
-      >
-        Nebius Group N.V.
-      </span>
+      <>
+        &nbsp;•&nbsp;
+        <span
+          style={{
+            fontSize: size * 0.6,
+            fontWeight: 700,
+            color: theme.text,
+            letterSpacing: "-0.02em",
+            flexShrink: 0,
+          }}
+        >
+          Nebius Group N.V.
+        </span>
+      </>
     )}
   </div>
 ));
@@ -1491,7 +1509,7 @@ const ChartCanvas = memo(
               </text>
             </>
           )}
-          { ma200.length > 1 && (
+          {ma200.length > 1 && (
             <>
               <line
                 x1="75"
@@ -1500,7 +1518,7 @@ const ChartCanvas = memo(
                 y2="0"
                 stroke={PORTDIVE_COLORS.movingAverage.slow}
                 strokeWidth="2.5"
-              />)}
+              />
               <text
                 x="101"
                 y="4"
@@ -1658,7 +1676,7 @@ const CurrentPriceCard = memo(
             color: theme.textSecondary,
           }}
         >
-          Daily Close • Last updated at: { dateString }
+          Daily Close • Last updated at: {dateString}
         </div>
       </div>
     );
@@ -1816,7 +1834,9 @@ const AnalysisMetricsRow = memo(({ metrics, theme }) => {
             style={{
               padding: "12px",
               borderRadius: "8px",
-              background: m.isNegative ? theme.secondaryGradient : "rgba(31, 163, 155, 0.05)",
+              background: m.isNegative
+                ? theme.secondaryGradient
+                : "rgba(31, 163, 155, 0.05)",
             }}
           >
             <div
@@ -1993,7 +2013,7 @@ export default function NBISElliottWaveChart({ colorMode = "dark" }) {
     const updateWidth = () => {
       if (containerRef.current) {
         setContainerWidth(containerRef.current.offsetWidth);
-        setShowWordmark(containerRef.current.offsetWidth >= 764);
+        setShowWordmark(containerRef.current.offsetWidth >= 768);
       }
     };
 
@@ -2347,7 +2367,10 @@ export default function NBISElliottWaveChart({ colorMode = "dark" }) {
         }}
       >
         {activeCount.verdict.length > 0 && (
-          <VerdictPanel verdict={activeCount.verdict} isCorrective={activeCount.mode === "CORRECTIVE"} />
+          <VerdictPanel
+            verdict={activeCount.verdict}
+            isCorrective={activeCount.mode === "CORRECTIVE"}
+          />
         )}
       </div>
     </div>
