@@ -30,7 +30,7 @@ const PORTDIVE_COLORS = {
     grid: "rgba(10, 26, 31, 0.06)",
     hover: "rgba(31, 163, 155, 0.08)",
     primaryGradient: "linear-gradient(135deg, #ffffff 0%, #f0f4f2 100%)",
-    secondaryGradient: "linear-gradient(135deg, #fa8e8e 0%, #ffffff 100%)",
+    secondaryGradient: "linear-gradient(135deg, rgba(255, 107, 107, 0.25) 0%, #ffffff 100%)",
   },
   dark: {
     bg: "#0a1a1f",
@@ -44,7 +44,7 @@ const PORTDIVE_COLORS = {
     hover: "rgba(31, 163, 155, 0.15)",
     primaryGradient: "linear-gradient(135deg, #1a2a35 0%, #0f1a1f 100%)",
     secondaryGradient:
-      "linear-gradient(135deg, rgb(255, 107, 107, 0.5) 0%, #1a2a35 100%)",
+      "linear-gradient(135deg, rgba(255, 107, 107, 0.25) 0%, #1a2a35 100%)",
   },
   primary: "#1FA39B",
   primaryLight: "#25b8ae",
@@ -141,7 +141,7 @@ const WAVE_COUNTS = {
         label: "Risk",
         value: "-9.6%",
         sublabel: "Probability-Weighted (Hard Stop)",
-        negative: true,
+        isNegative: true,
       },
     ],
   },
@@ -205,13 +205,13 @@ const WAVE_COUNTS = {
         label: "Price Momentum",
         value: "-10.5%",
         sublabel: "Below prior swing high ($110.50)",
-        negative: true,
+        isNegative: true,
       },
       {
         label: "Risk",
         value: "-12.6%",
         sublabel: "Probability-Weighted (C Target)",
-        negative: true,
+        isNegative: true,
       },
     ],
   },
@@ -1521,7 +1521,7 @@ const CurrentPriceCard = memo(
               fontWeight: 700,
               color: isTargetPositive
                 ? PORTDIVE_COLORS.primaryLight
-                : PORTDIVE_COLORS.secondaryLight,
+                : PORTDIVE_COLORS.secondary,
               fontFamily: "system-ui, -apple-system, sans-serif",
             }}
           >
@@ -1585,7 +1585,7 @@ const CurrentPriceCard = memo(
             color: theme.textSecondary,
           }}
         >
-          Today's Close • Jan 22, 2026
+          Today's Close • Jan 23, 2026
         </div>
       </div>
     );
@@ -1743,7 +1743,7 @@ const AnalysisMetricsRow = memo(({ metrics, theme }) => {
             style={{
               padding: "12px",
               borderRadius: "8px",
-              background: "rgba(31, 163, 155, 0.05)",
+              background: m.isNegative ? theme.secondaryGradient : "rgba(31, 163, 155, 0.05)",
             }}
           >
             <div
@@ -1760,7 +1760,7 @@ const AnalysisMetricsRow = memo(({ metrics, theme }) => {
               style={{
                 fontSize: "24px",
                 fontWeight: 700,
-                color: m.negative
+                color: m.isNegative
                   ? PORTDIVE_COLORS.secondary
                   : PORTDIVE_COLORS.primary,
               }}
