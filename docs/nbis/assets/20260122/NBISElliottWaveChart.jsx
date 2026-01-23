@@ -1517,7 +1517,7 @@ const CurrentPriceCard = memo(
         <div
           style={{
             display: "flex",
-            alignItems: "baseline",
+            alignItems: "center",
             justifyContent: "space-between",
             flexWrap: "wrap",
             gap: "8px",
