@@ -2085,38 +2085,6 @@ export default function NBISElliottWaveChart({ colorMode = "dark" }) {
             </p>
           </div>
         </div>
-
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "12px",
-          }}
-        >
-          <div
-            style={{
-              padding: "12px 20px",
-              borderRadius: "10px",
-              background: `linear-gradient(135deg, ${PORTDIVE_COLORS.primary} 0%, ${PORTDIVE_COLORS.primaryLight} 100%)`,
-              color: "#fff",
-              fontSize: "22px",
-              fontWeight: 700,
-              boxShadow: "0 4px 12px rgba(31, 163, 155, 0.3)",
-            }}
-          >
-            ${currentPrice.toFixed(2)}
-            <span
-              style={{
-                fontSize: "12px",
-                marginLeft: "8px",
-                opacity: 0.9,
-                fontWeight: 500,
-              }}
-            >
-              {priceChange >= 0 ? "↑" : "↓"} {Math.abs(priceChange).toFixed(2)}%
-            </span>
-          </div>
-        </div>
       </header>
 
       {/* Wave Count Selector */}
