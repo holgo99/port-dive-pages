@@ -254,8 +254,8 @@ The vertical Sep–Oct expansion behaves like a terminal/mania leg. Under this c
     id: "alt2",
     label: "Wave (4) complex not finished (triangle/combination)",
     probability: "10%",
-    mode: "MOTIVE",
-    color: PORTDIVE_COLORS.primary,
+    mode: "CORRECTIVE",
+    color: PORTDIVE_COLORS.secondary,
     pivots: {
       wave1Start: { idx: 1, price: 18.31 },
       wave1Peak: { idx: 58, price: 55.75, label: "1" },
