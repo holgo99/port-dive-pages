@@ -279,6 +279,7 @@
     padding: 20px;
     border: 1px solid var(--verdict-border);
     transition: all 0.3s ease;
+    margin-bottom: 28px;
 }
 
 .branchCard.teal {
