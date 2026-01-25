@@ -123,7 +123,7 @@
 .rejectButton {
     background: transparent;
     color: var(--ifm-font-color-base);
-    border: 2px solid var(--ifm-toc-border-color);
+    border: 2px solid var(--ifm-toc-border-color) !important;
 }
 
 .rejectButton:hover {
@@ -218,6 +218,11 @@
 
     .buttons button {
         width: 100%;
+    }
+
+    /* On mobile/tablet, show Accept button first (on top) */
+    .acceptButton {
+        order: -1;
     }
 }
 

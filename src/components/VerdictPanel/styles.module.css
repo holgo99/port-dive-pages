@@ -276,6 +276,7 @@
 .branchCard {
     background: var(--verdict-surface);
     border-radius: 12px;
+    min-width: 61.4%;
     padding: 20px;
     border: 1px solid var(--verdict-border);
     transition: all 0.3s ease;
@@ -373,7 +374,7 @@
     color: var(--verdict-text);
     min-width: 0;
     overflow-wrap: break-word;
-    word-break: break-word;
+    word-break: auto-phrase;
 }
 
 .bulletDot {
@@ -680,8 +681,8 @@
     .branchCard {
         border-left-width: 3px;
         position: relative;
-        width: 61.4%;
-        max-width: none;
+        max-width: 78.5%;
+        min-width: 61.4%;
         padding: 14px 16px;
         margin-bottom: 28px;
     }
@@ -776,8 +777,8 @@
 
     .branchCard {
         padding: 12px 14px;
-        width: 80%;
-        max-width: none;
+        max-width: 91.5%;
+        min-width: 61.4%;
         margin-bottom: 12px;
     }
 
