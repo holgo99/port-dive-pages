@@ -148,14 +148,18 @@ const WAVE_COUNTS = {
     ],
     verdict: `# Primary scenario: Bullish Continuation
 
-## Thesis
+## Thesis (60%)
 
-**Most likely path (60%):** minor iii lifts toward **128 → 135/141**, then minor iv pulls back (ideally holds above ~110 or ~103), then minor v attempts **141+** and potentially **150–158**.
+**Most likely path:** minor iii lifts toward **$128 → $135/$141**, then minor iv pulls back (ideally holds above ~$110 or ~$103), then minor v attempts **$141+** and potentially **$150–158**.
+
+## **Validation**
+
+* Clean impulsive break and hold **above $141.10**
 
 ## **Invalidation**
 
-* **Minor degree invalidation:** Below **75.25** breaks structure
-* **Structural warning:** Loss of **93.10** increases bearish odds`,
+* **Structural warning:** Loss of **$93.10** increases bearish odds
+* **Minor degree invalidation:** Below **$75.25** breaks structure`,
   },
   alt1: {
     id: "alt1",
@@ -228,28 +232,23 @@ const WAVE_COUNTS = {
     ],
     verdict: `# Oct high was a completed 5-wave *blowoff*, and we’re in an A–B–C / W–X–Y corrective regime
 
-## Thesis
+## Thesis (30%)
 
 The vertical Sep–Oct expansion behaves like a terminal/mania leg. Under this count:
 
-* **141.10** = terminal top (end of a higher-degree 5 or C)
-* **75.25** = Wave A (or W) low
+* **$141.10** = terminal top (end of a higher-degree 5 or C)
+* **$75.25** = Wave A (or W) low
 * The current rise is **Wave B (or X)**, and **another Wave C (or Y)** down can still occur after B matures.
+* A typical C target = **A length equality** or **1.272×A** from B high (We need the eventual B high to compute precisely, but likely downside zones would be **$81.0**, then **$64.7** as the deeper “78.6% shelf” of the prior Wave (3) retrace grid.)
 
 ## **Validation**
 
-**What would validate this alternative**
-
-* Failure/rejection in **135–141** zone with momentum divergence
-* Subsequent breakdown below **93 → 88 → 81** (key fib shelves), turning the structure into a clear 3-wave.
-
-**Alt #1 targets (if C down triggers)**
-
-* A typical C target = **A length equality** or **1.272×A** from B high (We need the eventual B high to compute precisely, but likely downside zones would be **81.0**, then **64.7** as the deeper “78.6% shelf” of the prior Wave (3) retrace grid.)
+* Failure/rejection in **$135–141** zone with momentum divergence
+* Subsequent breakdown below **$93 → $88 → $81** (key fib shelves), turning the structure into a clear 3-wave.
 
 ## **Invalidation**
 
-* Clean impulsive break and hold **above 141.10** with rising momentum (would strongly favor the primary “(5)” continuation).`,
+* Clean impulsive break and hold **above $141.10** with rising momentum (would strongly favor the primary “(5)” continuation).`,
   },
   alt2: {
     id: "alt2",
@@ -304,23 +303,23 @@ The vertical Sep–Oct expansion behaves like a terminal/mania leg. Under this c
     metrics: [],
     verdict: `# Wave (4) is not finished (triangle/complex combination), and current rally is a B/X leg inside it
 
-## Thesis
+## Thesis (10%)
 
 This is a “time-correction” scenario:
 
-* 75.25 was not the final (4) low, just **C of W** (or A of a larger flat)
-* Price chops upward (B/X), then fades again to retest **80–75** before a true (5) begins.
+* **$75.25** was not the final (4) low, just **C of W** (or A of a larger flat)
+* Price chops upward (B/X), then fades again to retest **$80–$75** before a true (5) begins.
 
 ## **Validation**
 
 **What would validate**
 
-* Sideways-to-down behavior below ~110–113, with overlapping 1D swings (no clean 5-wave lift)
+* Sideways-to-down behavior below ~$110–$113, with overlapping 1D swings (no clean 5-wave lift)
 * MACD/RSI staying rangebound
 
 ## **Invalidation**
 
-* A clean 5-wave rise on 1D through **125–133** and especially **141**.`,
+* A clean 5-wave rise on 1D through **$125–$133** and especially **$141**.`,
   },
 };
 
