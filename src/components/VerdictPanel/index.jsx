@@ -163,6 +163,29 @@ const parseVerdictMarkdown = (markdown) => {
 /**
  * Render inline markdown (bold, prices, etc.)
  */
+/**
+ * Render price values with nowrap to keep them together
+ */
+const PriceText = ({ text, highlightClass }) => {
+  // Split on price patterns, keeping the prices as separate parts
+  const priceParts = text.split(/(\$[\d,.]+)/g);
+
+  return (
+    <>
+      {priceParts.map((pricePart, j) => {
+        if (/^\$[\d,.]+$/.test(pricePart)) {
+          return (
+            <span key={j} className={styles.priceTargetHighlight}>
+              {pricePart}
+            </span>
+          );
+        }
+        return pricePart;
+      })}
+    </>
+  );
+};
+
 const InlineMarkdown = ({ text, highlightClass }) => {
   const parts = text.split(/(\*\*[^*]+\*\*|`[^`]+`|\$[\d,.]+)/g);
 
@@ -170,9 +193,19 @@ const InlineMarkdown = ({ text, highlightClass }) => {
     <>
       {parts.map((part, i) => {
         if (part.startsWith("**") && part.endsWith("**")) {
+          const innerText = part.slice(2, -2);
+          // Check if the bold content contains price value(s)
+          const hasPrice = /\$[\d,.]+/.test(innerText);
+          if (hasPrice) {
+            return (
+              <strong key={i} className={highlightClass}>
+                <PriceText text={innerText} highlightClass={highlightClass} />
+              </strong>
+            );
+          }
           return (
             <strong key={i} className={highlightClass}>
-              {part.slice(2, -2)}
+              {innerText}
             </strong>
           );
         }
@@ -185,7 +218,7 @@ const InlineMarkdown = ({ text, highlightClass }) => {
         }
         if (/^\$[\d,.]+$/.test(part)) {
           return (
-            <span key={i} className={highlightClass}>
+            <span key={i} className={`${highlightClass} ${styles.priceTargetHighlight}`}>
               {part}
             </span>
           );
