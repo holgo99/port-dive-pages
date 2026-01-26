@@ -14,268 +14,38 @@ import { PORTDIVE_THEME } from "@site/src/components/PortDiveTheme";
 // ============================================================================
 import OHLCV_DATA from "./nasdaq-nbis-1d-ohlcv_indicators.json";
 
-const tickerIconUrl = "/portdive-pages/img/nbis/nbis-icon.svg";
-const portdiveLogoUrl = "/portdive-pages/img/portdive-logo-primary.svg";
-const dateString = formatTimestamp(OHLCV_DATA.at(-1).timestamp);
-
 // ============================================================================
 // WAVE COUNT CONFIGURATIONS
 // ============================================================================
-const WAVE_COUNTS = {
-  primary: {
-    id: "primary",
-    label: "Bullish continuation",
-    probability: "60%",
-    mode: "MOTIVE",
-    color: PORTDIVE_THEME.primary,
-    pivots: {
-      wave1Start: { idx: 1, price: 18.31 },
-      wave1Peak: { idx: 58, price: 55.75, label: "1" },
-      wave2Low: { idx: 66, price: 43.89, label: "2" },
-      wave3Peak: { idx: 130, price: 141.1, label: "3" },
-      wave4Low: { idx: 177, price: 75.25, label: "4" },
-    },
-    minorWaves: {
-      minorIPeak: { idx: 197, price: 110.5, label: "i" },
-      minorIILow: { idx: 199, price: 93.1, label: "ii" },
-    },
-    projectedTarget: 150.13,
-    projectedLabel: "5",
-    projectedStart: { idx: 177, price: 75.25 },
-    projectedTargetBand: { startPrice: 135.83, endPrice: 158.45 },
-    description:
-      "5-wave impulse (1)-(2)-(3)-(4) complete, now in (5) early stages",
-    waves: [
-      {
-        label: "WAVE (1)",
-        range: "$18.31 → $55.75",
-        status: "COMPLETE",
-        color: PORTDIVE_THEME.primary,
-      },
-      {
-        label: "WAVE (2)",
-        range: "$55.75 → $43.89",
-        status: "COMPLETE",
-        color: PORTDIVE_THEME.primary,
-      },
-      {
-        label: "WAVE (3)",
-        range: "$43.89 → $141.10",
-        status: "COMPLETE",
-        color: PORTDIVE_THEME.primary,
-      },
-      {
-        label: "WAVE (4)",
-        range: "$141.10 → $75.25",
-        status: "COMPLETE",
-        color: PORTDIVE_THEME.primary,
-      },
-      {
-        label: "WAVE (5)",
-        range: "$75.25 → >$135.83",
-        status: "IN PROGRESS",
-        color: "#F59E0B",
-      },
-    ],
-    metrics: [
-      {
-        label: "Expected Value",
-        value: "+12.9%",
-        sublabel: "Wave (5) Continuation",
-        indicator: true,
-      },
-      {
-        label: "Sharpe Ratio",
-        value: "0.54",
-        sublabel: "EV / Hard-Stop Risk",
-        color: "gradient",
-      },
-      {
-        label: "Price Momentum",
-        value: "+6.2%",
-        sublabel: "From minor ii low ($93.10)",
-      },
-      {
-        label: "Risk",
-        value: "-9.6%",
-        sublabel: "Probability-Weighted (Hard Stop)",
-        isNegative: true,
-      },
-    ],
-    verdict: `# Primary scenario: Bullish Continuation
+import WAVE_COUNTS_JSON from "./nbis-wave-counts.json";
 
-## Thesis (60%)
+const resolveThemeReferences = (obj) => {
+  if (typeof obj !== "object" || obj === null) return obj;
 
-**Most likely path:** minor iii lifts toward **$128 → $135/$141**, then minor iv pulls back (ideally holds above ~$110 or ~$103), then minor v attempts **$141+** and potentially **$150–158**.
+  if (Array.isArray(obj)) {
+    return obj.map(resolveThemeReferences);
+  }
 
-## **Validation**
-
-* Clean impulsive break and hold above **$141.10**
-
-## **Invalidation**
-
-* **Structural warning:** Loss of **$93.10** increases bearish odds
-* **Minor degree invalidation:** Below **$75.25** breaks structure`,
-  },
-  alt1: {
-    id: "alt1",
-    label: "Corrective regime",
-    probability: "30%",
-    mode: "CORRECTIVE",
-    color: PORTDIVE_THEME.secondary,
-    pivots: {
-      wave1Start: { idx: 130, price: 141.1 },
-      waveALow: { idx: 177, price: 75.25, label: "A" },
-      waveBPeak: { idx: 197, price: 110.5, label: "B" },
-    },
-    minorWaves: {},
-    projectedTarget: 64,
-    projectedLabel: "C",
-    projectedStart: { idx: 197, price: 110.5 },
-    projectedTargetBand: { startPrice: 60, endPrice: 75.25 },
-    description: "A–B–C / W–X–Y corrective regime",
-    waves: [
-      {
-        label: "WAVE (A)",
-        range: "$141.10 → $75.25",
-        status: "COMPLETE",
-        color: PORTDIVE_THEME.secondary,
-      },
-      {
-        label: "WAVE (B)",
-        range: "$75.25 → $110.50",
-        status: "COMPLETE",
-        color: PORTDIVE_THEME.secondary,
-      },
-      {
-        label: "WAVE (C)",
-        range: "$110.50 → <$75.25",
-        status: "PROJECTED",
-        color: "#F59E0B",
-      },
-      {
-        label: "INVALIDATION",
-        range: "$98.87 → $141.10",
-        status: "CLEAN IMPULSIVE BREAK",
-        color: PORTDIVE_THEME.primary,
-      },
-    ],
-    metrics: [
-      {
-        label: "Expected Value",
-        value: "-9.1%",
-        sublabel: "ABC / WXY Downside Risk",
-        indicator: true,
-      },
-      {
-        label: "Sharpe Ratio",
-        value: "-0.38",
-        sublabel: "EV / Worst-Case Risk",
-        color: "gradient",
-      },
-      {
-        label: "Price Momentum",
-        value: "-10.5%",
-        sublabel: "Below prior swing high ($110.50)",
-        isNegative: true,
-      },
-      {
-        label: "Risk",
-        value: "-12.6%",
-        sublabel: "Probability-Weighted (C Target)",
-        isNegative: true,
-      },
-    ],
-    verdict: `# Oct high was a completed 5-wave *blowoff*, and we’re in an A–B–C / W–X–Y corrective regime
-
-## Thesis (30%)
-
-The vertical Sep–Oct expansion behaves like a terminal/mania leg. Under this count:
-
-* **$141.10** = terminal top (end of a higher-degree 5 or C)
-* **$75.25** = Wave A (or W) low
-* The current rise is **Wave B (or X)**, and **another Wave C (or Y)** down can still occur after B matures.
-* A typical C target = **A length equality** or **1.272×A** from B high (We need the eventual B high to compute precisely, but likely downside zones would be **$81.0**, then **$64.7** as the deeper “78.6% shelf” of the prior Wave (3) retrace grid.)
-
-## **Validation**
-
-* Failure/rejection in **$135 – $141** zone with momentum divergence
-* Subsequent breakdown below **$93 → $88 → $81** (key fib shelves), turning the structure into a clear 3-wave.
-
-## **Invalidation**
-
-* Clean impulsive break and hold above **$141.10** with rising momentum (would strongly favor the primary “(5)” continuation).`,
-  },
-  alt2: {
-    id: "alt2",
-    label: "Wave (4) complex not finished (triangle/combination)",
-    probability: "10%",
-    mode: "CORRECTIVE",
-    color: PORTDIVE_THEME.primary,
-    pivots: {
-      wave1Start: { idx: 1, price: 18.31 },
-      wave1Peak: { idx: 58, price: 55.75, label: "1" },
-      wave2Low: { idx: 66, price: 43.89, label: "2" },
-      wave3ExtPeak: { idx: 130, price: 141.1, label: "3" },
-    },
-    minorWaves: {},
-    projectedTarget: 92.5,
-    projectedLabel: "4",
-    projectedStart: { idx: 130, price: 141.1 },
-    projectedTargetBand: { startPrice: 75.25, endPrice: 92.5 },
-    description: "Wave (4) complex not finished (triangle/combination)",
-    waves: [
-      {
-        label: "WAVE (W)",
-        range: "$141.10 → $75.25",
-        status: "COMPLETE",
-        color: PORTDIVE_THEME.secondary,
-      },
-      {
-        label: "WAVE (X)",
-        range: "$75.25 → $110.50",
-        status: "COMPLETE",
-        color: PORTDIVE_THEME.secondary,
-      },
-      {
-        label: "WAVE (Y)",
-        range: "$110.50 → $92.50",
-        status: "PROJECTED",
-        color: "#F59E0B",
-      },
-      {
-        label: "WAVE (5)",
-        range: "$92.50 → $135.83",
-        status: "PROJECTED",
-        color: PORTDIVE_THEME.primary,
-      },
-      {
-        label: "INVALIDATION",
-        range: "$125–133 and especially $141",
-        status: "CLEAN 5-WAVE RISE ON 1D",
-        color: PORTDIVE_THEME.primary,
-      },
-    ],
-    metrics: [],
-    verdict: `# Wave (4) is not finished (triangle/complex combination), and current rally is a B/X leg inside it
-
-## Thesis (10%)
-
-This is a “time-correction” scenario:
-
-* **$75.25** was not the final (4) low, just **C of W** (or A of a larger flat)
-* Price chops upward (B/X), then fades again to retest **$80 – $75** before a true (5) begins.
-
-## **Validation**
-
-* Sideways-to-down behavior below **$110 – $113** with overlapping 1D swings (no clean 5-wave lift)
-* MACD/RSI staying rangebound
-
-## **Invalidation**
-
-* A clean 5-wave rise on 1D through **$125 – $133** and especially **$141**`,
-  },
+  const resolved = {};
+  for (const [key, value] of Object.entries(obj)) {
+    if (typeof value === "string" && value.startsWith("PORTDIVE_THEME.")) {
+      const themeKey = value.replace("PORTDIVE_THEME.", "");
+      resolved[key] = PORTDIVE_THEME[themeKey] || value;
+    } else if (typeof value === "object") {
+      resolved[key] = resolveThemeReferences(value);
+    } else {
+      resolved[key] = value;
+    }
+  }
+  return resolved;
 };
+
+// Process on import
+const WAVE_COUNTS = resolveThemeReferences(WAVE_COUNTS_JSON);
+
+const tickerIconUrl = "/portdive-pages/img/nbis/nbis-icon.svg";
+const portdiveLogoUrl = "/portdive-pages/img/portdive-logo-primary.svg";
+const dateString = formatTimestamp(OHLCV_DATA.at(-1).timestamp);
 
 function formatTimestamp(timestamp) {
   return new Date(timestamp * 1000).toLocaleDateString("en-US", {
