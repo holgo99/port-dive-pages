@@ -813,7 +813,7 @@ const ChartCanvas = memo(
                   d={`M ${idxToX(activeCount.pivots.wave1Start.idx)},${priceToY(activeCount.pivots.wave1Start.price)}
                     L ${idxToX(activeCount.pivots.wave1Peak.idx)},${priceToY(activeCount.pivots.wave1Peak.price)}
                     L ${idxToX(activeCount.pivots.wave2Low.idx)},${priceToY(activeCount.pivots.wave2Low.price)}
-                    L ${idxToX(activeCount.pivots.wave3ExtPeak.idx)},${priceToY(activeCount.pivots.wave3ExtPeak.price)}`}
+                    L ${idxToX(activeCount.pivots.wave3Peak.idx)},${priceToY(activeCount.pivots.wave3Peak.price)}`}
                   fill="none"
                   stroke={activeCount.color}
                   strokeWidth="2.5"
@@ -836,9 +836,9 @@ const ChartCanvas = memo(
                   activeCount.color,
                 )}
                 {renderWaveLabel(
-                  idxToX(activeCount.pivots.wave3ExtPeak.idx),
-                  priceToY(activeCount.pivots.wave3ExtPeak.price),
-                  activeCount.pivots.wave3ExtPeak.label,
+                  idxToX(activeCount.pivots.wave3Peak.idx),
+                  priceToY(activeCount.pivots.wave3Peak.price),
+                  activeCount.pivots.wave3Peak.label,
                   true,
                   activeCount.color,
                 )}
@@ -912,6 +912,49 @@ const ChartCanvas = memo(
                 activeCount.minorWaves.minorIILow.label,
                 false,
                 activeCount.color,
+                true,
+              )}
+            </g>
+          )}
+
+        {/* Minor waves - Only for primary count */}
+        {analysisState.showMinorWaves &&
+          activeWaveCount === "alt2" &&
+          activeCount.minorWaves && (
+            <g>
+              <path
+                d={`M ${idxToX(activeCount.minorWaves.waveWStart.idx)},${priceToY(activeCount.minorWaves.waveWStart.price)}
+                L ${idxToX(activeCount.minorWaves.waveWLow.idx)},${priceToY(activeCount.minorWaves.waveWLow.price)}
+                L ${idxToX(activeCount.minorWaves.waveXPeak.idx)},${priceToY(activeCount.minorWaves.waveXPeak.price)}
+                L ${idxToX(activeCount.minorWaves.waveYLow.idx)},${priceToY(activeCount.minorWaves.waveYLow.price)}`}
+                fill="none"
+                stroke={PORTDIVE_THEME.secondary}
+                strokeWidth="1.5"
+                strokeDasharray="6,4"
+                opacity="0.7"
+              />
+              {renderWaveLabel(
+                idxToX(activeCount.minorWaves.waveWLow.idx),
+                priceToY(activeCount.minorWaves.waveWLow.price),
+                activeCount.minorWaves.waveWLow.label,
+                false,
+                PORTDIVE_THEME.secondary,
+                true,
+              )}
+              {renderWaveLabel(
+                idxToX(activeCount.minorWaves.waveXPeak.idx),
+                priceToY(activeCount.minorWaves.waveXPeak.price),
+                activeCount.minorWaves.waveXPeak.label,
+                true,
+                PORTDIVE_THEME.secondary,
+                true,
+              )}
+              {renderWaveLabel(
+                idxToX(activeCount.minorWaves.waveYLow.idx),
+                priceToY(activeCount.minorWaves.waveYLow.price),
+                activeCount.minorWaves.waveYLow.label,
+                false,
+                PORTDIVE_THEME.secondary,
                 true,
               )}
             </g>
@@ -1018,13 +1061,13 @@ const ChartCanvas = memo(
         )}
 
         {/* Projected Wave 4 path */}
-        {analysisState.showMotiveWaves && activeWaveCount === "alt2" && (
+        {analysisState.showCorrectiveWaves && activeWaveCount === "alt2" && (
           <g>
             <path
               d={`M ${idxToX(activeCount.projectedStart.idx)},${priceToY(activeCount.projectedStart.price)}
                 L ${idxToX(data.length + projectionBars * projectionBarsScale)},${priceToY(activeCount.projectedTarget)}`}
               fill="none"
-              stroke={activeCount.color}
+              stroke={PORTDIVE_THEME.secondary}
               strokeWidth="2"
               strokeDasharray="8,6"
               opacity="0.5"
@@ -1036,7 +1079,7 @@ const ChartCanvas = memo(
                 cy={priceToY(activeCount.projectedTarget) + 23}
                 rx={16}
                 ry={16}
-                stroke={activeCount.color}
+                stroke={PORTDIVE_THEME.secondary}
                 strokeWidth={1.5}
                 strokeDasharray="5,3"
                 opacity={0.6}
@@ -1056,7 +1099,7 @@ const ChartCanvas = memo(
                 x={idxToX(data.length + projectionBars * projectionBarsScale)}
                 y={priceToY(activeCount.projectedTarget)}
                 textAnchor="middle"
-                fill={activeCount.color}
+                fill={PORTDIVE_THEME.secondary}
                 fontSize="10"
                 fontWeight="600"
                 opacity={0.8}

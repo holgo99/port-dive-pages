@@ -112,7 +112,7 @@
         "isNegative": true
       }
     ],
-    "verdict": "# Primary scenario (Revised): Delayed Bullish Continuation\n\n## Thesis (35%)\n\n* Wave (5) is still **possible**, but the market **confirmed** a break below **$93.10** and **$92.50**, implying minor **ii is extending** / structure is still corrective until price reclaims key pivots.\n* **Forward targets** (if validated): $112.69 → $135.83 (primary) → $150.13+ (stretch)\n\n## Validation\n\n* Reclaim and hold **>$92.88** (former 0.50 shelf) then **>$94.19** (major pivot) on daily closes\n* Momentum confirmation: MACD histogram stabilizes/turns up and RSI returns **>50**\n\n## Invalidation\n\n* Soft risk: sustained weakness below **$88.72** (next fib support)\n* Hard invalidation: sustained break **<$75.25** (global bullish floor)"
+    "verdict": "# Primary scenario (Revised): Delayed Bullish Continuation\n\n## Thesis (35%)\n\nWave (5) is still **possible**, but the market **confirmed** a break below **$93.10** and **$92.50**, implying minor **ii is extending** / structure is still corrective until price reclaims key pivots.\n\n## Validation\n\n- Reclaim and hold **>$92.88** (former 0.50 shelf) then **>$94.19** (major pivot) on daily closes\n- Momentum confirmation: MACD histogram stabilizes/turns up and RSI returns **>50**\n\n## Invalidation\n\n- Soft risk: sustained weakness below **$88.72** (next fib support)\n- Hard invalidation: sustained break **<$75.25** (global bullish floor)\n\n## Forward targets (if validated)\n\n- $112.69 → $135.83 (primary) → $150.13+ (stretch)"
   },
   "alt1": {
     "id": "alt1",
@@ -200,36 +200,15 @@
         "isNegative": true
       }
     ],
-    "verdict": "# Alt1 (Favored): Corrective C/Y Down Leg\n\n## Thesis (45%)\n\n* The breakdown below **$93.10** and **$92.50** shifts bias to a **C/Y down leg** after a completed A (to $75.25) and B (to $110.50).\n* **Downside roadmap:** $88.72 → $82.79 → $79.70 → $75.25 (then $65.22 if deep)\n\n## Validation\n\n* Price fails below **$92.88–$94.19** on rebounds (resistance)\n* MACD remains bearish (MACD < signal; histogram negative)\n* RSI struggles to regain **50**\n\n## Invalidation\n\n* Soft: reclaim and hold **>$100.40**\n* Hard: decisive recovery **>$110.50** (would negate active C/Y thesis)"
+    "verdict": "# Alt1 (Favored): Corrective C/Y Down Leg\n\n## Thesis (45%)\n\nThe breakdown below **$93.10** and **$92.50** shifts bias to a **C/Y down leg** after a completed A (to $75.25) and B (to $110.50).\n\n## Validation\n\n- Price fails below **$92.88–$94.19** on rebounds (resistance)\n- MACD remains bearish (MACD < signal; histogram negative)\n- RSI struggles to regain **50**\n\n## Invalidation\n\n- Soft: reclaim and hold **>$100.40**\n- Hard: decisive recovery **>$110.50** (would negate active C/Y thesis)\n\n## Downside roadmap\n\n- $88.72 → $82.79 → $79.70 → $75.25 (then $65.22 if deep)"
   },
   "alt2": {
     "id": "alt2",
     "label": "Complex (4) still unfolding (chop then drop)",
     "probability": "20%",
     "mode": "CORRECTIVE",
-    "color": "PORTDIVE_THEME.primary",
+    "color": "PORTDIVE_THEME.secondary",
     "pivots": {
-      "wave1Start": {
-        "idx": 0,
-        "price": 18.31
-      },
-      "wave1Peak": {
-        "idx": 57,
-        "price": 55.75,
-        "label": "1"
-      },
-      "wave2Low": {
-        "idx": 65,
-        "price": 43.89,
-        "label": "2"
-      },
-      "wave3Peak": {
-        "idx": 129,
-        "price": 141.1,
-        "label": "3"
-      }
-    },
-    "minorWaves": {
       "waveWStart": {
         "idx": 129,
         "price": 141.1
@@ -243,13 +222,9 @@
         "idx": 196,
         "price": 110.5,
         "label": "X"
-      },
-      "waveYLow": {
-        "idx": 201,
-        "price": 91.36,
-        "label": "Y"
       }
     },
+    "minorWaves": {},
     "projectedTarget": 79.7,
     "projectedLabel": "Y",
     "projectedStart": {
@@ -313,6 +288,6 @@
         "isNegative": true
       }
     ],
-    "verdict": "# Alt2: Complex (4) Not Finished\n\n## Thesis (20%)\n\n* Rather than a clean trending C-wave, expect **overlapping, choppy swings** (low-ADX signature) that still resolve lower into **$88.72–$79.70** before a later Wave (5) attempt.\n* **Path expectation:** Y-down to $88.72–$79.70 → choppy bounce → decision near $75.25\n\n## Validation\n\n* Rebounds remain capped below **$92.88–$94.19** and below MA50\n* ADX stays low while MACD flattens (complex correction signature)\n\n## Invalidation\n\n* Reclaim and hold **>$100.40**, and especially an impulsive recovery **>$110.50**\n\n## "
+    "verdict": "# Alt2: Complex (4) Not Finished\n\n## Thesis (20%)\n\nRather than a clean trending C-wave, expect **overlapping, choppy swings** (low-ADX signature) that still resolve lower into **$88.72–$79.70** before a later Wave (5) attempt.\n\n## Validation\n\n- Rebounds remain capped below **$92.88–$94.19** and below MA50\n- ADX stays low while MACD flattens (complex correction signature)\n\n## Invalidation\n\n- Reclaim and hold **>$100.40**, and especially an impulsive recovery **>$110.50**\n\n## Path expectation\n\n- Y-down to $88.72–$79.70 → choppy bounce → decision near $75.25"
   }
 }

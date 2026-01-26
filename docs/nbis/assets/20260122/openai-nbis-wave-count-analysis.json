@@ -1,0 +1,128 @@
+{
+  "ticker": "NBIS",
+  "timeframe": "1D",
+  "as_of_bar": "2026-01-26T15:30:00",
+  "last_close": 91.47,
+  "last_session_change_pct": -3.21,
+  "regime_update": {
+    "key_break_confirmed": true,
+    "broken_levels": [93.10, 92.50],
+    "implication": "Break below minor-ii ($93.10) and the 0.50 retrace shelf (~$92.88) shifts the base case from 'Wave (5) advancing' to 'still corrective / deeper Wave ii or complex (4)'."
+  },
+  "indicator_snapshot": {
+    "rsi_14": 44.78,
+    "adx_14": 15.23,
+    "williams_r": -97.29,
+    "macd": {
+      "macd": 1.099,
+      "signal": 1.812,
+      "hist": -0.713,
+      "state": "bearish (macd < signal, histogram negative)"
+    },
+    "moving_averages": {
+      "ma_50": 92.996,
+      "ma_200": 73.317,
+      "price_vs_ma50": "below",
+      "price_vs_ma200": "above"
+    }
+  },
+  "levels": {
+    "immediate_resistance": [
+      { "price": 92.88, "label": "R1: 0.50 retrace of 75.25→110.50 (broken; now resistance)" },
+      { "price": 94.19, "label": "R2: 38.2% retrace of full 18.31→141.10 impulse (major pivot)" },
+      { "price": 97.03, "label": "R3: 38.2 retrace of 75.25→110.50" },
+      { "price": 100.40, "label": "R4: prior key fib shelf (old 61.8 of 141.10→75.25 grid)" }
+    ],
+    "immediate_support": [
+      { "price": 91.36, "label": "S0: last session low (intraday reference)" },
+      { "price": 88.72, "label": "S1: 61.8% retrace of 75.25→110.50 (next primary support)" },
+      { "price": 82.79, "label": "S2: 78.6% retrace of 75.25→110.50" },
+      { "price": 79.70, "label": "S3: 50% retrace of full 18.31→141.10 (major correction magnet)" },
+      { "price": 75.25, "label": "S4: wave (4) low / structural floor (global bullish invalidation)" },
+      { "price": 65.22, "label": "S5: 61.8% retrace of full 18.31→141.10 (deep correction target)" }
+    ]
+  },
+  "probabilities": {
+    "primary": 0.35,
+    "alt1": 0.45,
+    "alt2": 0.20,
+    "note": "Updated to reflect confirmed breaks below $93.10 and $92.50 plus bearish MACD alignment."
+  },
+  "scenarios": {
+    "primary": {
+      "name": "Primary (Revised): Wave (5) still possible, but Wave ii of (5) is extending/deeper",
+      "status": "WEAKENED / STILL VIABLE ABOVE $75.25",
+      "current_position": "Treat the 75.25→110.50 move as early (5) / minor i, but the pullback is not finished: minor ii is extending toward fib supports (88.72, then 82.79).",
+      "validation_requirements": [
+        "Reclaim and hold above $92.88, then $94.19 on a closing basis",
+        "MACD histogram turns back positive OR macd crosses above signal",
+        "RSI recovers back above 50 while price holds above $88.72"
+      ],
+      "invalidation": {
+        "soft": 88.72,
+        "hard": 75.25,
+        "rule": "A sustained break below $75.25 invalidates the 'Wave (5) underway from 75.25' interpretation."
+      },
+      "forward_targets_if_validated": [
+        { "price": 102.18, "label": "Reclaim shelf (0.236 retrace of 75.25→110.50)" },
+        { "price": 112.69, "label": "(5) = (1) target (from 75.25 base)" },
+        { "price": 135.83, "label": "(5) = 1.618×(1) (primary upside objective)" },
+        { "price": 150.13, "label": "Stretch: 2.0×(1)" }
+      ],
+      "notes": [
+        "Because the market broke below the prior minor-ii low, the bullish impulse must be treated as 'delayed' unless price quickly reclaims $92.88–$94.19.",
+        "ADX ~15 suggests weak trend; this favors corrective/complex behavior until proven otherwise."
+      ]
+    },
+    "alt1": {
+      "name": "Alternative #1 (Upgraded): ABC / WXY correction from 141.10 is active (C-leg risk dominates)",
+      "status": "FAVORED",
+      "current_position": "141.10→75.25 is A (or W). 75.25→110.50 was B (or X). The break below 92.50 suggests the market has transitioned into C (or Y) downward, with initial targets at 88.72 then 79.70.",
+      "validation_requirements": [
+        "Remain below $94.19 on closes (38.2% retrace of full impulse)",
+        "MACD remains bearish (macd < signal) with negative histogram",
+        "RSI fails to regain 50 on rallies"
+      ],
+      "invalidation": {
+        "soft": 100.40,
+        "hard": 110.50,
+        "rule": "A decisive recovery above $110.50 would strongly argue against a C/Y down leg being underway."
+      },
+      "downside_targets": [
+        { "price": 88.72, "label": "C/Y-1: 61.8% retrace of 75.25→110.50" },
+        { "price": 82.79, "label": "C/Y-2: 78.6% retrace of 75.25→110.50" },
+        { "price": 79.70, "label": "C/Y-3: 50% retrace of full 18.31→141.10 (major magnet)" },
+        { "price": 75.25, "label": "C/Y-4: retest of A/W low (structural test)" },
+        { "price": 65.22, "label": "C/Y-5: deep correction zone (61.8% retrace of full impulse)" }
+      ],
+      "notes": [
+        "This scenario best fits the confirmed breakdown + bearish MACD configuration.",
+        "Oversold Williams %R (~-97) implies bounces are likely, but under this scenario they are expected to fail below major pivots ($94.19, $100.40)."
+      ]
+    },
+    "alt2": {
+      "name": "Alternative #2 (Moderate): Complex (4) not finished (double-three / triangle-like), final flush still pending",
+      "status": "POSSIBLE (CHOP THEN DROP)",
+      "current_position": "The 75.25 low may be only part of (4). The 75.25→110.50 advance is an X-wave bounce within (4), and the market is now carving the Y-leg down toward 88.72–79.70 before a later (5) attempt.",
+      "validation_requirements": [
+        "Price remains below the 50-MA and fails at $92.88–$94.19 on rebound attempts",
+        "ADX stays low (range/complex correction signature) while swings persist",
+        "MACD stays bearish but begins to flatten (typical of complex corrections)"
+      ],
+      "invalidation": {
+        "soft": 100.40,
+        "hard": 110.50,
+        "rule": "A strong impulsive reclaim above $110.50 would reduce the likelihood that the structure is still (4)."
+      },
+      "path_expectation": [
+        { "phase": "Y-down", "zone": "88.72 → 79.70", "note": "support hunt / potential capitulation wick" },
+        { "phase": "X-up", "zone": "92.88 → 100.40", "note": "mean-reversion bounce; should be choppy" },
+        { "phase": "final resolution", "zone": "either break $75.25 OR launch Wave (5)", "note": "decision point" }
+      ],
+      "notes": [
+        "Alt2 differs from Alt1 mainly by expecting more sideways/choppy structure (time-consuming) rather than a clean trending C-wave."
+      ]
+    }
+  },
+  "global_invalidation_level": 75.25
+}
