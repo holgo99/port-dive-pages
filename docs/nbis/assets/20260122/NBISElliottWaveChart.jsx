@@ -2371,7 +2371,6 @@ export default function NBISElliottWaveChart({ colorMode = "dark" }) {
           display: "flex",
           gap: "8px",
           width: "100%",
-          marginBottom: "20px",
         }}
       >
         {activeCount.verdict.length > 0 && (

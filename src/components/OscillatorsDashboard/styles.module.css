@@ -14,38 +14,45 @@
  */
 
 :root {
-  /* PortDive Brand Colors */
-  --portdive-teal: #1fa39b;
-  --portdive-teal-rgb: 31, 163, 155;
-  --portdive-coral: #ff6b6b;
-  --portdive-coral-rgb: 255, 107, 107;
-  --portdive-blue: #3d72ff;
-  --portdive-blue-rgb: 61, 114, 255;
+    /* PortDive Brand Colors */
+    --portdive-teal: #1fa39b;
+    --portdive-teal-rgb: 31, 163, 155;
+    --portdive-coral: #ff6b6b;
+    --portdive-coral-rgb: 255, 107, 107;
+    --portdive-blue: #3d72ff;
+    --portdive-blue-rgb: 61, 114, 255;
 
-  /* Supporting Colors */
-  --portdive-warning: #f9e95e;
-  --portdive-magenta: #e040fb;
+    /* Supporting Colors */
+    --portdive-warning: #f9e95e;
+    --portdive-magenta: #e040fb;
 
-  /* Dashboard Colors - Dark Mode */
-  --dashboard-bg: #0a1a1f;
-  --dashboard-surface: #0f2028;
-  --dashboard-surface-alt: #142830;
-  --dashboard-surface-elevated: #1a3040;
-  --dashboard-text: #f8faf9;
-  --dashboard-text-secondary: #a8b4bc;
-  --dashboard-text-muted: #6a7a84;
-  --dashboard-border: rgba(248, 250, 249, 0.12);
-  --dashboard-border-glow: rgba(31, 163, 155, 0.3);
+    /* Dashboard Colors - Dark Mode */
+    --dashboard-bg: #0a1a1f;
+    --dashboard-surface: #0f2028;
+    --dashboard-surface-alt: #142830;
+    --dashboard-surface-elevated: #1a3040;
+    --dashboard-text: #f8faf9;
+    --dashboard-text-secondary: #a8b4bc;
+    --dashboard-text-muted: #6a7a84;
+    --dashboard-border: rgba(248, 250, 249, 0.12);
+    --dashboard-border-glow: rgba(31, 163, 155, 0.3);
 
-  /* Gauge Colors */
-  --gauge-track: rgba(248, 250, 249, 0.08);
-  --gauge-track-gradient: linear-gradient(90deg, #1fa39b 0%, #3d72ff 50%, #ff6b6b 100%);
+    /* Gauge Colors */
+    --gauge-track: rgba(248, 250, 249, 0.08);
+    --gauge-track-gradient: linear-gradient(
+        90deg,
+        #1fa39b 0%,
+        #3d72ff 50%,
+        #ff6b6b 100%
+    );
 
-  /* Typography */
-  --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system,
-    BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo,
-    Monaco, Consolas, monospace;
+    /* Typography */
+    --font-family-base:
+        "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, sans-serif;
+    --font-family-mono:
+        "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        monospace;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -53,21 +60,22 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .dashboardWrapper {
-  background: var(--dashboard-bg);
-  border: 1px solid var(--dashboard-border);
-  border-radius: 20px;
-  overflow: hidden;
-  font-family: var(--font-family-base);
-  color: var(--dashboard-text);
-  width: 100%;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    background: var(--dashboard-bg);
+    border: 1px solid var(--dashboard-border);
+    border-radius: 20px;
+    overflow: hidden;
+    font-family: var(--font-family-base);
+    color: var(--dashboard-text);
+    width: 100%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    margin-bottom: 24px;
 }
 
 .noData {
-  padding: 64px;
-  text-align: center;
-  color: var(--dashboard-text-muted);
-  font-size: 16px;
+    padding: 64px;
+    text-align: center;
+    color: var(--dashboard-text-muted);
+    font-size: 16px;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -75,35 +83,35 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .dashboardHeader {
-  padding: 28px 32px;
-  border-bottom: 1px solid var(--dashboard-border);
-  background: linear-gradient(
-    180deg,
-    var(--dashboard-surface) 0%,
-    var(--dashboard-bg) 100%
-  );
+    padding: 28px 32px;
+    border-bottom: 1px solid var(--dashboard-border);
+    background: linear-gradient(
+        180deg,
+        var(--dashboard-surface) 0%,
+        var(--dashboard-bg) 100%
+    );
 }
 
 .headerContent {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .dashboardTitle {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--portdive-teal);
-  margin: 0;
-  letter-spacing: -0.02em;
-  text-shadow: 0 0 30px rgba(31, 163, 155, 0.3);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--portdive-teal);
+    margin: 0;
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 30px rgba(31, 163, 155, 0.3);
 }
 
 .dashboardSubtitle {
-  font-size: 14px;
-  color: var(--dashboard-text-secondary);
-  margin: 0;
-  letter-spacing: 0.02em;
+    font-size: 14px;
+    color: var(--dashboard-text-secondary);
+    margin: 0;
+    letter-spacing: 0.02em;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -111,220 +119,220 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .gaugesSection {
-  padding: 32px;
-  border-bottom: 1px solid var(--dashboard-border);
-  background: var(--dashboard-bg);
+    padding: 32px;
+    border-bottom: 1px solid var(--dashboard-border);
+    background: var(--dashboard-bg);
 }
 
 .gaugesGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
-  justify-items: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    justify-items: center;
 }
 
 /* Premium Gauge Card - Square with min-width */
 .gaugeCard {
-  background: var(--dashboard-surface);
-  border: 1px solid var(--dashboard-border);
-  border-radius: 16px;
-  padding: 20px 16px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-  /* Square aspect ratio with min-width */
-  min-width: 180px;
-  aspect-ratio: 1 / 1;
-  justify-content: space-between;
+    background: var(--dashboard-surface);
+    border: 1px solid var(--dashboard-border);
+    border-radius: 16px;
+    padding: 20px 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    /* Square aspect ratio with min-width */
+    min-width: 280px;
+    aspect-ratio: 1 / 1;
+    justify-content: space-between;
 }
 
 /* Subtle glow effect on card based on state */
 .gaugeCard.teal {
-  box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.3),
-    0 0 40px rgba(31, 163, 155, 0.08),
-    inset 0 1px 0 rgba(31, 163, 155, 0.1);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(31, 163, 155, 0.08),
+        inset 0 1px 0 rgba(31, 163, 155, 0.1);
 }
 
 .gaugeCard.coral {
-  box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.3),
-    0 0 40px rgba(255, 107, 107, 0.08),
-    inset 0 1px 0 rgba(255, 107, 107, 0.1);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(255, 107, 107, 0.08),
+        inset 0 1px 0 rgba(255, 107, 107, 0.1);
 }
 
 .gaugeCard.blue {
-  box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.3),
-    0 0 40px rgba(61, 114, 255, 0.08),
-    inset 0 1px 0 rgba(61, 114, 255, 0.1);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(61, 114, 255, 0.08),
+        inset 0 1px 0 rgba(61, 114, 255, 0.1);
 }
 
 .gaugeCard:hover {
-  transform: translateY(-4px);
+    transform: translateY(-4px);
 }
 
 .gaugeCard.teal:hover {
-  box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.4),
-    0 0 60px rgba(31, 163, 155, 0.15),
-    inset 0 1px 0 rgba(31, 163, 155, 0.2);
-  border-color: rgba(31, 163, 155, 0.3);
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        0 0 60px rgba(31, 163, 155, 0.15),
+        inset 0 1px 0 rgba(31, 163, 155, 0.2);
+    border-color: rgba(31, 163, 155, 0.3);
 }
 
 .gaugeCard.coral:hover {
-  box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.4),
-    0 0 60px rgba(255, 107, 107, 0.15),
-    inset 0 1px 0 rgba(255, 107, 107, 0.2);
-  border-color: rgba(255, 107, 107, 0.3);
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        0 0 60px rgba(255, 107, 107, 0.15),
+        inset 0 1px 0 rgba(255, 107, 107, 0.2);
+    border-color: rgba(255, 107, 107, 0.3);
 }
 
 .gaugeCard.blue:hover {
-  box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.4),
-    0 0 60px rgba(61, 114, 255, 0.15),
-    inset 0 1px 0 rgba(61, 114, 255, 0.2);
-  border-color: rgba(61, 114, 255, 0.3);
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        0 0 60px rgba(61, 114, 255, 0.15),
+        inset 0 1px 0 rgba(61, 114, 255, 0.2);
+    border-color: rgba(61, 114, 255, 0.3);
 }
 
 .gaugeLabel {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--portdive-teal);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--portdive-teal);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 
 .gaugeContainer {
-  position: relative;
-  width: 100%;
-  max-width: 180px;
-  height: 110px;
+    position: relative;
+    width: 100%;
+    max-width: 180px;
+    height: 110px;
 }
 
 .gaugeSvg {
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: auto;
 }
 
 .gaugeArcActive {
-  transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .gaugeIndicatorDot {
-  transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .gaugeIndicatorDot.teal {
-  fill: var(--portdive-teal);
+    fill: var(--portdive-teal);
 }
 
 .gaugeIndicatorDot.coral {
-  fill: var(--portdive-coral);
+    fill: var(--portdive-coral);
 }
 
 .gaugeIndicatorDot.blue {
-  fill: var(--portdive-blue);
+    fill: var(--portdive-blue);
 }
 
 .gaugeMinMax {
-  font-size: 11px;
-  fill: var(--dashboard-text-muted);
-  font-family: var(--font-family-mono);
-  font-weight: 500;
+    font-size: 11px;
+    fill: var(--dashboard-text-muted);
+    font-family: var(--font-family-mono);
+    font-weight: 500;
 }
 
 /* Large Bold Value - 48px as specified */
 .gaugeValueContainer {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
 }
 
 .gaugeValue {
-  font-size: 48px;
-  font-weight: 700;
-  font-family: var(--font-family-mono);
-  line-height: 1;
-  letter-spacing: -0.02em;
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: var(--font-family-mono);
+    line-height: 1;
+    letter-spacing: -0.02em;
 }
 
 .gaugeValue.teal {
-  color: var(--dashboard-text);
-  text-shadow: 0 0 20px rgba(31, 163, 155, 0.4);
+    color: var(--dashboard-text);
+    text-shadow: 0 0 20px rgba(31, 163, 155, 0.4);
 }
 
 .gaugeValue.coral {
-  color: var(--dashboard-text);
-  text-shadow: 0 0 20px rgba(255, 107, 107, 0.4);
+    color: var(--dashboard-text);
+    text-shadow: 0 0 20px rgba(255, 107, 107, 0.4);
 }
 
 .gaugeValue.blue {
-  color: var(--dashboard-text);
-  text-shadow: 0 0 20px rgba(61, 114, 255, 0.4);
+    color: var(--dashboard-text);
+    text-shadow: 0 0 20px rgba(61, 114, 255, 0.4);
 }
 
 /* Status Badge with Icon and Glow */
 .gaugeStatusBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
 }
 
 .gaugeStatusBadge.teal {
-  background: rgba(31, 163, 155, 0.15);
-  color: var(--portdive-teal);
-  border: 1px solid rgba(31, 163, 155, 0.3);
-  box-shadow:
-    0 0 12px rgba(31, 163, 155, 0.2),
-    inset 0 0 8px rgba(31, 163, 155, 0.1);
+    background: rgba(31, 163, 155, 0.15);
+    color: var(--portdive-teal);
+    border: 1px solid rgba(31, 163, 155, 0.3);
+    box-shadow:
+        0 0 12px rgba(31, 163, 155, 0.2),
+        inset 0 0 8px rgba(31, 163, 155, 0.1);
 }
 
 .gaugeStatusBadge.coral {
-  background: rgba(255, 107, 107, 0.15);
-  color: var(--portdive-coral);
-  border: 1px solid rgba(255, 107, 107, 0.3);
-  box-shadow:
-    0 0 12px rgba(255, 107, 107, 0.2),
-    inset 0 0 8px rgba(255, 107, 107, 0.1);
+    background: rgba(255, 107, 107, 0.15);
+    color: var(--portdive-coral);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    box-shadow:
+        0 0 12px rgba(255, 107, 107, 0.2),
+        inset 0 0 8px rgba(255, 107, 107, 0.1);
 }
 
 .gaugeStatusBadge.blue {
-  background: rgba(61, 114, 255, 0.15);
-  color: var(--portdive-blue);
-  border: 1px solid rgba(61, 114, 255, 0.3);
-  box-shadow:
-    0 0 12px rgba(61, 114, 255, 0.2),
-    inset 0 0 8px rgba(61, 114, 255, 0.1);
+    background: rgba(61, 114, 255, 0.15);
+    color: var(--portdive-blue);
+    border: 1px solid rgba(61, 114, 255, 0.3);
+    box-shadow:
+        0 0 12px rgba(61, 114, 255, 0.2),
+        inset 0 0 8px rgba(61, 114, 255, 0.1);
 }
 
 /* Reference Levels */
 .gaugeLevels {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .gaugeLevel {
-  font-size: 10px;
-  color: var(--dashboard-text-muted);
-  font-family: var(--font-family-mono);
+    font-size: 10px;
+    color: var(--dashboard-text-muted);
+    font-family: var(--font-family-mono);
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -332,132 +340,132 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .chartsSection {
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  border-bottom: 1px solid var(--dashboard-border);
-  background: var(--dashboard-bg);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    border-bottom: 1px solid var(--dashboard-border);
+    background: var(--dashboard-bg);
 }
 
 .chartCard {
-  background: var(--dashboard-surface);
-  border: 1px solid var(--dashboard-border);
-  border-radius: 16px;
-  padding: 20px;
-  transition: all 0.3s ease;
+    background: var(--dashboard-surface);
+    border: 1px solid var(--dashboard-border);
+    border-radius: 16px;
+    padding: 20px;
+    transition: all 0.3s ease;
 }
 
 .chartCard:hover {
-  border-color: rgba(61, 114, 255, 0.2);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border-color: rgba(61, 114, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .chartHeader {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
-  color: var(--dashboard-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    color: var(--dashboard-text-secondary);
 }
 
 .chartTitle {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--dashboard-text);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dashboard-text);
 }
 
 .chartSvg {
-  width: 100%;
-  height: auto;
-  display: block;
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .gridLine {
-  stroke: var(--dashboard-border);
-  stroke-width: 1;
+    stroke: var(--dashboard-border);
+    stroke-width: 1;
 }
 
 .thresholdLine {
-  stroke-width: 1.5;
+    stroke-width: 1.5;
 }
 
 .thresholdLine.teal {
-  stroke: var(--portdive-teal);
-  opacity: 0.6;
+    stroke: var(--portdive-teal);
+    opacity: 0.6;
 }
 
 .thresholdLine.coral {
-  stroke: var(--portdive-coral);
-  opacity: 0.6;
+    stroke: var(--portdive-coral);
+    opacity: 0.6;
 }
 
 .thresholdLine.muted {
-  stroke: var(--dashboard-text-muted);
-  opacity: 0.4;
+    stroke: var(--dashboard-text-muted);
+    opacity: 0.4;
 }
 
 .thresholdLabel {
-  font-size: 10px;
-  font-family: var(--font-family-mono);
-  font-weight: 600;
+    font-size: 10px;
+    font-family: var(--font-family-mono);
+    font-weight: 600;
 }
 
 .thresholdLabel.teal {
-  fill: var(--portdive-teal);
+    fill: var(--portdive-teal);
 }
 
 .thresholdLabel.coral {
-  fill: var(--portdive-coral);
+    fill: var(--portdive-coral);
 }
 
 .thresholdLabel.muted {
-  fill: var(--dashboard-text-muted);
+    fill: var(--dashboard-text-muted);
 }
 
 .dataLine {
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 .dataLine.blue {
-  stroke: var(--portdive-blue);
+    stroke: var(--portdive-blue);
 }
 
 .dataLine.teal {
-  stroke: var(--portdive-teal);
+    stroke: var(--portdive-teal);
 }
 
 .dataLine.coral {
-  stroke: var(--portdive-coral);
+    stroke: var(--portdive-coral);
 }
 
 .dataLine.warning {
-  stroke: var(--portdive-warning);
+    stroke: var(--portdive-warning);
 }
 
 .dataLine.magenta {
-  stroke: var(--portdive-magenta);
+    stroke: var(--portdive-magenta);
 }
 
 .histogramBar {
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
 }
 
 .histogramBar.teal {
-  fill: var(--portdive-teal);
+    fill: var(--portdive-teal);
 }
 
 .histogramBar.coral {
-  fill: var(--portdive-coral);
+    fill: var(--portdive-coral);
 }
 
 .axisLabel {
-  font-size: 10px;
-  fill: var(--dashboard-text-muted);
-  font-family: var(--font-family-mono);
+    font-size: 10px;
+    fill: var(--dashboard-text-muted);
+    font-family: var(--font-family-mono);
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -465,271 +473,271 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .signalSection {
-  padding: 32px;
-  background: var(--dashboard-bg);
+    padding: 32px;
+    background: var(--dashboard-bg);
 }
 
 .signalMatrixContainer {
-  background: var(--dashboard-surface);
-  border: 1px solid var(--dashboard-border);
-  border-radius: 20px;
-  padding: 28px;
+    background: var(--dashboard-surface);
+    border: 1px solid var(--dashboard-border);
+    border-radius: 20px;
+    padding: 28px;
 }
 
 .signalMatrixHeader {
-  margin-bottom: 24px;
+    margin-bottom: 24px;
 }
 
 .signalMatrixTitle {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--dashboard-text);
-  margin: 0;
-  letter-spacing: -0.01em;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dashboard-text);
+    margin: 0;
+    letter-spacing: -0.01em;
 }
 
 /* Premium Signal Grid - 5 cards in first row, summary below */
 .signalGrid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
-  margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
 }
 
 /* Premium Signal Card with Gradient */
 .signalCard {
-  background: var(--dashboard-surface-alt);
-  border-radius: 16px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
+    background: var(--dashboard-surface-alt);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
 }
 
 /* Confirmed state - Teal gradient */
 .signalCard.confirmed {
-  background: linear-gradient(
-    135deg,
-    rgba(31, 163, 155, 0.2) 0%,
-    var(--dashboard-surface-alt) 100%
-  );
-  border: 1px solid rgba(31, 163, 155, 0.4);
-  box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.2),
-    0 0 30px rgba(31, 163, 155, 0.15),
-    inset 0 1px 0 rgba(31, 163, 155, 0.2);
+    background: linear-gradient(
+        135deg,
+        rgba(31, 163, 155, 0.2) 0%,
+        var(--dashboard-surface-alt) 100%
+    );
+    border: 1px solid rgba(31, 163, 155, 0.4);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.2),
+        0 0 30px rgba(31, 163, 155, 0.15),
+        inset 0 1px 0 rgba(31, 163, 155, 0.2);
 }
 
 /* Not Met state - Coral gradient */
 .signalCard.notMet {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 107, 107, 0.15) 0%,
-    var(--dashboard-surface-alt) 100%
-  );
-  border: 1px solid rgba(255, 107, 107, 0.3);
-  box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.2),
-    0 0 30px rgba(255, 107, 107, 0.1);
+    background: linear-gradient(
+        135deg,
+        rgba(255, 107, 107, 0.15) 0%,
+        var(--dashboard-surface-alt) 100%
+    );
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.2),
+        0 0 30px rgba(255, 107, 107, 0.1);
 }
 
 .signalCard:hover {
-  transform: translateY(-2px);
+    transform: translateY(-2px);
 }
 
 .signalCard.confirmed:hover {
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.3),
-    0 0 50px rgba(31, 163, 155, 0.2);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 0 50px rgba(31, 163, 155, 0.2);
 }
 
 .signalCard.notMet:hover {
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.3),
-    0 0 50px rgba(255, 107, 107, 0.15);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 0 50px rgba(255, 107, 107, 0.15);
 }
 
 .signalCardHeader {
-  width: 100%;
-  text-align: center;
+    width: 100%;
+    text-align: center;
 }
 
 .signalLabel {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--dashboard-text);
-  display: block;
-  margin-bottom: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dashboard-text);
+    display: block;
+    margin-bottom: 4px;
 }
 
 .signalStatusText {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 
 .signalStatusText.confirmed {
-  color: var(--portdive-teal);
+    color: var(--portdive-teal);
 }
 
 .signalStatusText.notMet {
-  color: var(--portdive-coral);
+    color: var(--portdive-coral);
 }
 
 .signalIconContainer {
-  padding: 8px 0;
+    padding: 8px 0;
 }
 
 .signalIcon {
-  transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .signalIcon.confirmed {
-  color: var(--portdive-teal);
-  filter: drop-shadow(0 0 12px rgba(31, 163, 155, 0.5));
+    color: var(--portdive-teal);
+    filter: drop-shadow(0 0 12px rgba(31, 163, 155, 0.5));
 }
 
 .signalIcon.notMet {
-  color: var(--portdive-coral);
-  filter: drop-shadow(0 0 12px rgba(255, 107, 107, 0.5));
+    color: var(--portdive-coral);
+    filter: drop-shadow(0 0 12px rgba(255, 107, 107, 0.5));
 }
 
 .signalCardFooter {
-  text-align: center;
+    text-align: center;
 }
 
 .signalValueLabel {
-  font-size: 11px;
-  color: var(--dashboard-text-muted);
-  display: block;
-  margin-bottom: 4px;
+    font-size: 11px;
+    color: var(--dashboard-text-muted);
+    display: block;
+    margin-bottom: 4px;
 }
 
 .signalValue {
-  font-size: 16px;
-  font-weight: 700;
-  font-family: var(--font-family-mono);
+    font-size: 16px;
+    font-weight: 700;
+    font-family: var(--font-family-mono);
 }
 
 .signalValue.confirmed {
-  color: var(--portdive-teal);
+    color: var(--portdive-teal);
 }
 
 .signalValue.notMet {
-  color: var(--portdive-coral);
+    color: var(--portdive-coral);
 }
 
 /* Summary Container */
 .signalSummaryContainer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 20px 24px;
-  background: var(--dashboard-surface-alt);
-  border-radius: 12px;
-  border: 1px solid var(--dashboard-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 20px 24px;
+    background: var(--dashboard-surface-alt);
+    border-radius: 12px;
+    border: 1px solid var(--dashboard-border);
 }
 
 .signalCountSection {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .signalCountLabel {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--dashboard-text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--dashboard-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .signalCountValue {
-  font-size: 14px;
-  font-weight: 700;
+    font-size: 14px;
+    font-weight: 700;
 }
 
 .signalCountValue.coral {
-  color: var(--portdive-coral);
+    color: var(--portdive-coral);
 }
 
 .signalCountValue.blue {
-  color: var(--portdive-blue);
+    color: var(--portdive-blue);
 }
 
 /* Progress Bar */
 .signalProgressBar {
-  flex: 1;
-  max-width: 200px;
-  height: 8px;
-  background: var(--dashboard-border);
-  border-radius: 4px;
-  position: relative;
-  overflow: hidden;
+    flex: 1;
+    max-width: 200px;
+    height: 8px;
+    background: var(--dashboard-border);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
 }
 
 .signalProgressFill {
-  height: 100%;
-  border-radius: 4px;
-  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .signalProgressFill.teal {
-  background: linear-gradient(90deg, var(--portdive-teal) 0%, #25b8ae 100%);
-  box-shadow: 0 0 12px rgba(31, 163, 155, 0.5);
+    background: linear-gradient(90deg, var(--portdive-teal) 0%, #25b8ae 100%);
+    box-shadow: 0 0 12px rgba(31, 163, 155, 0.5);
 }
 
 .signalProgressFill.coral {
-  background: linear-gradient(90deg, var(--portdive-coral) 0%, #ff8e8e 100%);
-  box-shadow: 0 0 12px rgba(255, 107, 107, 0.5);
+    background: linear-gradient(90deg, var(--portdive-coral) 0%, #ff8e8e 100%);
+    box-shadow: 0 0 12px rgba(255, 107, 107, 0.5);
 }
 
 .signalProgressLabel {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 9px;
-  font-weight: 700;
-  color: var(--dashboard-text);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--dashboard-text);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .signalActionSection {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .signalActionLabel {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--dashboard-text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--dashboard-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .signalActionValue {
-  font-size: 14px;
-  font-weight: 700;
+    font-size: 14px;
+    font-weight: 700;
 }
 
 .signalActionValue.teal {
-  color: var(--portdive-teal);
+    color: var(--portdive-teal);
 }
 
 .signalActionValue.coral {
-  color: var(--portdive-coral);
+    color: var(--portdive-coral);
 }
 
 .signalActionValue.blue {
-  color: var(--portdive-blue);
+    color: var(--portdive-blue);
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -737,26 +745,26 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .dashboardFooter {
-  padding: 16px 32px;
-  border-top: 1px solid var(--dashboard-border);
-  display: flex;
-  justify-content: flex-end;
-  background: var(--dashboard-surface);
+    padding: 16px 32px;
+    border-top: 1px solid var(--dashboard-border);
+    display: flex;
+    justify-content: flex-end;
+    background: var(--dashboard-surface);
 }
 
 .footerBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: rgba(31, 163, 155, 0.1);
-  color: var(--portdive-teal);
-  border-radius: 8px;
-  border: 1px solid rgba(31, 163, 155, 0.2);
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(31, 163, 155, 0.1);
+    color: var(--portdive-teal);
+    border-radius: 8px;
+    border: 1px solid rgba(31, 163, 155, 0.2);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -764,96 +772,96 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 @media (max-width: 1200px) {
-  .gaugesGrid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  }
+    .gaugesGrid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
 
-  .signalGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+    .signalGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 @media (max-width: 900px) {
-  .gaugesGrid {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  }
+    .gaugesGrid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
 
-  .gaugeCard {
-    min-width: 160px;
-  }
+    .gaugeCard {
+        min-width: 160px;
+    }
 
-  .signalGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    .signalGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
-  .signalSummaryContainer {
-    flex-direction: column;
-    gap: 16px;
-  }
+    .signalSummaryContainer {
+        flex-direction: column;
+        gap: 16px;
+    }
 
-  .signalProgressBar {
-    width: 100%;
-    max-width: none;
-  }
+    .signalProgressBar {
+        width: 100%;
+        max-width: none;
+    }
 }
 
 @media (max-width: 768px) {
-  .dashboardHeader {
-    padding: 20px 24px;
-  }
+    .dashboardHeader {
+        padding: 20px 24px;
+    }
 
-  .dashboardTitle {
-    font-size: 22px;
-  }
+    .dashboardTitle {
+        font-size: 22px;
+    }
 
-  .gaugesSection {
-    padding: 24px;
-  }
+    .gaugesSection {
+        padding: 24px;
+    }
 
-  .gaugesGrid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 16px;
-  }
+    .gaugesGrid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 16px;
+    }
 
-  .gaugeCard {
-    padding: 16px 12px;
-    min-width: 150px;
-  }
+    .gaugeCard {
+        padding: 16px 12px;
+        min-width: 150px;
+    }
 
-  .gaugeValue {
-    font-size: 36px;
-  }
+    .gaugeValue {
+        font-size: 36px;
+    }
 
-  .gaugeStatusBadge {
-    padding: 6px 12px;
-    font-size: 10px;
-  }
+    .gaugeStatusBadge {
+        padding: 6px 12px;
+        font-size: 10px;
+    }
 
-  .chartsSection {
-    padding: 24px;
-    gap: 20px;
-  }
+    .chartsSection {
+        padding: 24px;
+        gap: 20px;
+    }
 
-  .chartCard {
-    padding: 16px;
-  }
+    .chartCard {
+        padding: 16px;
+    }
 
-  .signalSection {
-    padding: 24px;
-  }
+    .signalSection {
+        padding: 24px;
+    }
 
-  .signalMatrixContainer {
-    padding: 20px;
-  }
+    .signalMatrixContainer {
+        padding: 20px;
+    }
 
-  .signalGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
+    .signalGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
 
-  .signalCard {
-    padding: 16px;
-  }
+    .signalCard {
+        padding: 16px;
+    }
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -861,130 +869,130 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 @media (max-width: 480px) {
-  .dashboardWrapper {
-    border-radius: 16px;
-  }
+    .dashboardWrapper {
+        border-radius: 16px;
+    }
 
-  .dashboardHeader {
-    padding: 16px 20px;
-  }
+    .dashboardHeader {
+        padding: 16px 20px;
+    }
 
-  .dashboardTitle {
-    font-size: 18px;
-  }
+    .dashboardTitle {
+        font-size: 18px;
+    }
 
-  .dashboardSubtitle {
-    font-size: 12px;
-  }
+    .dashboardSubtitle {
+        font-size: 12px;
+    }
 
-  .gaugesSection {
-    padding: 16px;
-  }
+    .gaugesSection {
+        padding: 16px;
+    }
 
-  .gaugesGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
+    .gaugesGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
 
-  .gaugeCard {
-    padding: 14px 10px;
-    min-width: 140px;
-  }
+    .gaugeCard {
+        padding: 14px 10px;
+        min-width: 140px;
+    }
 
-  .gaugeLabel {
-    font-size: 11px;
-  }
+    .gaugeLabel {
+        font-size: 11px;
+    }
 
-  .gaugeContainer {
-    max-width: 140px;
-    height: 90px;
-  }
+    .gaugeContainer {
+        max-width: 140px;
+        height: 90px;
+    }
 
-  .gaugeValue {
-    font-size: 28px;
-  }
+    .gaugeValue {
+        font-size: 28px;
+    }
 
-  .gaugeStatusBadge {
-    padding: 5px 10px;
-    font-size: 9px;
-  }
+    .gaugeStatusBadge {
+        padding: 5px 10px;
+        font-size: 9px;
+    }
 
-  .gaugeLevels {
-    display: none;
-  }
+    .gaugeLevels {
+        display: none;
+    }
 
-  .chartsSection {
-    padding: 20px;
-  }
+    .chartsSection {
+        padding: 20px;
+    }
 
-  .signalSection {
-    padding: 20px;
-  }
+    .signalSection {
+        padding: 20px;
+    }
 
-  .signalMatrixContainer {
-    padding: 16px;
-  }
+    .signalMatrixContainer {
+        padding: 16px;
+    }
 
-  .signalMatrixTitle {
-    font-size: 16px;
-  }
+    .signalMatrixTitle {
+        font-size: 16px;
+    }
 
-  .signalGrid {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
+    .signalGrid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
 
-  .signalCard {
-    padding: 12px;
-  }
+    .signalCard {
+        padding: 12px;
+    }
 
-  .signalLabel {
-    font-size: 11px;
-  }
+    .signalLabel {
+        font-size: 11px;
+    }
 
-  .signalIcon svg {
-    width: 36px;
-    height: 36px;
-  }
+    .signalIcon svg {
+        width: 36px;
+        height: 36px;
+    }
 
-  .signalValue {
-    font-size: 14px;
-  }
+    .signalValue {
+        font-size: 14px;
+    }
 
-  .signalSummaryContainer {
-    padding: 16px;
-  }
+    .signalSummaryContainer {
+        padding: 16px;
+    }
 
-  .signalCountLabel,
-  .signalActionLabel {
-    font-size: 10px;
-  }
+    .signalCountLabel,
+    .signalActionLabel {
+        font-size: 10px;
+    }
 
-  .signalCountValue,
-  .signalActionValue {
-    font-size: 12px;
-  }
+    .signalCountValue,
+    .signalActionValue {
+        font-size: 12px;
+    }
 
-  .footerBadge {
-    font-size: 10px;
-    padding: 6px 12px;
-  }
+    .footerBadge {
+        font-size: 10px;
+        padding: 6px 12px;
+    }
 }
 
 /* Very small screens - single column for gauges */
 @media (max-width: 380px) {
-  .gaugesGrid {
-    grid-template-columns: 1fr;
-  }
+    .gaugesGrid {
+        grid-template-columns: 1fr;
+    }
 
-  .gaugeCard {
-    min-width: 100%;
-    max-width: 280px;
-  }
+    .gaugeCard {
+        min-width: 100%;
+        max-width: 280px;
+    }
 
-  .signalGrid {
-    grid-template-columns: 1fr;
-  }
+    .signalGrid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -992,96 +1000,96 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 [data-theme="light"] .dashboardWrapper {
-  --dashboard-bg: #f8faf9;
-  --dashboard-surface: #ffffff;
-  --dashboard-surface-alt: #f0f4f2;
-  --dashboard-surface-elevated: #ffffff;
-  --dashboard-text: #0a1a1f;
-  --dashboard-text-secondary: #5a6570;
-  --dashboard-text-muted: #8a9199;
-  --dashboard-border: rgba(10, 26, 31, 0.12);
-  --gauge-track: rgba(10, 26, 31, 0.08);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --dashboard-bg: #f8faf9;
+    --dashboard-surface: #ffffff;
+    --dashboard-surface-alt: #f0f4f2;
+    --dashboard-surface-elevated: #ffffff;
+    --dashboard-text: #0a1a1f;
+    --dashboard-text-secondary: #5a6570;
+    --dashboard-text-muted: #8a9199;
+    --dashboard-border: rgba(10, 26, 31, 0.12);
+    --gauge-track: rgba(10, 26, 31, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 [data-theme="light"] .dashboardHeader {
-  background: linear-gradient(
-    180deg,
-    var(--dashboard-surface) 0%,
-    var(--dashboard-bg) 100%
-  );
+    background: linear-gradient(
+        180deg,
+        var(--dashboard-surface) 0%,
+        var(--dashboard-bg) 100%
+    );
 }
 
 [data-theme="light"] .dashboardTitle {
-  text-shadow: none;
+    text-shadow: none;
 }
 
 [data-theme="light"] .gaugeCard {
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
 [data-theme="light"] .gaugeCard:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 [data-theme="light"] .gaugeValue {
-  text-shadow: none;
+    text-shadow: none;
 }
 
 [data-theme="light"] .gaugeStatusBadge.teal {
-  box-shadow:
-    0 0 8px rgba(31, 163, 155, 0.15),
-    inset 0 0 4px rgba(31, 163, 155, 0.05);
+    box-shadow:
+        0 0 8px rgba(31, 163, 155, 0.15),
+        inset 0 0 4px rgba(31, 163, 155, 0.05);
 }
 
 [data-theme="light"] .gaugeStatusBadge.coral {
-  box-shadow:
-    0 0 8px rgba(255, 107, 107, 0.15),
-    inset 0 0 4px rgba(255, 107, 107, 0.05);
+    box-shadow:
+        0 0 8px rgba(255, 107, 107, 0.15),
+        inset 0 0 4px rgba(255, 107, 107, 0.05);
 }
 
 [data-theme="light"] .gaugeStatusBadge.blue {
-  box-shadow:
-    0 0 8px rgba(61, 114, 255, 0.15),
-    inset 0 0 4px rgba(61, 114, 255, 0.05);
+    box-shadow:
+        0 0 8px rgba(61, 114, 255, 0.15),
+        inset 0 0 4px rgba(61, 114, 255, 0.05);
 }
 
 [data-theme="light"] .chartCard {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 [data-theme="light"] .signalMatrixContainer {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 [data-theme="light"] .signalCard.confirmed {
-  background: linear-gradient(
-    135deg,
-    rgba(31, 163, 155, 0.1) 0%,
-    var(--dashboard-surface-alt) 100%
-  );
-  box-shadow:
-    0 2px 12px rgba(0, 0, 0, 0.06),
-    0 0 20px rgba(31, 163, 155, 0.08);
+    background: linear-gradient(
+        135deg,
+        rgba(31, 163, 155, 0.1) 0%,
+        var(--dashboard-surface-alt) 100%
+    );
+    box-shadow:
+        0 2px 12px rgba(0, 0, 0, 0.06),
+        0 0 20px rgba(31, 163, 155, 0.08);
 }
 
 [data-theme="light"] .signalCard.notMet {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 107, 107, 0.08) 0%,
-    var(--dashboard-surface-alt) 100%
-  );
-  box-shadow:
-    0 2px 12px rgba(0, 0, 0, 0.06),
-    0 0 20px rgba(255, 107, 107, 0.06);
+    background: linear-gradient(
+        135deg,
+        rgba(255, 107, 107, 0.08) 0%,
+        var(--dashboard-surface-alt) 100%
+    );
+    box-shadow:
+        0 2px 12px rgba(0, 0, 0, 0.06),
+        0 0 20px rgba(255, 107, 107, 0.06);
 }
 
 [data-theme="light"] .signalIcon.confirmed {
-  filter: drop-shadow(0 0 8px rgba(31, 163, 155, 0.3));
+    filter: drop-shadow(0 0 8px rgba(31, 163, 155, 0.3));
 }
 
 [data-theme="light"] .signalIcon.notMet {
-  filter: drop-shadow(0 0 8px rgba(255, 107, 107, 0.3));
+    filter: drop-shadow(0 0 8px rgba(255, 107, 107, 0.3));
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -1089,38 +1097,38 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .dashboardWrapper:focus-visible {
-  outline: 2px solid var(--portdive-teal);
-  outline-offset: 2px;
+    outline: 2px solid var(--portdive-teal);
+    outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .gaugeCard,
-  .signalCard,
-  .gaugeArcActive,
-  .signalProgressFill,
-  .gaugeIndicatorDot {
-    transition: none;
-  }
+    .gaugeCard,
+    .signalCard,
+    .gaugeArcActive,
+    .signalProgressFill,
+    .gaugeIndicatorDot {
+        transition: none;
+    }
 
-  .gaugeCard:hover,
-  .signalCard:hover {
-    transform: none;
-  }
+    .gaugeCard:hover,
+    .signalCard:hover {
+        transform: none;
+    }
 }
 
 @media (prefers-contrast: more) {
-  .dashboardWrapper {
-    border-width: 2px;
-  }
+    .dashboardWrapper {
+        border-width: 2px;
+    }
 
-  .gaugeCard,
-  .chartCard,
-  .signalCard,
-  .signalMatrixContainer {
-    border-width: 2px;
-  }
+    .gaugeCard,
+    .chartCard,
+    .signalCard,
+    .signalMatrixContainer {
+        border-width: 2px;
+    }
 
-  .gaugeStatusBadge {
-    border-width: 2px;
-  }
+    .gaugeStatusBadge {
+        border-width: 2px;
+    }
 }

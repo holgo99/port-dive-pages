@@ -69,7 +69,14 @@ const INDICATOR_CONFIG = {
 // ============================================================================
 
 const WarningIcon = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
     <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
     <line x1="12" y1="9" x2="12" y2="13" />
     <line x1="12" y1="17" x2="12.01" y2="17" />
@@ -77,14 +84,28 @@ const WarningIcon = ({ size = 16 }) => (
 );
 
 const TrendUpIcon = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
     <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
     <polyline points="17 6 23 6 23 12" />
   </svg>
 );
 
 const BalanceIcon = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.5"
+  >
     <path d="M12 3v18" />
     <path d="M5 6l7-3 7 3" />
     <path d="M5 6v4c0 1.1.9 2 2 2h2" />
@@ -96,20 +117,54 @@ const BalanceIcon = ({ size = 16 }) => (
 
 const CheckCircleIcon = ({ size = 48 }) => (
   <svg width={size} height={size} viewBox="0 0 48 48" fill="none">
-    <circle cx="24" cy="24" r="20" stroke="currentColor" strokeWidth="2.5" fill="none" />
-    <path d="M15 24l6 6 12-12" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    <circle
+      cx="24"
+      cy="24"
+      r="20"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      fill="none"
+    />
+    <path
+      d="M15 24l6 6 12-12"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
+    />
   </svg>
 );
 
 const XCircleIcon = ({ size = 48 }) => (
   <svg width={size} height={size} viewBox="0 0 48 48" fill="none">
-    <circle cx="24" cy="24" r="20" stroke="currentColor" strokeWidth="2.5" fill="none" />
-    <path d="M16 16l16 16M32 16l-16 16" stroke="currentColor" strokeWidth="3" strokeLinecap="round" fill="none" />
+    <circle
+      cx="24"
+      cy="24"
+      r="20"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      fill="none"
+    />
+    <path
+      d="M16 16l16 16M32 16l-16 16"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+      fill="none"
+    />
   </svg>
 );
 
 const ChartIcon = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
     <path d="M3 3v18h18" />
     <path d="M18 9l-5 5-4-4-3 3" />
   </svg>
@@ -123,27 +178,34 @@ const ChartIcon = ({ size = 16 }) => (
  * Get status, color, and icon for an oscillator value
  */
 const getOscillatorStatus = (key, value) => {
-  if (value == null) return { status: "NEUTRAL", color: "blue", icon: "balance" };
+  if (value == null)
+    return { status: "NEUTRAL", color: "blue", icon: "balance" };
 
   const config = INDICATOR_CONFIG[key];
   if (!config) return { status: "NEUTRAL", color: "blue", icon: "balance" };
 
   if (key === "ADX") {
-    if (value >= config.strongTrend) return { status: "STRONG TREND", color: "teal", icon: "trend" };
-    if (value >= config.weakTrend) return { status: "WEAK TREND", color: "blue", icon: "balance" };
+    if (value >= config.strongTrend)
+      return { status: "STRONG TREND", color: "teal", icon: "trend" };
+    if (value >= config.weakTrend)
+      return { status: "WEAK TREND", color: "blue", icon: "balance" };
     return { status: "NO TREND", color: "coral", icon: "warning" };
   }
 
   if (key === "Williams_R") {
     // Williams %R is inverted: -100 to 0
-    if (value >= config.overbought) return { status: "OVERBOUGHT", color: "coral", icon: "warning" };
-    if (value <= config.oversold) return { status: "OVERSOLD", color: "teal", icon: "trend" };
+    if (value >= config.overbought)
+      return { status: "OVERBOUGHT", color: "coral", icon: "warning" };
+    if (value <= config.oversold)
+      return { status: "OVERSOLD", color: "teal", icon: "trend" };
     return { status: "NEUTRAL", color: "blue", icon: "balance" };
   }
 
   // Standard oscillators (RSI, Stoch)
-  if (value >= config.overbought) return { status: "OVERBOUGHT", color: "coral", icon: "warning" };
-  if (value <= config.oversold) return { status: "OVERSOLD", color: "teal", icon: "trend" };
+  if (value >= config.overbought)
+    return { status: "OVERBOUGHT", color: "coral", icon: "warning" };
+  if (value <= config.oversold)
+    return { status: "OVERSOLD", color: "teal", icon: "trend" };
   return { status: "NEUTRAL", color: "blue", icon: "balance" };
 };
 
@@ -294,10 +356,20 @@ const GaugeIndicator = memo(({ indicatorKey, value, config }) => {
           )}
 
           {/* Min/Max labels */}
-          <text x={startPoint.x - 5} y={centerY + 20} className={styles.gaugeMinMax} textAnchor="middle">
+          <text
+            x={startPoint.x - 5}
+            y={centerY + 20}
+            className={styles.gaugeMinMax}
+            textAnchor="middle"
+          >
             {config.min}
           </text>
-          <text x={endPoint.x + 5} y={centerY + 20} className={styles.gaugeMinMax} textAnchor="middle">
+          <text
+            x={endPoint.x + 5}
+            y={centerY + 20}
+            className={styles.gaugeMinMax}
+            textAnchor="middle"
+          >
             {config.max}
           </text>
         </svg>
@@ -324,9 +396,7 @@ const GaugeIndicator = memo(({ indicatorKey, value, config }) => {
           </span>
         )}
         {config.oversold && (
-          <span className={styles.gaugeLevel}>
-            Oversold: {config.oversold}
-          </span>
+          <span className={styles.gaugeLevel}>Oversold: {config.oversold}</span>
         )}
         {config.strongTrend && (
           <span className={styles.gaugeLevel}>
@@ -403,7 +473,13 @@ const TimeSeriesChart = memo(({ title, data, lines, thresholds, yDomain }) => {
         preserveAspectRatio="xMidYMid meet"
       >
         <defs>
-          <filter id={glowFilterId} x="-20%" y="-20%" width="140%" height="140%">
+          <filter
+            id={glowFilterId}
+            x="-20%"
+            y="-20%"
+            width="140%"
+            height="140%"
+          >
             <feGaussianBlur stdDeviation="2" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
@@ -470,20 +546,22 @@ const TimeSeriesChart = memo(({ title, data, lines, thresholds, yDomain }) => {
             })}
 
           {/* Data lines with glow effect */}
-          {lines.filter(l => l.type !== "histogram").map((line, idx) => {
-            const path = generatePath(line.dataKey);
-            if (!path) return null;
-            return (
-              <path
-                key={idx}
-                d={path}
-                fill="none"
-                className={`${styles.dataLine} ${styles[line.color]}`}
-                strokeWidth={line.strokeWidth || 2}
-                filter={`url(#${glowFilterId})`}
-              />
-            );
-          })}
+          {lines
+            .filter((l) => l.type !== "histogram")
+            .map((line, idx) => {
+              const path = generatePath(line.dataKey);
+              if (!path) return null;
+              return (
+                <path
+                  key={idx}
+                  d={path}
+                  fill="none"
+                  className={`${styles.dataLine} ${styles[line.color]}`}
+                  strokeWidth={line.strokeWidth || 2}
+                  filter={`url(#${glowFilterId})`}
+                />
+              );
+            })}
 
           {/* X-axis labels */}
           {xLabels.map((label, idx) => (
@@ -502,7 +580,12 @@ const TimeSeriesChart = memo(({ title, data, lines, thresholds, yDomain }) => {
           <text x={-8} y={8} className={styles.axisLabel} textAnchor="end">
             {yDomain[1]}
           </text>
-          <text x={-8} y={chartHeight + 4} className={styles.axisLabel} textAnchor="end">
+          <text
+            x={-8}
+            y={chartHeight + 4}
+            className={styles.axisLabel}
+            textAnchor="end"
+          >
             {yDomain[0]}
           </text>
         </g>
@@ -517,23 +600,37 @@ const TimeSeriesChart = memo(({ title, data, lines, thresholds, yDomain }) => {
 
 const SignalCard = memo(({ label, status, value, isConfirmed }) => {
   return (
-    <div className={`${styles.signalCard} ${isConfirmed ? styles.confirmed : styles.notMet}`}>
+    <div
+      className={`${styles.signalCard} ${isConfirmed ? styles.confirmed : styles.notMet}`}
+    >
       <div className={styles.signalCardHeader}>
         <span className={styles.signalLabel}>{label}</span>
-        <span className={`${styles.signalStatusText} ${isConfirmed ? styles.confirmed : styles.notMet}`}>
+        <span
+          className={`${styles.signalStatusText} ${isConfirmed ? styles.confirmed : styles.notMet}`}
+        >
           {isConfirmed ? "CONFIRMED" : "NOT MET"}
         </span>
       </div>
 
       <div className={styles.signalIconContainer}>
-        <div className={`${styles.signalIcon} ${isConfirmed ? styles.confirmed : styles.notMet}`}>
-          {isConfirmed ? <CheckCircleIcon size={48} /> : <XCircleIcon size={48} />}
+        <div
+          className={`${styles.signalIcon} ${isConfirmed ? styles.confirmed : styles.notMet}`}
+        >
+          {isConfirmed ? (
+            <CheckCircleIcon size={48} />
+          ) : (
+            <XCircleIcon size={48} />
+          )}
         </div>
       </div>
 
       <div className={styles.signalCardFooter}>
-        <span className={styles.signalValueLabel}>{isConfirmed ? status : status}</span>
-        <span className={`${styles.signalValue} ${isConfirmed ? styles.confirmed : styles.notMet}`}>
+        <span className={styles.signalValueLabel}>
+          {isConfirmed ? status : status}
+        </span>
+        <span
+          className={`${styles.signalValue} ${isConfirmed ? styles.confirmed : styles.notMet}`}
+        >
           {value}
         </span>
       </div>
@@ -560,18 +657,25 @@ const SignalMatrix = memo(({ latestData, signalType = "SELL/TRIM" }) => {
 
     const isSellMode = signalType === "SELL/TRIM";
     const isMacdShrinking = macdHist != null && macdHist < 0;
-    const isVolumeDecline = volume != null && volumeMA != null && volume < volumeMA;
+    const isVolumeDecline =
+      volume != null && volumeMA != null && volume < volumeMA;
 
     return [
       {
         label: "MACD Shrinking",
         status: isMacdShrinking ? "Shrinking" : "Expanding",
         isConfirmed: isMacdShrinking,
-        value: macdHist != null ? `${(macdHist).toFixed(2)}` : "—",
+        value: macdHist != null ? `${macdHist.toFixed(2)}` : "—",
       },
       {
         label: isSellMode ? "RSI >70" : "RSI <30",
-        status: isSellMode ? (rsiValue > 70 ? "Overbought" : "Normal") : (rsiValue < 30 ? "Oversold" : "Normal"),
+        status: isSellMode
+          ? rsiValue > 70
+            ? "Overbought"
+            : "Normal"
+          : rsiValue < 30
+            ? "Oversold"
+            : "Normal",
         isConfirmed: isSellMode ? rsiValue > 70 : rsiValue < 30,
         value: rsiValue?.toFixed(2) ?? "—",
       },
@@ -584,22 +688,31 @@ const SignalMatrix = memo(({ latestData, signalType = "SELL/TRIM" }) => {
       {
         label: isSellMode ? "Williams <-20" : "Williams <-80",
         status: isSellMode
-          ? (williamsValue > -20 ? "Overbought" : "Normal")
-          : (williamsValue < -80 ? "Oversold" : "Normal"),
+          ? williamsValue > -20
+            ? "Overbought"
+            : "Normal"
+          : williamsValue < -80
+            ? "Oversold"
+            : "Normal",
         isConfirmed: isSellMode ? williamsValue > -20 : williamsValue < -80,
         value: williamsValue?.toFixed(2) ?? "—",
       },
       {
         label: isSellMode ? "Stoch >80" : "Stoch <20",
         status: isSellMode
-          ? ((stochK > 80 || stochD > 80) ? "Overbought" : "Normal")
-          : ((stochK < 20 || stochD < 20) ? "Oversold" : "Normal"),
+          ? stochK > 80 || stochD > 80
+            ? "Overbought"
+            : "Normal"
+          : stochK < 20 || stochD < 20
+            ? "Oversold"
+            : "Normal",
         isConfirmed: isSellMode
-          ? (stochK > 80 || stochD > 80)
-          : (stochK < 20 || stochD < 20),
-        value: stochK != null && stochD != null
-          ? `${stochK.toFixed(0)}/${stochD.toFixed(0)}`
-          : "—",
+          ? stochK > 80 || stochD > 80
+          : stochK < 20 || stochD < 20,
+        value:
+          stochK != null && stochD != null
+            ? `${stochK.toFixed(0)}/${stochD.toFixed(0)}`
+            : "—",
       },
     ];
   }, [latestData, signalType]);
@@ -633,7 +746,9 @@ const SignalMatrix = memo(({ latestData, signalType = "SELL/TRIM" }) => {
       <div className={styles.signalSummaryContainer}>
         <div className={styles.signalCountSection}>
           <span className={styles.signalCountLabel}>SIGNAL COUNT:</span>
-          <span className={`${styles.signalCountValue} ${confirmedCount >= 3 ? styles.coral : styles.blue}`}>
+          <span
+            className={`${styles.signalCountValue} ${confirmedCount >= 3 ? styles.coral : styles.blue}`}
+          >
             {confirmedCount}/{totalSignals} CONFIRMED
           </span>
         </div>
@@ -643,12 +758,16 @@ const SignalMatrix = memo(({ latestData, signalType = "SELL/TRIM" }) => {
             className={`${styles.signalProgressFill} ${confirmedCount >= 3 ? styles.coral : styles.teal}`}
             style={{ width: `${progressPercent}%` }}
           />
-          <span className={styles.signalProgressLabel}>{progressPercent.toFixed(0)}%</span>
+          <span className={styles.signalProgressLabel}>
+            {progressPercent.toFixed(0)}%
+          </span>
         </div>
 
         <div className={styles.signalActionSection}>
           <span className={styles.signalActionLabel}>ACTION:</span>
-          <span className={`${styles.signalActionValue} ${styles[action.color]}`}>
+          <span
+            className={`${styles.signalActionValue} ${styles[action.color]}`}
+          >
             {action.text}
           </span>
         </div>
@@ -685,9 +804,21 @@ export function OscillatorsDashboard({
     if (!latestData) return [];
     return [
       { key: "RSI", value: latestData.RSI, config: INDICATOR_CONFIG.RSI },
-      { key: "Williams_R", value: latestData.Williams_R, config: INDICATOR_CONFIG.Williams_R },
-      { key: "Stoch_K", value: latestData.Stoch_K, config: INDICATOR_CONFIG.Stoch_K },
-      { key: "Stoch_D", value: latestData.Stoch_D, config: INDICATOR_CONFIG.Stoch_D },
+      {
+        key: "Williams_R",
+        value: latestData.Williams_R,
+        config: INDICATOR_CONFIG.Williams_R,
+      },
+      {
+        key: "Stoch_K",
+        value: latestData.Stoch_K,
+        config: INDICATOR_CONFIG.Stoch_K,
+      },
+      {
+        key: "Stoch_D",
+        value: latestData.Stoch_D,
+        config: INDICATOR_CONFIG.Stoch_D,
+      },
       { key: "ADX", value: latestData.ADX, config: INDICATOR_CONFIG.ADX },
     ];
   }, [latestData]);
@@ -705,7 +836,9 @@ export function OscillatorsDashboard({
       {/* Header */}
       <header className={styles.dashboardHeader}>
         <div className={styles.headerContent}>
-          <h1 className={styles.dashboardTitle}>{ticker} Technical Dashboard</h1>
+          <h1 className={styles.dashboardTitle}>
+            {ticker} Oscillators Dashboard
+          </h1>
           <p className={styles.dashboardSubtitle}>
             Multi-Indicator Analysis | As of {dateString}
           </p>
