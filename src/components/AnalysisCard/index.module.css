@@ -1,11 +1,12 @@
 /**
- * AnalysisCard Component Styles - PortDive Design System
+ * AnalysisCard Component Styles - PREMIUM REDESIGN (Subtle Footer Style)
  *
  * Features:
+ * - Subtle premium styling (less prominent as footer element)
  * - Light & dark mode support (PortDive design system)
+ * - Soft shadows and muted accents
  * - WCAG AA+ accessible
  * - Responsive design
- * - Professional design aesthetic
  */
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -14,32 +15,25 @@
 
 :root {
     /* PortDive Brand Colors */
-    --portdive-primary: #1FA39B;
-    --portdive-primary-rgb: 31, 163, 155;
+    --portdive-teal: #1fa39b;
+    --portdive-teal-rgb: 31, 163, 155;
+
+    /* Typography */
+    --font-family-mono:
+        "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        monospace;
 }
 
-/* Light mode - PortDive colors */
-[data-theme="light"] {
-    --analysis-bg: #ffffff;
-    --analysis-surface: #f0f4f2;
-    --analysis-text: #0a1a1f;
-    --analysis-text-secondary: #5a6570;
-    --analysis-text-muted: #8a9199;
-    --analysis-border: rgba(10, 26, 31, 0.12);
-    --analysis-primary: #1FA39B;
-    --analysis-primary-hover: #1a8e87;
-}
-
-/* Dark mode - PortDive colors */
-[data-theme="dark"] {
-    --analysis-bg: #0f2028;
-    --analysis-surface: #142830;
+/* Dark mode - PortDive colors (default) */
+.analysisCard {
+    --analysis-bg: #0a1a1f;
+    --analysis-surface: #0f2028;
+    --analysis-surface-alt: #142830;
     --analysis-text: #f8faf9;
     --analysis-text-secondary: #a8b4bc;
     --analysis-text-muted: #6a7a84;
-    --analysis-border: rgba(248, 250, 249, 0.12);
-    --analysis-primary: #1FA39B;
-    --analysis-primary-hover: #25b8ae;
+    --analysis-border: rgba(248, 250, 249, 0.1);
+    --analysis-primary: #1fa39b;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -49,18 +43,19 @@
 .analysisCard {
     background: var(--analysis-bg);
     border: 1px solid var(--analysis-border);
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 0;
+    margin-top: 32px;
     margin-bottom: 24px;
     overflow: hidden;
-    transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.2s ease;
+    /* Subtle shadow - less prominent than main components */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .analysisCard:hover {
-    box-shadow:
-        0 4px 6px -1px rgba(0, 0, 0, 0.04),
-        0 2px 4px -1px rgba(0, 0, 0, 0.02);
-    border-color: var(--analysis-primary);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    border-color: rgba(31, 163, 155, 0.2);
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -68,18 +63,14 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .analysisHeader {
-    padding: 20px 24px;
+    padding: 16px 20px;
     border-bottom: 1px solid var(--analysis-border);
-    background: linear-gradient(
-        135deg,
-        rgba(var(--portdive-primary-rgb), 0.04) 0%,
-        rgba(var(--portdive-primary-rgb), 0.02) 100%
-    );
+    background: var(--analysis-surface);
 }
 
 .analysisTitle {
-    margin: 0 0 8px 0;
-    font-size: 20px;
+    margin: 0 0 6px 0;
+    font-size: 15px;
     font-weight: 600;
     color: var(--analysis-text);
     letter-spacing: -0.01em;
@@ -88,7 +79,7 @@
 
 .analysisDescription {
     margin: 0;
-    font-size: 14px;
+    font-size: 13px;
     color: var(--analysis-text-secondary);
     line-height: 1.5;
 }
@@ -101,33 +92,37 @@
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
-    padding: 16px 24px;
-    background: var(--analysis-surface);
-    font-size: 13px;
+    padding: 12px 20px;
+    background: var(--analysis-bg);
+    font-size: 12px;
     color: var(--analysis-text-muted);
 }
 
 .metadataItem {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
 }
 
 .metadataLabel {
     color: var(--analysis-text-muted);
+    font-weight: 500;
 }
 
 .metadataValue {
-    font-weight: 550;
-    color: var(--analysis-text);
+    font-weight: 500;
+    color: var(--analysis-text-secondary);
 }
 
 /* Special styling for symbol */
 .symbolValue {
     font-weight: 600;
     color: var(--analysis-primary);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family: var(--font-family-mono);
     letter-spacing: 0.02em;
+    padding: 2px 6px;
+    background: rgba(31, 163, 155, 0.1);
+    border-radius: 4px;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -136,28 +131,53 @@
 
 @media (max-width: 640px) {
     .analysisCard {
-        border-radius: 8px;
+        border-radius: 12px;
+        margin-top: 24px;
         margin-bottom: 16px;
     }
 
     .analysisHeader {
-        padding: 16px 20px;
+        padding: 14px 16px;
     }
 
     .analysisTitle {
-        font-size: 18px;
+        font-size: 14px;
     }
 
     .analysisDescription {
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .analysisMetadata {
         flex-direction: column;
-        gap: 12px;
-        padding: 12px 20px;
-        font-size: 12px;
+        gap: 10px;
+        padding: 10px 16px;
+        font-size: 11px;
     }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* LIGHT MODE */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+[data-theme="light"] .analysisCard {
+    --analysis-bg: #f8faf9;
+    --analysis-surface: #ffffff;
+    --analysis-surface-alt: #f0f4f2;
+    --analysis-text: #0a1a1f;
+    --analysis-text-secondary: #5a6570;
+    --analysis-text-muted: #8a9199;
+    --analysis-border: rgba(10, 26, 31, 0.08);
+    --analysis-primary: #1fa39b;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .analysisCard:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .symbolValue {
+    background: rgba(31, 163, 155, 0.08);
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
