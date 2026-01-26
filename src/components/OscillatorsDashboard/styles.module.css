@@ -1,0 +1,673 @@
+/**
+ * OscillatorsDashboard Component Styles
+ *
+ * Features:
+ * - Gauge indicators with arc visualization
+ * - Time series charts for oscillators
+ * - Signal matrix with status indicators
+ * - Dark mode optimized (PortDive brand)
+ * - WCAG AA+ accessible
+ * - Responsive design
+ */
+
+:root {
+  /* PortDive Brand Colors */
+  --portdive-primary: #1fa39b;
+  --portdive-primary-rgb: 31, 163, 155;
+  --portdive-secondary: #ff6b6b;
+  --portdive-secondary-rgb: 255, 107, 107;
+
+  /* Dashboard Colors */
+  --dashboard-bg: #0a1a1f;
+  --dashboard-surface: #0f2028;
+  --dashboard-surface-alt: #142830;
+  --dashboard-text: #f8faf9;
+  --dashboard-text-secondary: #a8b4bc;
+  --dashboard-text-muted: #6a7a84;
+  --dashboard-border: rgba(248, 250, 249, 0.12);
+
+  /* Chart Colors */
+  --chart-blue: #3d72ff;
+  --chart-magenta: #e040fb;
+  --chart-warning: #f9e95e;
+  --chart-grid: rgba(248, 250, 249, 0.08);
+
+  /* Gauge Colors */
+  --gauge-track: rgba(248, 250, 249, 0.1);
+
+  /* Typography */
+  --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, monospace;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* WRAPPER */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.dashboardWrapper {
+  background: var(--dashboard-bg);
+  border: 1px solid var(--dashboard-border);
+  border-radius: 16px;
+  overflow: hidden;
+  font-family: var(--font-family-base);
+  color: var(--dashboard-text);
+  width: 100%;
+}
+
+.noData {
+  padding: 48px;
+  text-align: center;
+  color: var(--dashboard-text-muted);
+  font-size: 14px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* HEADER */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.dashboardHeader {
+  padding: 24px;
+  border-bottom: 1px solid var(--dashboard-border);
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dashboardTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dashboard-text);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.dashboardSubtitle {
+  font-size: 14px;
+  color: var(--dashboard-text-secondary);
+  margin: 0;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* GAUGES SECTION */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.gaugesSection {
+  padding: 24px;
+  border-bottom: 1px solid var(--dashboard-border);
+}
+
+.gaugesGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.gaugeCard {
+  background: var(--dashboard-surface);
+  border: 1px solid var(--dashboard-border);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gaugeCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.gaugeLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--dashboard-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.gaugeContainer {
+  position: relative;
+  width: 100%;
+  max-width: 120px;
+}
+
+.gaugeSvg {
+  width: 100%;
+  height: auto;
+}
+
+.gaugeArc {
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+.gaugeArc.primary {
+  stroke: var(--portdive-primary);
+}
+
+.gaugeArc.secondary {
+  stroke: var(--portdive-secondary);
+}
+
+.gaugeArc.neutral {
+  stroke: var(--chart-blue);
+}
+
+.gaugeArc.warning {
+  stroke: var(--chart-warning);
+}
+
+.gaugeMinMax {
+  font-size: 8px;
+  fill: var(--dashboard-text-muted);
+  font-family: var(--font-family-mono);
+}
+
+.gaugeValueContainer {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.gaugeValue {
+  font-size: 28px;
+  font-weight: 700;
+  font-family: var(--font-family-mono);
+  line-height: 1;
+}
+
+.gaugeValue.primary {
+  color: var(--portdive-primary);
+}
+
+.gaugeValue.secondary {
+  color: var(--portdive-secondary);
+}
+
+.gaugeValue.neutral {
+  color: var(--chart-blue);
+}
+
+.gaugeValue.warning {
+  color: var(--chart-warning);
+}
+
+.gaugeStatus {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.gaugeStatus.primary {
+  color: var(--portdive-primary);
+  background: rgba(31, 163, 155, 0.15);
+}
+
+.gaugeStatus.secondary {
+  color: var(--portdive-secondary);
+  background: rgba(255, 107, 107, 0.15);
+}
+
+.gaugeStatus.neutral {
+  color: var(--chart-blue);
+  background: rgba(61, 114, 255, 0.15);
+}
+
+.gaugeStatus.warning {
+  color: var(--chart-warning);
+  background: rgba(249, 233, 94, 0.15);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* CHARTS SECTION */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.chartsSection {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border-bottom: 1px solid var(--dashboard-border);
+}
+
+.chartCard {
+  background: var(--dashboard-surface);
+  border: 1px solid var(--dashboard-border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.chartTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dashboard-text);
+  margin-bottom: 12px;
+}
+
+.chartSvg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gridLine {
+  stroke: var(--chart-grid);
+  stroke-width: 1;
+}
+
+.thresholdLine {
+  stroke-width: 1;
+  opacity: 0.7;
+}
+
+.thresholdLine.primary {
+  stroke: var(--portdive-primary);
+}
+
+.thresholdLine.secondary {
+  stroke: var(--portdive-secondary);
+}
+
+.dataLine {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dataLine.blue {
+  stroke: var(--chart-blue);
+}
+
+.dataLine.primary {
+  stroke: var(--portdive-primary);
+}
+
+.dataLine.secondary {
+  stroke: var(--portdive-secondary);
+}
+
+.dataLine.warning {
+  stroke: var(--chart-warning);
+}
+
+.dataLine.magenta {
+  stroke: var(--chart-magenta);
+}
+
+.histogramBar {
+  opacity: 0.7;
+}
+
+.histogramBar.primary {
+  fill: var(--portdive-primary);
+}
+
+.histogramBar.secondary {
+  fill: var(--portdive-secondary);
+}
+
+.axisLabel {
+  font-size: 9px;
+  fill: var(--dashboard-text-muted);
+  font-family: var(--font-family-mono);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* SIGNAL SECTION */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.signalSection {
+  padding: 24px;
+}
+
+.signalMatrixContainer {
+  background: var(--dashboard-surface);
+  border: 1px solid var(--dashboard-border);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.signalMatrixHeader {
+  margin-bottom: 20px;
+}
+
+.signalMatrixTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--dashboard-text);
+  margin: 0;
+}
+
+.signalGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.signalCard {
+  background: var(--dashboard-surface-alt);
+  border: 1px solid var(--dashboard-border);
+  border-radius: 8px;
+  padding: 16px;
+  border-left: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.signalCard.confirmed {
+  border-left-color: var(--portdive-secondary);
+}
+
+.signalCard.notMet {
+  border-left-color: var(--dashboard-text-muted);
+}
+
+.signalLabel {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--dashboard-text-secondary);
+  margin-bottom: 8px;
+}
+
+.signalStatus {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.signalStatus.confirmed {
+  color: var(--portdive-secondary);
+}
+
+.signalStatus.notMet {
+  color: var(--dashboard-text-muted);
+}
+
+.signalValue {
+  font-size: 12px;
+  font-family: var(--font-family-mono);
+  color: var(--dashboard-text-muted);
+}
+
+.signalSummary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: var(--dashboard-surface-alt);
+  border-radius: 8px;
+  border: 1px solid var(--dashboard-border);
+}
+
+.signalCount {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dashboard-text);
+}
+
+.signalCount .secondary {
+  color: var(--portdive-secondary);
+}
+
+.signalCount .neutral {
+  color: var(--dashboard-text-secondary);
+}
+
+.signalAction {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dashboard-text);
+}
+
+.signalAction .primary {
+  color: var(--portdive-primary);
+}
+
+.signalAction .secondary {
+  color: var(--portdive-secondary);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* FOOTER */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.dashboardFooter {
+  padding: 14px 24px;
+  border-top: 1px solid var(--dashboard-border);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footerBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(31, 163, 155, 0.1);
+  color: var(--portdive-primary);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* RESPONSIVE - Tablet */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 1024px) {
+  .gaugesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .signalGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboardHeader {
+    padding: 16px;
+  }
+
+  .dashboardTitle {
+    font-size: 20px;
+  }
+
+  .gaugesSection {
+    padding: 16px;
+  }
+
+  .gaugesGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .gaugeCard {
+    padding: 12px;
+  }
+
+  .gaugeValue {
+    font-size: 24px;
+  }
+
+  .chartsSection {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .chartCard {
+    padding: 12px;
+  }
+
+  .signalSection {
+    padding: 16px;
+  }
+
+  .signalMatrixContainer {
+    padding: 16px;
+  }
+
+  .signalGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .signalCard {
+    padding: 12px;
+  }
+
+  .signalSummary {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* RESPONSIVE - Mobile */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 480px) {
+  .dashboardWrapper {
+    border-radius: 12px;
+  }
+
+  .dashboardHeader {
+    padding: 12px;
+  }
+
+  .dashboardTitle {
+    font-size: 18px;
+  }
+
+  .dashboardSubtitle {
+    font-size: 12px;
+  }
+
+  .gaugesGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .gaugeCard {
+    padding: 10px;
+  }
+
+  .gaugeLabel {
+    font-size: 10px;
+  }
+
+  .gaugeValue {
+    font-size: 20px;
+  }
+
+  .gaugeStatus {
+    font-size: 9px;
+    padding: 3px 6px;
+  }
+
+  .signalGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .signalCard {
+    padding: 10px;
+  }
+
+  .signalLabel {
+    font-size: 10px;
+  }
+
+  .signalStatus {
+    font-size: 12px;
+  }
+
+  .footerBadge {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* LIGHT MODE */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+[data-theme="light"] .dashboardWrapper {
+  --dashboard-bg: #f8faf9;
+  --dashboard-surface: #ffffff;
+  --dashboard-surface-alt: #f0f4f2;
+  --dashboard-text: #0a1a1f;
+  --dashboard-text-secondary: #5a6570;
+  --dashboard-text-muted: #8a9199;
+  --dashboard-border: rgba(10, 26, 31, 0.12);
+  --chart-grid: rgba(10, 26, 31, 0.08);
+  --gauge-track: rgba(10, 26, 31, 0.1);
+}
+
+[data-theme="light"] .gaugeCard {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .gaugeCard:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .chartCard {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .signalMatrixContainer {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ACCESSIBILITY */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.dashboardWrapper:focus-visible {
+  outline: 2px solid var(--portdive-primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gaugeCard,
+  .signalCard,
+  .gaugeArc {
+    transition: none;
+  }
+
+  .gaugeCard:hover {
+    transform: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .dashboardWrapper {
+    border-width: 2px;
+  }
+
+  .gaugeCard,
+  .chartCard,
+  .signalCard,
+  .signalMatrixContainer {
+    border-width: 2px;
+  }
+
+  .signalCard.confirmed {
+    border-left-width: 4px;
+  }
+}
