@@ -79,39 +79,27 @@
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* HEADER */
+/* LOGO HEADER - VerdictPanel style */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-.dashboardHeader {
-    padding: 28px 32px;
-    border-bottom: 1px solid var(--dashboard-border);
-    background: linear-gradient(
-        180deg,
-        var(--dashboard-surface) 0%,
-        var(--dashboard-bg) 100%
-    );
-}
-
-.headerContent {
+.logoHeader {
     display: flex;
-    flex-direction: column;
-    gap: 6px;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--dashboard-border);
 }
 
-.dashboardTitle {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--portdive-teal);
-    margin: 0;
-    letter-spacing: -0.02em;
-    text-shadow: 0 0 30px rgba(31, 163, 155, 0.3);
+.logoIcon {
+    color: var(--dashboard-text);
+    opacity: 0.8;
 }
 
-.dashboardSubtitle {
+.logoText {
     font-size: 14px;
-    color: var(--dashboard-text-secondary);
-    margin: 0;
-    letter-spacing: 0.02em;
+    font-weight: 600;
+    color: var(--dashboard-text);
+    letter-spacing: -0.01em;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -806,12 +794,8 @@
 }
 
 @media (max-width: 768px) {
-    .dashboardHeader {
-        padding: 20px 24px;
-    }
-
-    .dashboardTitle {
-        font-size: 22px;
+    .logoHeader {
+        padding: 12px 16px;
     }
 
     .gaugesSection {
@@ -873,15 +857,11 @@
         border-radius: 16px;
     }
 
-    .dashboardHeader {
-        padding: 16px 20px;
+    .logoHeader {
+        padding: 12px 16px;
     }
 
-    .dashboardTitle {
-        font-size: 18px;
-    }
-
-    .dashboardSubtitle {
+    .logoText {
         font-size: 12px;
     }
 
@@ -1010,18 +990,6 @@
     --dashboard-border: rgba(10, 26, 31, 0.12);
     --gauge-track: rgba(10, 26, 31, 0.08);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-
-[data-theme="light"] .dashboardHeader {
-    background: linear-gradient(
-        180deg,
-        var(--dashboard-surface) 0%,
-        var(--dashboard-bg) 100%
-    );
-}
-
-[data-theme="light"] .dashboardTitle {
-    text-shadow: none;
 }
 
 [data-theme="light"] .gaugeCard {

@@ -874,17 +874,45 @@ export function OscillatorsDashboard({
 
   return (
     <div className={styles.dashboardWrapper}>
-      {/* Header */}
-      <header className={styles.dashboardHeader}>
-        <div className={styles.headerContent}>
-          <h1 className={styles.dashboardTitle}>
-            {ticker} Oscillators Dashboard
-          </h1>
-          <p className={styles.dashboardSubtitle}>
-            Multi-Indicator Analysis | As of {dateString}
-          </p>
-        </div>
-      </header>
+      {/* Logo Header - VerdictPanel style */}
+      <div className={styles.logoHeader}>
+        <svg
+          className={styles.logoIcon}
+          width="24"
+          height="24"
+          viewBox="0 0 32 32"
+          fill="none"
+        >
+          {/* Gauge/Speedometer icon - semi-circle with needle */}
+          <path
+            d="M6 22C6 14.268 12.268 8 20 8C23.713 8 27.083 9.464 29.536 11.88"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+          <path
+            d="M2 22C2 12.059 10.059 4 20 4"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            opacity="0.4"
+          />
+          {/* Needle pointing to ~45 degrees */}
+          <path
+            d="M16 22L22 12"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          />
+          {/* Center dot */}
+          <circle cx="16" cy="22" r="2.5" fill="currentColor" />
+          {/* Tick marks */}
+          <circle cx="6" cy="22" r="1.5" fill="currentColor" opacity="0.5" />
+          <circle cx="26" cy="22" r="1.5" fill="currentColor" opacity="0.5" />
+          <circle cx="16" cy="10" r="1.5" fill="currentColor" opacity="0.5" />
+        </svg>
+        <span className={styles.logoText}>OscillatorsDashboard</span>
+      </div>
 
       {/* Gauge Indicators Row */}
       <section className={styles.gaugesSection}>
