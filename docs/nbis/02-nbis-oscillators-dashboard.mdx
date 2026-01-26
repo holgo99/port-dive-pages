@@ -5,13 +5,21 @@ sidebar_position: 2
 hide_title: true
 title: "Oscillators Dashboard"
 description: "NBIS, Oscillators Dashboard with Gauge Indicators, Time Series Charts, Buy/Sell Signal Matrix"
-keywords: []
-image: ./assets/20260122/elliott-wave-preview.png
+#keywords: []
+#image: ./assets/20260122/elliott-wave-preview.png
 ---
 
+import { TickerHeader } from '@site/src/components/TickerHeader'
 import { AnalysisCard } from '@site/src/components/AnalysisCard'
 import { OscillatorsDashboard } from '@site/src/components/OscillatorsDashboard';
 import OHLCV_DATA from "./assets/20260122/nasdaq-nbis-1d-ohlcv_indicators.json";
+
+<TickerHeader
+  tickerIconUrl="/portdive-pages/img/nbis/nbis-icon.svg"
+  ticker="NBIS"
+  tickerName="Nebius Group N.V."
+  title="Oscillators Dashboard"
+  />
 
 <OscillatorsDashboard
   ticker="NBIS"

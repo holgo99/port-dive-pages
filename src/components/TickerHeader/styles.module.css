@@ -1,0 +1,53 @@
+/**
+ * TickerHeader Component Styles - PREMIUM REDESIGN
+ */
+
+:root {
+    /* PortDive Brand Colors */
+    --portdive-teal: #1fa39b;
+    --portdive-teal-rgb: 31, 163, 155;
+    --portdive-coral: #ff6b6b;
+    --portdive-coral-rgb: 255, 107, 107;
+    --portdive-blue: #3d72ff;
+    --portdive-blue-rgb: 61, 114, 255;
+
+    /* Supporting Colors */
+    --portdive-warning: #f9e95e;
+    --portdive-magenta: #e040fb;
+
+    /* Dashboard Colors - Dark Mode */
+    --dashboard-bg: #0a1a1f;
+    --dashboard-surface: #0f2028;
+    --dashboard-surface-alt: #142830;
+    --dashboard-surface-elevated: #1a3040;
+    --dashboard-text: #f8faf9;
+    --dashboard-text-secondary: #a8b4bc;
+    --dashboard-text-muted: #6a7a84;
+    --dashboard-border: rgba(248, 250, 249, 0.12);
+    --dashboard-border-glow: rgba(31, 163, 155, 0.3);
+
+    /* Gauge Colors */
+    --gauge-track: rgba(248, 250, 249, 0.08);
+    --gauge-track-gradient: linear-gradient(
+        90deg,
+        #1fa39b 0%,
+        #3d72ff 50%,
+        #ff6b6b 100%
+    );
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* WRAPPER */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.tickerHeaderWrapper {
+    background: var(--dashboard-bg);
+    border: 1px solid var(--dashboard-border);
+    border-radius: 20px;
+    overflow: hidden;
+    font-family: var(--font-family-base);
+    color: var(--dashboard-text);
+    width: 100%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    margin-bottom: 24px;
+}
