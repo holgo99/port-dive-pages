@@ -4,7 +4,7 @@
  *
  * @component
  * @example
- * import OscillatorsDashboard from '@site/src/components/OscillatorsDashboard';
+ * import { OscillatorsDashboard } from '@site/src/components/OscillatorsDashboard';
  *
  * <OscillatorsDashboard
  *   ticker="NBIS"
@@ -448,7 +448,7 @@ const SignalMatrix = memo(({ latestData, signalType = "SELL/TRIM" }) => {
 // MAIN COMPONENT
 // ============================================================================
 
-export default function OscillatorsDashboard({
+export function OscillatorsDashboard({
   ticker = "NBIS",
   tickerName = "Nebius Group N.V.",
   data = [],
