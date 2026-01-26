@@ -10,12 +10,22 @@ image: ./assets/20260122/elliott-wave-preview.png
 ---
 
 import NBISElliottWaveChartWrapper from './assets/20260122/NBISElliottWaveChartWrapper.jsx'
+import { TickerHeader } from '@site/src/components/TickerHeader'
 import { ShareElliotWave } from '@site/src/components/ShareElliotWave.jsx'
 import { AnalysisCard } from '@site/src/components/AnalysisCard'
 import OHLCV_DATA from "./assets/20260122/nasdaq-nbis-1d-ohlcv_indicators.json";
 
 <ShareElliotWave />
 
+<TickerHeader
+  tickerIconUrl="/portdive-pages/img/nbis/nbis-icon.svg"
+  ticker="NBIS"
+  tickerName="Nebius Group N.V."
+  title="Elliott Wave Analysis"
+  badge="1D"
+  subtitle="Apr 2025 → Jun 2026 (Projection) | Target: $xx | ATH: $141.10"
+  />
+  
 <NBISElliottWaveChartWrapper />
 
 <AnalysisCard 

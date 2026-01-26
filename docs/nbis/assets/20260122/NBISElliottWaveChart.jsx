@@ -2056,65 +2056,6 @@ export default function NBISElliottWaveChart({ colorMode = "dark" }) {
         maxWidth: "100%",
       }}
     >
-      {/* Header */}
-      <header
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-start",
-          marginBottom: "24px",
-          flexWrap: "wrap",
-          gap: "16px",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-          <TickerIcon showWordmark={showWordmark} theme={theme} />
-          <div
-            style={{
-              borderLeft: `2px solid ${theme.border}`,
-              paddingLeft: "16px",
-            }}
-          >
-            <h1
-              style={{
-                margin: 0,
-                fontSize: "20px",
-                fontWeight: 700,
-                color: theme.text,
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-              }}
-            >
-              Elliott Wave Analysis
-              <span
-                style={{
-                  fontSize: "11px",
-                  padding: "4px 10px",
-                  background: theme.surfaceAlt,
-                  borderRadius: "6px",
-                  color: theme.textSecondary,
-                  fontWeight: 600,
-                  border: `1px solid ${theme.border}`,
-                }}
-              >
-                1D
-              </span>
-            </h1>
-            <p
-              style={{
-                margin: "6px 0 0",
-                fontSize: "13px",
-                color: theme.textSecondary,
-              }}
-            >
-              Apr 2025 → Jun 2026 (Projection) | Target: $
-              {activeCount.projectedTarget.toFixed(2)} | ATH: $141.10
-            </p>
-          </div>
-        </div>
-      </header>
-
       {/* Wave Count Selector */}
       <div
         style={{
