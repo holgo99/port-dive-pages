@@ -77,55 +77,6 @@ const PortDiveLogo = memo(({ size = 48, showWordmark = false, theme }) => (
 ));
 
 // ============================================================================
-// TICKER ICON COMPONENT
-// ============================================================================
-const TickerIcon = memo(({ size = 48, showWordmark = false, theme }) => (
-  <div
-    style={{
-      display: "flex",
-      alignItems: "center",
-      gap: "10px",
-      whiteSpace: "nowrap",
-      flexShrink: 0,
-    }}
-  >
-    <img
-      src={tickerIconUrl}
-      alt="NBIS Icon"
-      width="48px"
-      style={{ flexShrink: 0 }}
-    />
-    <span
-      style={{
-        fontSize: size * 0.6,
-        fontWeight: 700,
-        color: theme.text,
-        letterSpacing: "-0.02em",
-        flexShrink: 0,
-      }}
-    >
-      NBIS
-    </span>
-    {showWordmark && (
-      <>
-        &nbsp;•&nbsp;
-        <span
-          style={{
-            fontSize: size * 0.6,
-            fontWeight: 700,
-            color: theme.text,
-            letterSpacing: "-0.02em",
-            flexShrink: 0,
-          }}
-        >
-          Nebius Group N.V.
-        </span>
-      </>
-    )}
-  </div>
-));
-
-// ============================================================================
 // CHECKBOX TOGGLE COMPONENT (Styled like screenshot)
 // ============================================================================
 const CheckboxToggle = memo(
