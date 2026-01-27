@@ -654,7 +654,7 @@ const ChartCanvas = memo(
                 (10 * activeCount.projectedTarget >= currentPrice ? 1.0 : -1.0)
               }
               textAnchor="middle"
-              fill={activeCount.color}
+              fill={activeCount.projectedTargetBand.color}
               fontSize="11"
               fontWeight="600"
               opacity={0.8}
@@ -1067,7 +1067,7 @@ const ChartCanvas = memo(
               d={`M ${idxToX(activeCount.projectedStart.idx)},${priceToY(activeCount.projectedStart.price)}
                 L ${idxToX(data.length + projectionBars * projectionBarsScale)},${priceToY(activeCount.projectedTarget)}`}
               fill="none"
-              stroke={PORTDIVE_THEME.secondary}
+              stroke={PORTDIVE_THEME.primary}
               strokeWidth="2"
               strokeDasharray="8,6"
               opacity="0.5"
@@ -1079,7 +1079,7 @@ const ChartCanvas = memo(
                 cy={priceToY(activeCount.projectedTarget) + 23}
                 rx={16}
                 ry={16}
-                stroke={PORTDIVE_THEME.secondary}
+                stroke={PORTDIVE_THEME.primary}
                 strokeWidth={1.5}
                 strokeDasharray="5,3"
                 opacity={0.6}

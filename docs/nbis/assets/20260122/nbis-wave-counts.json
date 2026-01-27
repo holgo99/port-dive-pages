@@ -51,7 +51,8 @@
     },
     "projectedTargetBand": {
       "startPrice": 135.83,
-      "endPrice": 158.45
+      "endPrice": 158.45,
+      "color": "PORTDIVE_THEME.primary"
     },
     "description": "Primary revised: (5) still possible, but the pullback has extended below prior minor ii ($93.10) and the 0.50 shelf (~$92.88), so validation now requires reclaiming key pivots before upside targets regain high confidence.",
     "waves": [
@@ -144,8 +145,9 @@
       "price": 110.5
     },
     "projectedTargetBand": {
-      "startPrice": 88.72,
-      "endPrice": 79.7
+      "startPrice": 79.7,
+      "endPrice": 88.72,
+      "color": "PORTDIVE_THEME.secondary"
     },
     "description": "Alt1 upgraded: 141.10→75.25 is A/W, 75.25→110.50 is B/X, and the confirmed break below $92.50 implies C/Y is active with downside targets at 88.72 then 79.70 (and possibly 75.25).",
     "waves": [
@@ -251,14 +253,15 @@
       }
     },
     "projectedTarget": 79.7,
-    "projectedLabel": "Y",
+    "projectedLabel": "4",
     "projectedStart": {
-      "idx": 196,
-      "price": 110.5
+      "idx": 129,
+      "price": 141.1
     },
     "projectedTargetBand": {
-      "startPrice": 88.72,
-      "endPrice": 79.7
+      "startPrice": 79.7,
+      "endPrice": 88.72,
+      "color": "PORTDIVE_THEME.secondary"
     },
     "description": "Alt2: The structure may still be a complex (4) (double-three / triangle-like). 75.25→110.50 was an X-wave bounce, and price is now working a choppy Y-leg down into 88.72–79.70 before a later (5) attempt.",
     "waves": [
