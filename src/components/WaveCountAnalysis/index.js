@@ -15,10 +15,11 @@
 import React from "react";
 import { WaveCountSelector } from "@site/src/components/WaveCountSelector";
 import { VerdictPanel } from "@site/src/components/VerdictPanel";
+import { ChartCanvasWrapper } from "@site/src/components/ChartCanvas";
 import { useWaveCount } from "../../hooks/useWaveCount";
 import { useOHLCVData } from "../../hooks/useOHLCVData";
 import { useTickerConfig } from "../../hooks/useTickerConfig";
-// import NBISElliottWaveChartWrapper from "@site/docs/nbis/assets/20260122/NBISElliottWaveChartWrapper.jsx";
+import styles from "./styles.module.css";
 
 export function WaveCountAnalysis() {
   // Get config from context (if available)
@@ -34,7 +35,7 @@ export function WaveCountAnalysis() {
           console.log("Selected:", id);
         }}
       />
-      {/* <NBISElliottWaveChartWrapper /> */}
+      <ChartCanvasWrapper />
       {waveCounts.activeScenario.verdict.length > 0 && (
         <VerdictPanel
           verdict={waveCounts.activeScenario.verdict}
