@@ -3,11 +3,11 @@ import { useChartContext } from "@site/src/components/ChartCanvas";
 import { PORTDIVE_THEME } from "@site/src/components/PortDiveTheme";
 
 // ============================================================================
-// WAVE COUNT CHART OVERLAY - Renders wave analysis on ChartCanvas
+// WAVE COUNT CHART - Renders wave analysis on ChartCanvas
 // ============================================================================
 
 /**
- * WaveCountChartOverlay renders Elliott Wave analysis overlays
+ * WaveCountChart renders Elliott Wave analysis overlays
  * Must be used as a child of ChartCanvas to access chart context
  *
  * @param {Object} props
@@ -15,7 +15,7 @@ import { PORTDIVE_THEME } from "@site/src/components/PortDiveTheme";
  * @param {string} props.activeWaveCountId - ID of active wave count (primary, alt1, alt2)
  * @param {Object} props.analysisState - Toggle state for various overlays
  */
-const WaveCountChartOverlay = memo(
+const WaveCountChart = memo(
   ({ activeCount, activeWaveCountId, analysisState }) => {
     const {
       W,
@@ -663,7 +663,7 @@ const WaveCountChartOverlay = memo(
   },
 );
 
-WaveCountChartOverlay.displayName = "WaveCountChartOverlay";
+WaveCountChart.displayName = "WaveCountChart";
 
-export { WaveCountChartOverlay };
-export default WaveCountChartOverlay;
+export { WaveCountChart as WaveCountChart };
+export default WaveCountChart;

@@ -16,10 +16,10 @@ import React, { useRef, useState, useEffect } from "react";
 import { WaveCountSelector } from "@site/src/components/WaveCountSelector";
 import { VerdictPanel } from "@site/src/components/VerdictPanel";
 import { ChartCanvas } from "@site/src/components/ChartCanvas";
-import { WaveCountChartOverlay } from "@site/src/components/WaveCountChartOverlay";
-import { useWaveCount, WaveCountProvider } from "../../hooks/useWaveCount";
-import { useOHLCVData } from "../../hooks/useOHLCVData";
-import { useTickerConfig } from "../../hooks/useTickerConfig";
+import { WaveCountChart } from "@site/src/components/WaveCountChart";
+import { useWaveCount, WaveCountProvider } from "@site/src/hooks/useWaveCount";
+import { useOHLCVData } from "@site/src/hooks/useOHLCVData";
+import { useTickerConfig } from "@site/src/hooks/useTickerConfig";
 import { useColorMode } from "@docusaurus/theme-common";
 import { PORTDIVE_THEME } from "@site/src/components/PortDiveTheme";
 import styles from "./styles.module.css";
@@ -109,7 +109,7 @@ function WaveCountAnalysisInner() {
               isDarkMode={isDarkMode}
               containerWidth={containerWidth - 80}
             >
-              <WaveCountChartOverlay
+              <WaveCountChart
                 activeCount={waveCounts.activeScenario}
                 activeWaveCountId={waveCounts.activeId}
                 analysisState={waveCounts.analysisState}
