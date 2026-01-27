@@ -337,6 +337,7 @@
     border: 1px solid var(--verdict-border);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     margin-bottom: 28px;
+    overflow: hidden;
 }
 
 .branchCard.teal {
@@ -864,10 +865,14 @@
     .branchCard {
         border-left-width: 3px;
         position: relative;
-        max-width: 78.5%;
+        max-width: 84%;
         min-width: 61.4%;
         padding: 14px 16px;
         margin-bottom: 28px;
+    }
+
+    .branchList {
+        flex-direction: column;
     }
 
     /* Validation card - align LEFT */
@@ -963,6 +968,10 @@
         max-width: 91.5%;
         min-width: 61.4%;
         margin-bottom: 12px;
+    }
+
+    .branchList {
+        flex-direction: column;
     }
 
     .branchTitle {
