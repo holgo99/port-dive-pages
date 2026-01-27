@@ -1,78 +1,33 @@
 // src/hooks/useDataSelector.js
 /**
- * Generic Context-based selector hook
- * Reusable for any data structure
+ * Generic selector hook for managing active item state
+ * Can be used for any list of items with IDs
  */
 
-import {
-  useState,
-  useCallback,
-  useMemo,
-  createContext,
-  useContext,
-} from "react";
-
-const DataSelectorContext = createContext(null);
+import { useState, useCallback, useMemo } from "react";
 
 /**
- * Provider component - wraps child components with selector state
+ * Hook for managing selection state over a list of items
+ *
+ * @param {Array} items - Array of items with 'id' property
+ * @param {string} defaultId - Initial active item ID
+ * @returns {Object} - { activeId, activeItem, setActive }
  */
-export const DataSelectorProvider = ({
-  items,
-  defaultActiveId,
-  onActiveChange,
-  children,
-}) => {
-  const [activeId, setActiveId] = useState(defaultActiveId);
+export const useDataSelector = (items, defaultId) => {
+  const [activeId, setActiveId] = useState(defaultId);
 
-  const handleChangeActive = useCallback(
-    (newId) => {
-      setActiveId(newId);
-      onActiveChange?.(newId);
-    },
-    [onActiveChange],
-  );
-
-  // Support both Array and Object formats
-  const itemsArray = Array.isArray(items) ? items : Object.values(items);
-  const itemsObject = Array.isArray(items)
-    ? items.reduce((acc, item) => ({ ...acc, [item.id]: item }), {})
-    : items;
-
-  // Get active item
   const activeItem = useMemo(() => {
-    if (Array.isArray(items)) {
-      return itemsArray.find((item) => item.id === activeId);
-    }
-    return itemsObject[activeId] || null;
-  }, [activeId, items, itemsArray, itemsObject]);
+    return items?.find((item) => item.id === activeId) || null;
+  }, [items, activeId]);
 
-  const value = {
+  const setActive = useCallback((newId) => {
+    setActiveId(newId);
+  }, []);
+
+  return {
     activeId,
     activeItem,
-    items: itemsArray,
-    itemsObject,
-    setActive: handleChangeActive,
+    items,
+    setActive,
   };
-
-  return (
-    <DataSelectorContext.Provider value={value}>
-      {children}
-    </DataSelectorContext.Provider>
-  );
 };
-
-/**
- * Hook to access selector state
- */
-export const useDataSelector = () => {
-  const context = useContext(DataSelectorContext);
-
-  if (!context) {
-    throw new Error("useDataSelector must be used within DataSelectorProvider");
-  }
-
-  return context;
-};
-
-export { DataSelectorContext };
