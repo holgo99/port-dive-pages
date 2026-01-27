@@ -1,79 +1,60 @@
 /**
+ * WaveCountSelector Component - PREMIUM REDESIGN
  *
- * @component
  * UI component for selecting wave count scenarios
  * Pure presentation - state managed via hooks
  *
+ * @component
  * @example
+ * import { WaveCountSelector } from '@site/src/components/WaveCountSelector';
  *
+ * <WaveCountSelector
+ *   showProbability={true}
+ *   onScenarioChange={(id) => console.log(id)}
+ * />
  */
 
 import { memo } from "react";
 import { useWaveCount } from "@site/src/hooks/useWaveCount";
-import { PORTDIVE_THEME } from "@site/src/components/PortDiveTheme";
 import styles from "./styles.module.css";
 
 // ============================================================================
-// WAVE COUNT SELECTOR LINKS
+// WAVE COUNT SCENARIO LINK
 // ============================================================================
-const WaveCountLink = memo(({ count, active, theme }) => {
-  const isAlt = count.id === "alt1";
+const WaveCountLink = memo(({ scenario, active, onClick }) => {
+  // Determine color mode based on scenario mode
+  const colorMode = scenario.mode === "MOTIVE" ? "motive" : "corrective";
+
+  // Build class names
+  const linkClasses = [
+    styles.scenarioLink,
+    active && styles.active,
+    active && styles[colorMode],
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <a
-      href={`#wave-${count.id}`}
+      href={`#wave-${scenario.id}`}
+      className={linkClasses}
       aria-current={active ? "true" : undefined}
-      style={{
-        padding: "12px 16px",
-        borderRadius: "8px",
-        border: active
-          ? `2px solid ${count.color}`
-          : `1px solid ${theme.border}`,
-        background: active
-          ? isAlt
-            ? `linear-gradient(135deg, ${count.color} 0%, ${PORTDIVE_THEME.secondaryLight} 100%)`
-            : `${count.color}18`
-          : "transparent",
-        cursor: "pointer",
-        textAlign: "left",
-        transition: "all 0.2s ease",
-        flex: "1 1 auto",
-        minWidth: "120px",
-        textDecoration: "none",
-        display: "block",
+      onClick={(e) => {
+        e.preventDefault();
+        onClick?.(scenario.id);
       }}
+      role="tab"
+      aria-selected={active}
     >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: "8px",
-        }}
-      >
-        <span
-          style={{
-            color: active ? (isAlt ? "#fff" : count.color) : theme.text,
-            fontWeight: 600,
-            fontSize: "13px",
-          }}
-        >
-          {count.label}
-        </span>
-        <span
-          style={{
-            color:
-              active && isAlt ? "rgba(255,255,255,0.85)" : theme.textSecondary,
-            fontSize: "11px",
-            fontWeight: 500,
-          }}
-        >
-          {count.probability}
-        </span>
+      <div className={styles.scenarioContent}>
+        <span className={styles.scenarioLabel}>{scenario.label}</span>
+        <span className={styles.scenarioProbability}>{scenario.probability}</span>
       </div>
     </a>
   );
 });
+
+WaveCountLink.displayName = "WaveCountLink";
 
 // ============================================================================
 // WAVE COUNT SELECTOR MAIN COMPONENT
@@ -81,7 +62,6 @@ const WaveCountLink = memo(({ count, active, theme }) => {
 export const WaveCountSelector = ({
   showProbability = true,
   onScenarioChange,
-  theme = { PORTDIVE_THEME },
 }) => {
   const { activeId, items, switchScenario, isLoading, error } = useWaveCount();
 
@@ -99,42 +79,21 @@ export const WaveCountSelector = ({
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        gap: "10px",
-        marginBottom: "20px",
-        padding: "16px",
-        background: theme.surface,
-        borderRadius: "12px",
-        border: `1px solid ${theme.border}`,
-        flexWrap: "wrap",
-      }}
-    >
-      <div
-        style={{
-          fontSize: "11px",
-          color: theme.textSecondary,
-          textTransform: "uppercase",
-          letterSpacing: "1px",
-          fontWeight: 600,
-          display: "flex",
-          alignItems: "center",
-          marginRight: "8px",
-        }}
-      >
-        Wave Count
-      </div>
-      <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", flex: 1 }}>
-        {items.map((count) => (
+    <div className={styles.selectorWrapper} role="tablist" aria-label="Wave Count Scenarios">
+      <div className={styles.selectorLabel}>Wave Count</div>
+      <div className={styles.itemsContainer}>
+        {items.map((scenario) => (
           <WaveCountLink
-            key={count.id}
-            count={count}
-            active={activeId === count.id}
-            theme={theme}
+            key={scenario.id}
+            scenario={scenario}
+            active={activeId === scenario.id}
+            onClick={handleSelect}
+            showProbability={showProbability}
           />
         ))}
       </div>
     </div>
   );
 };
+
+export default WaveCountSelector;

@@ -9,7 +9,6 @@ import { WaveCountSelector } from "@site/src/components/WaveCountSelector";
 import { TickerHeader } from "@site/src/components/TickerHeader";
 import { ShareElliotWave } from "@site/src/components/ShareElliotWave.jsx";
 import { AnalysisCard } from "@site/src/components/AnalysisCard";
-import { PORTDIVE_THEME } from "@site/src/components/PortDiveTheme";
 // import NBISElliottWaveChartWrapper from "@site/docs/nbis/assets/20260122/NBISElliottWaveChartWrapper.jsx";
 
 export function WaveCountAnalysis() {
@@ -21,7 +20,6 @@ export function WaveCountAnalysis() {
         onScenarioChange={(id) => {
           console.log("Selected:", id);
         }}
-        theme={PORTDIVE_THEME}
       />
       <TickerHeader
         tickerIconUrl="/portdive-pages/img/nbis/nbis-icon.svg"
