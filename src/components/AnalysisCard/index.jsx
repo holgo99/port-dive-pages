@@ -2,29 +2,46 @@
  * AnalysisCard Component
  * Displays chart analysis metadata with PortDive design system
  *
+ * Supports Context + Composition pattern via TickerConfigProvider
+ * Falls back to props if context not available
+ *
  * @component
  * @example
- * import { AnalysisCard } from '@site/src/components/AnalysisCard';
+ * // With context (preferred):
+ * <TickerConfigProvider config={nbisConfig}>
+ *   <AnalysisCard
+ *     title="Elliott Wave Analysis"
+ *     description="Complete wave count analysis"
+ *     analysisDate="2026-01-22"
+ *   />
+ * </TickerConfigProvider>
  *
+ * // Or with props (backwards compatible):
  * <AnalysisCard
- *   title="NBIS - Elliott Wave Analysis"
- *   description="Complete wave count analysis with target levels and risk management"
- *   symbol="NBIS"
+ *   ticker="NBIS"
+ *   title="Elliott Wave Analysis"
+ *   description="Complete wave count analysis"
  *   analysisDate="2026-01-22"
- *   attribution="201 daily candles • Projection to Jun 2026 • Last updated: Jan 23, 2026"
  * />
  */
 
+import { useTickerConfig } from "@site/src/hooks/useTickerConfig";
 import styles from "./styles.module.css";
 
 export function AnalysisCard({
-  ticker,
-  tickerName,
+  // Props override context values
+  ticker: tickerProp,
+  tickerName: tickerNameProp,
   title,
   description,
   analysisDate,
   attribution,
 }) {
+  // Get config from context (if available)
+  const config = useTickerConfig();
+
+  // Merge context with props (props take precedence)
+  const ticker = tickerProp || config.ticker;
   return (
     <div className={styles.analysisCard}>
       {/* Header */}

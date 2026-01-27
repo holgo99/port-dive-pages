@@ -2,20 +2,22 @@
  * WaveCountSelector Component - PREMIUM REDESIGN
  *
  * UI component for selecting wave count scenarios
- * Pure presentation - state managed via hooks
+ * Uses Context + Composition pattern via TickerConfigProvider
  *
  * @component
  * @example
- * import { WaveCountSelector } from '@site/src/components/WaveCountSelector';
- *
- * <WaveCountSelector
- *   showProbability={true}
- *   onScenarioChange={(id) => console.log(id)}
- * />
+ * // With context (preferred):
+ * <TickerConfigProvider config={nbisConfig}>
+ *   <WaveCountSelector
+ *     showProbability={true}
+ *     onScenarioChange={(id) => console.log(id)}
+ *   />
+ * </TickerConfigProvider>
  */
 
 import { memo } from "react";
 import { useWaveCount } from "@site/src/hooks/useWaveCount";
+import { useTickerConfig } from "@site/src/hooks/useTickerConfig";
 import styles from "./styles.module.css";
 
 // ============================================================================
@@ -65,6 +67,7 @@ export const WaveCountSelector = ({
   onScenarioChange,
 }) => {
   const { activeId, items, switchScenario, isLoading, error } = useWaveCount();
+  const { ticker } = useTickerConfig();
 
   const handleSelect = (scenarioId) => {
     switchScenario(scenarioId);
@@ -79,8 +82,13 @@ export const WaveCountSelector = ({
     return <div className={styles.error}>Error: {error}</div>;
   }
 
+  // Build accessible label with ticker if available
+  const ariaLabel = ticker
+    ? `${ticker} Wave Count Scenarios`
+    : "Wave Count Scenarios";
+
   return (
-    <div className={styles.selectorWrapper} role="tablist" aria-label="Wave Count Scenarios">
+    <div className={styles.selectorWrapper} role="tablist" aria-label={ariaLabel}>
       <div className={styles.selectorLabel}>Wave Count</div>
       <div className={styles.itemsContainer}>
         {items.map((scenario) => (

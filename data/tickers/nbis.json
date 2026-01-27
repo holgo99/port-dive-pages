@@ -1,0 +1,15 @@
+{
+  "ticker": "NBIS",
+  "tickerName": "Nebius Group N.V.",
+  "tickerIconUrl": "/portdive-pages/img/nbis/nbis-icon.svg",
+  "exchange": "NASDAQ",
+  "sector": "Technology",
+  "industry": "Internet Content & Information",
+  "currency": "USD",
+  "analysisConfig": {
+    "timeframe": "1D",
+    "projectionEnd": "Jun 2026",
+    "ath": 141.10,
+    "athDate": "2025-02-18"
+  }
+}
