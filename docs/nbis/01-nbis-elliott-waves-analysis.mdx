@@ -9,7 +9,9 @@ keywords: ["Elliott Wave", "Technical Analysis", "Wave Counting", "Market Cycles
 image: ./assets/20260122/elliott-wave-preview.png
 ---
 
+import { NBISLayout } from "@site/src/components/TickerLayout";
 import { WaveCountAnalysis } from "@site/src/components/WaveCountAnalysis";
-import nbisConfig from "@site/data/tickers/nbis.json";
 
-<WaveCountAnalysis config={ nbisConfig } />
+<NBISLayout>
+  <WaveCountAnalysis />
+</NBISLayout>

@@ -21,30 +21,21 @@ imageAlt: "PortDive Oscillators Dashboard showing gauge indicators (RSI, William
 image: ./assets/20260122/oscillators-dashboard-preview.png
 ---
 
-import { TickerHeader } from '@site/src/components/TickerHeader'
-import { AnalysisCard } from '@site/src/components/AnalysisCard'
-import { OscillatorsDashboard } from '@site/src/components/OscillatorsDashboard';
+import { NBISLayout } from "@site/src/components/TickerLayout";
+import { TickerHeader } from "@site/src/components/TickerHeader";
+import { AnalysisCard } from "@site/src/components/AnalysisCard";
+import { OscillatorsDashboard } from "@site/src/components/OscillatorsDashboard";
 import OHLCV_DATA from "./assets/20260122/nasdaq-nbis-1d-ohlcv_indicators.json";
 
-<TickerHeader
-  tickerIconUrl="/portdive-pages/img/nbis/nbis-icon.svg"
-  ticker="NBIS"
-  tickerName="Nebius Group N.V."
-  title="Oscillators Dashboard"
-  badge="1M"
+<NBISLayout>
+  <TickerHeader title="Oscillators Dashboard" badge="1M" />
+
+  <OscillatorsDashboard data={OHLCV_DATA} daysToShow={30} />
+
+  <AnalysisCard
+    title="Oscillators Dashboard"
+    description="Multi-indicator momentum analysis with RSI, Williams %R, Stochastic, ADX, and MACD"
+    attribution={`${OHLCV_DATA.length} daily candles • Last updated: Jan 26, 2026`}
+    analysisDate="2026-01-22"
   />
-
-<OscillatorsDashboard
-  ticker="NBIS"
-  tickerName="Nebius Group N.V."
-  data={OHLCV_DATA}
-  daysToShow={30}
-/>
-
-<AnalysisCard 
-  title="NBIS - Elliott Wave Analysis"
-  description="Complete wave count analysis with target levels and risk management"
-  symbol="NBIS"  
-  attribution={`${OHLCV_DATA.length} daily candles • Projection to Jun 2026 • Last updated: Jan 26, 2026`}
-  analysisDate="2026-01-22"
-/>
+</NBISLayout>

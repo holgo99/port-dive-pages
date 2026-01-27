@@ -2,10 +2,17 @@
  * OscillatorsDashboard Component
  * Premium technical indicators dashboard with gradient gauges, glowing effects, and signal matrix
  *
+ * Supports Context + Composition pattern via TickerConfigProvider
+ * Falls back to props if context not available
+ *
  * @component
  * @example
- * import { OscillatorsDashboard } from '@site/src/components/OscillatorsDashboard';
+ * // With context (preferred):
+ * <NBISLayout>
+ *   <OscillatorsDashboard data={ohlcvData} daysToShow={30} />
+ * </NBISLayout>
  *
+ * // Or with props (backwards compatible):
  * <OscillatorsDashboard
  *   ticker="NBIS"
  *   tickerName="Nebius Group N.V."
@@ -15,6 +22,7 @@
  */
 
 import React, { useMemo, memo } from "react";
+import { useTickerConfig } from "@site/src/hooks/useTickerConfig";
 import styles from "./styles.module.css";
 
 // ============================================================================
@@ -813,11 +821,18 @@ const SignalMatrix = memo(({ latestData, signalType = "SELL/TRIM" }) => {
 // ============================================================================
 
 export function OscillatorsDashboard({
-  ticker = "NBIS",
-  tickerName = "Nebius Group N.V.",
+  // Props override context values
+  ticker: tickerProp,
+  tickerName: tickerNameProp,
   data = [],
   daysToShow = 30,
 }) {
+  // Get config from context (if available)
+  const config = useTickerConfig();
+
+  // Merge context with props (props take precedence)
+  const ticker = tickerProp || config.ticker;
+  const tickerName = tickerNameProp || config.tickerName;
   // Get latest data point and filter recent data
   const { latestData, recentData, dateString } = useMemo(() => {
     if (!data || data.length === 0) {
