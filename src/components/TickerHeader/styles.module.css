@@ -1,6 +1,8 @@
 /**
  * TickerHeader Component Styles
  * Matches the design from NBISElliottWaveChart header
+ *
+ * Uses global premium CSS variables from custom.css
  */
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -38,7 +40,7 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .contentSection {
-    border-left: 2px solid var(--ifm-color-emphasis-300, rgba(248, 250, 249, 0.12));
+    border-left: 2px solid var(--premium-border);
     padding-left: 16px;
     display: flex;
     flex-direction: column;
@@ -60,7 +62,7 @@
     margin: 0;
     font-size: 20px;
     font-weight: 700;
-    color: var(--ifm-font-color-base, #f8faf9);
+    color: var(--premium-text);
     letter-spacing: -0.01em;
     line-height: 1.3;
 }
@@ -72,11 +74,11 @@
 .badge {
     font-size: 11px;
     padding: 4px 10px;
-    background: var(--ifm-color-emphasis-100, #142830);
+    background: var(--premium-surface-alt);
     border-radius: 6px;
-    color: var(--ifm-color-emphasis-600, #a8b4bc);
+    color: var(--premium-text-secondary);
     font-weight: 600;
-    border: 1px solid var(--ifm-color-emphasis-300, rgba(248, 250, 249, 0.12));
+    border: 1px solid var(--premium-border);
     white-space: nowrap;
     flex-shrink: 0;
 }
@@ -88,7 +90,7 @@
 .subtitle {
     margin: 0;
     font-size: 13px;
-    color: var(--ifm-color-emphasis-600, #a8b4bc);
+    color: var(--premium-text-secondary);
     line-height: 1.4;
 }
 
@@ -131,5 +133,25 @@
 
     .subtitle {
         font-size: 11px;
+    }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ACCESSIBILITY */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.tickerHeader:focus-visible {
+    outline: 2px solid var(--portdive-teal);
+    outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: more) {
+    .contentSection {
+        border-left-width: 3px;
+    }
+
+    .badge {
+        border-width: 2px;
     }
 }

@@ -11,48 +11,21 @@
  * - Dark mode optimized (PortDive brand)
  * - WCAG AA+ accessible
  * - Responsive design
+ *
+ * Uses global premium CSS variables from custom.css
  */
 
-:root {
-    /* PortDive Brand Colors */
-    --portdive-teal: #1fa39b;
-    --portdive-teal-rgb: 31, 163, 155;
-    --portdive-coral: #ff6b6b;
-    --portdive-coral-rgb: 255, 107, 107;
-    --portdive-blue: #3d72ff;
-    --portdive-blue-rgb: 61, 114, 255;
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* COMPONENT-SPECIFIC VARIABLES */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-    /* Supporting Colors */
-    --portdive-warning: #f9e95e;
-    --portdive-magenta: #e040fb;
-
-    /* Dashboard Colors - Dark Mode */
-    --dashboard-bg: #0a1a1f;
-    --dashboard-surface: #0f2028;
-    --dashboard-surface-alt: #142830;
-    --dashboard-surface-elevated: #1a3040;
-    --dashboard-text: #f8faf9;
-    --dashboard-text-secondary: #a8b4bc;
-    --dashboard-text-muted: #6a7a84;
-    --dashboard-border: rgba(248, 250, 249, 0.12);
-    --dashboard-border-glow: rgba(31, 163, 155, 0.3);
-
-    /* Gauge Colors */
+.dashboardWrapper {
+    /* Gauge-specific colors */
     --gauge-track: rgba(248, 250, 249, 0.08);
-    --gauge-track-gradient: linear-gradient(
-        90deg,
-        #1fa39b 0%,
-        #3d72ff 50%,
-        #ff6b6b 100%
-    );
+}
 
-    /* Typography */
-    --font-family-base:
-        "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont,
-        "Segoe UI", Roboto, sans-serif;
-    --font-family-mono:
-        "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-        monospace;
+[data-theme="light"] .dashboardWrapper {
+    --gauge-track: rgba(10, 26, 31, 0.08);
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -60,26 +33,26 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .dashboardWrapper {
-    background: var(--dashboard-bg);
-    border: 1px solid var(--dashboard-border);
+    background: var(--premium-bg);
+    border: 1px solid var(--premium-border);
     border-radius: 20px;
     overflow: hidden;
-    font-family: var(--font-family-base);
-    color: var(--dashboard-text);
+    font-family: var(--font-family-premium);
+    color: var(--premium-text);
     width: 100%;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    box-shadow: var(--premium-shadow-lg);
     margin-bottom: 24px;
 }
 
 .noData {
     padding: 64px;
     text-align: center;
-    color: var(--dashboard-text-muted);
+    color: var(--premium-text-muted);
     font-size: 16px;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* LOGO HEADER - VerdictPanel style */
+/* LOGO HEADER */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .logoHeader {
@@ -87,18 +60,18 @@
     align-items: center;
     gap: 8px;
     padding: 16px 24px;
-    border-bottom: 1px solid var(--dashboard-border);
+    border-bottom: 1px solid var(--premium-border);
 }
 
 .logoIcon {
-    color: var(--dashboard-text);
+    color: var(--premium-text);
     opacity: 0.8;
 }
 
 .logoText {
     font-size: 14px;
     font-weight: 600;
-    color: var(--dashboard-text);
+    color: var(--premium-text);
     letter-spacing: -0.01em;
 }
 
@@ -108,8 +81,8 @@
 
 .gaugesSection {
     padding: 32px;
-    border-bottom: 1px solid var(--dashboard-border);
-    background: var(--dashboard-bg);
+    border-bottom: 1px solid var(--premium-border);
+    background: var(--premium-bg);
 }
 
 .gaugesGrid {
@@ -121,8 +94,8 @@
 
 /* Premium Gauge Card - Square with min-width */
 .gaugeCard {
-    background: var(--dashboard-surface);
-    border: 1px solid var(--dashboard-border);
+    background: var(--premium-surface);
+    border: 1px solid var(--premium-border);
     border-radius: 16px;
     padding: 20px 16px;
     text-align: center;
@@ -142,23 +115,23 @@
 /* Subtle glow effect on card based on state */
 .gaugeCard.teal {
     box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.3),
-        0 0 40px rgba(31, 163, 155, 0.08),
-        inset 0 1px 0 rgba(31, 163, 155, 0.1);
+        var(--premium-shadow-md),
+        0 0 40px rgba(var(--portdive-teal-rgb), 0.08),
+        inset 0 1px 0 rgba(var(--portdive-teal-rgb), 0.1);
 }
 
 .gaugeCard.coral {
     box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.3),
-        0 0 40px rgba(255, 107, 107, 0.08),
-        inset 0 1px 0 rgba(255, 107, 107, 0.1);
+        var(--premium-shadow-md),
+        0 0 40px rgba(var(--portdive-coral-rgb), 0.08),
+        inset 0 1px 0 rgba(var(--portdive-coral-rgb), 0.1);
 }
 
 .gaugeCard.blue {
     box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.3),
-        0 0 40px rgba(61, 114, 255, 0.08),
-        inset 0 1px 0 rgba(61, 114, 255, 0.1);
+        var(--premium-shadow-md),
+        0 0 40px rgba(var(--portdive-blue-rgb), 0.08),
+        inset 0 1px 0 rgba(var(--portdive-blue-rgb), 0.1);
 }
 
 .gaugeCard:hover {
@@ -168,25 +141,25 @@
 .gaugeCard.teal:hover {
     box-shadow:
         0 12px 40px rgba(0, 0, 0, 0.4),
-        0 0 60px rgba(31, 163, 155, 0.15),
-        inset 0 1px 0 rgba(31, 163, 155, 0.2);
-    border-color: rgba(31, 163, 155, 0.3);
+        0 0 60px rgba(var(--portdive-teal-rgb), 0.15),
+        inset 0 1px 0 rgba(var(--portdive-teal-rgb), 0.2);
+    border-color: rgba(var(--portdive-teal-rgb), 0.3);
 }
 
 .gaugeCard.coral:hover {
     box-shadow:
         0 12px 40px rgba(0, 0, 0, 0.4),
-        0 0 60px rgba(255, 107, 107, 0.15),
-        inset 0 1px 0 rgba(255, 107, 107, 0.2);
-    border-color: rgba(255, 107, 107, 0.3);
+        0 0 60px rgba(var(--portdive-coral-rgb), 0.15),
+        inset 0 1px 0 rgba(var(--portdive-coral-rgb), 0.2);
+    border-color: rgba(var(--portdive-coral-rgb), 0.3);
 }
 
 .gaugeCard.blue:hover {
     box-shadow:
         0 12px 40px rgba(0, 0, 0, 0.4),
-        0 0 60px rgba(61, 114, 255, 0.15),
-        inset 0 1px 0 rgba(61, 114, 255, 0.2);
-    border-color: rgba(61, 114, 255, 0.3);
+        0 0 60px rgba(var(--portdive-blue-rgb), 0.15),
+        inset 0 1px 0 rgba(var(--portdive-blue-rgb), 0.2);
+    border-color: rgba(var(--portdive-blue-rgb), 0.3);
 }
 
 .gaugeLabel {
@@ -231,7 +204,7 @@
 
 .gaugeMinMax {
     font-size: 11px;
-    fill: var(--dashboard-text-muted);
+    fill: var(--premium-text-muted);
     font-family: var(--font-family-mono);
     font-weight: 500;
 }
@@ -254,18 +227,18 @@
 }
 
 .gaugeValue.teal {
-    color: var(--dashboard-text);
-    text-shadow: 0 0 20px rgba(31, 163, 155, 0.4);
+    color: var(--premium-text);
+    text-shadow: 0 0 20px rgba(var(--portdive-teal-rgb), 0.4);
 }
 
 .gaugeValue.coral {
-    color: var(--dashboard-text);
-    text-shadow: 0 0 20px rgba(255, 107, 107, 0.4);
+    color: var(--premium-text);
+    text-shadow: 0 0 20px rgba(var(--portdive-coral-rgb), 0.4);
 }
 
 .gaugeValue.blue {
-    color: var(--dashboard-text);
-    text-shadow: 0 0 20px rgba(61, 114, 255, 0.4);
+    color: var(--premium-text);
+    text-shadow: 0 0 20px rgba(var(--portdive-blue-rgb), 0.4);
 }
 
 /* Status Badge with Icon and Glow */
@@ -283,30 +256,30 @@
 }
 
 .gaugeStatusBadge.teal {
-    background: rgba(31, 163, 155, 0.15);
+    background: rgba(var(--portdive-teal-rgb), 0.15);
     color: var(--portdive-teal);
-    border: 1px solid rgba(31, 163, 155, 0.3);
+    border: 1px solid rgba(var(--portdive-teal-rgb), 0.3);
     box-shadow:
-        0 0 12px rgba(31, 163, 155, 0.2),
-        inset 0 0 8px rgba(31, 163, 155, 0.1);
+        0 0 12px rgba(var(--portdive-teal-rgb), 0.2),
+        inset 0 0 8px rgba(var(--portdive-teal-rgb), 0.1);
 }
 
 .gaugeStatusBadge.coral {
-    background: rgba(255, 107, 107, 0.15);
+    background: rgba(var(--portdive-coral-rgb), 0.15);
     color: var(--portdive-coral);
-    border: 1px solid rgba(255, 107, 107, 0.3);
+    border: 1px solid rgba(var(--portdive-coral-rgb), 0.3);
     box-shadow:
-        0 0 12px rgba(255, 107, 107, 0.2),
-        inset 0 0 8px rgba(255, 107, 107, 0.1);
+        0 0 12px rgba(var(--portdive-coral-rgb), 0.2),
+        inset 0 0 8px rgba(var(--portdive-coral-rgb), 0.1);
 }
 
 .gaugeStatusBadge.blue {
-    background: rgba(61, 114, 255, 0.15);
+    background: rgba(var(--portdive-blue-rgb), 0.15);
     color: var(--portdive-blue);
-    border: 1px solid rgba(61, 114, 255, 0.3);
+    border: 1px solid rgba(var(--portdive-blue-rgb), 0.3);
     box-shadow:
-        0 0 12px rgba(61, 114, 255, 0.2),
-        inset 0 0 8px rgba(61, 114, 255, 0.1);
+        0 0 12px rgba(var(--portdive-blue-rgb), 0.2),
+        inset 0 0 8px rgba(var(--portdive-blue-rgb), 0.1);
 }
 
 /* Reference Levels */
@@ -319,7 +292,7 @@
 
 .gaugeLevel {
     font-size: 10px;
-    color: var(--dashboard-text-muted);
+    color: var(--premium-text-muted);
     font-family: var(--font-family-mono);
 }
 
@@ -332,21 +305,21 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    border-bottom: 1px solid var(--dashboard-border);
-    background: var(--dashboard-bg);
+    border-bottom: 1px solid var(--premium-border);
+    background: var(--premium-bg);
 }
 
 .chartCard {
-    background: var(--dashboard-surface);
-    border: 1px solid var(--dashboard-border);
+    background: var(--premium-surface);
+    border: 1px solid var(--premium-border);
     border-radius: 16px;
     padding: 20px;
     transition: all 0.3s ease;
 }
 
 .chartCard:hover {
-    border-color: rgba(61, 114, 255, 0.2);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border-color: rgba(var(--portdive-blue-rgb), 0.2);
+    box-shadow: var(--premium-shadow-md);
 }
 
 .chartHeader {
@@ -354,13 +327,13 @@
     align-items: center;
     gap: 10px;
     margin-bottom: 16px;
-    color: var(--dashboard-text-secondary);
+    color: var(--premium-text-secondary);
 }
 
 .chartTitle {
     font-size: 15px;
     font-weight: 600;
-    color: var(--dashboard-text);
+    color: var(--premium-text);
 }
 
 .chartSvg {
@@ -370,7 +343,7 @@
 }
 
 .gridLine {
-    stroke: var(--dashboard-border);
+    stroke: var(--premium-border);
     stroke-width: 1;
 }
 
@@ -389,7 +362,7 @@
 }
 
 .thresholdLine.muted {
-    stroke: var(--dashboard-text-muted);
+    stroke: var(--premium-text-muted);
     opacity: 0.4;
 }
 
@@ -408,7 +381,7 @@
 }
 
 .thresholdLabel.muted {
-    fill: var(--dashboard-text-muted);
+    fill: var(--premium-text-muted);
 }
 
 .dataLine {
@@ -452,7 +425,7 @@
 
 .axisLabel {
     font-size: 10px;
-    fill: var(--dashboard-text-muted);
+    fill: var(--premium-text-muted);
     font-family: var(--font-family-mono);
 }
 
@@ -462,12 +435,12 @@
 
 .signalSection {
     padding: 32px;
-    background: var(--dashboard-bg);
+    background: var(--premium-bg);
 }
 
 .signalMatrixContainer {
-    background: var(--dashboard-surface);
-    border: 1px solid var(--dashboard-border);
+    background: var(--premium-surface);
+    border: 1px solid var(--premium-border);
     border-radius: 20px;
     padding: 28px;
 }
@@ -479,7 +452,7 @@
 .signalMatrixTitle {
     font-size: 20px;
     font-weight: 700;
-    color: var(--dashboard-text);
+    color: var(--premium-text);
     margin: 0;
     letter-spacing: -0.01em;
 }
@@ -494,7 +467,7 @@
 
 /* Premium Signal Card with Gradient */
 .signalCard {
-    background: var(--dashboard-surface-alt);
+    background: var(--premium-surface-alt);
     border-radius: 16px;
     padding: 20px;
     display: flex;
@@ -510,27 +483,27 @@
 .signalCard.confirmed {
     background: linear-gradient(
         135deg,
-        rgba(31, 163, 155, 0.2) 0%,
-        var(--dashboard-surface-alt) 100%
+        rgba(var(--portdive-teal-rgb), 0.2) 0%,
+        var(--premium-surface-alt) 100%
     );
-    border: 1px solid rgba(31, 163, 155, 0.4);
+    border: 1px solid rgba(var(--portdive-teal-rgb), 0.4);
     box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.2),
-        0 0 30px rgba(31, 163, 155, 0.15),
-        inset 0 1px 0 rgba(31, 163, 155, 0.2);
+        var(--premium-shadow-md),
+        0 0 30px rgba(var(--portdive-teal-rgb), 0.15),
+        inset 0 1px 0 rgba(var(--portdive-teal-rgb), 0.2);
 }
 
 /* Not Met state - Coral gradient */
 .signalCard.notMet {
     background: linear-gradient(
         135deg,
-        rgba(255, 107, 107, 0.15) 0%,
-        var(--dashboard-surface-alt) 100%
+        rgba(var(--portdive-coral-rgb), 0.15) 0%,
+        var(--premium-surface-alt) 100%
     );
-    border: 1px solid rgba(255, 107, 107, 0.3);
+    border: 1px solid rgba(var(--portdive-coral-rgb), 0.3);
     box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.2),
-        0 0 30px rgba(255, 107, 107, 0.1);
+        var(--premium-shadow-md),
+        0 0 30px rgba(var(--portdive-coral-rgb), 0.1);
 }
 
 .signalCard:hover {
@@ -540,13 +513,13 @@
 .signalCard.confirmed:hover {
     box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.3),
-        0 0 50px rgba(31, 163, 155, 0.2);
+        0 0 50px rgba(var(--portdive-teal-rgb), 0.2);
 }
 
 .signalCard.notMet:hover {
     box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.3),
-        0 0 50px rgba(255, 107, 107, 0.15);
+        0 0 50px rgba(var(--portdive-coral-rgb), 0.15);
 }
 
 .signalCardHeader {
@@ -557,7 +530,7 @@
 .signalLabel {
     font-size: 13px;
     font-weight: 600;
-    color: var(--dashboard-text);
+    color: var(--premium-text);
     display: block;
     margin-bottom: 4px;
 }
@@ -587,12 +560,12 @@
 
 .signalIcon.confirmed {
     color: var(--portdive-teal);
-    filter: drop-shadow(0 0 12px rgba(31, 163, 155, 0.5));
+    filter: drop-shadow(0 0 12px rgba(var(--portdive-teal-rgb), 0.5));
 }
 
 .signalIcon.notMet {
     color: var(--portdive-coral);
-    filter: drop-shadow(0 0 12px rgba(255, 107, 107, 0.5));
+    filter: drop-shadow(0 0 12px rgba(var(--portdive-coral-rgb), 0.5));
 }
 
 .signalCardFooter {
@@ -601,7 +574,7 @@
 
 .signalValueLabel {
     font-size: 11px;
-    color: var(--dashboard-text-muted);
+    color: var(--premium-text-muted);
     display: block;
     margin-bottom: 4px;
 }
@@ -627,9 +600,9 @@
     justify-content: space-between;
     gap: 24px;
     padding: 20px 24px;
-    background: var(--dashboard-surface-alt);
+    background: var(--premium-surface-alt);
     border-radius: 12px;
-    border: 1px solid var(--dashboard-border);
+    border: 1px solid var(--premium-border);
 }
 
 .signalCountSection {
@@ -641,7 +614,7 @@
 .signalCountLabel {
     font-size: 12px;
     font-weight: 600;
-    color: var(--dashboard-text-secondary);
+    color: var(--premium-text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -664,7 +637,7 @@
     flex: 1;
     max-width: 200px;
     height: 8px;
-    background: var(--dashboard-border);
+    background: var(--premium-border);
     border-radius: 4px;
     position: relative;
     overflow: hidden;
@@ -678,12 +651,12 @@
 
 .signalProgressFill.teal {
     background: linear-gradient(90deg, var(--portdive-teal) 0%, #25b8ae 100%);
-    box-shadow: 0 0 12px rgba(31, 163, 155, 0.5);
+    box-shadow: 0 0 12px rgba(var(--portdive-teal-rgb), 0.5);
 }
 
 .signalProgressFill.coral {
     background: linear-gradient(90deg, var(--portdive-coral) 0%, #ff8e8e 100%);
-    box-shadow: 0 0 12px rgba(255, 107, 107, 0.5);
+    box-shadow: 0 0 12px rgba(var(--portdive-coral-rgb), 0.5);
 }
 
 .signalProgressLabel {
@@ -693,7 +666,7 @@
     transform: translate(-50%, -50%);
     font-size: 9px;
     font-weight: 700;
-    color: var(--dashboard-text);
+    color: var(--premium-text);
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
@@ -706,7 +679,7 @@
 .signalActionLabel {
     font-size: 12px;
     font-weight: 600;
-    color: var(--dashboard-text-secondary);
+    color: var(--premium-text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -734,10 +707,10 @@
 
 .dashboardFooter {
     padding: 16px 32px;
-    border-top: 1px solid var(--dashboard-border);
+    border-top: 1px solid var(--premium-border);
     display: flex;
     justify-content: flex-end;
-    background: var(--dashboard-surface);
+    background: var(--premium-surface);
 }
 
 .footerBadge {
@@ -745,10 +718,10 @@
     align-items: center;
     gap: 8px;
     padding: 8px 16px;
-    background: rgba(31, 163, 155, 0.1);
+    background: rgba(var(--portdive-teal-rgb), 0.1);
     color: var(--portdive-teal);
     border-radius: 8px;
-    border: 1px solid rgba(31, 163, 155, 0.2);
+    border: 1px solid rgba(var(--portdive-teal-rgb), 0.2);
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
@@ -980,24 +953,15 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 [data-theme="light"] .dashboardWrapper {
-    --dashboard-bg: #f8faf9;
-    --dashboard-surface: #ffffff;
-    --dashboard-surface-alt: #f0f4f2;
-    --dashboard-surface-elevated: #ffffff;
-    --dashboard-text: #0a1a1f;
-    --dashboard-text-secondary: #5a6570;
-    --dashboard-text-muted: #8a9199;
-    --dashboard-border: rgba(10, 26, 31, 0.12);
-    --gauge-track: rgba(10, 26, 31, 0.08);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--premium-shadow-lg);
 }
 
 [data-theme="light"] .gaugeCard {
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--premium-shadow-sm);
 }
 
 [data-theme="light"] .gaugeCard:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--premium-shadow-md);
 }
 
 [data-theme="light"] .gaugeValue {
@@ -1006,58 +970,58 @@
 
 [data-theme="light"] .gaugeStatusBadge.teal {
     box-shadow:
-        0 0 8px rgba(31, 163, 155, 0.15),
-        inset 0 0 4px rgba(31, 163, 155, 0.05);
+        0 0 8px rgba(var(--portdive-teal-rgb), 0.15),
+        inset 0 0 4px rgba(var(--portdive-teal-rgb), 0.05);
 }
 
 [data-theme="light"] .gaugeStatusBadge.coral {
     box-shadow:
-        0 0 8px rgba(255, 107, 107, 0.15),
-        inset 0 0 4px rgba(255, 107, 107, 0.05);
+        0 0 8px rgba(var(--portdive-coral-rgb), 0.15),
+        inset 0 0 4px rgba(var(--portdive-coral-rgb), 0.05);
 }
 
 [data-theme="light"] .gaugeStatusBadge.blue {
     box-shadow:
-        0 0 8px rgba(61, 114, 255, 0.15),
-        inset 0 0 4px rgba(61, 114, 255, 0.05);
+        0 0 8px rgba(var(--portdive-blue-rgb), 0.15),
+        inset 0 0 4px rgba(var(--portdive-blue-rgb), 0.05);
 }
 
 [data-theme="light"] .chartCard {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--premium-shadow-sm);
 }
 
 [data-theme="light"] .signalMatrixContainer {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--premium-shadow-sm);
 }
 
 [data-theme="light"] .signalCard.confirmed {
     background: linear-gradient(
         135deg,
-        rgba(31, 163, 155, 0.1) 0%,
-        var(--dashboard-surface-alt) 100%
+        rgba(var(--portdive-teal-rgb), 0.1) 0%,
+        var(--premium-surface-alt) 100%
     );
     box-shadow:
-        0 2px 12px rgba(0, 0, 0, 0.06),
-        0 0 20px rgba(31, 163, 155, 0.08);
+        var(--premium-shadow-sm),
+        0 0 20px rgba(var(--portdive-teal-rgb), 0.08);
 }
 
 [data-theme="light"] .signalCard.notMet {
     background: linear-gradient(
         135deg,
-        rgba(255, 107, 107, 0.08) 0%,
-        var(--dashboard-surface-alt) 100%
+        rgba(var(--portdive-coral-rgb), 0.08) 0%,
+        var(--premium-surface-alt) 100%
     );
     box-shadow:
-        0 2px 12px rgba(0, 0, 0, 0.06),
-        0 0 20px rgba(255, 107, 107, 0.06);
+        var(--premium-shadow-sm),
+        0 0 20px rgba(var(--portdive-coral-rgb), 0.06);
 }
 
 [data-theme="light"] .signalIcon.confirmed {
-    filter: drop-shadow(0 0 8px rgba(31, 163, 155, 0.3));
+    filter: drop-shadow(0 0 8px rgba(var(--portdive-teal-rgb), 0.3));
 }
 
 [data-theme="light"] .signalIcon.notMet {
-    filter: drop-shadow(0 0 8px rgba(255, 107, 107, 0.3));
+    filter: drop-shadow(0 0 8px rgba(var(--portdive-coral-rgb), 0.3));
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */

@@ -11,54 +11,21 @@
  * - Dark mode optimized (PortDive brand)
  * - WCAG AA+ accessible
  * - Responsive design
+ *
+ * Uses global premium CSS variables from custom.css
  */
-
-:root {
-    /* PortDive Brand Colors */
-    --portdive-teal: #1fa39b;
-    --portdive-teal-rgb: 31, 163, 155;
-    --portdive-coral: #ff6b6b;
-    --portdive-coral-rgb: 255, 107, 107;
-    --portdive-blue: #3d72ff;
-    --portdive-blue-rgb: 61, 114, 255;
-
-    /* Legacy aliases */
-    --portdive-primary: #1fa39b;
-    --portdive-primary-rgb: 31, 163, 155;
-    --portdive-secondary: #ff6b6b;
-    --portdive-secondary-rgb: 255, 107, 107;
-
-    /* Decision Tree Colors */
-    --verdict-bg: #0a1a1f;
-    --verdict-surface: #0f2028;
-    --verdict-surface-alt: #142830;
-    --verdict-surface-elevated: #1a3040;
-    --verdict-text: #f8faf9;
-    --verdict-text-secondary: #a8b4bc;
-    --verdict-text-muted: #6a7a84;
-    --verdict-border: rgba(248, 250, 249, 0.12);
-    --verdict-border-glow: rgba(31, 163, 155, 0.3);
-
-    /* Typography */
-    --font-family-base:
-        "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont,
-        "Segoe UI", Roboto, sans-serif;
-    --font-family-mono:
-        "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-        monospace;
-}
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 /* WRAPPER */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .verdictPanelWrapper {
-    background: var(--verdict-bg);
-    border: 1px solid var(--verdict-border);
+    background: var(--premium-bg);
+    border: 1px solid var(--premium-border);
     border-radius: 20px;
     overflow: hidden;
-    font-family: var(--font-family-base);
-    color: var(--verdict-text);
+    font-family: var(--font-family-premium);
+    color: var(--premium-text);
     width: 100%;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     margin-bottom: 24px;
@@ -73,18 +40,18 @@
     align-items: center;
     gap: 8px;
     padding: 16px 24px;
-    border-bottom: 1px solid var(--verdict-border);
+    border-bottom: 1px solid var(--premium-border);
 }
 
 .logoIcon {
-    color: var(--verdict-text);
+    color: var(--premium-text);
     opacity: 0.8;
 }
 
 .logoText {
     font-size: 14px;
     font-weight: 600;
-    color: var(--verdict-text);
+    color: var(--premium-text);
     letter-spacing: -0.01em;
 }
 
@@ -98,9 +65,9 @@
     background: linear-gradient(
         135deg,
         rgba(31, 163, 155, 0.08) 0%,
-        var(--verdict-surface) 100%
+        var(--premium-surface) 100%
     );
-    border: 1px solid var(--verdict-border);
+    border: 1px solid var(--premium-border);
     border-left: 8px solid var(--portdive-teal);
     border-radius: 16px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -124,7 +91,7 @@
     background: linear-gradient(
         135deg,
         rgba(255, 107, 107, 0.08) 0%,
-        var(--verdict-surface) 100%
+        var(--premium-surface) 100%
     );
     box-shadow:
         0 4px 20px rgba(0, 0, 0, 0.3),
@@ -161,7 +128,7 @@
 .thesisHeroTitle {
     font-size: 20px;
     font-weight: 600;
-    color: var(--verdict-text);
+    color: var(--premium-text);
     line-height: 1.3;
     margin: 0;
 }
@@ -175,7 +142,7 @@
 .thesisHeroParagraph {
     font-size: 14px;
     line-height: 1.6;
-    color: var(--verdict-text);
+    color: var(--premium-text);
     margin: 0;
 }
 
@@ -188,7 +155,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-top: 1px solid var(--verdict-border);
+    border-top: 1px solid var(--premium-border);
 }
 
 .sectionTitle {
@@ -205,8 +172,8 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .probabilityCard {
-    background: var(--verdict-surface);
-    border: 1px solid var(--verdict-border);
+    background: var(--premium-surface);
+    border: 1px solid var(--premium-border);
     border-radius: 16px;
     padding: 24px 32px;
     text-align: center;
@@ -239,7 +206,7 @@
     font-size: 2.5rem;
     font-weight: 700;
     font-family: var(--font-family-mono);
-    color: var(--verdict-text);
+    color: var(--premium-text);
     line-height: 1;
     letter-spacing: -0.02em;
     text-shadow: 0 0 20px rgba(61, 114, 255, 0.4);
@@ -256,10 +223,10 @@
 .priceTargets {
     font-size: 13px;
     font-family: var(--font-family-mono);
-    color: var(--verdict-text-secondary);
+    color: var(--premium-text-secondary);
     padding-top: 12px;
     margin-top: 12px;
-    border-top: 1px solid var(--verdict-border);
+    border-top: 1px solid var(--premium-border);
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -330,11 +297,11 @@
 }
 
 .branchCard {
-    background: var(--verdict-surface);
+    background: var(--premium-surface);
     border-radius: 16px;
     min-width: 61.4%;
     padding: 20px;
-    border: 1px solid var(--verdict-border);
+    border: 1px solid var(--premium-border);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     margin-bottom: 28px;
     overflow: hidden;
@@ -345,7 +312,7 @@
     background: linear-gradient(
         135deg,
         rgba(31, 163, 155, 0.12) 0%,
-        var(--verdict-surface) 100%
+        var(--premium-surface) 100%
     );
     box-shadow:
         0 4px 20px rgba(0, 0, 0, 0.3),
@@ -366,7 +333,7 @@
     background: linear-gradient(
         135deg,
         rgba(255, 107, 107, 0.12) 0%,
-        var(--verdict-surface) 100%
+        var(--premium-surface) 100%
     );
     box-shadow:
         0 4px 20px rgba(0, 0, 0, 0.3),
@@ -446,7 +413,7 @@
 .branchTitle {
     font-size: 16px;
     font-weight: 600;
-    color: var(--verdict-text);
+    color: var(--premium-text);
 }
 
 .branchList {
@@ -465,7 +432,7 @@
     gap: 10px;
     font-size: 13px;
     line-height: 1.5;
-    color: var(--verdict-text);
+    color: var(--premium-text);
     min-width: 0;
     overflow-wrap: break-word;
     word-break: auto-phrase;
@@ -531,8 +498,8 @@
     align-items: center;
     gap: 12px;
     padding: 16px 28px;
-    background: var(--verdict-surface);
-    border: 1px solid var(--verdict-border);
+    background: var(--premium-surface);
+    border: 1px solid var(--premium-border);
     border-radius: 12px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
@@ -544,7 +511,7 @@
     background: linear-gradient(
         135deg,
         rgba(61, 114, 255, 0.1) 0%,
-        var(--verdict-surface) 100%
+        var(--premium-surface) 100%
     );
     box-shadow:
         0 4px 20px rgba(0, 0, 0, 0.3),
@@ -562,16 +529,16 @@
 
 /* Undecidable state */
 .outcomeCard.undecidable {
-    border-color: var(--verdict-text-muted);
+    border-color: var(--premium-text-muted);
     background: rgba(106, 122, 132, 0.08);
 }
 
 .outcomeCard.undecidable .outcomeIcon {
-    color: var(--verdict-text-muted);
+    color: var(--premium-text-muted);
 }
 
 .outcomeCard.undecidable .outcomeValue {
-    color: var(--verdict-text-muted);
+    color: var(--premium-text-muted);
 }
 
 /* Validated state */
@@ -580,7 +547,7 @@
     background: linear-gradient(
         135deg,
         rgba(31, 163, 155, 0.15) 0%,
-        var(--verdict-surface) 100%
+        var(--premium-surface) 100%
     );
     box-shadow:
         0 4px 20px rgba(0, 0, 0, 0.3),
@@ -604,7 +571,7 @@
     background: linear-gradient(
         135deg,
         rgba(255, 107, 107, 0.15) 0%,
-        var(--verdict-surface) 100%
+        var(--premium-surface) 100%
     );
     box-shadow:
         0 4px 20px rgba(0, 0, 0, 0.3),
@@ -625,13 +592,13 @@
 .outcomeLabel {
     font-size: 14px;
     font-weight: 600;
-    color: var(--verdict-text);
+    color: var(--premium-text);
 }
 
 .outcomeValue {
     font-size: 14px;
     font-weight: 400;
-    color: var(--verdict-text-secondary);
+    color: var(--premium-text-secondary);
     transition: color 0.3s ease;
 }
 
@@ -648,10 +615,10 @@
 
 .verdictFooter {
     padding: 16px 32px;
-    border-top: 1px solid var(--verdict-border);
+    border-top: 1px solid var(--premium-border);
     display: flex;
     justify-content: flex-end;
-    background: var(--verdict-surface);
+    background: var(--premium-surface);
 }
 
 .verdictBadge {
@@ -678,7 +645,7 @@
 
 .verdictBadge.undecidable {
     background: rgba(106, 122, 132, 0.1);
-    color: var(--verdict-text-muted);
+    color: var(--premium-text-muted);
     border: 1px solid rgba(106, 122, 132, 0.2);
 }
 
@@ -718,7 +685,7 @@
     background: linear-gradient(
         135deg,
         rgba(255, 107, 107, 0.15) 0%,
-        var(--verdict-surface) 100%
+        var(--premium-surface) 100%
     );
     box-shadow:
         0 4px 20px rgba(0, 0, 0, 0.3),
@@ -740,7 +707,7 @@
     background: linear-gradient(
         135deg,
         rgba(31, 163, 155, 0.15) 0%,
-        var(--verdict-surface) 100%
+        var(--premium-surface) 100%
     );
     box-shadow:
         0 4px 20px rgba(0, 0, 0, 0.3),
@@ -1006,21 +973,14 @@
 /* LIGHT MODE */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
+/* Light mode uses global --premium-* variables from custom.css */
 [data-theme="light"] .verdictPanelWrapper {
-    --verdict-bg: #f8faf9;
-    --verdict-surface: #ffffff;
-    --verdict-surface-alt: #f0f4f2;
-    --verdict-surface-elevated: #ffffff;
-    --verdict-text: #0a1a1f;
-    --verdict-text-secondary: #5a6570;
-    --verdict-text-muted: #8a9199;
-    --verdict-border: rgba(10, 26, 31, 0.12);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 [data-theme="light"] .thesisHeroCard {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    background: var(--verdict-surface);
+    background: var(--premium-surface);
 }
 
 [data-theme="light"] .thesisHeroCard:hover {
@@ -1028,7 +988,7 @@
 }
 
 [data-theme="light"] .thesisHeroCard.corrective {
-    background: var(--verdict-surface);
+    background: var(--premium-surface);
 }
 
 [data-theme="light"] .thesisHeroCard.corrective:hover {
@@ -1052,7 +1012,7 @@
 }
 
 [data-theme="light"] .branchCard.teal {
-    background: var(--verdict-surface);
+    background: var(--premium-surface);
 }
 
 [data-theme="light"] .branchCard.teal:hover {
@@ -1060,7 +1020,7 @@
 }
 
 [data-theme="light"] .branchCard.coral {
-    background: var(--verdict-surface);
+    background: var(--premium-surface);
 }
 
 [data-theme="light"] .branchCard.coral:hover {
@@ -1098,12 +1058,12 @@
 }
 
 [data-theme="light"] .outcomeCard.balanced {
-    background: var(--verdict-surface);
+    background: var(--premium-surface);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 [data-theme="light"] .outcomeCard.validated {
-    background: var(--verdict-surface);
+    background: var(--premium-surface);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
@@ -1112,7 +1072,7 @@
 }
 
 [data-theme="light"] .outcomeCard.invalidated {
-    background: var(--verdict-surface);
+    background: var(--premium-surface);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
