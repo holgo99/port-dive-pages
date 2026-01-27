@@ -14,11 +14,20 @@
 
 import React from "react";
 import { WaveCountSelector } from "@site/src/components/WaveCountSelector";
+import { VerdictPanel } from "@site/src/components/VerdictPanel";
+import { useWaveCount } from "../../hooks/useWaveCount";
+import { useOHLCVData } from "../../hooks/useOHLCVData";
+import { useTickerConfig } from "../../hooks/useTickerConfig";
 // import NBISElliottWaveChartWrapper from "@site/docs/nbis/assets/20260122/NBISElliottWaveChartWrapper.jsx";
 
 export function WaveCountAnalysis() {
+  // Get config from context (if available)
+  const tickerConfig = useTickerConfig();
+  const ohlcvContext = useOHLCVData();
+  const waveCounts = useWaveCount();
+
   return (
-    <div style={{ padding: "2rem 0" }}>
+    <>
       <WaveCountSelector
         showProbability={true}
         onScenarioChange={(id) => {
@@ -26,6 +35,12 @@ export function WaveCountAnalysis() {
         }}
       />
       {/* <NBISElliottWaveChartWrapper /> */}
-    </div>
+      {waveCounts.activeScenario.verdict.length > 0 && (
+        <VerdictPanel
+          verdict={waveCounts.activeScenario.verdict}
+          isCorrective={waveCounts.activeScenario.verdict === "CORRECTIVE"}
+        />
+      )}
+    </>
   );
 }

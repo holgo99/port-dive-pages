@@ -27,8 +27,8 @@ import React from "react";
 import { TickerIcon } from "@site/src/components/TickerIcon";
 import { PORTDIVE_THEME } from "@site/src/components/PortDiveTheme";
 import { useTickerConfig } from "@site/src/hooks/useTickerConfig";
-import styles from "./styles.module.css";
 import { useOHLCVData } from "@site/src/hooks/useOHLCVData";
+import styles from "./styles.module.css";
 
 export function TickerHeader({
   // Props override context values
