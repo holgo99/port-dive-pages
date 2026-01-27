@@ -18,9 +18,10 @@
 import styles from "./styles.module.css";
 
 export function AnalysisCard({
+  ticker,
+  tickerName,
   title,
   description,
-  symbol,
   analysisDate,
   attribution,
 }) {
@@ -37,7 +38,7 @@ export function AnalysisCard({
         <div className={styles.metadataItem}>
           <span className={styles.metadataLabel}>Symbol:</span>
           <span className={`${styles.metadataValue} ${styles.symbolValue}`}>
-            {symbol}
+            {ticker}
           </span>
         </div>
         <div className={styles.metadataItem}>

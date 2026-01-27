@@ -15,25 +15,26 @@ export function WaveCountAnalysis() {
   return (
     <div style={{ padding: "2rem" }}>
       <ShareElliotWave />
+      <TickerHeader
+        ticker="NBIS"
+        tickerName="Nebius Group N.V."
+        tickerIconUrl="/portdive-pages/img/nbis/nbis-icon.svg"
+        title="Elliott Wave Analysis"
+        badge="1D"
+        subtitle="Apr 2025 → Jun 2026 (Projection) | ATH: $141.10"
+      />
       <WaveCountSelector
         showProbability={true}
         onScenarioChange={(id) => {
           console.log("Selected:", id);
         }}
       />
-      <TickerHeader
-        tickerIconUrl="/portdive-pages/img/nbis/nbis-icon.svg"
-        ticker="NBIS"
-        tickerName="Nebius Group N.V."
-        title="Elliott Wave Analysis"
-        badge="1D"
-        subtitle="Apr 2025 → Jun 2026 (Projection) | ATH: $141.10"
-      />
       {/* <NBISElliottWaveChartWrapper /> */}
       <AnalysisCard
-        title="NBIS - Elliott Wave Analysis"
+        title="Elliott Wave Analysis"
+        ticker="NBIS"
+        tickerName="Nebius Group N.V."
         description="Complete wave count analysis with target levels and risk management"
-        symbol="NBIS"
         attribution="XX daily candles • Projection to Jun 2026 • Last updated: Jan 26, 2026"
         analysisDate="2026-01-22"
       />
