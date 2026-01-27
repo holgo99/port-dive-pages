@@ -1,0 +1,354 @@
+{
+  "primary": {
+    "id": "primary",
+    "label": "Bullish continuation (weakened)",
+    "probability": "35%",
+    "mode": "MOTIVE",
+    "color": "PORTDIVE_THEME.primary",
+    "pivots": {
+      "wave1Start": {
+        "idx": 0,
+        "price": 18.31
+      },
+      "wave1Peak": {
+        "idx": 57,
+        "price": 55.75,
+        "label": "1"
+      },
+      "wave2Low": {
+        "idx": 65,
+        "price": 43.89,
+        "label": "2"
+      },
+      "wave3Peak": {
+        "idx": 129,
+        "price": 141.1,
+        "label": "3"
+      },
+      "wave4Low": {
+        "idx": 176,
+        "price": 75.25,
+        "label": "4"
+      }
+    },
+    "minorWaves": {
+      "minorIPeak": {
+        "idx": 196,
+        "price": 110.5,
+        "label": "i"
+      },
+      "minorIILow": {
+        "idx": 201,
+        "price": 91.36,
+        "label": "ii"
+      }
+    },
+    "projected": [
+      {
+        "idx": 176,
+        "price": 75.25,
+        "label": "4",
+        "color": "PORTDIVE_THEME.primary"
+      },
+      {
+        "idx": -1,
+        "price": 150.13,
+        "label": "5",
+        "color": "PORTDIVE_THEME.primary"
+      }
+    ],
+    "projectedTargetBand": {
+      "startPrice": 135.83,
+      "endPrice": 158.45,
+      "color": "PORTDIVE_THEME.primary",
+      "fill": "url(#primaryTargetZoneGradient)"
+    },
+    "description": "Primary revised: (5) still possible, but the pullback has extended below prior minor ii ($93.10) and the 0.50 shelf (~$92.88), so validation now requires reclaiming key pivots before upside targets regain high confidence.",
+    "waves": [
+      {
+        "label": "WAVE (1)",
+        "range": "$18.31 → $55.75",
+        "status": "COMPLETE",
+        "color": "PORTDIVE_THEME.primary"
+      },
+      {
+        "label": "WAVE (2)",
+        "range": "$55.75 → $43.89",
+        "status": "COMPLETE",
+        "color": "PORTDIVE_THEME.primary"
+      },
+      {
+        "label": "WAVE (3)",
+        "range": "$43.89 → $141.10",
+        "status": "COMPLETE",
+        "color": "PORTDIVE_THEME.primary"
+      },
+      {
+        "label": "WAVE (4)",
+        "range": "$141.10 → $75.25",
+        "status": "COMPLETE",
+        "color": "PORTDIVE_THEME.primary"
+      },
+      {
+        "label": "WAVE (5)",
+        "range": "$75.25 → >$135.83",
+        "status": "IN PROGRESS",
+        "color": "#F59E0B"
+      }
+    ],
+    "metrics": [
+      {
+        "label": "Expected Value",
+        "value": "+5.4%",
+        "sublabel": "Prob.-weighted to $135.83 vs $75.25",
+        "indicator": true
+      },
+      {
+        "label": "Sharpe Ratio",
+        "value": "0.31",
+        "sublabel": "EV / Hard-Stop Risk",
+        "color": "gradient"
+      },
+      {
+        "label": "Price Momentum",
+        "value": "-1.8%",
+        "sublabel": "Below $93.10 / $92.50 breakdown",
+        "isNegative": true
+      },
+      {
+        "label": "Risk",
+        "value": "-11.5%",
+        "sublabel": "Probability-Weighted (Hard Stop)",
+        "isNegative": true
+      }
+    ],
+    "verdict": "# Primary scenario (Revised): Delayed Bullish Continuation\n\n## Thesis (35%)\n\n* Wave (5) is still **possible**, but the market **confirmed** a break below **$93.10** and **$92.50**, implying minor **ii is extending** / structure is still corrective until price reclaims key pivots.\n* **Forward targets** (if validated): $112.69 → $135.83 (primary) → $150.13+ (stretch)\n\n## Validation\n\n* Reclaim and hold **>$92.88** (former 0.50 shelf) then **>$94.19** (major pivot) on daily closes\n* Momentum confirmation: MACD histogram stabilizes/turns up and RSI returns **>50**\n\n## Invalidation\n\n* Soft risk: sustained weakness below **$88.72** (next fib support)\n* Hard invalidation: sustained break **<$75.25** (global bullish floor)"
+  },
+  "alt1": {
+    "id": "alt1",
+    "label": "Corrective regime (C/Y down favored)",
+    "probability": "45%",
+    "mode": "CORRECTIVE",
+    "color": "PORTDIVE_THEME.secondary",
+    "pivots": {
+      "wave1Start": {
+        "idx": 129,
+        "price": 141.1
+      },
+      "waveALow": {
+        "idx": 176,
+        "price": 75.25,
+        "label": "A"
+      },
+      "waveBPeak": {
+        "idx": 196,
+        "price": 110.5,
+        "label": "B"
+      }
+    },
+    "minorWaves": {},
+    "projected": [
+      {
+        "idx": 196,
+        "price": 110.5,
+        "label": "B",
+        "color": "PORTDIVE_THEME.secondary"
+      },
+      {
+        "idx": -1,
+        "price": 79.7,
+        "label": "C",
+        "color": "PORTDIVE_THEME.secondary"
+      }
+    ],
+    "projectedTargetBand": {
+      "startPrice": 79.7,
+      "endPrice": 88.72,
+      "color": "PORTDIVE_THEME.secondary",
+      "fill": "url(#secondaryTargetZoneGradient)"
+    },
+    "description": "Alt1 upgraded: 141.10→75.25 is A/W, 75.25→110.50 is B/X, and the confirmed break below $92.50 implies C/Y is active with downside targets at 88.72 then 79.70 (and possibly 75.25).",
+    "waves": [
+      {
+        "label": "WAVE (A)",
+        "range": "$141.10 → $75.25",
+        "status": "COMPLETE",
+        "color": "PORTDIVE_THEME.secondary"
+      },
+      {
+        "label": "WAVE (B)",
+        "range": "$75.25 → $110.50",
+        "status": "COMPLETE",
+        "color": "PORTDIVE_THEME.secondary"
+      },
+      {
+        "label": "WAVE (C)",
+        "range": "$110.50 → <$88.72",
+        "status": "IN PROGRESS",
+        "color": "#F59E0B"
+      },
+      {
+        "label": "INVALIDATION",
+        "range": "$94.19 → $110.50",
+        "status": "RECLAIM / BULL REVERSAL",
+        "color": "PORTDIVE_THEME.primary"
+      }
+    ],
+    "metrics": [
+      {
+        "label": "Expected Value",
+        "value": "-5.7%",
+        "sublabel": "Short EV to $79.70 vs stop $110.50",
+        "indicator": true
+      },
+      {
+        "label": "Sharpe Ratio",
+        "value": "-0.27",
+        "sublabel": "EV / Adverse Risk",
+        "color": "gradient"
+      },
+      {
+        "label": "Price Momentum",
+        "value": "-17.2%",
+        "sublabel": "Below prior swing high ($110.50)",
+        "isNegative": true
+      },
+      {
+        "label": "Risk",
+        "value": "-11.4%",
+        "sublabel": "Probability-Weighted (Stop Risk)",
+        "isNegative": true
+      }
+    ],
+    "verdict": "# Alt1 (Favored): Corrective C/Y Down Leg\n\n## Thesis (45%)\n\n* The breakdown below **$93.10** and **$92.50** shifts bias to a **C/Y down leg** after a completed A (to $75.25) and B (to $110.50).\n* **Downside roadmap:** $88.72 → $82.79 → $79.70 → $75.25 (then $65.22 if deep)\n\n## Validation\n\n* Price fails below **$92.88–$94.19** on rebounds (resistance)\n* MACD remains bearish (MACD < signal; histogram negative)\n* RSI struggles to regain **50**\n\n## Invalidation\n\n* Soft: reclaim and hold **>$100.40**\n* Hard: decisive recovery **>$110.50** (would negate active C/Y thesis)"
+  },
+  "alt2": {
+    "id": "alt2",
+    "label": "Complex (4) still unfolding (chop then drop)",
+    "probability": "20%",
+    "mode": "CORRECTIVE",
+    "color": "PORTDIVE_THEME.primary",
+    "pivots": {
+      "wave1Start": {
+        "idx": 0,
+        "price": 18.31
+      },
+      "wave1Peak": {
+        "idx": 57,
+        "price": 55.75,
+        "label": "1"
+      },
+      "wave2Low": {
+        "idx": 65,
+        "price": 43.89,
+        "label": "2"
+      },
+      "wave3Peak": {
+        "idx": 129,
+        "price": 141.1,
+        "label": "3"
+      }
+    },
+    "minorWaves": {
+      "waveWStart": {
+        "idx": 129,
+        "price": 141.1
+      },
+      "waveWLow": {
+        "idx": 176,
+        "price": 75.25,
+        "label": "W"
+      },
+      "waveXPeak": {
+        "idx": 196,
+        "price": 110.5,
+        "label": "X"
+      },
+      "waveYLow": {
+        "idx": 201,
+        "price": 91.36,
+        "label": "Y"
+      }
+    },
+    "projected": [
+      {
+        "idx": 129,
+        "price": 141.1,
+        "label": "3",
+        "color": "PORTDIVE_THEME.secondary"
+      },
+      {
+        "idx": -1,
+        "price": 79.7,
+        "label": "4",
+        "color": "PORTDIVE_THEME.secondary"
+      },
+      {
+        "idx": -1,
+        "price": 141.1,
+        "label": "5",
+        "color": "PORTDIVE_THEME.secondary"
+      }
+    ],
+    "projectedTargetBand": {
+      "startPrice": 79.7,
+      "endPrice": 88.72,
+      "color": "PORTDIVE_THEME.primary",
+      "fill": "url(#secondaryTargetZoneGradient)"
+    },
+    "description": "Alt2: The structure may still be a complex (4) (double-three / triangle-like). 75.25→110.50 was an X-wave bounce, and price is now working a choppy Y-leg down into 88.72–79.70 before a later (5) attempt.",
+    "waves": [
+      {
+        "label": "WAVE (W)",
+        "range": "$141.10 → $75.25",
+        "status": "COMPLETE",
+        "color": "PORTDIVE_THEME.secondary"
+      },
+      {
+        "label": "WAVE (X)",
+        "range": "$75.25 → $110.50",
+        "status": "COMPLETE",
+        "color": "PORTDIVE_THEME.secondary"
+      },
+      {
+        "label": "WAVE (Y)",
+        "range": "$110.50 → $79.70",
+        "status": "IN PROGRESS",
+        "color": "#F59E0B"
+      },
+      {
+        "label": "WAVE (5)",
+        "range": "$79.70 → $135.83",
+        "status": "PROJECTED",
+        "color": "PORTDIVE_THEME.primary"
+      }
+    ],
+    "metrics": [
+      {
+        "label": "Expected Value",
+        "value": "-7.2%",
+        "sublabel": "Range/mean-revert then down (risk-heavy)",
+        "indicator": true
+      },
+      {
+        "label": "Sharpe Ratio",
+        "value": "-0.74",
+        "sublabel": "EV / Adverse Risk",
+        "color": "gradient"
+      },
+      {
+        "label": "Price Momentum",
+        "value": "-3.3%",
+        "sublabel": "Last close below MA50 pivot area",
+        "isNegative": true
+      },
+      {
+        "label": "Risk",
+        "value": "-7.8%",
+        "sublabel": "Probability-Weighted (to $100.40 risk)",
+        "isNegative": true
+      }
+    ],
+    "verdict": "# Alt2: Complex (4) Not Finished\n\n## Thesis (20%)\n\n* Rather than a clean trending C-wave, expect **overlapping, choppy swings** (low-ADX signature) that still resolve lower into **$88.72–$79.70** before a later Wave (5) attempt.\n* **Path expectation:** Y-down to $88.72–$79.70 → choppy bounce → decision near $75.25\n\n## Validation\n\n* Rebounds remain capped below **$92.88–$94.19** and below MA50\n* ADX stays low while MACD flattens (complex correction signature)\n\n## Invalidation\n\n* Reclaim and hold **>$100.40**, and especially an impulsive recovery **>$110.50**\n\n## "
+  }
+}
