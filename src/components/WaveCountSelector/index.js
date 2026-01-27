@@ -40,6 +40,7 @@ const WaveCountLink = memo(({ scenario, active, onClick }) => {
       className={linkClasses}
       aria-current={active ? "true" : undefined}
       onClick={(e) => {
+        // Prevent default scroll behavior but allow URL update via hook
         e.preventDefault();
         onClick?.(scenario.id);
       }}

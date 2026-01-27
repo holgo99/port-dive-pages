@@ -1,12 +1,16 @@
 // src/hooks/useWaveCount.js
 /**
  * Hook for wave count scenario selection
- * Self-contained state management - no external context needed
+ * Self-contained state management with URL hash sync
+ * Supports sharing via URL anchors (e.g., #wave-alt1)
  */
 
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import waveCountData from "@site/data/wave-counts/nbis-wave-counts.json";
 import { PORTDIVE_THEME } from "@site/src/components/PortDiveTheme";
+
+// Hash prefix for wave count URLs
+const HASH_PREFIX = "wave-";
 
 // Resolve color references to actual values
 const resolveColor = (colorRef) => {
@@ -29,14 +33,57 @@ const prepareScenario = (scenario) => {
   };
 };
 
+// Parse scenario ID from URL hash
+const getScenarioFromHash = () => {
+  if (typeof window === "undefined") return null;
+  const hash = window.location.hash.slice(1); // Remove #
+  if (hash.startsWith(HASH_PREFIX)) {
+    const scenarioId = hash.slice(HASH_PREFIX.length);
+    return waveCountData[scenarioId] ? scenarioId : null;
+  }
+  return null;
+};
+
+// Update URL hash without triggering navigation
+const updateHash = (scenarioId) => {
+  if (typeof window === "undefined") return;
+  const newHash = `#${HASH_PREFIX}${scenarioId}`;
+  if (window.location.hash !== newHash) {
+    window.history.replaceState(null, "", newHash);
+  }
+};
+
 /**
  * Hook for managing wave count scenarios
+ * Syncs selection with URL hash for shareable links
  *
  * @param {string} defaultId - Initial active scenario ID (default: "primary")
  * @returns {Object} - { activeId, activeScenario, items, switchScenario }
  */
 export const useWaveCount = (defaultId = "primary") => {
-  const [activeId, setActiveId] = useState(defaultId);
+  // Initialize from URL hash if present, otherwise use default
+  const [activeId, setActiveId] = useState(() => {
+    return getScenarioFromHash() || defaultId;
+  });
+
+  // Sync URL hash on mount and listen for hash changes
+  useEffect(() => {
+    // Update hash on initial mount if not already set
+    if (!window.location.hash) {
+      updateHash(activeId);
+    }
+
+    // Handle browser back/forward navigation
+    const handleHashChange = () => {
+      const scenarioId = getScenarioFromHash();
+      if (scenarioId && scenarioId !== activeId) {
+        setActiveId(scenarioId);
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, [activeId]);
 
   // Prepare all scenarios once
   const items = useMemo(() => {
@@ -49,10 +96,11 @@ export const useWaveCount = (defaultId = "primary") => {
     return prepareScenario(scenario);
   }, [activeId]);
 
-  // Switch scenario
+  // Switch scenario and update URL hash
   const switchScenario = useCallback((scenarioId) => {
     if (waveCountData[scenarioId]) {
       setActiveId(scenarioId);
+      updateHash(scenarioId);
     } else {
       console.warn(`Invalid scenario ID: ${scenarioId}`);
     }
