@@ -12,7 +12,7 @@
  * </NBISLayout>
  */
 
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { WaveCountSelector } from "@site/src/components/WaveCountSelector";
 import { VerdictPanel } from "@site/src/components/VerdictPanel";
 import { ChartCanvas } from "@site/src/components/ChartCanvas";
@@ -29,11 +29,28 @@ export function WaveCountAnalysis() {
   const tickerConfig = useTickerConfig();
   const ohlcvContext = useOHLCVData();
   const waveCounts = useWaveCount();
-  const colorMode = useColorMode();
-  const theme = PORTDIVE_THEME;
+  const { colorMode } = useColorMode();
+  const isDarkMode = colorMode === "dark";
+  const theme = isDarkMode ? PORTDIVE_THEME.dark : PORTDIVE_THEME.light;
+
+  // Track container width for responsive chart
+  const containerRef = useRef(null);
+  const [containerWidth, setContainerWidth] = useState(1000);
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth);
+      }
+    };
+
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
 
   return (
-    <>
+    <div ref={containerRef}>
       <WaveCountSelector
         showProbability={true}
         onScenarioChange={(id) => {
@@ -43,8 +60,8 @@ export function WaveCountAnalysis() {
       <ChartCanvas
         data={ohlcvContext.data}
         theme={theme}
-        isDarkMode={colorMode === "dark"}
-        containerWidth="100%"
+        isDarkMode={isDarkMode}
+        containerWidth={containerWidth}
       >
         <WaveCountChartOverlay
           activeCount={waveCounts.activeScenario}
@@ -52,12 +69,12 @@ export function WaveCountAnalysis() {
           analysisState={waveCounts.analysisState}
         />
       </ChartCanvas>
-      {waveCounts.activeScenario.verdict.length > 0 && (
+      {waveCounts.activeScenario?.verdict?.length > 0 && (
         <VerdictPanel
           verdict={waveCounts.activeScenario.verdict}
-          isCorrective={waveCounts.activeScenario.verdict === "CORRECTIVE"}
+          isCorrective={waveCounts.activeScenario.mode === "CORRECTIVE"}
         />
       )}
-    </>
+    </div>
   );
 }
