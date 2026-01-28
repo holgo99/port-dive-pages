@@ -458,15 +458,8 @@ export function TickerIntelDashboard({
             {tickerDisplay} Analysis Overview
           </h2>
           <p className={styles.dashboardSubtitle}>
-            {timeframe} • {daysToShow} days • Analysis Date:{" "}
-            {analysisData?.analysisDate || "N/A"}
+            Analysis Date: {analysisData?.analysisDate || "N/A"}
           </p>
-        </div>
-        <div className={styles.headerRight}>
-          <div className={styles.ath}>
-            <span className={styles.athLabel}>ATH</span>
-            <span className={styles.athValue}>${athPrice || "—"}</span>
-          </div>
         </div>
       </div>
 
@@ -514,7 +507,9 @@ export function TickerIntelDashboard({
         </h3>
         <div className={styles.valuationSummaryCard}>
           <div className={styles.summaryHeader}>
-            <div className={styles.summaryTitle}>Combined Valuation Methods</div>
+            <div className={styles.summaryTitle}>
+              Combined Valuation Methods
+            </div>
             <div className={styles.summarySubtitle}>
               Weighted fair value across multiple methodologies
             </div>

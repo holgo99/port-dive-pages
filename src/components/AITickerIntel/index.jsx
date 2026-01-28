@@ -199,17 +199,6 @@ export function AITickerIntel({ ticker }) {
 
   return (
     <div className={styles.AITickerIntel}>
-      {/* Company Header */}
-      <div className={styles.companyHeader}>
-        <div className={styles.symbolBadge}>
-          <div className={styles.symbol}>{company.symbol}</div>
-        </div>
-        <h2 className={styles.companyName}>{company.company}</h2>
-        <p className={styles.companyMeta}>
-          {company.sector} • {company.exchange}
-        </p>
-      </div>
-
       {/* Current Price Section */}
       {price && (
         <div className={styles.priceSection}>
@@ -338,9 +327,7 @@ export function AITickerIntel({ ticker }) {
             <SignalIcon size={14} />
             Signal Summary
           </h3>
-          <div
-            className={`${styles.signalCard} ${styles[signalAction.type]}`}
-          >
+          <div className={`${styles.signalCard} ${styles[signalAction.type]}`}>
             <div className={styles.signalAction}>
               {signalAction.action.action}
             </div>
