@@ -9,8 +9,22 @@ export function TickerIcon({
   tickerName,
   size = 48,
   showWordmark = false,
+  iconOnly = false,
   theme = { PORTDIVE_THEME },
 }) {
+  // If iconOnly, just return the image
+  if (iconOnly) {
+    return (
+      <img
+        src={tickerIconUrl}
+        alt={`${ticker} Icon`}
+        width={size}
+        height={size}
+        style={{ flexShrink: 0, display: "block" }}
+      />
+    );
+  }
+
   return (
     <div
       style={{
@@ -23,7 +37,7 @@ export function TickerIcon({
     >
       <img
         src={tickerIconUrl}
-        alt={"${ticker} Icon"}
+        alt={`${ticker} Icon`}
         width="48px"
         style={{ flexShrink: 0 }}
       />

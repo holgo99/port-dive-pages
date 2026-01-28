@@ -29,8 +29,28 @@ import { TabsContainer } from "@site/src/components/TabsContainer";
 import { TickerDetails } from "@site/src/components/TickerDetails";
 import { AnalysisCard } from "@site/src/components/AnalysisCard";
 
-// Import config
+// Import ticker configs
 import nbisConfig from "@site/data/tickers/nbis.json";
+import nvoConfig from "@site/data/tickers/nvo.json";
+import zetaConfig from "@site/data/tickers/zeta.json";
+
+/**
+ * All available ticker configurations
+ */
+const TICKER_CONFIGS = {
+  NBIS: nbisConfig,
+  NVO: nvoConfig,
+  ZETA: zetaConfig,
+};
+
+/**
+ * Available tickers for dropdown (derived from configs)
+ */
+const AVAILABLE_TICKERS = Object.values(TICKER_CONFIGS).map((config) => ({
+  ticker: config.ticker,
+  tickerName: config.tickerName,
+  tickerIconUrl: config.tickerIconUrl,
+}));
 
 /**
  * Tab definitions
@@ -55,17 +75,21 @@ export default function TickerAnalysisPage() {
   const [selectedTicker, setSelectedTicker] = useState("NBIS");
   const [timeframe, setTimeframe] = useState("1D");
   const [activeTab, setActiveTab] = useState("main");
-  const [analysisData] = useState({
-    title: "Full Analysis",
-    subtitle: "Apr 2025 → Jun 2026 (Projection) | ATH: $141.10",
-    athPrice: 141.1,
-    projectionEnd: "Jun 2026",
-    lastUpdated: "Jan 26, 2026",
-    analysisDate: "2026-01-22",
-  });
 
   const daysToShow = 30;
-  const tickerConfig = nbisConfig;
+
+  // Get the current ticker's config
+  const tickerConfig = TICKER_CONFIGS[selectedTicker] || nbisConfig;
+
+  // Derive analysis data from the selected ticker's config
+  const analysisData = {
+    title: "Full Analysis",
+    subtitle: `Apr 2025 → ${tickerConfig.analysisConfig?.projectionEnd || "Jun 2026"} (Projection) | ATH: $${tickerConfig.analysisConfig?.ath?.toFixed(2) || "0.00"}`,
+    athPrice: tickerConfig.analysisConfig?.ath || 0,
+    projectionEnd: tickerConfig.analysisConfig?.projectionEnd || "Jun 2026",
+    lastUpdated: "Jan 26, 2026",
+    analysisDate: "2026-01-22",
+  };
 
   const handleTickerChange = (newTicker) => {
     setSelectedTicker(newTicker);
@@ -113,6 +137,9 @@ export default function TickerAnalysisPage() {
           <div className={styles.headerSection}>
             <TickerSelector
               ticker={selectedTicker}
+              tickerIconUrl={tickerConfig.tickerIconUrl}
+              tickerName={tickerConfig.tickerName}
+              availableTickers={AVAILABLE_TICKERS}
               timeframe={timeframe}
               timeframeOptions={TIMEFRAME_OPTIONS}
               onTickerChange={handleTickerChange}

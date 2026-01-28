@@ -2,11 +2,10 @@
  * TabsContainer Styles - PREMIUM REDESIGN
  *
  * Features:
- * - Tab navigation with premium styling similar to logoHeader
- * - Gradient backgrounds with teal/blue accents
- * - Active tab with gradient border
- * - Smooth transitions and animations
- * - Keyboard accessible
+ * - Clean tab bar with subtle background
+ * - Active tab with large rounded pill background
+ * - Teal text color for active tab
+ * - Smooth transitions
  * - Dark/Light mode support
  */
 
@@ -20,8 +19,6 @@
     --portdive-teal-rgb: 31, 163, 155;
     --portdive-blue: #3d72ff;
     --portdive-blue-rgb: 61, 114, 255;
-    --portdive-gold: #f59e0b;
-    --portdive-gold-rgb: 245, 158, 11;
 
     /* Premium surface colors - dark mode defaults */
     --premium-bg: #0a0a0f;
@@ -29,8 +26,12 @@
     --premium-surface-alt: rgba(255, 255, 255, 0.05);
     --premium-border: rgba(255, 255, 255, 0.08);
     --premium-text: #ffffff;
-    --premium-text-secondary: rgba(255, 255, 255, 0.7);
-    --premium-text-muted: rgba(255, 255, 255, 0.5);
+    --premium-text-secondary: rgba(255, 255, 255, 0.5);
+    --premium-text-muted: rgba(255, 255, 255, 0.4);
+
+    /* Tab-specific colors */
+    --tab-bg: rgba(255, 255, 255, 0.06);
+    --tab-active-bg: rgba(255, 255, 255, 0.08);
 
     display: flex;
     flex-direction: column;
@@ -45,27 +46,23 @@
     --premium-surface-alt: rgba(0, 0, 0, 0.04);
     --premium-border: rgba(0, 0, 0, 0.08);
     --premium-text: #1a1a2e;
-    --premium-text-secondary: rgba(0, 0, 0, 0.7);
-    --premium-text-muted: rgba(0, 0, 0, 0.5);
+    --premium-text-secondary: rgba(0, 0, 0, 0.5);
+    --premium-text-muted: rgba(0, 0, 0, 0.4);
+    --tab-bg: rgba(0, 0, 0, 0.04);
+    --tab-active-bg: rgba(0, 0, 0, 0.06);
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* TAB LIST - Premium header-like styling                       */
+/* TAB LIST - Subtle background bar                             */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .tabsList {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 16px 20px;
+    gap: 0;
+    padding: 12px 16px;
     margin: 0;
-    background: linear-gradient(
-        135deg,
-        rgba(var(--portdive-teal-rgb), 0.12) 0%,
-        var(--premium-surface) 50%,
-        rgba(var(--portdive-blue-rgb), 0.06) 100%
-    );
-    border-bottom: 1px solid var(--premium-border);
+    background: var(--premium-surface);
     border-radius: 16px 16px 0 0;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -94,31 +91,29 @@
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* TAB BUTTON - Pill style with premium accents                 */
+/* TAB BUTTON - Clean text style, pill background when active   */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .tab {
     position: relative;
-    padding: 10px 18px;
-    border: 1px solid transparent;
+    padding: 14px 24px;
+    border: none;
     background: transparent;
     color: var(--premium-text-secondary);
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 500;
     font-family: inherit;
     cursor: pointer;
     white-space: nowrap;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     flex-shrink: 0;
     letter-spacing: -0.01em;
-    border-radius: 10px;
+    border-radius: 12px;
     outline: none;
 }
 
 .tab:hover {
     color: var(--premium-text);
-    background: rgba(var(--portdive-teal-rgb), 0.1);
-    border-color: rgba(var(--portdive-teal-rgb), 0.15);
 }
 
 .tab:focus-visible {
@@ -128,33 +123,9 @@
 
 .tab.active {
     color: var(--portdive-teal);
-    font-weight: 700;
-    background: rgba(var(--portdive-teal-rgb), 0.15);
-    border-color: rgba(var(--portdive-teal-rgb), 0.3);
-}
-
-/* Active tab glow effect */
-.tab.active::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: 11px;
-    padding: 1px;
-    background: linear-gradient(
-        135deg,
-        rgba(var(--portdive-teal-rgb), 0.4) 0%,
-        rgba(var(--portdive-blue-rgb), 0.2) 100%
-    );
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-    opacity: 0.7;
+    font-weight: 600;
+    background: var(--tab-active-bg);
+    border: 1px solid var(--premium-border);
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -205,15 +176,14 @@
 
 @media (max-width: 1024px) {
     .tabsList {
-        padding: 14px 16px;
-        gap: 4px;
+        padding: 10px 14px;
         border-radius: 14px 14px 0 0;
     }
 
     .tab {
-        padding: 9px 14px;
-        font-size: 12px;
-        border-radius: 8px;
+        padding: 12px 18px;
+        font-size: 13px;
+        border-radius: 10px;
     }
 
     .tabPanel {
@@ -227,15 +197,14 @@
 
 @media (max-width: 768px) {
     .tabsList {
-        padding: 12px 14px;
-        gap: 4px;
+        padding: 8px 12px;
         border-radius: 12px 12px 0 0;
     }
 
     .tab {
-        padding: 8px 12px;
-        font-size: 11px;
-        border-radius: 6px;
+        padding: 10px 14px;
+        font-size: 12px;
+        border-radius: 8px;
     }
 
     .tabLabel {
@@ -253,19 +222,18 @@
 
 @media (max-width: 480px) {
     .tabsList {
-        padding: 10px 12px;
-        gap: 3px;
+        padding: 6px 10px;
         border-radius: 10px 10px 0 0;
     }
 
     .tab {
-        padding: 6px 10px;
-        font-size: 10px;
+        padding: 8px 12px;
+        font-size: 11px;
         border-radius: 6px;
     }
 
     .tabLabel {
-        font-size: 10px;
+        font-size: 11px;
         gap: 3px;
     }
 
@@ -290,15 +258,7 @@
 }
 
 @media (prefers-contrast: more) {
-    .tabsList {
-        border-bottom-width: 2px;
-    }
-
-    .tab {
-        border-width: 2px;
-    }
-
-    .tab.active::before {
-        opacity: 1;
+    .tab.active {
+        border: 2px solid var(--portdive-teal);
     }
 }

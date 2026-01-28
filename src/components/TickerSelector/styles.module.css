@@ -1,191 +1,125 @@
 /**
- * TickerSelector Component Styles
- * Unified ticker selection and timeframe control header
+ * TickerSelector Styles - PREMIUM REDESIGN
  *
- * Uses global premium CSS variables from custom.css
+ * Layout matches mockup:
+ * - Left: Ticker icon + symbol + name (clean, no visible container)
+ * - Right: Title + subtitle with gradient accent line
+ *
+ * Features:
+ * - Premium gradient background on container
+ * - Clean ticker display (clickable for dropdown when multiple tickers)
+ * - Gradient vertical divider
+ * - Dark/Light mode support
  */
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* HEADER CONTAINER */
+/* COMPONENT-SCOPED PREMIUM VARIABLES                           */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .tickerSelector {
+    /* PortDive brand colors with fallbacks */
+    --portdive-teal: #1fa39b;
+    --portdive-teal-rgb: 31, 163, 155;
+    --portdive-blue: #3d72ff;
+    --portdive-blue-rgb: 61, 114, 255;
+    --portdive-gold: #f59e0b;
+    --portdive-gold-rgb: 245, 158, 11;
+
+    /* Premium surface colors - dark mode defaults */
+    --premium-bg: #0a0a0f;
+    --premium-surface: rgba(255, 255, 255, 0.03);
+    --premium-surface-alt: rgba(255, 255, 255, 0.05);
+    --premium-border: rgba(255, 255, 255, 0.08);
+    --premium-text: #ffffff;
+    --premium-text-secondary: rgba(255, 255, 255, 0.7);
+    --premium-text-muted: rgba(255, 255, 255, 0.5);
+
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 20px 24px;
-    background: var(--premium-surface);
-    border: 1px solid var(--premium-border);
-    border-radius: 12px;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Subtle gradient overlay */
-.tickerSelector::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(var(--portdive-teal-rgb), 0.3),
-        transparent
-    );
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* TICKER INFO (Left Side) */
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-.tickerInfo {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-}
-
-/* Desktop: show wordmark version, hide mobile version */
-.tickerInfoDesktop {
-    display: flex;
-}
-
-.tickerInfoMobile {
-    display: none;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* CONTENT SECTION (Center with Divider) */
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-.contentSection {
-    border-left: 2px solid var(--premium-border);
-    padding-left: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    flex: 1;
-    min-width: 0;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* TITLE ROW */
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-.titleRow {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.title {
-    margin: 0;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--premium-text);
-    letter-spacing: -0.01em;
-    line-height: 1.3;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* SUBTITLE */
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-.subtitle {
-    margin: 0;
-    font-size: 12px;
-    color: var(--premium-text-secondary);
-    line-height: 1.4;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* CONTROLS SECTION (Right Side) */
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-.controlsSection {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-shrink: 0;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* TICKER INPUT */
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-.tickerInputWrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 12px;
-    background: var(--premium-surface-alt);
-    border: 1px solid var(--premium-border);
-    border-radius: 8px;
-    transition: all 0.2s ease;
-    color: var(--premium-text-secondary);
-}
-
-.tickerInputWrapper:focus-within {
-    border-color: var(--portdive-teal);
-    box-shadow: 0 0 0 3px rgba(var(--portdive-teal-rgb), 0.1);
-}
-
-.tickerInput {
-    border: none;
+    gap: 20px;
+    padding: 16px 0;
     background: transparent;
-    color: var(--premium-text);
-    font-size: 13px;
-    font-weight: 600;
-    font-family: var(--premium-font-mono);
-    width: 60px;
-    outline: none;
-    text-transform: uppercase;
-}
-
-.tickerInput::placeholder {
-    color: var(--premium-text-tertiary);
-    font-weight: 500;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* TIMEFRAME DROPDOWN */
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-.timeframeDropdown {
+    border: none;
+    border-radius: 0;
     position: relative;
+    overflow: visible;
+}
+
+/* Light mode overrides */
+[data-theme="light"] .tickerSelector {
+    --premium-bg: #ffffff;
+    --premium-surface: rgba(0, 0, 0, 0.02);
+    --premium-surface-alt: rgba(0, 0, 0, 0.04);
+    --premium-border: rgba(0, 0, 0, 0.08);
+    --premium-text: #1a1a2e;
+    --premium-text-secondary: rgba(0, 0, 0, 0.7);
+    --premium-text-muted: rgba(0, 0, 0, 0.5);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* TIMEFRAME BADGE - Hidden by default per mockup               */
+/* Shows only when there's no title/subtitle                    */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.timeframeBadge {
+    position: relative;
+    flex-shrink: 0;
+    margin-left: auto;
 }
 
 .timeframeButton {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     padding: 8px 12px;
-    background: var(--premium-surface-alt);
-    border: 1px solid var(--premium-border);
-    border-radius: 8px;
-    color: var(--premium-text);
-    font-size: 13px;
-    font-weight: 600;
+    background: linear-gradient(
+        135deg,
+        rgba(var(--portdive-teal-rgb), 0.15) 0%,
+        rgba(var(--portdive-teal-rgb), 0.08) 100%
+    );
+    border: 1px solid rgba(var(--portdive-teal-rgb), 0.25);
+    border-radius: 10px;
+    color: var(--portdive-teal);
+    font-size: 12px;
+    font-weight: 700;
+    font-family: "Berkeley Mono", "SF Mono", "Consolas", monospace;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
 }
 
 .timeframeButton:hover {
-    background: var(--premium-hover);
-    border-color: var(--portdive-teal);
+    background: linear-gradient(
+        135deg,
+        rgba(var(--portdive-teal-rgb), 0.25) 0%,
+        rgba(var(--portdive-teal-rgb), 0.15) 100%
+    );
+    border-color: rgba(var(--portdive-teal-rgb), 0.4);
+    transform: translateY(-1px);
 }
 
 .timeframeButton.open {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--portdive-teal-rgb), 0.3) 0%,
+        rgba(var(--portdive-teal-rgb), 0.2) 100%
+    );
     border-color: var(--portdive-teal);
-    box-shadow: 0 0 0 3px rgba(var(--portdive-teal-rgb), 0.1);
+    box-shadow: 0 0 0 3px rgba(var(--portdive-teal-rgb), 0.15);
+}
+
+.timeframeButton:focus-visible {
+    outline: 2px solid var(--portdive-teal);
+    outline-offset: 2px;
 }
 
 .timeframeButton svg {
-    color: var(--premium-text-secondary);
-    transition: transform 0.2s ease;
+    opacity: 0.8;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.timeframeButton:hover svg {
+    opacity: 1;
 }
 
 .timeframeButton.open svg:last-child {
@@ -193,26 +127,29 @@
 }
 
 .timeframeValue {
-    font-family: var(--premium-font-mono);
-    min-width: 24px;
+    min-width: 20px;
     text-align: center;
+    letter-spacing: 0.02em;
 }
 
+/* Timeframe dropdown menu */
 .timeframeMenu {
     position: absolute;
-    top: calc(100% + 4px);
-    right: 0;
+    top: calc(100% + 6px);
+    left: 0;
     min-width: 100%;
-    background: var(--premium-surface);
+    background: var(--premium-bg);
     border: 1px solid var(--premium-border);
-    border-radius: 8px;
-    box-shadow: var(--premium-shadow-lg);
-    z-index: 100;
+    border-radius: 10px;
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(var(--portdive-teal-rgb), 0.1);
+    z-index: 200;
     overflow: hidden;
-    animation: dropdownFadeIn 0.15s ease;
+    animation: menuFadeIn 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@keyframes dropdownFadeIn {
+@keyframes menuFadeIn {
     from {
         opacity: 0;
         transform: translateY(-4px);
@@ -230,60 +167,312 @@
     background: transparent;
     border: none;
     color: var(--premium-text);
-    font-size: 13px;
-    font-weight: 500;
-    font-family: var(--premium-font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    font-family: "Berkeley Mono", "SF Mono", "Consolas", monospace;
     text-align: center;
     cursor: pointer;
-    transition: background 0.15s ease;
+    transition: all 0.15s ease;
 }
 
 .timeframeOption:hover {
-    background: var(--premium-hover);
+    background: rgba(var(--portdive-teal-rgb), 0.1);
 }
 
 .timeframeOption.selected {
-    background: rgba(var(--portdive-teal-rgb), 0.1);
+    background: rgba(var(--portdive-teal-rgb), 0.2);
     color: var(--portdive-teal);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* RESPONSIVE */
+/* TICKER DROPDOWN - Clean style matching mockup                */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-@media (max-width: 996px) {
-    .tickerSelector {
-        flex-wrap: wrap;
-        gap: 12px;
-    }
-
-    .contentSection {
-        order: 3;
-        flex-basis: 100%;
-        border-left: none;
-        padding-left: 0;
-        padding-top: 12px;
-        border-top: 1px solid var(--premium-border);
-    }
-
-    .controlsSection {
-        margin-left: auto;
-    }
+.tickerDropdown {
+    position: relative;
+    flex-shrink: 0;
 }
 
-@media (max-width: 768px) {
-    /* Mobile/Tablet: hide wordmark version, show compact version */
-    .tickerInfoDesktop {
-        display: none;
-    }
+.tickerButton {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 8px 12px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
+    text-align: left;
+}
 
-    .tickerInfoMobile {
-        display: flex;
-    }
+.tickerButton:hover:not(.noDropdown) {
+    background: rgba(var(--portdive-teal-rgb), 0.06);
+    border-color: rgba(var(--portdive-teal-rgb), 0.15);
+}
 
+.tickerButton.open {
+    background: rgba(var(--portdive-teal-rgb), 0.1);
+    border-color: rgba(var(--portdive-teal-rgb), 0.25);
+}
+
+.tickerButton.noDropdown {
+    cursor: default;
+    padding: 8px 4px;
+}
+
+.tickerButton:focus-visible {
+    outline: 2px solid var(--portdive-teal);
+    outline-offset: 2px;
+}
+
+.tickerIconWrapper {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tickerTextArea {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.tickerSymbol {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--premium-text);
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+}
+
+.tickerName {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--premium-text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+.tickerChevron {
+    flex-shrink: 0;
+    color: var(--premium-text-muted);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4px;
+}
+
+.tickerButton:hover:not(.noDropdown) .tickerChevron {
+    color: var(--portdive-teal);
+}
+
+.tickerButton.open .tickerChevron {
+    color: var(--portdive-teal);
+    transform: rotate(180deg);
+}
+
+/* Ticker dropdown menu */
+.tickerMenu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    min-width: 280px;
+    max-height: 320px;
+    background: var(--premium-bg);
+    border: 1px solid var(--premium-border);
+    border-radius: 14px;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(var(--portdive-teal-rgb), 0.1);
+    z-index: 200;
+    overflow: hidden;
+    animation: menuFadeIn 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tickerMenuScroll {
+    max-height: 320px;
+    overflow-y: auto;
+    padding: 8px;
+
+    /* Scrollbar styling */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--portdive-teal-rgb), 0.3) transparent;
+}
+
+.tickerMenuScroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.tickerMenuScroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.tickerMenuScroll::-webkit-scrollbar-thumb {
+    background: rgba(var(--portdive-teal-rgb), 0.3);
+    border-radius: 3px;
+}
+
+.tickerMenuScroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--portdive-teal-rgb), 0.5);
+}
+
+.tickerOption {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 14px;
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: left;
+}
+
+.tickerOption:hover {
+    background: rgba(var(--portdive-teal-rgb), 0.1);
+}
+
+.tickerOption.selected {
+    background: rgba(var(--portdive-teal-rgb), 0.15);
+}
+
+.tickerOption.selected .tickerOptionSymbol {
+    color: var(--portdive-teal);
+}
+
+.tickerOptionIcon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tickerOptionText {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.tickerOptionSymbol {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--premium-text);
+    letter-spacing: 0.02em;
+}
+
+.tickerOptionName {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--premium-text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* CONTENT SECTION - Right side with gradient divider           */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.contentSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    padding-left: 20px;
+    padding-right: 20px;
+    position: relative;
+}
+
+/* Gradient accent divider line - left */
+.contentSection::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 4px;
+    bottom: 4px;
+    width: 2px;
+    background: linear-gradient(
+        180deg,
+        var(--portdive-teal) 0%,
+        rgba(var(--portdive-gold-rgb), 0.7) 50%,
+        var(--portdive-teal) 100%
+    );
+    border-radius: 1px;
+}
+
+/* Gradient accent divider line - right */
+.contentSection::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 4px;
+    bottom: 4px;
+    width: 2px;
+    background: linear-gradient(
+        180deg,
+        var(--portdive-teal) 0%,
+        rgba(var(--portdive-gold-rgb), 0.7) 50%,
+        var(--portdive-teal) 100%
+    );
+    border-radius: 1px;
+}
+
+.title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--premium-text);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+
+.subtitle {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--premium-text-secondary);
+    line-height: 1.3;
+    font-family: "Berkeley Mono", "SF Mono", "Consolas", monospace;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* RESPONSIVE - TABLET                                          */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 1024px) {
     .tickerSelector {
-        padding: 16px;
+        gap: 16px;
+        padding: 18px 20px;
+    }
+
+    .tickerIconWrapper {
+        width: 42px;
+        height: 42px;
+    }
+
+    .tickerSymbol {
+        font-size: 16px;
+    }
+
+    .tickerName {
+        font-size: 12px;
     }
 
     .title {
@@ -295,67 +484,122 @@
     }
 }
 
-@media (max-width: 480px) {
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* RESPONSIVE - MOBILE                                          */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 768px) {
     .tickerSelector {
-        padding: 12px;
-        gap: 10px;
+        flex-wrap: wrap;
+        gap: 14px;
+        padding: 14px 16px;
+        border-radius: 14px;
     }
 
-    .controlsSection {
-        width: 100%;
-        justify-content: flex-end;
+    .tickerDropdown {
+        flex: 0 0 auto;
     }
 
-    .tickerInputWrapper {
+    .contentSection {
         flex: 1;
+        min-width: 180px;
     }
 
-    .tickerInput {
-        width: 100%;
+    .tickerIconWrapper {
+        width: 36px;
+        height: 36px;
+    }
+
+    .tickerSymbol {
+        font-size: 15px;
+    }
+
+    .tickerName {
+        font-size: 11px;
     }
 
     .title {
+        font-size: 15px;
+    }
+
+    .subtitle {
+        font-size: 10px;
+    }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* RESPONSIVE - MOBILE PORTRAIT                                 */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 480px) {
+    .tickerSelector {
+        gap: 12px;
+        padding: 12px 14px;
+        border-radius: 12px;
+    }
+
+    .tickerButton {
+        padding: 6px 8px;
+        gap: 10px;
+    }
+
+    .tickerIconWrapper {
+        width: 32px;
+        height: 32px;
+    }
+
+    .tickerSymbol {
         font-size: 14px;
     }
 
-    .timeframeButton {
-        padding: 6px 10px;
-        font-size: 12px;
+    .tickerName {
+        font-size: 10px;
     }
-}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* ACCESSIBILITY */
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-.tickerSelector:focus-visible {
-    outline: 2px solid var(--portdive-teal);
-    outline-offset: 2px;
-}
-
-.timeframeButton:focus-visible,
-.tickerInput:focus-visible {
-    outline: 2px solid var(--portdive-teal);
-    outline-offset: 2px;
-}
-
-/* High contrast mode */
-@media (prefers-contrast: more) {
     .contentSection {
-        border-left-width: 3px;
+        padding-left: 14px;
     }
 
-    .tickerInputWrapper,
-    .timeframeButton {
-        border-width: 2px;
+    .title {
+        font-size: 13px;
+    }
+
+    .subtitle {
+        font-size: 9px;
+    }
+
+    .tickerChevron svg {
+        width: 14px;
+        height: 14px;
     }
 }
 
-/* Reduced motion */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ACCESSIBILITY                                                */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
 @media (prefers-reduced-motion: reduce) {
-    .timeframeButton svg,
-    .timeframeMenu {
+    .timeframeButton,
+    .tickerButton,
+    .tickerChevron,
+    .timeframeMenu,
+    .tickerMenu {
         animation: none;
         transition: none;
+    }
+}
+
+@media (prefers-contrast: more) {
+    .tickerSelector {
+        border-width: 2px;
+    }
+
+    .timeframeButton,
+    .tickerButton {
+        border-width: 2px;
+    }
+
+    .contentSection::before {
+        width: 3px;
     }
 }

@@ -1,0 +1,15 @@
+{
+  "ticker": "NVO",
+  "tickerName": "Novo Nordisk A/S",
+  "tickerIconUrl": "/portdive-pages/img/nvo/nvo-icon.svg",
+  "exchange": "NYSE",
+  "sector": "Healthcare",
+  "industry": "Drug Manufacturers - General",
+  "currency": "USD",
+  "analysisConfig": {
+    "timeframe": "1D",
+    "projectionEnd": "Jun 2026",
+    "ath": 93.8,
+    "athDate": "2025-02-24"
+  }
+}

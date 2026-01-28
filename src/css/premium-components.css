@@ -17,6 +17,36 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 :root {
+    /* ════════════════════════════════════════════════════════════════════════ */
+    /* PREMIUM COMPONENT COLORS - Light Mode                                    */
+    /* ════════════════════════════════════════════════════════════════════════ */
+    --premium-bg: #f8faf9;
+    --premium-surface: #ffffff;
+    --premium-surface-alt: #f0f4f2;
+    --premium-surface-elevated: #ffffff;
+    --premium-text: #0a1a1f;
+    --premium-text-secondary: #5a6570;
+    --premium-text-muted: #8a9199;
+    --premium-border: rgba(10, 26, 31, 0.12);
+    --premium-border-glow: rgba(31, 163, 155, 0.3);
+
+    /* ════════════════════════════════════════════════════════════════════════ */
+    /* PREMIUM TYPOGRAPHY                                                       */
+    /* ════════════════════════════════════════════════════════════════════════ */
+    --font-family-premium:
+        "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, sans-serif;
+    --font-family-mono:
+        "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        monospace;
+
+    /* ════════════════════════════════════════════════════════════════════════ */
+    /* PREMIUM SHADOWS & EFFECTS - Light Mode                                   */
+    /* ════════════════════════════════════════════════════════════════════════ */
+    --premium-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+    --premium-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+    --premium-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
+
     /* Purple for AI/Neural themed components */
     --portdive-purple: #8b5cf6;
     --portdive-purple-rgb: 139, 92, 246;
@@ -30,6 +60,25 @@
     --portdive-amber-rgb: 251, 191, 36;
 }
 
+[data-theme="dark"] {
+    /* ════════════════════════════════════════════════════════════════════════ */
+    /* PREMIUM COMPONENT COLORS - Dark Mode                                     */
+    /* ════════════════════════════════════════════════════════════════════════ */
+    --premium-bg: #0a1a1f;
+    --premium-surface: #0f2028;
+    --premium-surface-alt: #142830;
+    --premium-surface-elevated: #1a3040;
+    --premium-text: #f8faf9;
+    --premium-text-secondary: #a8b4bc;
+    --premium-text-muted: #6a7a84;
+    --premium-border: rgba(248, 250, 249, 0.12);
+    --premium-border-glow: rgba(31, 163, 155, 0.3);
+
+    /* Premium Shadows & Effects - Dark Mode */
+    --premium-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --premium-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --premium-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 /* SHARED ANIMATIONS                                             */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -44,7 +93,8 @@
 }
 
 @keyframes premiumPulse {
-    0%, 100% {
+    0%,
+    100% {
         opacity: 0.6;
         transform: scale(1);
     }
@@ -55,7 +105,8 @@
 }
 
 @keyframes premiumGlow {
-    0%, 100% {
+    0%,
+    100% {
         box-shadow: 0 0 8px currentColor;
     }
     50% {
@@ -64,7 +115,8 @@
 }
 
 @keyframes premiumFloat {
-    0%, 100% {
+    0%,
+    100% {
         transform: translateY(0);
     }
     50% {
@@ -419,8 +471,15 @@
     position: absolute;
     inset: 0;
     background-image:
-        linear-gradient(rgba(var(--portdive-teal-rgb), 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(var(--portdive-teal-rgb), 0.02) 1px, transparent 1px);
+        linear-gradient(
+            rgba(var(--portdive-teal-rgb), 0.02) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(var(--portdive-teal-rgb), 0.02) 1px,
+            transparent 1px
+        );
     background-size: 24px 24px;
     pointer-events: none;
     opacity: 0.5;
@@ -428,14 +487,28 @@
 
 .premium-grid-overlay--coral::before {
     background-image:
-        linear-gradient(rgba(var(--portdive-coral-rgb), 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(var(--portdive-coral-rgb), 0.02) 1px, transparent 1px);
+        linear-gradient(
+            rgba(var(--portdive-coral-rgb), 0.02) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(var(--portdive-coral-rgb), 0.02) 1px,
+            transparent 1px
+        );
 }
 
 .premium-grid-overlay--purple::before {
     background-image:
-        linear-gradient(rgba(var(--portdive-purple-rgb), 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(var(--portdive-purple-rgb), 0.02) 1px, transparent 1px);
+        linear-gradient(
+            rgba(var(--portdive-purple-rgb), 0.02) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(var(--portdive-purple-rgb), 0.02) 1px,
+            transparent 1px
+        );
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */

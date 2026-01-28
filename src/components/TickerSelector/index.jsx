@@ -1,24 +1,18 @@
 /**
- * TickerSelector Component
- * Unified ticker selection and timeframe control header
+ * TickerSelector Component - REDESIGNED
+ *
+ * New Layout:
+ * - Left: Timeframe badge (interactable dropdown)
+ * - Center: Clickable ticker area (icon + name + chevron) opens ticker dropdown
+ * - Right: Title/subtitle content
  *
  * Features:
- * - Ticker icon display with company name
- * - Ticker input for changing symbols
- * - Timeframe dropdown selector
+ * - Timeframe dropdown with premium styling
+ * - Ticker dropdown with scrollable list
  * - Premium styling with animations
+ * - Keyboard accessible
  *
  * @component
- * @example
- * <TickerSelector
- *   ticker="NBIS"
- *   timeframe="1D"
- *   timeframeOptions={["1H", "1D", "1W"]}
- *   onTickerChange={(ticker) => setTicker(ticker)}
- *   onTimeframeChange={(tf) => setTimeframe(tf)}
- *   title="Full Analysis"
- *   subtitle="Apr 2025 → Jun 2026 (Projection)"
- * />
  */
 
 import React, { useState, useRef, useEffect } from "react";
@@ -62,27 +56,11 @@ const ClockIcon = ({ size = 14 }) => (
   </svg>
 );
 
-const SearchIcon = ({ size = 16 }) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <circle cx="11" cy="11" r="8" />
-    <line x1="21" y1="21" x2="16.65" y2="16.65" />
-  </svg>
-);
-
 // ============================================================================
-// TIMEFRAME DROPDOWN COMPONENT
+// TIMEFRAME BADGE DROPDOWN COMPONENT
 // ============================================================================
 
-const TimeframeDropdown = ({
+const TimeframeBadge = ({
   timeframe,
   timeframeOptions,
   onTimeframeChange,
@@ -120,16 +98,16 @@ const TimeframeDropdown = ({
   };
 
   return (
-    <div className={styles.timeframeDropdown} ref={dropdownRef}>
+    <div className={styles.timeframeBadge} ref={dropdownRef}>
       <button
         className={`${styles.timeframeButton} ${isOpen ? styles.open : ""}`}
         onClick={() => setIsOpen(!isOpen)}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
-        <ClockIcon size={14} />
+        <ClockIcon size={12} />
         <span className={styles.timeframeValue}>{timeframe}</span>
-        <ChevronDownIcon size={14} />
+        <ChevronDownIcon size={12} />
       </button>
 
       {isOpen && (
@@ -154,6 +132,118 @@ const TimeframeDropdown = ({
 };
 
 // ============================================================================
+// TICKER DROPDOWN COMPONENT
+// ============================================================================
+
+const TickerDropdown = ({
+  ticker,
+  tickerName,
+  tickerIconUrl,
+  availableTickers = [],
+  onTickerChange,
+  theme,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Close on escape key
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, []);
+
+  const handleSelect = (tickerItem) => {
+    onTickerChange(tickerItem.ticker);
+    setIsOpen(false);
+  };
+
+  const hasMultipleTickers = availableTickers.length > 1;
+
+  return (
+    <div className={styles.tickerDropdown} ref={dropdownRef}>
+      <button
+        className={`${styles.tickerButton} ${isOpen ? styles.open : ""} ${!hasMultipleTickers ? styles.noDropdown : ""}`}
+        onClick={() => hasMultipleTickers && setIsOpen(!isOpen)}
+        aria-haspopup={hasMultipleTickers ? "listbox" : undefined}
+        aria-expanded={hasMultipleTickers ? isOpen : undefined}
+        disabled={!hasMultipleTickers}
+      >
+        <div className={styles.tickerIconWrapper}>
+          <TickerIcon
+            tickerIconUrl={tickerIconUrl}
+            ticker={ticker}
+            size={48}
+            iconOnly={true}
+          />
+        </div>
+        <div className={styles.tickerTextArea}>
+          <span className={styles.tickerSymbol}>{ticker}</span>
+          {tickerName && (
+            <span className={styles.tickerName}>{tickerName}</span>
+          )}
+        </div>
+        {hasMultipleTickers && (
+          <div className={styles.tickerChevron}>
+            <ChevronDownIcon size={18} />
+          </div>
+        )}
+      </button>
+
+      {isOpen && hasMultipleTickers && (
+        <div className={styles.tickerMenu} role="listbox">
+          <div className={styles.tickerMenuScroll}>
+            {availableTickers.map((tickerItem) => (
+              <button
+                key={tickerItem.ticker}
+                className={`${styles.tickerOption} ${
+                  tickerItem.ticker === ticker ? styles.selected : ""
+                }`}
+                onClick={() => handleSelect(tickerItem)}
+                role="option"
+                aria-selected={tickerItem.ticker === ticker}
+              >
+                <div className={styles.tickerOptionIcon}>
+                  <TickerIcon
+                    tickerIconUrl={tickerItem.tickerIconUrl}
+                    ticker={tickerItem.ticker}
+                    size={36}
+                    iconOnly={true}
+                  />
+                </div>
+                <div className={styles.tickerOptionText}>
+                  <span className={styles.tickerOptionSymbol}>{tickerItem.ticker}</span>
+                  {tickerItem.tickerName && (
+                    <span className={styles.tickerOptionName}>{tickerItem.tickerName}</span>
+                  )}
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+// ============================================================================
 // MAIN COMPONENT
 // ============================================================================
 
@@ -162,6 +252,7 @@ export function TickerSelector({
   ticker,
   tickerIconUrl: tickerIconUrlProp,
   tickerName: tickerNameProp,
+  availableTickers = [],
   onTickerChange,
   // Timeframe props
   timeframe = "1D",
@@ -182,92 +273,39 @@ export function TickerSelector({
   const tickerName = tickerNameProp || tickerConfig.tickerName;
   const tickerIconUrl = tickerIconUrlProp || tickerConfig.tickerIconUrl;
 
-  const [inputValue, setInputValue] = useState(displayTicker);
-
-  // Update input when ticker prop changes
-  useEffect(() => {
-    setInputValue(displayTicker);
-  }, [displayTicker]);
-
-  const handleInputChange = (e) => {
-    const value = e.target.value.toUpperCase();
-    setInputValue(value);
-  };
-
-  const handleInputBlur = () => {
-    if (inputValue && inputValue !== displayTicker && onTickerChange) {
-      onTickerChange(inputValue);
-    }
-  };
-
-  const handleInputKeyDown = (e) => {
-    if (e.key === "Enter") {
-      e.target.blur();
-    }
-  };
+  // If no availableTickers provided, create a single-item array with current ticker
+  const tickerList = availableTickers.length > 0
+    ? availableTickers
+    : [{ ticker: displayTicker, tickerName, tickerIconUrl }];
 
   return (
     <header className={`${styles.tickerSelector} ${className}`.trim()}>
-      {/* Left side: Ticker Icon and Name */}
-      {/* Desktop version - with wordmark */}
-      <div className={`${styles.tickerInfo} ${styles.tickerInfoDesktop}`}>
-        <TickerIcon
-          tickerIconUrl={tickerIconUrl}
-          ticker={displayTicker}
-          tickerName={tickerName}
-          showWordmark={true}
-          theme={theme}
-        />
-      </div>
-      {/* Mobile/Tablet version - without wordmark */}
-      <div className={`${styles.tickerInfo} ${styles.tickerInfoMobile}`}>
-        <TickerIcon
-          tickerIconUrl={tickerIconUrl}
-          ticker={displayTicker}
-          tickerName={tickerName}
-          showWordmark={false}
-          theme={theme}
-        />
-      </div>
+      {/* Left: Ticker Dropdown Area */}
+      <TickerDropdown
+        ticker={displayTicker}
+        tickerName={tickerName}
+        tickerIconUrl={tickerIconUrl}
+        availableTickers={tickerList}
+        onTickerChange={onTickerChange}
+        theme={theme}
+      />
 
-      {/* Center: Content section with divider */}
+      {/* Center: Content section */}
       {(title || subtitle) && (
         <div className={styles.contentSection}>
-          <div className={styles.titleRow}>
-            <h1 className={styles.title}>{title}</h1>
-          </div>
+          {title && <h1 className={styles.title}>{title}</h1>}
           {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
         </div>
       )}
 
-      {/* Right side: Controls */}
-      <div className={styles.controlsSection}>
-        {/* Ticker Input */}
-        {onTickerChange && (
-          <div className={styles.tickerInputWrapper}>
-            <SearchIcon size={14} />
-            <input
-              type="text"
-              value={inputValue}
-              onChange={handleInputChange}
-              onBlur={handleInputBlur}
-              onKeyDown={handleInputKeyDown}
-              placeholder="TICKER"
-              className={styles.tickerInput}
-              aria-label="Ticker symbol"
-            />
-          </div>
-        )}
-
-        {/* Timeframe Dropdown */}
-        {onTimeframeChange && (
-          <TimeframeDropdown
-            timeframe={timeframe}
-            timeframeOptions={timeframeOptions}
-            onTimeframeChange={onTimeframeChange}
-          />
-        )}
-      </div>
+      {/* Right: Timeframe Badge */}
+      {onTimeframeChange && (
+        <TimeframeBadge
+          timeframe={timeframe}
+          timeframeOptions={timeframeOptions}
+          onTimeframeChange={onTimeframeChange}
+        />
+      )}
     </header>
   );
 }

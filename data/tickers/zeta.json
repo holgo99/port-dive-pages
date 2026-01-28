@@ -1,0 +1,15 @@
+{
+  "ticker": "ZETA",
+  "tickerName": "Zeta Global Holdings Corp.",
+  "tickerIconUrl": "/portdive-pages/img/zeta/zeta-icon.svg",
+  "exchange": "NYSE",
+  "sector": "Technology",
+  "industry": "Software - Infrastructure",
+  "currency": "USD",
+  "analysisConfig": {
+    "timeframe": "1D",
+    "projectionEnd": "Jun 2026",
+    "ath": 38.2,
+    "athDate": "2024-11-11"
+  }
+}

@@ -25,9 +25,19 @@ import { createContext, useContext, useMemo } from "react";
 // ============================================================================
 
 // NBIS datasets
-import nbis1d from "@site/data/ohlcv-indicators/nbis/nasdaq-nbis-1d-ohlcv_indicators-20260127-2257.json";
-import nbis1h from "@site/data/ohlcv-indicators/nbis/nasdaq-nbis-1h-ohlcv_indicators-20260127-2257.json";
-import nbis1w from "@site/data/ohlcv-indicators/nbis/nasdaq-nbis-1w-ohlcv_indicators-20260127-2257.json";
+import nbis1d from "@site/data/ohlcv-indicators/nbis/nbis-nasdaq-1d-ohlcv_indicators-20260128-2211.json";
+import nbis1h from "@site/data/ohlcv-indicators/nbis/nbis-nasdaq-1h-ohlcv_indicators-20260128-2211.json";
+import nbis1w from "@site/data/ohlcv-indicators/nbis/nbis-nasdaq-1w-ohlcv_indicators-20260128-2211.json";
+
+// NVO datasets
+import nvo1d from "@site/data/ohlcv-indicators/nvo/nvo-nyse-1d-ohlcv_indicators-20260128-2211.json";
+import nvo1h from "@site/data/ohlcv-indicators/nvo/nvo-nyse-1h-ohlcv_indicators-20260128-2211.json";
+import nvo1w from "@site/data/ohlcv-indicators/nvo/nvo-nyse-1w-ohlcv_indicators-20260128-2212.json";
+
+// ZETA datasets
+import zeta1d from "@site/data/ohlcv-indicators/zeta/zeta-nyse-1d-ohlcv_indicators-20260128-2212.json";
+import zeta1h from "@site/data/ohlcv-indicators/zeta/zeta-nyse-1h-ohlcv_indicators-20260128-2212.json";
+import zeta1w from "@site/data/ohlcv-indicators/zeta/zeta-nyse-1w-ohlcv_indicators-20260128-2212.json";
 
 /**
  * Registry of all available OHLCV datasets
@@ -38,6 +48,16 @@ const OHLCV_REGISTRY = {
     "1D": nbis1d,
     "1H": nbis1h,
     "1W": nbis1w,
+  },
+  NVO: {
+    "1D": nvo1d,
+    "1H": nvo1h,
+    "1W": nvo1w,
+  },
+  ZETA: {
+    "1D": zeta1d,
+    "1H": zeta1h,
+    "1W": zeta1w,
   },
 };
 
