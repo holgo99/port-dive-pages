@@ -197,6 +197,7 @@ function WaveCountAnalysisInner() {
           <VerdictPanel
             verdict={waveCounts.activeScenario.verdict}
             isCorrective={waveCounts.activeScenario.mode === "CORRECTIVE"}
+            variant="embedded"
           />
         </section>
 

@@ -31,6 +31,24 @@
     margin-bottom: 24px;
 }
 
+/* Embedded variant - no outer chrome, integrates into parent component */
+.verdictPanelEmbedded {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    margin-bottom: 0;
+}
+
+.verdictPanelEmbedded .thesisHeroCard {
+    margin: 0 0 24px 0;
+}
+
+.verdictPanelEmbedded .decisionTreeContainer {
+    padding: 0;
+    border-top: none;
+}
+
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 /* LOGO HEADER */

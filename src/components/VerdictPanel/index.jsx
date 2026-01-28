@@ -3,7 +3,14 @@
  * Renders chart analysis verdict with visual decision tree layout
  *
  * @component
+ * @param {string} variant - Display variant:
+ *   - "standalone" (default): Full panel with logo header, wrapper styling, and footer badge.
+ *                             Use when rendering VerdictPanel as a standalone component.
+ *   - "embedded": Minimal content without outer chrome (no header, border, shadow, footer).
+ *                 Use when integrating VerdictPanel as a section within another component.
+ *
  * @example
+ * // Standalone usage (default)
  * import VerdictPanel from '@site/src/components/VerdictPanel';
  *
  * <VerdictPanel
@@ -22,6 +29,13 @@
  *   isCorrective={false}
  *   outcomeState="balanced" // "validated" | "invalidated" | "balanced"
  * />
+ *
+ * @example
+ * // Embedded usage (within another component)
+ * <section className={styles.mySection}>
+ *   <h2>Verdict Analysis</h2>
+ *   <VerdictPanel variant="embedded" verdict={data.verdict} />
+ * </section>
  */
 
 import React, { useMemo } from "react";
@@ -497,6 +511,9 @@ const ThesisHeroCard = ({ scenario, thesisContent, isCorrective }) => {
 
 /**
  * VerdictPanel Component - Scenario Decision Tree
+ *
+ * @param {string} variant - "standalone" (default) renders full panel with header/footer,
+ *                           "embedded" renders just the content for integration into other components
  */
 export function VerdictPanel({
   scenario,
@@ -509,7 +526,9 @@ export function VerdictPanel({
   verdict = undefined,
   isCorrective = undefined,
   className = "",
+  variant = "standalone",
 }) {
+  const isEmbedded = variant === "embedded";
   const waveCounts = useWaveCount();
   const activeVerdict = verdict ?? waveCounts.activeScenario.verdict;
   const activeIsCorrective =
@@ -543,15 +562,17 @@ export function VerdictPanel({
 
   const wrapperClass = `${styles.verdictPanelWrapper} ${
     activeIsCorrective ? styles.verdictPanelCorrective : ""
-  } ${className}`.trim();
+  } ${isEmbedded ? styles.verdictPanelEmbedded : ""} ${className}`.trim();
 
   return (
     <div className={wrapperClass}>
-      {/* Logo Header */}
-      <div className={styles.logoHeader}>
-        <VerdictPanelIcon size={24} />
-        <span className={styles.logoText}>VerdictPanel</span>
-      </div>
+      {/* Logo Header - only in standalone mode */}
+      {!isEmbedded && (
+        <div className={styles.logoHeader}>
+          <VerdictPanelIcon size={24} />
+          <span className={styles.logoText}>VerdictPanel</span>
+        </div>
+      )}
 
       {/* Hero Thesis Card */}
       {displayThesisContent.length > 0 && (
@@ -564,7 +585,9 @@ export function VerdictPanel({
 
       {/* Scenario Decision Tree Section */}
       <div className={styles.decisionTreeContainer}>
-        <h2 className={styles.sectionTitle}>Scenario Decision Tree</h2>
+        {!isEmbedded && (
+          <h2 className={styles.sectionTitle}>Scenario Decision Tree</h2>
+        )}
 
         {/* Probability Card */}
         <div className={`${styles.probabilityCard}`}>
@@ -667,15 +690,17 @@ export function VerdictPanel({
         </div>
       </div>
 
-      {/* Footer Badge */}
-      <div className={styles.verdictFooter}>
-        <span className={`${styles.verdictBadge} ${styles[outcomeState]}`}>
-          {outcomeState === "validated" && <CheckIcon size={14} />}
-          {outcomeState === "invalidated" && <XIcon size={14} />}
-          {outcomeState === "balanced" && <WarningIcon />}
-          <span>Analysis Verdict</span>
-        </span>
-      </div>
+      {/* Footer Badge - only in standalone mode */}
+      {!isEmbedded && (
+        <div className={styles.verdictFooter}>
+          <span className={`${styles.verdictBadge} ${styles[outcomeState]}`}>
+            {outcomeState === "validated" && <CheckIcon size={14} />}
+            {outcomeState === "invalidated" && <XIcon size={14} />}
+            {outcomeState === "balanced" && <WarningIcon />}
+            <span>Analysis Verdict</span>
+          </span>
+        </div>
+      )}
     </div>
   );
 }
