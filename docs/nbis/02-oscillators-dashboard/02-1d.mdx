@@ -23,11 +23,13 @@ image: ../assets/20260122/oscillators-dashboard-preview.png
 import { NBISLayout } from "@site/src/components/TickerLayout";
 import { TickerHeader } from "@site/src/components/TickerHeader";
 import { AnalysisCard } from "@site/src/components/AnalysisCard";
+import { MovingAveragesDashboard } from "@site/src/components/MovingAveragesDashboard";
 import { OscillatorsDashboard } from "@site/src/components/OscillatorsDashboard";
 import { SignalMatrix } from "@site/src/components/SignalMatrix";
 
 <NBISLayout timeframe="1D">
   <TickerHeader title="Oscillators Dashboard" />
+  <MovingAveragesDashboard daysToShow={30} />
   <OscillatorsDashboard daysToShow={30} />
   <SignalMatrix daysToShow={30} />
   <AnalysisCard
