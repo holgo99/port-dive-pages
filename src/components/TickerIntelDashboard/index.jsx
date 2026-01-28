@@ -4,14 +4,15 @@
  * Displays comprehensive ticker overview with:
  * - Analysis metadata
  * - Fundamental valuation placeholders (Gathering Intel...)
- * - Technical indicators from context
- * - Quick links to other analysis tabs
+ * - Technical indicators from context (premium gauge style)
+ * - Quick navigation to other analysis tabs
  *
  * @component
  * @param {string} ticker - Ticker symbol
  * @param {string} timeframe - Current timeframe (1H, 1D, 1W)
  * @param {Object} analysisData - Analysis metadata
  * @param {number} daysToShow - Number of days in analysis
+ * @param {Function} onNavigateToTab - Callback to navigate to a specific tab
  */
 
 import React from "react";
@@ -133,6 +134,141 @@ const TableIcon = ({ size = 16 }) => (
   </svg>
 );
 
+const GaugeIcon = ({ size = 16 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M12 2a10 10 0 0 1 10 10" />
+    <path d="M12 2a10 10 0 0 0-10 10" />
+    <path d="M12 12l4-4" />
+    <circle cx="12" cy="12" r="2" />
+  </svg>
+);
+
+// ============================================================================
+// NAVIGATION CARD ICONS - Component Identity Icons
+// ============================================================================
+
+// Elliott Wave Icon - 5-wave impulse pattern (WaveCountAnalysis identity)
+const ElliottWaveIcon = ({ size = 28 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <path
+      d="M2 18 L5 12 L7 14 L12 4 L15 10 L20 2"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <circle cx="2" cy="18" r="1.5" fill="currentColor" opacity="0.6" />
+    <circle cx="5" cy="12" r="1.5" fill="currentColor" opacity="0.6" />
+    <circle cx="7" cy="14" r="1.5" fill="currentColor" opacity="0.6" />
+    <circle cx="12" cy="4" r="1.5" fill="currentColor" opacity="0.6" />
+    <circle cx="15" cy="10" r="1.5" fill="currentColor" opacity="0.6" />
+    <circle cx="20" cy="2" r="1.5" fill="currentColor" opacity="0.6" />
+    <path
+      d="M20 2 L22 6"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeDasharray="2,2"
+      opacity="0.5"
+    />
+  </svg>
+);
+
+// Moving Average Icon - Smooth trend lines (MovingAveragesDashboard identity)
+const MovingAverageIcon = ({ size = 28 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M2 12c2-3 4-6 6-4s4 8 6 6 4-6 6-4" />
+    <circle cx="4" cy="10" r="1.5" fill="currentColor" />
+    <circle cx="12" cy="14" r="1.5" fill="currentColor" />
+    <circle cx="20" cy="10" r="1.5" fill="currentColor" />
+  </svg>
+);
+
+// Oscillator/Gauge Icon - Semi-circle gauge (OscillatorsDashboard identity)
+const OscillatorIcon = ({ size = 28 }) => (
+  <svg width={size} height={size} viewBox="0 0 32 32" fill="none">
+    <path
+      d="M6 22C6 14.268 12.268 8 20 8C23.713 8 27.083 9.464 29.536 11.88"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <path
+      d="M2 22C2 12.059 10.059 4 20 4"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      opacity="0.4"
+    />
+    <path
+      d="M16 22L22 12"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+    />
+    <circle cx="16" cy="22" r="2.5" fill="currentColor" />
+    <circle cx="6" cy="22" r="1.5" fill="currentColor" opacity="0.5" />
+    <circle cx="26" cy="22" r="1.5" fill="currentColor" opacity="0.5" />
+    <circle cx="16" cy="10" r="1.5" fill="currentColor" opacity="0.5" />
+  </svg>
+);
+
+// Signal Matrix Icon - Grid with checkmarks (ActionSignalMatrix identity)
+const SignalMatrixIcon = ({ size = 28 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <rect x="3" y="3" width="7" height="7" rx="1" />
+    <rect x="14" y="3" width="7" height="7" rx="1" />
+    <rect x="3" y="14" width="7" height="7" rx="1" />
+    <rect x="14" y="14" width="7" height="7" rx="1" />
+    <path d="M5 6l2 2 3-3" strokeWidth="1.5" />
+    <path d="M16 6l2 2 3-3" strokeWidth="1.5" />
+  </svg>
+);
+
+// Arrow Right Icon for navigation
+const ArrowRightIcon = ({ size = 16 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <line x1="5" y1="12" x2="19" y2="12" />
+    <polyline points="12 5 19 12 12 19" />
+  </svg>
+);
+
 // ============================================================================
 // GATHERING INTEL PLACEHOLDER
 // ============================================================================
@@ -189,6 +325,96 @@ const TableSkeleton = ({ rows = 6, columns = 5 }) => (
 );
 
 // ============================================================================
+// TECHNICAL INDICATOR GAUGE CARD (OscillatorsDashboard style)
+// ============================================================================
+
+const getIndicatorStatus = (key, value) => {
+  if (value == null) return { status: "—", color: "blue" };
+
+  if (key === "RSI") {
+    if (value >= 70) return { status: "OVERBOUGHT", color: "coral" };
+    if (value <= 30) return { status: "OVERSOLD", color: "teal" };
+    return { status: "NEUTRAL", color: "blue" };
+  }
+
+  if (key === "MACD") {
+    if (value > 0.5) return { status: "BULLISH", color: "teal" };
+    if (value < -0.5) return { status: "BEARISH", color: "coral" };
+    return { status: "NEUTRAL", color: "blue" };
+  }
+
+  if (key === "ADX") {
+    if (value >= 25) return { status: "STRONG TREND", color: "teal" };
+    if (value >= 20) return { status: "WEAK TREND", color: "blue" };
+    return { status: "NO TREND", color: "coral" };
+  }
+
+  if (key === "Williams_R") {
+    if (value >= -20) return { status: "OVERBOUGHT", color: "coral" };
+    if (value <= -80) return { status: "OVERSOLD", color: "teal" };
+    return { status: "NEUTRAL", color: "blue" };
+  }
+
+  return { status: "NEUTRAL", color: "blue" };
+};
+
+const TechnicalGaugeCard = ({ label, value, indicatorKey }) => {
+  const { status, color } = getIndicatorStatus(indicatorKey, value);
+  const displayValue = value != null ? value.toFixed(1) : "—";
+
+  return (
+    <div className={`${styles.gaugeCard} ${styles[color]}`}>
+      <div className={styles.gaugeLabel}>{label}</div>
+      <div className={`${styles.gaugeValue} ${styles[color]}`}>
+        {displayValue}
+      </div>
+      <div className={`${styles.gaugeStatusBadge} ${styles[color]}`}>
+        {status}
+      </div>
+    </div>
+  );
+};
+
+// ============================================================================
+// NAVIGATION CARDS CONFIG
+// ============================================================================
+
+const NAVIGATION_CARDS = [
+  {
+    id: "wave",
+    tabId: "wave",
+    title: "WaveCountAnalysis",
+    description: "Elliott Wave pattern analysis with probability projections",
+    Icon: ElliottWaveIcon,
+    colorClass: "waveCount",
+  },
+  {
+    id: "ma",
+    tabId: "ma",
+    title: "MovingAveragesDashboard",
+    description: "Trend analysis with SMA/EMA crossover signals",
+    Icon: MovingAverageIcon,
+    colorClass: "movingAverages",
+  },
+  {
+    id: "oscillators",
+    tabId: "oscillators",
+    title: "OscillatorsDashboard",
+    description: "Momentum oscillators and overbought/oversold signals",
+    Icon: OscillatorIcon,
+    colorClass: "oscillators",
+  },
+  {
+    id: "signals",
+    tabId: "signals",
+    title: "ActionSignalMatrix",
+    description: "Combined trading signals with AI contradiction resolution",
+    Icon: SignalMatrixIcon,
+    colorClass: "actionSignals",
+  },
+];
+
+// ============================================================================
 // MAIN COMPONENT
 // ============================================================================
 
@@ -197,6 +423,7 @@ export function TickerIntelDashboard({
   timeframe,
   analysisData,
   daysToShow,
+  onNavigateToTab,
 }) {
   // Consume context for real data
   const intel = useTickerIntel();
@@ -208,6 +435,19 @@ export function TickerIntelDashboard({
   // Determine ticker display name
   const tickerDisplay = config?.ticker || ticker;
   const athPrice = analysisData?.athPrice || config?.analysis?.athPrice;
+
+  // Handle navigation card click
+  const handleNavigationClick = (tabId) => {
+    if (onNavigateToTab) {
+      onNavigateToTab(tabId);
+    } else {
+      // Fallback: Try to find and click the tab button
+      const tabButton = document.getElementById(`tab-${tabId}`);
+      if (tabButton) {
+        tabButton.click();
+      }
+    }
+  };
 
   return (
     <div className={styles.TickerIntelDashboard}>
@@ -225,9 +465,7 @@ export function TickerIntelDashboard({
         <div className={styles.headerRight}>
           <div className={styles.ath}>
             <span className={styles.athLabel}>ATH</span>
-            <span className={styles.athValue}>
-              ${athPrice || "—"}
-            </span>
+            <span className={styles.athValue}>${athPrice || "—"}</span>
           </div>
         </div>
       </div>
@@ -291,124 +529,66 @@ export function TickerIntelDashboard({
         </div>
       </div>
 
-      {/* Technical Indicators - Connected to Context */}
+      {/* Technical Indicators - Premium Gauge Style */}
       <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>Technical Indicators</h3>
-        <div className={styles.indicatorsGrid}>
-          <div className={styles.indicatorCard}>
-            <div className={styles.indicatorName}>RSI</div>
-            <div className={styles.indicatorValue}>
-              {technical?.rsi?.toFixed(1) || "—"}
-            </div>
-            <div className={styles.indicatorSignal}>
-              <span
-                className={`${styles.signal} ${
-                  technical?.rsi < 30
-                    ? styles.oversold
-                    : technical?.rsi > 70
-                      ? styles.overbought
-                      : styles.neutral
-                }`}
-              >
-                {technical?.rsi < 30
-                  ? "Oversold"
-                  : technical?.rsi > 70
-                    ? "Overbought"
-                    : "Neutral"}
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.indicatorCard}>
-            <div className={styles.indicatorName}>MACD</div>
-            <div className={styles.indicatorValue}>
-              {technical?.macd?.toFixed(2) || "—"}
-            </div>
-            <div className={styles.indicatorSignal}>
-              <span
-                className={`${styles.signal} ${
-                  technical?.macdHist > 0 ? styles.bullish : styles.bearish
-                }`}
-              >
-                {technical?.macdHist > 0 ? "Bullish" : "Bearish"}
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.indicatorCard}>
-            <div className={styles.indicatorName}>ADX</div>
-            <div className={styles.indicatorValue}>
-              {technical?.adx?.toFixed(1) || "—"}
-            </div>
-            <div className={styles.indicatorSignal}>
-              <span
-                className={`${styles.signal} ${
-                  technical?.adx > 25 ? styles.bullish : styles.neutral
-                }`}
-              >
-                {technical?.adx > 25 ? "Strong Trend" : "Weak Trend"}
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.indicatorCard}>
-            <div className={styles.indicatorName}>Williams %R</div>
-            <div className={styles.indicatorValue}>
-              {technical?.williamsR?.toFixed(1) || "—"}
-            </div>
-            <div className={styles.indicatorSignal}>
-              <span
-                className={`${styles.signal} ${
-                  technical?.williamsR < -80
-                    ? styles.oversold
-                    : technical?.williamsR > -20
-                      ? styles.overbought
-                      : styles.neutral
-                }`}
-              >
-                {technical?.williamsR < -80
-                  ? "Oversold"
-                  : technical?.williamsR > -20
-                    ? "Overbought"
-                    : "Neutral"}
-              </span>
-            </div>
-          </div>
+        <h3 className={styles.sectionTitle}>
+          <GaugeIcon size={14} />
+          Technical Indicators
+        </h3>
+        <div className={styles.gaugesGrid}>
+          <TechnicalGaugeCard
+            label="RSI(14)"
+            value={technical?.rsi}
+            indicatorKey="RSI"
+          />
+          <TechnicalGaugeCard
+            label="MACD"
+            value={technical?.macd}
+            indicatorKey="MACD"
+          />
+          <TechnicalGaugeCard
+            label="ADX(14)"
+            value={technical?.adx}
+            indicatorKey="ADX"
+          />
+          <TechnicalGaugeCard
+            label="Williams %R"
+            value={technical?.williamsR}
+            indicatorKey="Williams_R"
+          />
         </div>
       </div>
 
-      {/* Quick Actions */}
+      {/* Quick Analysis Navigation - Premium Cards */}
       <div className={styles.section}>
         <h3 className={styles.sectionTitle}>Quick Analysis Navigation</h3>
-        <div className={styles.quickActions}>
-          <div className={styles.actionCard}>
-            <div className={styles.actionIcon}>📊</div>
-            <div className={styles.actionTitle}>Wave Count Analysis</div>
-            <p className={styles.actionDesc}>
-              Elliott Wave pattern analysis and projections
-            </p>
-          </div>
-          <div className={styles.actionCard}>
-            <div className={styles.actionIcon}>📈</div>
-            <div className={styles.actionTitle}>Moving Averages</div>
-            <p className={styles.actionDesc}>
-              Trend analysis with multiple MA periods
-            </p>
-          </div>
-          <div className={styles.actionCard}>
-            <div className={styles.actionIcon}>⚙️</div>
-            <div className={styles.actionTitle}>Oscillators</div>
-            <p className={styles.actionDesc}>
-              Momentum and overbought/oversold indicators
-            </p>
-          </div>
-          <div className={styles.actionCard}>
-            <div className={styles.actionIcon}>🎯</div>
-            <div className={styles.actionTitle}>Signal Matrix</div>
-            <p className={styles.actionDesc}>
-              Combined trading signals and confidence levels
-            </p>
-          </div>
+        <div className={styles.navigationGrid}>
+          {NAVIGATION_CARDS.map((card) => (
+            <button
+              key={card.id}
+              className={`${styles.navigationCard} ${styles[card.colorClass]}`}
+              onClick={() => handleNavigationClick(card.tabId)}
+              type="button"
+            >
+              <div className={styles.navCardHeader}>
+                <div
+                  className={`${styles.navCardIcon} ${styles[card.colorClass]}`}
+                >
+                  <card.Icon size={28} />
+                </div>
+                <div className={styles.navCardArrow}>
+                  <ArrowRightIcon size={18} />
+                </div>
+              </div>
+              <div className={styles.navCardContent}>
+                <div className={styles.navCardTitle}>{card.title}</div>
+                <p className={styles.navCardDesc}>{card.description}</p>
+              </div>
+              <div
+                className={`${styles.navCardAccent} ${styles[card.colorClass]}`}
+              />
+            </button>
+          ))}
         </div>
       </div>
     </div>

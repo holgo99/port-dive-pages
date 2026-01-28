@@ -1287,3 +1287,573 @@
         transform: scale(1);
     }
 }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* TECHNICAL INDICATOR GAUGES (OscillatorsDashboard Style)      */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.gaugesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+}
+
+.gaugeCard {
+    background: var(--premium-surface);
+    border: 1px solid var(--premium-border);
+    border-radius: 16px;
+    padding: 20px 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle glow effect on card based on state */
+.gaugeCard.teal {
+    box-shadow:
+        var(--premium-shadow-md),
+        0 0 30px rgba(var(--portdive-teal-rgb), 0.08),
+        inset 0 1px 0 rgba(var(--portdive-teal-rgb), 0.1);
+}
+
+.gaugeCard.coral {
+    box-shadow:
+        var(--premium-shadow-md),
+        0 0 30px rgba(var(--portdive-coral-rgb), 0.08),
+        inset 0 1px 0 rgba(var(--portdive-coral-rgb), 0.1);
+}
+
+.gaugeCard.blue {
+    box-shadow:
+        var(--premium-shadow-md),
+        0 0 30px rgba(var(--portdive-blue-rgb), 0.08),
+        inset 0 1px 0 rgba(var(--portdive-blue-rgb), 0.1);
+}
+
+.gaugeCard:hover {
+    transform: translateY(-3px);
+}
+
+.gaugeCard.teal:hover {
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(var(--portdive-teal-rgb), 0.12),
+        inset 0 1px 0 rgba(var(--portdive-teal-rgb), 0.15);
+    border-color: rgba(var(--portdive-teal-rgb), 0.3);
+}
+
+.gaugeCard.coral:hover {
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(var(--portdive-coral-rgb), 0.12),
+        inset 0 1px 0 rgba(var(--portdive-coral-rgb), 0.15);
+    border-color: rgba(var(--portdive-coral-rgb), 0.3);
+}
+
+.gaugeCard.blue:hover {
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(var(--portdive-blue-rgb), 0.12),
+        inset 0 1px 0 rgba(var(--portdive-blue-rgb), 0.15);
+    border-color: rgba(var(--portdive-blue-rgb), 0.3);
+}
+
+.gaugeLabel {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--portdive-teal);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.gaugeValue {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: "Berkeley Mono", ui-monospace, monospace;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.gaugeValue.teal {
+    color: var(--premium-text);
+    text-shadow: 0 0 15px rgba(var(--portdive-teal-rgb), 0.3);
+}
+
+.gaugeValue.coral {
+    color: var(--premium-text);
+    text-shadow: 0 0 15px rgba(var(--portdive-coral-rgb), 0.3);
+}
+
+.gaugeValue.blue {
+    color: var(--premium-text);
+    text-shadow: 0 0 15px rgba(var(--portdive-blue-rgb), 0.3);
+}
+
+/* Status Badge with Glow */
+.gaugeStatusBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 16px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+}
+
+.gaugeStatusBadge.teal {
+    background: rgba(var(--portdive-teal-rgb), 0.15);
+    color: var(--portdive-teal);
+    border: 1px solid rgba(var(--portdive-teal-rgb), 0.3);
+    box-shadow:
+        0 0 10px rgba(var(--portdive-teal-rgb), 0.15),
+        inset 0 0 6px rgba(var(--portdive-teal-rgb), 0.08);
+}
+
+.gaugeStatusBadge.coral {
+    background: rgba(var(--portdive-coral-rgb), 0.15);
+    color: var(--portdive-coral);
+    border: 1px solid rgba(var(--portdive-coral-rgb), 0.3);
+    box-shadow:
+        0 0 10px rgba(var(--portdive-coral-rgb), 0.15),
+        inset 0 0 6px rgba(var(--portdive-coral-rgb), 0.08);
+}
+
+.gaugeStatusBadge.blue {
+    background: rgba(var(--portdive-blue-rgb), 0.15);
+    color: var(--portdive-blue);
+    border: 1px solid rgba(var(--portdive-blue-rgb), 0.3);
+    box-shadow:
+        0 0 10px rgba(var(--portdive-blue-rgb), 0.15),
+        inset 0 0 6px rgba(var(--portdive-blue-rgb), 0.08);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* PREMIUM NAVIGATION CARDS                                     */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.navigationGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.navigationCard {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+    background: var(--premium-surface);
+    border: 1px solid var(--premium-border);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+    font-family: inherit;
+}
+
+/* Wave Count Analysis - Teal/Gold identity */
+.navigationCard.waveCount {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--portdive-teal-rgb), 0.08) 0%,
+        var(--premium-surface) 50%,
+        rgba(var(--portdive-gold-rgb), 0.05) 100%
+    );
+    border-color: rgba(var(--portdive-teal-rgb), 0.15);
+}
+
+.navigationCard.waveCount:hover {
+    border-color: rgba(var(--portdive-teal-rgb), 0.35);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.25),
+        0 0 40px rgba(var(--portdive-teal-rgb), 0.1);
+    transform: translateY(-4px);
+}
+
+/* Moving Averages - Blue identity */
+.navigationCard.movingAverages {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--portdive-blue-rgb), 0.08) 0%,
+        var(--premium-surface) 50%,
+        rgba(var(--portdive-teal-rgb), 0.05) 100%
+    );
+    border-color: rgba(var(--portdive-blue-rgb), 0.15);
+}
+
+.navigationCard.movingAverages:hover {
+    border-color: rgba(var(--portdive-blue-rgb), 0.35);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.25),
+        0 0 40px rgba(var(--portdive-blue-rgb), 0.1);
+    transform: translateY(-4px);
+}
+
+/* Oscillators - Teal/Blue identity */
+.navigationCard.oscillators {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--portdive-teal-rgb), 0.08) 0%,
+        var(--premium-surface) 50%,
+        rgba(var(--portdive-blue-rgb), 0.05) 100%
+    );
+    border-color: rgba(var(--portdive-teal-rgb), 0.15);
+}
+
+.navigationCard.oscillators:hover {
+    border-color: rgba(var(--portdive-teal-rgb), 0.35);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.25),
+        0 0 40px rgba(var(--portdive-teal-rgb), 0.1);
+    transform: translateY(-4px);
+}
+
+/* Action Signal Matrix - Purple identity */
+.navigationCard.actionSignals {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--portdive-purple-rgb), 0.08) 0%,
+        var(--premium-surface) 50%,
+        rgba(var(--portdive-blue-rgb), 0.05) 100%
+    );
+    border-color: rgba(var(--portdive-purple-rgb), 0.15);
+}
+
+.navigationCard.actionSignals:hover {
+    border-color: rgba(var(--portdive-purple-rgb), 0.35);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.25),
+        0 0 40px rgba(var(--portdive-purple-rgb), 0.1);
+    transform: translateY(-4px);
+}
+
+.navigationCard:focus-visible {
+    outline: 2px solid var(--portdive-teal);
+    outline-offset: 2px;
+}
+
+.navCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.navCardIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    transition: all 0.3s ease;
+}
+
+.navCardIcon.waveCount {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--portdive-teal-rgb), 0.2) 0%,
+        rgba(var(--portdive-gold-rgb), 0.15) 100%
+    );
+    color: var(--portdive-teal);
+    filter: drop-shadow(0 0 10px rgba(var(--portdive-teal-rgb), 0.3));
+}
+
+.navCardIcon.movingAverages {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--portdive-blue-rgb), 0.2) 0%,
+        rgba(var(--portdive-teal-rgb), 0.1) 100%
+    );
+    color: var(--portdive-blue);
+    filter: drop-shadow(0 0 10px rgba(var(--portdive-blue-rgb), 0.3));
+}
+
+.navCardIcon.oscillators {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--portdive-teal-rgb), 0.2) 0%,
+        rgba(var(--portdive-blue-rgb), 0.1) 100%
+    );
+    color: var(--portdive-teal);
+    filter: drop-shadow(0 0 10px rgba(var(--portdive-teal-rgb), 0.3));
+}
+
+.navCardIcon.actionSignals {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--portdive-purple-rgb), 0.2) 0%,
+        rgba(var(--portdive-blue-rgb), 0.1) 100%
+    );
+    color: var(--portdive-purple);
+    filter: drop-shadow(0 0 10px rgba(var(--portdive-purple-rgb), 0.3));
+}
+
+.navCardArrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: var(--premium-text-muted);
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all 0.3s ease;
+}
+
+.navigationCard:hover .navCardArrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.navCardContent {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.navCardTitle {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--premium-text);
+    letter-spacing: -0.01em;
+}
+
+.navCardDesc {
+    margin: 0;
+    font-size: 12px;
+    color: var(--premium-text-secondary);
+    line-height: 1.5;
+}
+
+/* Accent line at bottom */
+.navCardAccent {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.navCardAccent.waveCount {
+    background: linear-gradient(
+        90deg,
+        var(--portdive-teal) 0%,
+        var(--portdive-gold) 100%
+    );
+}
+
+.navCardAccent.movingAverages {
+    background: linear-gradient(
+        90deg,
+        var(--portdive-blue) 0%,
+        var(--portdive-teal) 100%
+    );
+}
+
+.navCardAccent.oscillators {
+    background: linear-gradient(
+        90deg,
+        var(--portdive-teal) 0%,
+        var(--portdive-blue) 100%
+    );
+}
+
+.navCardAccent.actionSignals {
+    background: linear-gradient(
+        90deg,
+        var(--portdive-purple) 0%,
+        var(--portdive-blue) 100%
+    );
+}
+
+.navigationCard:hover .navCardAccent {
+    opacity: 1;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* GAUGE & NAV RESPONSIVE                                       */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 768px) {
+    .gaugesGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .gaugeCard {
+        padding: 16px 12px;
+    }
+
+    .gaugeLabel {
+        font-size: 11px;
+    }
+
+    .gaugeValue {
+        font-size: 1.5rem;
+    }
+
+    .gaugeStatusBadge {
+        padding: 5px 10px;
+        font-size: 9px;
+    }
+
+    .navigationGrid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .navigationCard {
+        padding: 20px;
+        gap: 14px;
+    }
+
+    .navCardIcon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .navCardTitle {
+        font-size: 14px;
+    }
+
+    .navCardDesc {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gaugesGrid {
+        gap: 10px;
+    }
+
+    .gaugeCard {
+        padding: 14px 10px;
+        gap: 8px;
+    }
+
+    .gaugeLabel {
+        font-size: 10px;
+    }
+
+    .gaugeValue {
+        font-size: 1.25rem;
+    }
+
+    .gaugeStatusBadge {
+        padding: 4px 8px;
+        font-size: 8px;
+    }
+
+    .navigationCard {
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .navCardIcon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+    }
+
+    .navCardArrow {
+        width: 28px;
+        height: 28px;
+    }
+
+    .navCardTitle {
+        font-size: 13px;
+    }
+
+    .navCardDesc {
+        font-size: 10px;
+    }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* GAUGE & NAV ACCESSIBILITY                                    */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (prefers-reduced-motion: reduce) {
+    .gaugeCard,
+    .navigationCard,
+    .navCardIcon,
+    .navCardArrow,
+    .navCardAccent {
+        transition: none;
+    }
+
+    .gaugeCard:hover,
+    .navigationCard:hover {
+        transform: none;
+    }
+
+    .navigationCard:hover .navCardArrow {
+        transform: none;
+    }
+}
+
+@media (prefers-contrast: more) {
+    .gaugeCard,
+    .navigationCard {
+        border-width: 2px;
+    }
+
+    .gaugeStatusBadge {
+        border-width: 2px;
+    }
+}
+
+/* Light mode adjustments */
+[data-theme="light"] .gaugeCard {
+    box-shadow: var(--premium-shadow-sm);
+}
+
+[data-theme="light"] .gaugeCard:hover {
+    box-shadow: var(--premium-shadow-md);
+}
+
+[data-theme="light"] .gaugeValue {
+    text-shadow: none;
+}
+
+[data-theme="light"] .gaugeStatusBadge.teal {
+    box-shadow:
+        0 0 6px rgba(var(--portdive-teal-rgb), 0.1),
+        inset 0 0 4px rgba(var(--portdive-teal-rgb), 0.05);
+}
+
+[data-theme="light"] .gaugeStatusBadge.coral {
+    box-shadow:
+        0 0 6px rgba(var(--portdive-coral-rgb), 0.1),
+        inset 0 0 4px rgba(var(--portdive-coral-rgb), 0.05);
+}
+
+[data-theme="light"] .gaugeStatusBadge.blue {
+    box-shadow:
+        0 0 6px rgba(var(--portdive-blue-rgb), 0.1),
+        inset 0 0 4px rgba(var(--portdive-blue-rgb), 0.05);
+}
+
+[data-theme="light"] .navigationCard {
+    box-shadow: var(--premium-shadow-sm);
+}
+
+[data-theme="light"] .navigationCard:hover {
+    box-shadow: var(--premium-shadow-md);
+}
+
+[data-theme="light"] .navCardIcon {
+    filter: none;
+}
