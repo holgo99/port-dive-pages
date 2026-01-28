@@ -836,7 +836,7 @@ const SignalMatrixSection = memo(
 // ============================================================================
 
 const ContradictionResolution = memo(({ contradictions }) => {
-  if (!contradictions || contradictions.length === 0) return null;
+  const hasContradictions = contradictions && contradictions.length > 0;
 
   return (
     <div className={styles.contradictionSection}>
@@ -871,50 +871,61 @@ const ContradictionResolution = memo(({ contradictions }) => {
         </div>
       </div>
 
-      <div className={styles.contradictionCards}>
-        {contradictions.map((contradiction, idx) => (
-          <div key={idx} className={styles.contradictionCard}>
-            <div className={styles.contradictionCardHeader}>
-              <ScaleIcon size={16} />
-              <span className={styles.contradictionType}>
-                {contradiction.description}
-              </span>
-            </div>
+      {hasContradictions ? (
+        <div className={styles.contradictionCards}>
+          {contradictions.map((contradiction, idx) => (
+            <div key={idx} className={styles.contradictionCard}>
+              <div className={styles.contradictionCardHeader}>
+                <ScaleIcon size={16} />
+                <span className={styles.contradictionType}>
+                  {contradiction.description}
+                </span>
+              </div>
 
-            <div className={styles.conflictSignals}>
-              {Object.entries(contradiction)
-                .filter(
-                  ([key]) =>
-                    !["type", "description", "resolution", "action", "color", "weights"].includes(
-                      key
-                    )
-                )
-                .map(([key, value]) => (
-                  <div key={key} className={styles.conflictSignal}>
-                    <span className={styles.conflictKey}>{key}:</span>
-                    <span className={styles.conflictValue}>{value}</span>
-                  </div>
-                ))}
-            </div>
+              <div className={styles.conflictSignals}>
+                {Object.entries(contradiction)
+                  .filter(
+                    ([key]) =>
+                      !["type", "description", "resolution", "action", "color", "weights"].includes(
+                        key
+                      )
+                  )
+                  .map(([key, value]) => (
+                    <div key={key} className={styles.conflictSignal}>
+                      <span className={styles.conflictKey}>{key}:</span>
+                      <span className={styles.conflictValue}>{value}</span>
+                    </div>
+                  ))}
+              </div>
 
-            <div className={styles.resolutionBox}>
-              <span className={styles.resolutionLabel}>Resolution:</span>
-              <span className={styles.resolutionText}>
-                {contradiction.resolution}
-              </span>
-            </div>
+              <div className={styles.resolutionBox}>
+                <span className={styles.resolutionLabel}>Resolution:</span>
+                <span className={styles.resolutionText}>
+                  {contradiction.resolution}
+                </span>
+              </div>
 
-            <div
-              className={`${styles.contradictionAction} ${styles[contradiction.color]}`}
-            >
-              <span className={styles.contradictionActionLabel}>Action:</span>
-              <span className={styles.contradictionActionValue}>
-                {contradiction.action}
-              </span>
+              <div
+                className={`${styles.contradictionAction} ${styles[contradiction.color]}`}
+              >
+                <span className={styles.contradictionActionLabel}>Action:</span>
+                <span className={styles.contradictionActionValue}>
+                  {contradiction.action}
+                </span>
+              </div>
             </div>
+          ))}
+        </div>
+      ) : (
+        <div className={styles.noContradictions}>
+          <div className={styles.noContradictionsIcon}>
+            <CheckCircleIcon size={32} />
           </div>
-        ))}
-      </div>
+          <span className={styles.noContradictionsText}>
+            No conflicting signals detected. Indicators are aligned.
+          </span>
+        </div>
+      )}
 
       <div className={styles.defaultRule}>
         <strong>DEFAULT RULE:</strong> Elliott Wave wins in 40% weight conflicts.

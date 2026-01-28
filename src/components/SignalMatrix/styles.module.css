@@ -15,6 +15,41 @@
  */
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* COMPONENT-SCOPED CSS VARIABLES WITH FALLBACKS               */
+/* Ensures component works standalone while inheriting globals  */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.signalMatrixWrapper {
+    /* Brand colors with fallbacks */
+    --portdive-teal: #1fa39b;
+    --portdive-teal-rgb: 31, 163, 155;
+    --portdive-coral: #ff6b6b;
+    --portdive-coral-rgb: 255, 107, 107;
+    --portdive-blue: #3d72ff;
+    --portdive-blue-rgb: 61, 114, 255;
+
+    /* Premium theme colors - Dark mode defaults */
+    --premium-bg: #0a1a1f;
+    --premium-surface: #0f2028;
+    --premium-surface-alt: #142830;
+    --premium-text: #f8faf9;
+    --premium-text-secondary: #a8b4bc;
+    --premium-text-muted: #6a7a84;
+    --premium-border: rgba(248, 250, 249, 0.12);
+
+    /* Premium shadows */
+    --premium-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --premium-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --premium-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+    /* Typography */
+    --font-family-premium: "Inter", -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, sans-serif;
+    --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        monospace;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 /* WRAPPER */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
@@ -754,6 +789,53 @@
 /* DEFAULT RULE */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* NO CONTRADICTIONS STATE */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.noContradictions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background: linear-gradient(
+        135deg,
+        rgba(var(--portdive-teal-rgb), 0.1) 0%,
+        var(--premium-surface) 100%
+    );
+    border: 1px solid rgba(var(--portdive-teal-rgb), 0.25);
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.noContradictionsIcon {
+    color: var(--portdive-teal);
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 8px rgba(var(--portdive-teal-rgb), 0.4));
+}
+
+.noContradictionsText {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--premium-text);
+}
+
+[data-theme="light"] .noContradictions {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--portdive-teal-rgb), 0.06) 0%,
+        var(--premium-surface) 100%
+    );
+}
+
+[data-theme="light"] .noContradictionsIcon {
+    filter: none;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* DEFAULT RULE */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
 .defaultRule {
     padding: 14px 18px;
     background: var(--premium-surface-alt);
@@ -995,6 +1077,18 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 [data-theme="light"] .signalMatrixWrapper {
+    /* Light mode variable overrides */
+    --premium-bg: #f8faf9;
+    --premium-surface: #ffffff;
+    --premium-surface-alt: #f0f4f2;
+    --premium-text: #0a1a1f;
+    --premium-text-secondary: #5a6570;
+    --premium-text-muted: #8a9199;
+    --premium-border: rgba(10, 26, 31, 0.12);
+    --premium-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+    --premium-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+    --premium-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
+
     box-shadow: var(--premium-shadow-md);
 }
 
