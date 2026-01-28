@@ -34,13 +34,18 @@ module.exports = {
             {
               type: "category",
               label: "Elliott Wave Analysis",
-              items: ["features/ticker/elliott-wave-analysis/wave-count-chart"],
+              items: [
+                "features/ticker/elliott-wave-analysis/chart-overlay",
+                "features/ticker/elliott-wave-analysis/verdict-panel",
+              ],
             },
             {
               type: "category",
               label: "Technical Indicators",
               items: [
                 "features/ticker/technical-indicators/oscillators-dashboard",
+                "features/ticker/technical-indicators/moving-averages-dashboard",
+                "features/ticker/technical-indicators/signal-matrix",
               ],
             },
           ],

@@ -1,0 +1,30 @@
+---
+id: verdict-panel
+hide_title: true
+sidebar_label: Verdict Panel
+pagination_label: Elliott Wave Count - Verdict Panel
+description: "NBIS, Interactive Elliott Wave analysis. Wave counts with Fibonacci levels and technical alerts."
+keywords: ["Elliott Wave", "Technical Analysis", "Wave Counting", "Market Cycles"]
+image: ../assets/20260122/elliott-wave-preview.png
+---
+
+import { NBISLayout } from "@site/src/components/TickerLayout";
+import { TickerHeader } from "@site/src/components/TickerHeader";
+import { ShareElliotWave } from "@site/src/components/ShareElliotWave.jsx";
+import { AnalysisCard } from "@site/src/components/AnalysisCard";
+import { WaveCountAnalysis } from "@site/src/components/WaveCountAnalysis";
+
+<NBISLayout timeframe="1D">
+    <ShareElliotWave />
+    <TickerHeader
+        title="Elliott Wave Count | Verdict Panel"
+        subtitle="Apr 2025 → Jun 2026 (Projection) | ATH: $141.10"
+    />
+    <WaveCountAnalysis />
+    <AnalysisCard
+        title="Elliott Wave Analysis"
+        description="Complete wave count analysis with target levels and risk management"
+        attribution="XX daily candles • Projection to Jun 2026 • Last updated: Jan 26, 2026"
+        analysisDate="2026-01-22"
+    />
+</NBISLayout>

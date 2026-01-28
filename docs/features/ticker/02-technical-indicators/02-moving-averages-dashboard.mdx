@@ -1,8 +1,8 @@
 ---
-id: oscillators-dashboard
+id: moving-averages-dashboard
 hide_title: true
-sidebar_label: Oscillators Dashboard
-pagination_label: Technical Indicators - Oscillators Dashboard
+sidebar_label: Moving Averages Dashboard
+pagination_label: Technical Indicators - Moving Averages Dashboard
 description: "NBIS 1D Multi-indicator dashboards with RSI, Williams %R, Stochastic, ADX, and MACD analysis. Gauge indicators, chart visualization, and buy/sell signal confirmation for informed trading decisions."
 keywords:
   - RSI indicator
@@ -24,15 +24,13 @@ import { NBISLayout } from "@site/src/components/TickerLayout";
 import { TickerHeader } from "@site/src/components/TickerHeader";
 import { AnalysisCard } from "@site/src/components/AnalysisCard";
 import { MovingAveragesDashboard } from "@site/src/components/MovingAveragesDashboard";
-import { OscillatorsDashboard } from "@site/src/components/OscillatorsDashboard";
-import { SignalMatrix } from "@site/src/components/SignalMatrix";
 
 <NBISLayout timeframe="1D">
-  <TickerHeader title="Technical Indicators | Oscillators Dashboard" />
-  <OscillatorsDashboard daysToShow={30} />
+  <TickerHeader title="Technical Indicators | Moving Averages Dashboard" />
+  <MovingAveragesDashboard daysToShow={30} />
   <AnalysisCard
     title="Oscillators Dashboard"
-    description="Multi-indicator momentum analysis with RSI, Williams %R, Stochastic, ADX, and MACD"
+    description="Multi-indicator averages analysis with 50-MA, 200-MA, 50-EMA, 200-EMA, Volume-20-MA"
     analysisDate="2026-01-27"
   />
 </NBISLayout>
