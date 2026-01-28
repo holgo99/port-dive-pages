@@ -11,9 +11,48 @@
  * - Dark mode optimized (PortDive brand)
  * - WCAG AA+ accessible
  * - Responsive design
+ * - Supports standalone and embedded variants
  *
+ * Color Identity: Teal/Gold (Analysis/Decision theme)
  * Uses global premium CSS variables from custom.css
  */
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* COMPONENT-SCOPED CSS VARIABLES WITH FALLBACKS               */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.verdictPanelWrapper {
+    /* Brand colors with fallbacks */
+    --portdive-teal: #1fa39b;
+    --portdive-teal-rgb: 31, 163, 155;
+    --portdive-coral: #ff6b6b;
+    --portdive-coral-rgb: 255, 107, 107;
+    --portdive-blue: #3d72ff;
+    --portdive-blue-rgb: 61, 114, 255;
+    --portdive-gold: #f59e0b;
+    --portdive-gold-rgb: 245, 158, 11;
+
+    /* Premium theme colors - Dark mode defaults */
+    --premium-bg: #0a1a1f;
+    --premium-surface: #0f2028;
+    --premium-surface-alt: #142830;
+    --premium-text: #f8faf9;
+    --premium-text-secondary: #a8b4bc;
+    --premium-text-muted: #6a7a84;
+    --premium-border: rgba(248, 250, 249, 0.12);
+
+    /* Premium shadows */
+    --premium-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --premium-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --premium-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+    /* Typography */
+    --font-family-premium:
+        "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        sans-serif;
+    --font-family-mono:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 /* WRAPPER */
@@ -27,8 +66,34 @@
     font-family: var(--font-family-premium);
     color: var(--premium-text);
     width: 100%;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    box-shadow: var(--premium-shadow-lg);
     margin-bottom: 24px;
+    position: relative;
+}
+
+/* Animated gradient border effect - Teal/Gold theme */
+.verdictPanelWrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 1px;
+    background: linear-gradient(
+        135deg,
+        rgba(var(--portdive-teal-rgb), 0.5) 0%,
+        rgba(var(--portdive-gold-rgb), 0.3) 50%,
+        rgba(var(--portdive-blue-rgb), 0.4) 100%
+    );
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.6;
 }
 
 /* Embedded variant - no outer chrome, integrates into parent component */
@@ -40,8 +105,12 @@
     margin-bottom: 0;
 }
 
+.verdictPanelEmbedded::before {
+    display: none;
+}
+
 .verdictPanelEmbedded .thesisHeroCard {
-    margin: 0 0 24px 0;
+    margin: 0 0 20px 0;
 }
 
 .verdictPanelEmbedded .decisionTreeContainer {
@@ -49,7 +118,10 @@
     border-top: none;
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.verdictPanelEmbedded .sectionTitle {
+    display: none;
+}
+
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 /* LOGO HEADER */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -62,15 +134,45 @@
     background: linear-gradient(
         135deg,
         rgba(var(--portdive-teal-rgb), 0.15) 0%,
-        var(--premium-surface) 50%,
-        rgba(var(--portdive-blue-rgb), 0.08) 100%
+        var(--premium-surface) 40%,
+        rgba(var(--portdive-gold-rgb), 0.08) 100%
     );
     border-bottom: 1px solid var(--premium-border);
     color: var(--portdive-teal);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated shimmer effect */
+.logoHeader::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(var(--portdive-teal-rgb), 0.1) 50%,
+        transparent 100%
+    );
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
 }
 
 .logoHeader svg {
     filter: drop-shadow(0 0 8px rgba(var(--portdive-teal-rgb), 0.5));
+    position: relative;
+    z-index: 1;
 }
 
 .logoText {
@@ -78,6 +180,40 @@
     font-weight: 700;
     letter-spacing: -0.02em;
     color: var(--premium-text);
+    position: relative;
+    z-index: 1;
+}
+
+.premiumBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    background: linear-gradient(
+        135deg,
+        rgba(var(--portdive-teal-rgb), 0.25) 0%,
+        rgba(var(--portdive-gold-rgb), 0.2) 100%
+    );
+    border: 1px solid rgba(var(--portdive-teal-rgb), 0.4);
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--portdive-teal);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-left: auto;
+    position: relative;
+    z-index: 1;
+    animation: premiumPulse 2s ease-in-out infinite;
+}
+
+@keyframes premiumPulse {
+    0%, 100% {
+        box-shadow: 0 0 8px rgba(var(--portdive-teal-rgb), 0.3);
+    }
+    50% {
+        box-shadow: 0 0 16px rgba(var(--portdive-teal-rgb), 0.5);
+    }
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -89,85 +225,116 @@
     padding: 24px 28px;
     background: linear-gradient(
         135deg,
-        rgba(31, 163, 155, 0.08) 0%,
+        rgba(var(--portdive-teal-rgb), 0.08) 0%,
         var(--premium-surface) 100%
     );
     border: 1px solid var(--premium-border);
-    border-left: 8px solid var(--portdive-teal);
+    border-left: 5px solid var(--portdive-teal);
     border-radius: 16px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.3),
-        0 0 40px rgba(31, 163, 155, 0.08),
-        inset 0 1px 0 rgba(31, 163, 155, 0.1);
+        var(--premium-shadow-md),
+        0 0 30px rgba(var(--portdive-teal-rgb), 0.06),
+        inset 0 1px 0 rgba(var(--portdive-teal-rgb), 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle grid pattern overlay */
+.thesisHeroCard::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(var(--portdive-teal-rgb), 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(var(--portdive-teal-rgb), 0.02) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
 }
 
 .thesisHeroCard:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
     box-shadow:
-        0 12px 40px rgba(0, 0, 0, 0.4),
-        0 0 60px rgba(31, 163, 155, 0.15),
-        inset 0 1px 0 rgba(31, 163, 155, 0.2);
-    border-color: rgba(31, 163, 155, 0.3);
+        var(--premium-shadow-lg),
+        0 0 40px rgba(var(--portdive-teal-rgb), 0.1),
+        inset 0 1px 0 rgba(var(--portdive-teal-rgb), 0.15);
+    border-color: rgba(var(--portdive-teal-rgb), 0.3);
 }
 
 .thesisHeroCard.corrective {
     border-left-color: var(--portdive-coral);
     background: linear-gradient(
         135deg,
-        rgba(255, 107, 107, 0.08) 0%,
+        rgba(var(--portdive-coral-rgb), 0.08) 0%,
         var(--premium-surface) 100%
     );
     box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.3),
-        0 0 40px rgba(255, 107, 107, 0.08),
-        inset 0 1px 0 rgba(255, 107, 107, 0.1);
+        var(--premium-shadow-md),
+        0 0 30px rgba(var(--portdive-coral-rgb), 0.06),
+        inset 0 1px 0 rgba(var(--portdive-coral-rgb), 0.1);
+}
+
+.thesisHeroCard.corrective::before {
+    background-image:
+        linear-gradient(rgba(var(--portdive-coral-rgb), 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(var(--portdive-coral-rgb), 0.02) 1px, transparent 1px);
 }
 
 .thesisHeroCard.corrective:hover {
     box-shadow:
-        0 12px 40px rgba(0, 0, 0, 0.4),
-        0 0 60px rgba(255, 107, 107, 0.15),
-        inset 0 1px 0 rgba(255, 107, 107, 0.2);
-    border-color: rgba(255, 107, 107, 0.3);
+        var(--premium-shadow-lg),
+        0 0 40px rgba(var(--portdive-coral-rgb), 0.1),
+        inset 0 1px 0 rgba(var(--portdive-coral-rgb), 0.15);
+    border-color: rgba(var(--portdive-coral-rgb), 0.3);
 }
 
 .thesisHeroHeader {
     margin-bottom: 16px;
+    position: relative;
 }
 
 .thesisHeroLabel {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
     color: var(--portdive-teal);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    padding: 4px 10px;
+    background: rgba(var(--portdive-teal-rgb), 0.12);
+    border: 1px solid rgba(var(--portdive-teal-rgb), 0.25);
+    border-radius: 6px;
 }
 
 .thesisHeroCard.corrective .thesisHeroLabel {
     color: var(--portdive-coral);
+    background: rgba(var(--portdive-coral-rgb), 0.12);
+    border-color: rgba(var(--portdive-coral-rgb), 0.25);
 }
 
 .thesisHeroTitle {
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 700;
     color: var(--premium-text);
     line-height: 1.3;
     margin: 0;
+    letter-spacing: -0.02em;
 }
 
 .thesisHeroContent {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
+    position: relative;
 }
 
 .thesisHeroParagraph {
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.6;
-    color: var(--premium-text);
+    color: var(--premium-text-secondary);
     margin: 0;
 }
 
@@ -176,7 +343,7 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .decisionTreeContainer {
-    padding: 32px 24px;
+    padding: 28px 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -184,12 +351,27 @@
 }
 
 .sectionTitle {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
-    color: var(--portdive-teal);
-    margin: 0 0 24px 0;
+    color: var(--premium-text);
+    margin: 0 0 20px 0;
     text-align: center;
     letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sectionTitle::before {
+    content: "";
+    width: 3px;
+    height: 18px;
+    background: linear-gradient(
+        180deg,
+        var(--portdive-teal) 0%,
+        var(--portdive-gold) 100%
+    );
+    border-radius: 2px;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -197,27 +379,43 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .probabilityCard {
-    background: var(--premium-surface);
+    background: linear-gradient(
+        135deg,
+        rgba(var(--portdive-gold-rgb), 0.06) 0%,
+        var(--premium-surface) 100%
+    );
     border: 1px solid var(--premium-border);
-    border-radius: 16px;
-    padding: 24px 32px;
+    border-radius: 14px;
+    padding: 20px 28px;
     text-align: center;
     width: 100%;
-    max-width: 280px;
+    max-width: 240px;
     margin-bottom: 0;
     box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.3),
-        0 0 40px rgba(61, 114, 255, 0.08),
-        inset 0 1px 0 rgba(61, 114, 255, 0.1);
+        var(--premium-shadow-sm),
+        0 0 20px rgba(var(--portdive-gold-rgb), 0.06);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.probabilityCard::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at center,
+        rgba(var(--portdive-gold-rgb), 0.05) 0%,
+        transparent 70%
+    );
+    pointer-events: none;
 }
 
 .probabilityCard:hover {
     transform: translateY(-2px);
     box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.4),
-        0 0 50px rgba(61, 114, 255, 0.12),
-        inset 0 1px 0 rgba(61, 114, 255, 0.15);
+        var(--premium-shadow-md),
+        0 0 30px rgba(var(--portdive-gold-rgb), 0.1);
 }
 
 .probabilityDisplay {
@@ -225,32 +423,33 @@
     flex-direction: column;
     align-items: center;
     gap: 4px;
+    position: relative;
 }
 
 .probabilityValue {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     font-weight: 700;
     font-family: var(--font-family-mono);
     color: var(--premium-text);
     line-height: 1;
     letter-spacing: -0.02em;
-    text-shadow: 0 0 20px rgba(61, 114, 255, 0.4);
+    text-shadow: 0 0 16px rgba(var(--portdive-gold-rgb), 0.3);
 }
 
 .probabilityLabel {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
-    color: var(--portdive-blue);
+    color: var(--portdive-gold);
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
 
 .priceTargets {
-    font-size: 13px;
+    font-size: 12px;
     font-family: var(--font-family-mono);
     color: var(--premium-text-secondary);
-    padding-top: 12px;
-    margin-top: 12px;
+    padding-top: 10px;
+    margin-top: 10px;
     border-top: 1px solid var(--premium-border);
 }
 
@@ -316,83 +515,98 @@
 .branchCards {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0px 28px;
+    gap: 0px 24px;
     width: 100%;
     max-width: 700px;
 }
 
 .branchCard {
     background: var(--premium-surface);
-    border-radius: 16px;
+    border-radius: 14px;
     min-width: 61.4%;
-    padding: 20px;
+    padding: 18px;
     border: 1px solid var(--premium-border);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    margin-bottom: 28px;
+    margin-bottom: 24px;
     overflow: hidden;
+    position: relative;
+}
+
+.branchCard::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(
+        circle at top right,
+        currentColor,
+        transparent 70%
+    );
+    opacity: 0.04;
+    pointer-events: none;
 }
 
 .branchCard.teal {
     border-left: 4px solid var(--portdive-teal);
     background: linear-gradient(
         135deg,
-        rgba(31, 163, 155, 0.12) 0%,
+        rgba(var(--portdive-teal-rgb), 0.08) 0%,
         var(--premium-surface) 100%
     );
     box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.3),
-        0 0 30px rgba(31, 163, 155, 0.06),
-        inset 0 1px 0 rgba(31, 163, 155, 0.1);
+        var(--premium-shadow-sm),
+        0 0 20px rgba(var(--portdive-teal-rgb), 0.04);
+    color: var(--portdive-teal);
 }
 
 .branchCard.teal:hover {
+    transform: translateX(2px);
     box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.4),
-        0 0 40px rgba(31, 163, 155, 0.1),
-        inset 0 1px 0 rgba(31, 163, 155, 0.15);
-    border-color: rgba(31, 163, 155, 0.4);
+        var(--premium-shadow-md),
+        0 0 30px rgba(var(--portdive-teal-rgb), 0.08);
+    border-color: rgba(var(--portdive-teal-rgb), 0.4);
 }
 
 .branchCard.coral {
     border-left: 4px solid var(--portdive-coral);
     background: linear-gradient(
         135deg,
-        rgba(255, 107, 107, 0.12) 0%,
+        rgba(var(--portdive-coral-rgb), 0.08) 0%,
         var(--premium-surface) 100%
     );
     box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.3),
-        0 0 30px rgba(255, 107, 107, 0.06),
-        inset 0 1px 0 rgba(255, 107, 107, 0.1);
+        var(--premium-shadow-sm),
+        0 0 20px rgba(var(--portdive-coral-rgb), 0.04);
+    color: var(--portdive-coral);
 }
 
 .branchCard.coral:hover {
+    transform: translateX(-2px);
     box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.4),
-        0 0 40px rgba(255, 107, 107, 0.1),
-        inset 0 1px 0 rgba(255, 107, 107, 0.15);
-    border-color: rgba(255, 107, 107, 0.4);
+        var(--premium-shadow-md),
+        0 0 30px rgba(var(--portdive-coral-rgb), 0.08);
+    border-color: rgba(var(--portdive-coral-rgb), 0.4);
 }
 
 /* Active card state - when outcome is validated/invalidated */
 .branchCard.activeCard {
-    transform: scale(1.02);
+    transform: scale(1.01);
 }
 
 .branchCard.activeCard.teal {
     border-color: var(--portdive-teal);
     box-shadow:
-        0 12px 40px rgba(0, 0, 0, 0.4),
-        0 0 60px rgba(31, 163, 155, 0.2),
-        inset 0 1px 0 rgba(31, 163, 155, 0.2);
+        var(--premium-shadow-md),
+        0 0 40px rgba(var(--portdive-teal-rgb), 0.15);
 }
 
 .branchCard.activeCard.coral {
     border-color: var(--portdive-coral);
     box-shadow:
-        0 12px 40px rgba(0, 0, 0, 0.4),
-        0 0 60px rgba(255, 107, 107, 0.2),
-        inset 0 1px 0 rgba(255, 107, 107, 0.2);
+        var(--premium-shadow-md),
+        0 0 40px rgba(var(--portdive-coral-rgb), 0.15);
 }
 
 /* Faded card state - when the other path won */
@@ -405,39 +619,33 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 }
 
 .branchIcon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
 }
 
 .branchIcon.teal {
-    background: rgba(31, 163, 155, 0.15);
+    background: rgba(var(--portdive-teal-rgb), 0.15);
     color: var(--portdive-teal);
-    border: 1px solid rgba(31, 163, 155, 0.3);
-    box-shadow:
-        0 0 12px rgba(31, 163, 155, 0.2),
-        inset 0 0 8px rgba(31, 163, 155, 0.1);
+    border: 1px solid rgba(var(--portdive-teal-rgb), 0.3);
 }
 
 .branchIcon.coral {
-    background: rgba(255, 107, 107, 0.15);
+    background: rgba(var(--portdive-coral-rgb), 0.15);
     color: var(--portdive-coral);
-    border: 1px solid rgba(255, 107, 107, 0.3);
-    box-shadow:
-        0 0 12px rgba(255, 107, 107, 0.2),
-        inset 0 0 8px rgba(255, 107, 107, 0.1);
+    border: 1px solid rgba(var(--portdive-coral-rgb), 0.3);
 }
 
 .branchTitle {
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 700;
     color: var(--premium-text);
 }
 
@@ -447,7 +655,7 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     min-width: 0;
 }
 
@@ -455,7 +663,7 @@
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    font-size: 13px;
+    font-size: 12px;
     line-height: 1.5;
     color: var(--premium-text);
     min-width: 0;
@@ -465,20 +673,20 @@
 
 .bulletDot {
     flex-shrink: 0;
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     margin-top: 6px;
 }
 
 .bulletDot.teal {
     background: var(--portdive-teal);
-    box-shadow: 0 0 6px rgba(31, 163, 155, 0.5);
+    box-shadow: 0 0 6px rgba(var(--portdive-teal-rgb), 0.5);
 }
 
 .bulletDot.coral {
     background: var(--portdive-coral);
-    box-shadow: 0 0 6px rgba(255, 107, 107, 0.5);
+    box-shadow: 0 0 6px rgba(var(--portdive-coral-rgb), 0.5);
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -498,13 +706,13 @@
 
 .highlight.teal {
     color: var(--portdive-teal);
-    background: rgba(31, 163, 155, 0.2);
+    background: rgba(var(--portdive-teal-rgb), 0.15);
     border-radius: 4px;
 }
 
 .highlight.coral {
     color: var(--portdive-coral);
-    background: rgba(255, 107, 107, 0.2);
+    background: rgba(var(--portdive-coral-rgb), 0.15);
     border-radius: 4px;
 }
 
@@ -521,26 +729,26 @@
 .outcomeCard {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 16px 28px;
+    gap: 10px;
+    padding: 14px 24px;
     background: var(--premium-surface);
     border: 1px solid var(--premium-border);
-    border-radius: 12px;
+    border-radius: 10px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--premium-shadow-sm);
 }
 
 /* Balanced state */
 .outcomeCard.balanced {
-    border-color: var(--portdive-blue);
+    border-color: rgba(var(--portdive-blue-rgb), 0.4);
     background: linear-gradient(
         135deg,
-        rgba(61, 114, 255, 0.1) 0%,
+        rgba(var(--portdive-blue-rgb), 0.08) 0%,
         var(--premium-surface) 100%
     );
     box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.3),
-        0 0 30px rgba(61, 114, 255, 0.1);
+        var(--premium-shadow-sm),
+        0 0 20px rgba(var(--portdive-blue-rgb), 0.06);
 }
 
 .outcomeCard.balanced .outcomeIcon {
@@ -568,21 +776,20 @@
 
 /* Validated state */
 .outcomeCard.validated {
-    border-color: var(--portdive-teal);
+    border-color: rgba(var(--portdive-teal-rgb), 0.5);
     background: linear-gradient(
         135deg,
-        rgba(31, 163, 155, 0.15) 0%,
+        rgba(var(--portdive-teal-rgb), 0.1) 0%,
         var(--premium-surface) 100%
     );
     box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.3),
-        0 0 40px rgba(31, 163, 155, 0.15),
-        inset 0 1px 0 rgba(31, 163, 155, 0.1);
+        var(--premium-shadow-sm),
+        0 0 24px rgba(var(--portdive-teal-rgb), 0.1);
 }
 
 .outcomeCard.validated .outcomeIcon {
     color: var(--portdive-teal);
-    filter: drop-shadow(0 0 8px rgba(31, 163, 155, 0.5));
+    filter: drop-shadow(0 0 6px rgba(var(--portdive-teal-rgb), 0.4));
 }
 
 .outcomeCard.validated .outcomeValue {
@@ -592,21 +799,20 @@
 
 /* Invalidated state */
 .outcomeCard.invalidated {
-    border-color: var(--portdive-coral);
+    border-color: rgba(var(--portdive-coral-rgb), 0.5);
     background: linear-gradient(
         135deg,
-        rgba(255, 107, 107, 0.15) 0%,
+        rgba(var(--portdive-coral-rgb), 0.1) 0%,
         var(--premium-surface) 100%
     );
     box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.3),
-        0 0 40px rgba(255, 107, 107, 0.15),
-        inset 0 1px 0 rgba(255, 107, 107, 0.1);
+        var(--premium-shadow-sm),
+        0 0 24px rgba(var(--portdive-coral-rgb), 0.1);
 }
 
 .outcomeCard.invalidated .outcomeIcon {
     color: var(--portdive-coral);
-    filter: drop-shadow(0 0 8px rgba(255, 107, 107, 0.5));
+    filter: drop-shadow(0 0 6px rgba(var(--portdive-coral-rgb), 0.4));
 }
 
 .outcomeCard.invalidated .outcomeValue {
@@ -615,15 +821,15 @@
 }
 
 .outcomeLabel {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
-    color: var(--premium-text);
+    color: var(--premium-text-secondary);
 }
 
 .outcomeValue {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--premium-text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--premium-text);
     transition: color 0.3s ease;
 }
 
@@ -631,7 +837,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -639,7 +845,7 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .verdictFooter {
-    padding: 16px 32px;
+    padding: 16px 24px;
     border-top: 1px solid var(--premium-border);
     display: flex;
     justify-content: flex-end;
@@ -651,45 +857,47 @@
     align-items: center;
     gap: 8px;
     padding: 8px 16px;
-    background: rgba(31, 163, 155, 0.1);
+    background: linear-gradient(
+        135deg,
+        rgba(var(--portdive-teal-rgb), 0.12) 0%,
+        rgba(var(--portdive-gold-rgb), 0.08) 100%
+    );
     color: var(--portdive-teal);
     border-radius: 8px;
-    border: 1px solid rgba(31, 163, 155, 0.2);
+    border: 1px solid rgba(var(--portdive-teal-rgb), 0.25);
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.05em;
     transition: all 0.3s ease;
 }
 
 .verdictBadge.balanced {
-    background: rgba(61, 114, 255, 0.1);
+    background: linear-gradient(
+        135deg,
+        rgba(var(--portdive-blue-rgb), 0.12) 0%,
+        rgba(var(--portdive-blue-rgb), 0.06) 100%
+    );
     color: var(--portdive-blue);
-    border: 1px solid rgba(61, 114, 255, 0.2);
+    border-color: rgba(var(--portdive-blue-rgb), 0.25);
 }
 
 .verdictBadge.undecidable {
     background: rgba(106, 122, 132, 0.1);
     color: var(--premium-text-muted);
-    border: 1px solid rgba(106, 122, 132, 0.2);
+    border-color: rgba(106, 122, 132, 0.2);
 }
 
 .verdictBadge.validated {
-    background: rgba(31, 163, 155, 0.15);
+    background: rgba(var(--portdive-teal-rgb), 0.15);
     color: var(--portdive-teal);
-    border: 1px solid rgba(31, 163, 155, 0.3);
-    box-shadow:
-        0 0 12px rgba(31, 163, 155, 0.2),
-        inset 0 0 8px rgba(31, 163, 155, 0.1);
+    border-color: rgba(var(--portdive-teal-rgb), 0.35);
 }
 
 .verdictBadge.invalidated {
-    background: rgba(255, 107, 107, 0.15);
+    background: rgba(var(--portdive-coral-rgb), 0.15);
     color: var(--portdive-coral);
-    border: 1px solid rgba(255, 107, 107, 0.3);
-    box-shadow:
-        0 0 12px rgba(255, 107, 107, 0.2),
-        inset 0 0 8px rgba(255, 107, 107, 0.1);
+    border-color: rgba(var(--portdive-coral-rgb), 0.35);
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -700,27 +908,34 @@
     color: var(--portdive-coral);
 }
 
+.verdictPanelCorrective .sectionTitle::before {
+    background: linear-gradient(
+        180deg,
+        var(--portdive-coral) 0%,
+        var(--portdive-gold) 100%
+    );
+}
+
 .verdictPanelCorrective .thesisLabel {
     color: var(--portdive-coral);
 }
 
 /* In corrective mode, validated uses coral, invalidated uses teal */
 .verdictPanelCorrective .outcomeCard.validated {
-    border-color: var(--portdive-coral);
+    border-color: rgba(var(--portdive-coral-rgb), 0.5);
     background: linear-gradient(
         135deg,
-        rgba(255, 107, 107, 0.15) 0%,
+        rgba(var(--portdive-coral-rgb), 0.1) 0%,
         var(--premium-surface) 100%
     );
     box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.3),
-        0 0 40px rgba(255, 107, 107, 0.15),
-        inset 0 1px 0 rgba(255, 107, 107, 0.1);
+        var(--premium-shadow-sm),
+        0 0 24px rgba(var(--portdive-coral-rgb), 0.1);
 }
 
 .verdictPanelCorrective .outcomeCard.validated .outcomeIcon {
     color: var(--portdive-coral);
-    filter: drop-shadow(0 0 8px rgba(255, 107, 107, 0.5));
+    filter: drop-shadow(0 0 6px rgba(var(--portdive-coral-rgb), 0.4));
 }
 
 .verdictPanelCorrective .outcomeCard.validated .outcomeValue {
@@ -728,21 +943,20 @@
 }
 
 .verdictPanelCorrective .outcomeCard.invalidated {
-    border-color: var(--portdive-teal);
+    border-color: rgba(var(--portdive-teal-rgb), 0.5);
     background: linear-gradient(
         135deg,
-        rgba(31, 163, 155, 0.15) 0%,
+        rgba(var(--portdive-teal-rgb), 0.1) 0%,
         var(--premium-surface) 100%
     );
     box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.3),
-        0 0 40px rgba(31, 163, 155, 0.15),
-        inset 0 1px 0 rgba(31, 163, 155, 0.1);
+        var(--premium-shadow-sm),
+        0 0 24px rgba(var(--portdive-teal-rgb), 0.1);
 }
 
 .verdictPanelCorrective .outcomeCard.invalidated .outcomeIcon {
     color: var(--portdive-teal);
-    filter: drop-shadow(0 0 8px rgba(31, 163, 155, 0.5));
+    filter: drop-shadow(0 0 6px rgba(var(--portdive-teal-rgb), 0.4));
 }
 
 .verdictPanelCorrective .outcomeCard.invalidated .outcomeValue {
@@ -750,21 +964,15 @@
 }
 
 .verdictPanelCorrective .verdictBadge.validated {
-    background: rgba(255, 107, 107, 0.15);
+    background: rgba(var(--portdive-coral-rgb), 0.15);
     color: var(--portdive-coral);
-    border: 1px solid rgba(255, 107, 107, 0.3);
-    box-shadow:
-        0 0 12px rgba(255, 107, 107, 0.2),
-        inset 0 0 8px rgba(255, 107, 107, 0.1);
+    border-color: rgba(var(--portdive-coral-rgb), 0.35);
 }
 
 .verdictPanelCorrective .verdictBadge.invalidated {
-    background: rgba(31, 163, 155, 0.15);
+    background: rgba(var(--portdive-teal-rgb), 0.15);
     color: var(--portdive-teal);
-    border: 1px solid rgba(31, 163, 155, 0.3);
-    box-shadow:
-        0 0 12px rgba(31, 163, 155, 0.2),
-        inset 0 0 8px rgba(31, 163, 155, 0.1);
+    border-color: rgba(var(--portdive-teal-rgb), 0.35);
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -774,30 +982,30 @@
 @media (max-width: 768px) {
     .thesisHeroCard {
         margin: 16px;
-        padding: 20px;
-        border-left-width: 6px;
+        padding: 18px;
+        border-left-width: 4px;
     }
 
     .thesisHeroTitle {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .thesisHeroParagraph {
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .decisionTreeContainer {
-        padding: 24px 16px;
+        padding: 20px 16px;
     }
 
     .probabilityCard {
-        padding: 16px 24px;
+        padding: 16px 20px;
         margin-bottom: 0;
-        max-width: 200px;
+        max-width: 180px;
     }
 
     .probabilityValue {
-        font-size: 40px;
+        font-size: 36px;
     }
 
     .desktopOnly {
@@ -831,7 +1039,7 @@
 
     /* Mobile Probability Card inside wrapper */
     .mobileLayoutWrapper .probabilityCard {
-        margin-bottom: 24px;
+        margin-bottom: 20px;
         z-index: 1;
     }
 
@@ -842,7 +1050,6 @@
         align-items: center;
         width: 100%;
         z-index: 1;
-        /* No horizontal padding - let cards align to edges */
         padding: 0;
     }
 
@@ -850,7 +1057,7 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        gap: 0px 28px;
+        gap: 0px 20px;
     }
 
     /* Make branch cards smaller with side margins for visible lines */
@@ -860,7 +1067,7 @@
         max-width: 84%;
         min-width: 61.4%;
         padding: 14px 16px;
-        margin-bottom: 28px;
+        margin-bottom: 20px;
     }
 
     .branchList {
@@ -897,66 +1104,71 @@
         border-radius: 12px;
     }
 
+    .verdictPanelWrapper::before {
+        border-radius: 12px;
+    }
+
     .logoHeader {
         padding: 12px 16px;
     }
 
     .thesisHeroCard {
         margin: 12px;
-        padding: 16px;
-        border-left-width: 5px;
+        padding: 14px;
+        border-left-width: 4px;
     }
 
     .thesisHeroLabel {
-        font-size: 11px;
+        font-size: 10px;
+        padding: 3px 8px;
     }
 
     .thesisHeroTitle {
-        font-size: 16px;
+        font-size: 15px;
     }
 
     .thesisHeroParagraph {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .decisionTreeContainer {
-        padding: 20px 12px;
+        padding: 16px 12px;
     }
 
     .sectionTitle {
-        font-size: 18px;
-        margin-bottom: 20px;
+        font-size: 16px;
+        margin-bottom: 16px;
     }
 
     .probabilityCard {
-        padding: 14px 20px;
+        padding: 12px 16px;
         margin-bottom: 0;
-        max-width: 180px;
+        max-width: 160px;
     }
 
     .probabilityValue {
-        font-size: 36px;
+        font-size: 32px;
     }
 
     .probabilityLabel {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .priceTargets {
-        font-size: 11px;
+        font-size: 10px;
     }
 
     /* Mobile content wrapper - tighter padding on small screens */
     .mobileContentWrapper {
-        padding: 0 12px;
+        padding: 0 8px;
     }
 
     .branchCards {
-        gap: 0px 24px;
+        gap: 0px 16px;
     }
 
     .branchCard {
-        padding: 12px 14px;
+        padding: 12px;
         max-width: 91.5%;
         min-width: 61.4%;
         margin-bottom: 12px;
@@ -967,19 +1179,19 @@
     }
 
     .branchTitle {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .branchItem {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .outcomeContainer {
-        padding-top: 16px;
+        padding-top: 12px;
     }
 
     .outcomeCard {
-        padding: 12px 16px;
+        padding: 10px 14px;
         flex-wrap: wrap;
         justify-content: center;
     }
@@ -989,8 +1201,8 @@
     }
 
     .verdictBadge {
-        font-size: 11px;
-        padding: 5px 10px;
+        font-size: 10px;
+        padding: 6px 12px;
     }
 }
 
@@ -998,34 +1210,47 @@
 /* LIGHT MODE */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-/* Light mode uses global --premium-* variables from custom.css */
 [data-theme="light"] .verdictPanelWrapper {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --premium-bg: #f8faf9;
+    --premium-surface: #ffffff;
+    --premium-surface-alt: #f0f4f2;
+    --premium-text: #0a1a1f;
+    --premium-text-secondary: #5a6570;
+    --premium-text-muted: #8a9199;
+    --premium-border: rgba(10, 26, 31, 0.12);
+    --premium-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+    --premium-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+    --premium-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+    box-shadow: var(--premium-shadow-md);
+}
+
+[data-theme="light"] .verdictPanelWrapper::before {
+    opacity: 0.3;
 }
 
 [data-theme="light"] .thesisHeroCard {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    background: var(--premium-surface);
+    box-shadow: var(--premium-shadow-sm);
 }
 
 [data-theme="light"] .thesisHeroCard:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--premium-shadow-md);
 }
 
 [data-theme="light"] .thesisHeroCard.corrective {
-    background: var(--premium-surface);
+    box-shadow: var(--premium-shadow-sm);
 }
 
 [data-theme="light"] .thesisHeroCard.corrective:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--premium-shadow-md);
 }
 
 [data-theme="light"] .probabilityCard {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--premium-shadow-sm);
 }
 
 [data-theme="light"] .probabilityCard:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--premium-shadow-md);
 }
 
 [data-theme="light"] .probabilityValue {
@@ -1033,7 +1258,7 @@
 }
 
 [data-theme="light"] .branchCard {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--premium-shadow-sm);
 }
 
 [data-theme="light"] .branchCard.teal {
@@ -1041,7 +1266,7 @@
 }
 
 [data-theme="light"] .branchCard.teal:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--premium-shadow-md);
 }
 
 [data-theme="light"] .branchCard.coral {
@@ -1049,72 +1274,46 @@
 }
 
 [data-theme="light"] .branchCard.coral:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--premium-shadow-md);
 }
 
-[data-theme="light"] .branchCard.activeCard.teal {
-    box-shadow: 0 4px 16px rgba(31, 163, 155, 0.1);
-}
-
+[data-theme="light"] .branchCard.activeCard.teal,
 [data-theme="light"] .branchCard.activeCard.coral {
-    box-shadow: 0 4px 16px rgba(255, 107, 107, 0.1);
+    box-shadow: var(--premium-shadow-md);
 }
 
-[data-theme="light"] .branchIcon.teal {
-    box-shadow: none;
-    border: 1px solid rgba(31, 163, 155, 0.2);
-}
-
+[data-theme="light"] .branchIcon.teal,
 [data-theme="light"] .branchIcon.coral {
     box-shadow: none;
-    border: 1px solid rgba(255, 107, 107, 0.2);
 }
 
-[data-theme="light"] .bulletDot.teal {
-    box-shadow: none;
-}
-
+[data-theme="light"] .bulletDot.teal,
 [data-theme="light"] .bulletDot.coral {
     box-shadow: none;
 }
 
 [data-theme="light"] .outcomeCard {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--premium-shadow-sm);
 }
 
-[data-theme="light"] .outcomeCard.balanced {
-    background: var(--premium-surface);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-[data-theme="light"] .outcomeCard.validated {
-    background: var(--premium-surface);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-[data-theme="light"] .outcomeCard.validated .outcomeIcon {
-    filter: none;
-}
-
+[data-theme="light"] .outcomeCard.balanced,
+[data-theme="light"] .outcomeCard.validated,
 [data-theme="light"] .outcomeCard.invalidated {
     background: var(--premium-surface);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--premium-shadow-sm);
 }
 
+[data-theme="light"] .outcomeCard.validated .outcomeIcon,
 [data-theme="light"] .outcomeCard.invalidated .outcomeIcon {
     filter: none;
 }
 
-[data-theme="light"] .verdictBadge {
-    box-shadow: none;
+[data-theme="light"] .premiumBadge {
+    animation: none;
 }
 
-[data-theme="light"] .verdictBadge.validated {
-    box-shadow: none;
-}
-
-[data-theme="light"] .verdictBadge.invalidated {
-    box-shadow: none;
+[data-theme="light"] .logoHeader::after {
+    opacity: 0.5;
 }
 
 /* Light mode connection paths - use dark color for visibility */
@@ -1131,16 +1330,32 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .verdictPanelWrapper:focus-visible {
-    outline: 2px solid var(--portdive-primary);
+    outline: 2px solid var(--portdive-teal);
     outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .logoHeader::after {
+        animation: none;
+    }
+
+    .premiumBadge {
+        animation: none;
+    }
+
     .verdictPanelWrapper,
+    .thesisHeroCard,
+    .probabilityCard,
     .branchCard,
     .outcomeCard,
     .verdictBadge {
         transition: none;
+    }
+
+    .thesisHeroCard:hover,
+    .probabilityCard:hover,
+    .branchCard:hover {
+        transform: none;
     }
 
     .branchCard.activeCard {
@@ -1155,6 +1370,10 @@
 @media (prefers-contrast: more) {
     .verdictPanelWrapper {
         border-width: 2px;
+    }
+
+    .thesisHeroCard {
+        border-left-width: 6px;
     }
 
     .branchCard {

@@ -1,0 +1,87 @@
+/**
+ * Premium AI Components - Shared Styling System
+ *
+ * This file provides shared styling patterns for AI-PREMIUM features.
+ * Each component maintains its own identity through accent colors while
+ * sharing common structural patterns.
+ *
+ * Color Identities:
+ * - ContradictionResolver: Purple/Blue (AI/Neural theme)
+ * - VerdictPanel: Teal/Gold (Analysis/Decision theme)
+ *
+ * Imported by individual component CSS files.
+ */
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* EXTENDED COLOR PALETTE                                        */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+:root {
+    /* Purple for AI/Neural themed components */
+    --portdive-purple: #8b5cf6;
+    --portdive-purple-rgb: 139, 92, 246;
+
+    /* Gold for Analysis/Decision components */
+    --portdive-gold: #f59e0b;
+    --portdive-gold-rgb: 245, 158, 11;
+
+    /* Amber for warnings/attention */
+    --portdive-amber: #fbbf24;
+    --portdive-amber-rgb: 251, 191, 36;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* SHARED ANIMATIONS                                             */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@keyframes premiumShimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes premiumPulse {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes premiumGlow {
+    0%, 100% {
+        box-shadow: 0 0 8px currentColor;
+    }
+    50% {
+        box-shadow: 0 0 16px currentColor;
+    }
+}
+
+@keyframes premiumFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-2px);
+    }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* REDUCED MOTION PREFERENCE                                     */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
