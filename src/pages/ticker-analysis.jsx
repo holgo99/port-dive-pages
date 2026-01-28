@@ -73,7 +73,6 @@ export default function TickerAnalysisPage() {
               className={styles.tickerInput}
             />
           </div>
-
           <div className={styles.timeframeButtons}>
             <label>Timeframe:</label>
             <div className={styles.buttonGroup}>
@@ -104,40 +103,27 @@ export default function TickerAnalysisPage() {
           <div className={styles.gridContainer}>
             {/* Left Column - Wave Analysis */}
             <div className={styles.column}>
-              <div className={styles.card}>
-                <h3 className={styles.cardTitle}>Elliott Wave Analysis</h3>
-                <WaveCountAnalysis
-                  ticker={selectedTicker}
-                  timeframe={timeframe}
-                />
-              </div>
-
+              <WaveCountAnalysis
+                ticker={selectedTicker}
+                timeframe={timeframe}
+              />
               {/* Signal Matrix */}
-              <div className={styles.card}>
-                <h3 className={styles.cardTitle}>Signal Matrix</h3>
-                <SignalMatrix daysToShow={daysToShow} ticker={selectedTicker} />
-              </div>
+              <SignalMatrix daysToShow={daysToShow} ticker={selectedTicker} />
             </div>
 
             {/* Right Column - Technical Indicators */}
             <div className={styles.column}>
               {/* Moving Averages */}
-              <div className={styles.card}>
-                <h3 className={styles.cardTitle}>Moving Averages</h3>
-                <MovingAveragesDashboard
-                  daysToShow={daysToShow}
-                  ticker={selectedTicker}
-                />
-              </div>
+              <MovingAveragesDashboard
+                daysToShow={daysToShow}
+                ticker={selectedTicker}
+              />
 
               {/* Oscillators */}
-              <div className={styles.card}>
-                <h3 className={styles.cardTitle}>Oscillators</h3>
-                <OscillatorsDashboard
-                  daysToShow={daysToShow}
-                  ticker={selectedTicker}
-                />
-              </div>
+              <OscillatorsDashboard
+                daysToShow={daysToShow}
+                ticker={selectedTicker}
+              />
             </div>
           </div>
 
