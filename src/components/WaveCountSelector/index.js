@@ -91,11 +91,11 @@ export const WaveCountSelector = ({
 
   return (
     <div
-      className={styles.selectorWrapper}
+      className={styles.waveCountSelectorWrapper}
       role="tablist"
       aria-label={ariaLabel}
     >
-      <div className={styles.selectorLabel}>Wave Count</div>
+      <div className={styles.waveCountSelectorLabel}>Wave Count</div>
       <div className={styles.itemsContainer}>
         {items.map((scenario) => (
           <WaveCountLink

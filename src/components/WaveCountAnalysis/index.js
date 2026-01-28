@@ -62,6 +62,48 @@ const ElliottWaveIcon = ({ size = 24 }) => (
   </svg>
 );
 
+const ChartIcon = ({ size = 16 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M3 3v18h18" />
+    <path d="M18 9l-5 5-4-4-3 3" />
+  </svg>
+);
+
+const SelectorIcon = ({ size = 16 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M3 3v18h18" />
+    <path d="M18 9l-5 5-4-4-3 3" />
+  </svg>
+);
+
+const VerdictIcon = ({ size = 16 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M3 3v18h18" />
+    <path d="M18 9l-5 5-4-4-3 3" />
+  </svg>
+);
+
 // Inner component that consumes the WaveCount context
 function WaveCountAnalysisInner() {
   // Get config from context (if available)
@@ -90,18 +132,19 @@ function WaveCountAnalysisInner() {
 
   return (
     <>
-      {/* Wave Count Selector */}
-      <WaveCountSelector showProbability={true} />
-
       <div className={styles.waveCountWrapper}>
         {/* Logo Header */}
         <div className={styles.logoHeader}>
           <ElliottWaveIcon size={24} />
-          <span className={styles.logoText}>WaveCountChart</span>
+          <span className={styles.logoText}>WaveCountAnalysis</span>
         </div>
 
         {/* Chart Container */}
-        <div className={styles.chartContainer} ref={containerRef}>
+        <section className={styles.wcaSection}>
+          <div className={styles.sectionHeader}>
+            <ChartIcon size={18} />
+            <h2 className={styles.sectionTitle}>Chart Overlay</h2>
+          </div>
           <div className={styles.chartWrapper}>
             <ChartCanvas
               data={ohlcvContext.data}
@@ -116,7 +159,28 @@ function WaveCountAnalysisInner() {
               />
             </ChartCanvas>
           </div>
-        </div>
+        </section>
+
+        {/* Wave Count Selector */}
+        <section className={styles.wcaSection}>
+          <div className={styles.sectionHeader}>
+            <SelectorIcon size={18} />
+            <h2 className={styles.sectionTitle}>Wave Count Selector</h2>
+          </div>
+          <WaveCountSelector showProbability={true} />
+        </section>
+
+        {/* Verdict Panel (if available) */}
+        <section className={styles.wcaSection}>
+          <div className={styles.sectionHeader}>
+            <VerdictIcon size={18} />
+            <h2 className={styles.sectionTitle}>Verdict</h2>
+          </div>
+          <VerdictPanel
+            verdict={waveCounts.activeScenario.verdict}
+            isCorrective={waveCounts.activeScenario.mode === "CORRECTIVE"}
+          />
+        </section>
 
         {/* Footer Badge */}
         <div className={styles.footer}>
@@ -150,13 +214,6 @@ function WaveCountAnalysisInner() {
           </span>
         </div>
       </div>
-      {/* Verdict Panel (if available) */}
-      {waveCounts.activeScenario?.verdict?.length > 0 && (
-        <VerdictPanel
-          verdict={waveCounts.activeScenario.verdict}
-          isCorrective={waveCounts.activeScenario.mode === "CORRECTIVE"}
-        />
-      )}
     </>
   );
 }

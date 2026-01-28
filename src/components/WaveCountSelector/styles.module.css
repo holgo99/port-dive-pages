@@ -17,10 +17,9 @@
 /* WRAPPER */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-.selectorWrapper {
+.waveCountSelectorWrapper {
     display: flex;
     gap: 12px;
-    margin-bottom: 24px;
     padding: 20px 24px;
     background: var(--premium-bg);
     border: 1px solid var(--premium-border);
@@ -32,7 +31,7 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.selectorWrapper:hover {
+.waveCountSelectorWrapper:hover {
     box-shadow: var(--premium-shadow-md);
 }
 
@@ -40,7 +39,7 @@
 /* LABEL */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-.selectorLabel {
+.waveCountSelectorLabel {
     font-size: 11px;
     color: var(--premium-text-muted);
     text-transform: uppercase;
@@ -231,12 +230,12 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 @media (max-width: 768px) {
-    .selectorWrapper {
+    .waveCountSelectorWrapper {
         padding: 16px;
         gap: 10px;
     }
 
-    .selectorLabel {
+    .waveCountSelectorLabel {
         width: 100%;
         padding-right: 0;
         padding-bottom: 12px;
@@ -270,13 +269,13 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 @media (max-width: 480px) {
-    .selectorWrapper {
+    .waveCountSelectorWrapper {
         padding: 14px;
         border-radius: 12px;
         margin-bottom: 16px;
     }
 
-    .selectorLabel {
+    .waveCountSelectorLabel {
         font-size: 10px;
         padding-bottom: 10px;
     }
@@ -307,11 +306,11 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 /* Light mode uses global --premium-* variables from custom.css */
-[data-theme="light"] .selectorWrapper {
+[data-theme="light"] .waveCountSelectorWrapper {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-[data-theme="light"] .selectorWrapper:hover {
+[data-theme="light"] .waveCountSelectorWrapper:hover {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
@@ -346,7 +345,7 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 @media (prefers-reduced-motion: reduce) {
-    .selectorWrapper,
+    .waveCountSelectorWrapper,
     .scenarioLink,
     .scenarioLabel,
     .scenarioProbability {
@@ -359,7 +358,7 @@
 }
 
 @media (prefers-contrast: more) {
-    .selectorWrapper {
+    .waveCountSelectorWrapper {
         border-width: 2px;
     }
 
@@ -372,7 +371,7 @@
         border-width: 3px;
     }
 
-    .selectorLabel {
+    .waveCountSelectorLabel {
         border-right-width: 2px;
     }
 }
