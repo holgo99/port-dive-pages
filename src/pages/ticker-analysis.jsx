@@ -1,12 +1,13 @@
 /**
- * TickerAnalysisPage - REFACTORED
+ * TickerAnalysisPage - GOLDEN RATIO DESIGN
  *
- * New Architecture:
+ * Architecture:
  * - Tab-based navigation for analysis sections
- * - Split layout: 61.4% Tabs + 38.6% AITickerIntel
+ * - Golden Ratio split layout: 61.8% Tabs + 38.2% AITickerIntel (φ = 1.618)
  * - TickerIntelDashboard, WaveCountAnalysis, MovingAveragesDashboard, OscillatorsDashboard, ActionSignalMatrix tabs
  * - Dynamic ticker details sidebar
  * - TickerSelector component for unified ticker/timeframe selection
+ * - Fibonacci-based spacing system (5, 8, 13, 21, 34, 55, 89px)
  *
  * @component
  */
@@ -149,9 +150,9 @@ export default function TickerAnalysisPage() {
             />
           </div>
 
-          {/* Split Layout: Tabs (61.4%) + AITickerIntel (38.6%) */}
+          {/* Split Layout: Golden Ratio - Tabs (61.8%) + AITickerIntel (38.2%) */}
           <div className={styles.splitContainer}>
-            {/* Left Column - Tabs Container (61.4%) */}
+            {/* Left Column - Tabs Container (φ major = 61.8%) */}
             <div className={styles.tabsColumn}>
               <TabsContainer
                 tabs={ANALYSIS_TABS}
@@ -174,7 +175,7 @@ export default function TickerAnalysisPage() {
               </div>
             </div>
 
-            {/* Right Column - Ticker Details (38.6%) */}
+            {/* Right Column - Ticker Details (φ minor = 38.2%) */}
             <div className={styles.detailsColumn}>
               <AITickerIntel ticker={selectedTicker} />
             </div>

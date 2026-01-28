@@ -424,6 +424,174 @@ Always include reduced-motion and high-contrast support:
    - Teal/Gold color identity
    - Supports `standalone` and `embedded` variants
 
+## Golden Ratio Design System
+
+The PortDive design system uses the Golden Ratio (φ = 1.618033988749) throughout for mathematically harmonious proportions. This creates visual balance and aesthetic appeal based on principles found in nature and classical art.
+
+### Mathematical Constants
+
+```
+φ (phi) = 1.618033988749
+1/φ = 0.618033988749 (61.8%)
+1 - 1/φ = 0.381966011251 (38.2%)
+Golden Angle ≈ 137.5°
+```
+
+### Golden Ratio CSS Variables
+
+Define these variables at the component or page level:
+
+```css
+.container {
+    /* Golden Ratio Constants */
+    --phi: 1.618033988749;
+    --golden-major: 61.8033988749%;
+    --golden-minor: 38.1966011251%;
+
+    /* Fibonacci-based Spacing Scale
+     * Each step multiplied by φ ≈ 1.618
+     */
+    --golden-1: 5px;     /* 8 / φ */
+    --golden-2: 8px;     /* base */
+    --golden-3: 13px;    /* 8 × φ */
+    --golden-4: 21px;    /* 13 × φ */
+    --golden-5: 34px;    /* 21 × φ */
+    --golden-6: 55px;    /* 34 × φ */
+    --golden-7: 89px;    /* 55 × φ */
+
+    /* Golden Ratio Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 13px;    /* 8 × φ */
+    --radius-lg: 21px;    /* 13 × φ */
+    --radius-xl: 34px;    /* 21 × φ */
+}
+```
+
+### Layout Split (Golden Ratio)
+
+For two-column layouts, use the exact golden ratio:
+
+```css
+.splitContainer {
+    display: grid;
+    /* Major: 61.8% | Minor: 38.2% */
+    grid-template-columns: 61.8033988749fr 38.1966011251fr;
+    gap: var(--golden-5);  /* 34px - Fibonacci number */
+}
+```
+
+### Golden Angle Gradients
+
+Use the golden angle (≈137.5°) for natural spiral-like gradient distribution:
+
+```css
+.card {
+    background: linear-gradient(
+        137.5deg,  /* Golden angle */
+        rgba(var(--portdive-teal-rgb), 0.06) 0%,
+        var(--premium-surface-alt) 61.8%,
+        var(--premium-surface-alt) 100%
+    );
+}
+
+/* Golden ratio gradient stops */
+.gradientBorder {
+    background: linear-gradient(
+        137.5deg,
+        rgba(var(--portdive-teal-rgb), 0.4) 0%,
+        rgba(var(--portdive-gold-rgb), 0.25) 38.2%,
+        rgba(var(--portdive-blue-rgb), 0.3) 61.8%,
+        rgba(var(--portdive-teal-rgb), 0.2) 100%
+    );
+}
+```
+
+### Golden Spiral Background Positioning
+
+Position elements at golden ratio focal points:
+
+```css
+.container::before {
+    background: radial-gradient(
+        ellipse 61.8% 61.8% at 61.8% 38.2%,
+        rgba(var(--portdive-teal-rgb), 0.06) 0%,
+        transparent 61.8%
+    ),
+    radial-gradient(
+        ellipse 38.2% 38.2% at 38.2% 61.8%,
+        rgba(var(--portdive-gold-rgb), 0.04) 0%,
+        transparent 38.2%
+    );
+}
+```
+
+### Grid Pattern with Golden Sizing
+
+Use Fibonacci numbers for grid patterns:
+
+```css
+.section::after {
+    background-image:
+        linear-gradient(rgba(var(--portdive-teal-rgb), 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(var(--portdive-teal-rgb), 0.02) 1px, transparent 1px);
+    background-size: var(--golden-4) var(--golden-4);  /* 21px × 21px */
+}
+```
+
+### Animation Timing
+
+Use 1/φ ≈ 0.309s for natural-feeling transitions:
+
+```css
+.element {
+    transition: all 0.309s cubic-bezier(0.4, 0, 0.2, 1);
+}
+```
+
+### Min-Width Calculations
+
+For card grids, use golden ratio-based min-widths:
+
+```css
+.cardGrid {
+    /* 233px ≈ 144 × φ */
+    grid-template-columns: repeat(auto-fit, minmax(233px, 1fr));
+}
+```
+
+### Responsive Golden Ratio
+
+At smaller breakpoints, step down through the Fibonacci sequence:
+
+```css
+/* Desktop: 34px padding */
+.container { padding: var(--golden-5); }
+
+/* Tablet: 21px padding */
+@media (max-width: 1024px) {
+    .container { padding: var(--golden-4); }
+}
+
+/* Mobile: 13px padding */
+@media (max-width: 768px) {
+    .container { padding: var(--golden-3); }
+}
+
+/* Small mobile: 8px padding */
+@media (max-width: 480px) {
+    .container { padding: var(--golden-2); }
+}
+```
+
+### Reference Implementation
+
+See `src/pages/ticker-analysis.module.css` for a complete golden ratio implementation including:
+- Split container with exact 61.8% / 38.2% proportions
+- Fibonacci-based spacing throughout
+- Golden angle gradients
+- Golden spiral background positioning
+- Responsive scaling through Fibonacci sequence
+
 ## Links & Resources
 
 - **Live Site**: https://holgo99.github.io/portdive-pages/

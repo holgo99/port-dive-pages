@@ -1,24 +1,51 @@
 /**
- * Ticker Analysis Page Styles - PREMIUM REDESIGN
+ * Ticker Analysis Page Styles - GOLDEN RATIO DESIGN
  *
  * Features:
- * - Uses PortDive Premium Design System variables
- * - Split container: 61.4% tabs + 38.6% details
+ * - Golden Ratio (φ = 1.618033988749) proportions throughout
+ * - Split container: 61.8% tabs + 38.2% details (exact golden ratio)
+ * - Golden spiral-inspired spacing system
  * - Premium gradient accents and animated borders
  * - Tab navigation styling
  * - Responsive breakpoints
  * - Dark/Light mode support (via [data-theme])
  * - Accessible focus states
  *
+ * Golden Ratio Constants:
+ * φ (phi) = 1.618033988749
+ * 1/φ = 0.618033988749 (61.8%)
+ * 1 - 1/φ = 0.381966011251 (38.2%)
+ *
  * Color Identity: Teal/Gold (Analysis theme)
  * Uses global premium CSS variables from custom.css
  */
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* COMPONENT-SCOPED CSS VARIABLES WITH FALLBACKS               */
+/* GOLDEN RATIO CSS VARIABLES                                  */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .pageContainer {
+    /* Golden Ratio Constants
+     * φ (phi) = 1.618033988749
+     * Major: 61.8033988749% (1/φ)
+     * Minor: 38.1966011251% (1 - 1/φ)
+     */
+    --phi: 1.618033988749;
+    --golden-major: 61.8033988749%;
+    --golden-minor: 38.1966011251%;
+
+    /* Golden Ratio Spacing Scale (Fibonacci-like progression)
+     * Base unit: 8px
+     * Each step multiplied by φ ≈ 1.618
+     */
+    --golden-1: 5px;     /* 8 / φ */
+    --golden-2: 8px;     /* base */
+    --golden-3: 13px;    /* 8 × φ */
+    --golden-4: 21px;    /* 13 × φ */
+    --golden-5: 34px;    /* 21 × φ */
+    --golden-6: 55px;    /* 34 × φ */
+    --golden-7: 89px;    /* 55 × φ */
+
     /* Brand colors with fallbacks */
     --portdive-teal: #1fa39b;
     --portdive-teal-rgb: 31, 163, 155;
@@ -50,7 +77,7 @@
     --font-family-mono:
         ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-    /* Spacing */
+    /* Legacy spacing (for backward compatibility) */
     --space-4: 4px;
     --space-8: 8px;
     --space-12: 12px;
@@ -59,21 +86,23 @@
     --space-24: 24px;
     --space-32: 32px;
 
-    /* Border Radius */
+    /* Golden Ratio Border Radius */
     --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --radius-xl: 20px;
+    --radius-md: 13px;    /* 8 × φ */
+    --radius-lg: 21px;    /* 13 × φ */
+    --radius-xl: 34px;    /* 21 × φ */
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* PAGE CONTAINER                                               */
+/* PAGE CONTAINER - Golden Ratio Max Width                     */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .pageContainer {
-    max-width: 1400px;
+    /* 1440px × 0.618 ≈ 890px minor, 1440px total feels balanced */
+    max-width: 1440px;
     margin: 0 auto;
-    padding: var(--space-32) var(--space-24);
+    /* Padding uses golden ratio spacing */
+    padding: var(--golden-5) var(--golden-4);  /* 34px 21px */
     font-family: var(--font-family-premium);
     color: var(--premium-text);
     background: var(--premium-bg);
@@ -81,7 +110,7 @@
     position: relative;
 }
 
-/* Subtle radial gradient background */
+/* Subtle radial gradient background with golden spiral placement */
 .pageContainer::before {
     content: "";
     position: fixed;
@@ -89,32 +118,33 @@
     left: 0;
     right: 0;
     bottom: 0;
+    /* Golden spiral focal points: 61.8% from edges */
     background: radial-gradient(
-        ellipse at 100% 0%,
+        ellipse 61.8% 61.8% at 61.8% 38.2%,
         rgba(var(--portdive-teal-rgb), 0.06) 0%,
-        transparent 50%
+        transparent 61.8%
     ),
     radial-gradient(
-        ellipse at 0% 100%,
+        ellipse 38.2% 38.2% at 38.2% 61.8%,
         rgba(var(--portdive-gold-rgb), 0.04) 0%,
-        transparent 50%
+        transparent 38.2%
     );
     pointer-events: none;
     z-index: -1;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* HEADER SECTION                                               */
+/* HEADER SECTION - Golden Ratio Spacing                       */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .headerSection {
-    margin-bottom: var(--space-32);
-    padding-bottom: var(--space-24);
+    margin-bottom: var(--golden-5);  /* 34px */
+    padding-bottom: var(--golden-4); /* 21px */
     border-bottom: 1px solid var(--premium-border);
     position: relative;
 }
 
-/* Premium gradient line under header */
+/* Premium gradient line under header with golden ratio stops */
 .headerSection::after {
     content: "";
     position: absolute;
@@ -122,37 +152,45 @@
     left: 0;
     right: 0;
     height: 2px;
+    /* Golden ratio gradient stops: 0%, 38.2%, 50%, 61.8%, 100% */
     background: linear-gradient(
         90deg,
         transparent 0%,
-        rgba(var(--portdive-teal-rgb), 0.6) 20%,
+        rgba(var(--portdive-teal-rgb), 0.4) 19.1%,
+        rgba(var(--portdive-teal-rgb), 0.8) 38.2%,
         var(--portdive-teal) 50%,
-        rgba(var(--portdive-teal-rgb), 0.6) 80%,
+        rgba(var(--portdive-teal-rgb), 0.8) 61.8%,
+        rgba(var(--portdive-teal-rgb), 0.4) 80.9%,
         transparent 100%
     );
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* SPLIT CONTAINER - 61.4% | 38.6%                              */
+/* SPLIT CONTAINER - GOLDEN RATIO 61.8% | 38.2%                */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .splitContainer {
     display: grid;
-    grid-template-columns: 61.4fr 38.6fr;
-    gap: var(--space-32);
-    margin-bottom: var(--space-32);
+    /* Exact golden ratio: φ = 1.618033988749
+     * Major section: 1/φ = 61.8033988749%
+     * Minor section: 1 - 1/φ = 38.1966011251%
+     */
+    grid-template-columns: 61.8033988749fr 38.1966011251fr;
+    gap: var(--golden-5);  /* 34px - Fibonacci number */
+    margin-bottom: var(--golden-5);
 }
 
 .tabsColumn {
     display: flex;
     flex-direction: column;
-    gap: var(--space-24);
+    gap: var(--golden-4);  /* 21px - Fibonacci number */
 }
 
 .detailsColumn {
     display: flex;
     flex-direction: column;
+    /* The details column is the minor golden section (38.2%) */
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -160,18 +198,19 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .fullWidthSection {
-    margin-bottom: var(--space-24);
+    margin-bottom: var(--golden-4);  /* 21px */
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* METADATA SECTION - Premium Card Grid                         */
+/* METADATA SECTION - Golden Ratio Card Grid                   */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .metadataSection {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--space-16);
-    padding: var(--space-24);
+    /* Golden ratio-based min card width: 233px ≈ 144 × φ */
+    grid-template-columns: repeat(auto-fit, minmax(233px, 1fr));
+    gap: var(--golden-3);  /* 13px - Fibonacci number */
+    padding: var(--golden-4);  /* 21px */
     background: var(--premium-surface);
     border: 1px solid var(--premium-border);
     border-radius: var(--radius-xl);
@@ -180,18 +219,20 @@
     overflow: hidden;
 }
 
-/* Animated gradient border effect */
+/* Animated gradient border effect with golden ratio stops */
 .metadataSection::before {
     content: "";
     position: absolute;
     inset: 0;
     border-radius: var(--radius-xl);
     padding: 1px;
+    /* Golden angle ≈ 137.5° for natural spiral distribution */
     background: linear-gradient(
-        135deg,
+        137.5deg,
         rgba(var(--portdive-teal-rgb), 0.4) 0%,
-        rgba(var(--portdive-gold-rgb), 0.2) 50%,
-        rgba(var(--portdive-blue-rgb), 0.3) 100%
+        rgba(var(--portdive-gold-rgb), 0.25) 38.2%,
+        rgba(var(--portdive-blue-rgb), 0.3) 61.8%,
+        rgba(var(--portdive-teal-rgb), 0.2) 100%
     );
     -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
@@ -205,15 +246,16 @@
     opacity: 0.5;
 }
 
-/* Grid pattern overlay */
+/* Grid pattern overlay with golden ratio sizing */
 .metadataSection::after {
     content: "";
     position: absolute;
     inset: 0;
+    /* Grid size 21px - Fibonacci number */
     background-image:
         linear-gradient(rgba(var(--portdive-teal-rgb), 0.02) 1px, transparent 1px),
         linear-gradient(90deg, rgba(var(--portdive-teal-rgb), 0.02) 1px, transparent 1px);
-    background-size: 24px 24px;
+    background-size: var(--golden-4) var(--golden-4);  /* 21px × 21px */
     pointer-events: none;
     opacity: 0.3;
 }
@@ -221,26 +263,27 @@
 .metadataCard {
     display: flex;
     flex-direction: column;
-    gap: var(--space-8);
-    padding: var(--space-20);
+    gap: var(--golden-2);  /* 8px */
+    padding: var(--golden-4);  /* 21px */
     background: linear-gradient(
-        135deg,
+        137.5deg,  /* Golden angle */
         rgba(var(--portdive-teal-rgb), 0.06) 0%,
+        var(--premium-surface-alt) 61.8%,
         var(--premium-surface-alt) 100%
     );
     border: 1px solid var(--premium-border);
     border-radius: var(--radius-lg);
     text-align: center;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.309s cubic-bezier(0.4, 0, 0.2, 1);  /* 1/φ ≈ 0.309s */
     position: relative;
     z-index: 1;
 }
 
 .metadataCard:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);  /* Minor lift */
     box-shadow:
         var(--premium-shadow-sm),
-        0 0 20px rgba(var(--portdive-teal-rgb), 0.08);
+        0 0 var(--golden-4) rgba(var(--portdive-teal-rgb), 0.1);
     border-color: rgba(var(--portdive-teal-rgb), 0.3);
 }
 
@@ -253,12 +296,13 @@
 }
 
 .metadataValue {
-    font-size: 24px;
+    /* Font size: 21px rounded from Fibonacci */
+    font-size: var(--golden-4);
     font-weight: 700;
     font-family: var(--font-family-mono);
     color: var(--premium-text);
     letter-spacing: -0.02em;
-    text-shadow: 0 0 20px rgba(var(--portdive-teal-rgb), 0.3);
+    text-shadow: 0 0 var(--golden-4) rgba(var(--portdive-teal-rgb), 0.3);
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -267,7 +311,8 @@
 
 @media (min-width: 1440px) {
     .pageContainer {
-        padding: 40px var(--space-32);
+        /* 55px vertical (Fibonacci), 34px horizontal (Fibonacci) */
+        padding: var(--golden-6) var(--golden-5);
     }
 }
 
@@ -277,12 +322,13 @@
 
 @media (max-width: 1200px) {
     .splitContainer {
+        /* Stack to single column on tablet */
         grid-template-columns: 1fr;
-        gap: var(--space-24);
+        gap: var(--golden-4);  /* 21px */
     }
 
     .pageContainer {
-        padding: var(--space-24) var(--space-16);
+        padding: var(--golden-4) var(--golden-3);  /* 21px 13px */
     }
 
     .metadataSection {
@@ -292,27 +338,27 @@
 
 @media (max-width: 1024px) {
     .headerSection {
-        margin-bottom: var(--space-24);
-        padding-bottom: var(--space-20);
+        margin-bottom: var(--golden-4);  /* 21px */
+        padding-bottom: var(--golden-3);  /* 13px */
     }
 
     .fullWidthSection {
-        margin-bottom: var(--space-20);
+        margin-bottom: var(--golden-3);  /* 13px */
     }
 
     .metadataSection {
         grid-template-columns: repeat(2, 1fr);
-        gap: var(--space-12);
-        padding: var(--space-20);
+        gap: var(--golden-2);  /* 8px */
+        padding: var(--golden-3);  /* 13px */
         border-radius: var(--radius-lg);
     }
 
     .metadataCard {
-        padding: var(--space-16);
+        padding: var(--golden-3);  /* 13px */
     }
 
     .metadataValue {
-        font-size: 20px;
+        font-size: 18px;
     }
 }
 
@@ -322,80 +368,28 @@
 
 @media (max-width: 768px) {
     .pageContainer {
-        padding: var(--space-20) var(--space-12);
+        padding: var(--golden-3) var(--golden-2);  /* 13px 8px */
     }
 
     .headerSection {
-        margin-bottom: var(--space-20);
-        padding-bottom: var(--space-16);
+        margin-bottom: var(--golden-3);  /* 13px */
+        padding-bottom: var(--golden-3);  /* 13px */
     }
 
     .fullWidthSection {
-        margin-bottom: var(--space-20);
+        margin-bottom: var(--golden-3);  /* 13px */
     }
 
     .metadataSection {
         grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        padding: var(--space-16);
+        gap: var(--golden-2);  /* 8px */
+        padding: var(--golden-3);  /* 13px */
         border-radius: var(--radius-md);
     }
 
     .metadataCard {
-        padding: 14px;
-        gap: 6px;
-        border-radius: var(--radius-sm);
-    }
-
-    .metadataLabel {
-        font-size: 10px;
-    }
-
-    .metadataValue {
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 480px) {
-    .pageContainer {
-        padding: var(--space-16);
-    }
-
-    .pageContainer::before {
-        border-radius: var(--radius-md);
-    }
-
-    .headerSection {
-        margin-bottom: var(--space-16);
-        padding-bottom: var(--space-12);
-    }
-
-    .fullWidthSection {
-        margin-bottom: var(--space-16);
-    }
-
-    .splitContainer {
-        gap: var(--space-20);
-        margin-bottom: var(--space-24);
-    }
-
-    .tabsColumn {
-        gap: var(--space-16);
-    }
-
-    .metadataSection {
-        grid-template-columns: 1fr;
-        gap: var(--space-8);
-        padding: var(--space-12);
-        border-radius: var(--radius-sm);
-    }
-
-    .metadataSection::before {
-        border-radius: var(--radius-sm);
-    }
-
-    .metadataCard {
-        padding: var(--space-12);
+        padding: var(--golden-3);  /* 13px */
+        gap: var(--golden-1);  /* 5px */
         border-radius: var(--radius-sm);
     }
 
@@ -405,6 +399,58 @@
 
     .metadataValue {
         font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pageContainer {
+        padding: var(--golden-3);  /* 13px */
+    }
+
+    .pageContainer::before {
+        border-radius: var(--radius-md);
+    }
+
+    .headerSection {
+        margin-bottom: var(--golden-3);  /* 13px */
+        padding-bottom: var(--golden-2);  /* 8px */
+    }
+
+    .fullWidthSection {
+        margin-bottom: var(--golden-3);  /* 13px */
+    }
+
+    .splitContainer {
+        gap: var(--golden-3);  /* 13px */
+        margin-bottom: var(--golden-4);  /* 21px */
+    }
+
+    .tabsColumn {
+        gap: var(--golden-3);  /* 13px */
+    }
+
+    .metadataSection {
+        grid-template-columns: 1fr;
+        gap: var(--golden-2);  /* 8px */
+        padding: var(--golden-2);  /* 8px */
+        border-radius: var(--radius-sm);
+    }
+
+    .metadataSection::before {
+        border-radius: var(--radius-sm);
+    }
+
+    .metadataCard {
+        padding: var(--golden-2);  /* 8px */
+        border-radius: var(--radius-sm);
+    }
+
+    .metadataLabel {
+        font-size: 10px;
+    }
+
+    .metadataValue {
+        font-size: 14px;
         text-shadow: none;
     }
 }
