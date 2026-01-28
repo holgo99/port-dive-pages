@@ -4,7 +4,7 @@
  * New Architecture:
  * - Tab-based navigation for analysis sections
  * - Split layout: 61.4% Tabs + 38.6% TickerDetails
- * - MainDashboard, WaveCountAnalysis, MovingAveragesDashboard, OscillatorsDashboard, SignalMatrix tabs
+ * - MainDashboard, WaveCountAnalysis, MovingAveragesDashboard, OscillatorsDashboard, ActionSignalMatrix tabs
  * - Dynamic ticker details sidebar
  * - TickerSelector component for unified ticker/timeframe selection
  *
@@ -20,7 +20,7 @@ import { MainDashboard } from "@site/src/components/MainDashboard";
 import { WaveCountAnalysis } from "@site/src/components/WaveCountAnalysis";
 import { MovingAveragesDashboard } from "@site/src/components/MovingAveragesDashboard";
 import { OscillatorsDashboard } from "@site/src/components/OscillatorsDashboard";
-import { SignalMatrix } from "@site/src/components/SignalMatrix";
+import { ActionSignalMatrix } from "@site/src/components/ActionSignalMatrix";
 
 // Import layout components
 import { TickerLayout } from "@site/src/components/TickerLayout";
@@ -60,7 +60,7 @@ const ANALYSIS_TABS = [
   { id: "wave", label: "WaveCountAnalysis" },
   { id: "ma", label: "MovingAveragesDashboard" },
   { id: "oscillators", label: "OscillatorsDashboard" },
-  { id: "signals", label: "SignalMatrix" },
+  { id: "signals", label: "ActionSignalMatrix" },
 ];
 
 /**
@@ -119,7 +119,7 @@ export default function TickerAnalysisPage() {
       case "oscillators":
         return <OscillatorsDashboard {...props} />;
       case "signals":
-        return <SignalMatrix {...props} />;
+        return <ActionSignalMatrix {...props} />;
       default:
         return <MainDashboard {...props} analysisData={analysisData} />;
     }

@@ -351,7 +351,7 @@ Add a colored accent line to section titles:
 
 ### Embedded Variant
 
-When a premium component is embedded inside another component (like AIActionSignalMatrixContradictionResolver inside SignalMatrix), use the `.embedded` class to remove outer styling:
+When a premium component is embedded inside another component (like AIActionSignalMatrixContradictionResolver inside ActionSignalMatrix), use the `.embedded` class to remove outer styling:
 
 ```css
 .embedded {

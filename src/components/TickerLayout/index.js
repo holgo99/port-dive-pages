@@ -30,6 +30,7 @@ import {
 } from "@site/src/hooks/useOHLCVData";
 import { WaveCountProvider } from "@site/src/hooks/useWaveCount";
 import { MovingAveragesSignalsProvider } from "@site/src/hooks/useMovingAveragesSignals";
+import { ActionSignalMatrixProvider } from "@site/src/hooks/useActionSignalMatrix";
 
 // Import ticker configs
 import nbisConfig from "@site/data/tickers/nbis.json";
@@ -57,7 +58,9 @@ export function NBISLayout({
       <OHLCVDataProvider ticker={nbisConfig.ticker} timeframe={timeframe}>
         <WaveCountProvider>
           <MovingAveragesSignalsProvider>
-            <div className={className}>{children}</div>
+            <ActionSignalMatrixProvider>
+              <div className={className}>{children}</div>
+            </ActionSignalMatrixProvider>
           </MovingAveragesSignalsProvider>
         </WaveCountProvider>
       </OHLCVDataProvider>
@@ -90,7 +93,9 @@ export function TickerLayout({
       <OHLCVDataProvider ticker={config.ticker} timeframe={timeframe}>
         <WaveCountProvider>
           <MovingAveragesSignalsProvider>
-            <div className={className}>{children}</div>
+            <ActionSignalMatrixProvider>
+              <div className={className}>{children}</div>
+            </ActionSignalMatrixProvider>
           </MovingAveragesSignalsProvider>
         </WaveCountProvider>
       </OHLCVDataProvider>

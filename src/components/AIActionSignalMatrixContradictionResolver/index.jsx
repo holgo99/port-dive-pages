@@ -4,25 +4,33 @@
  * Premium component for resolving conflicting trading signals using
  * Elliott Wave hierarchy-based decision making.
  *
+ * Automatically consumes contradictions from ActionSignalMatrixProvider context
+ * when available, with props as fallback for backward compatibility.
+ *
  * @component
- * @param {string} variant - Display variant:
- *   - "standalone" (default): Full panel with logo header, wrapper styling, and footer badge.
- *                             Use when rendering as a standalone component.
+ * @param {Array} [contradictions] - Array of contradiction objects (optional if using context)
+ * @param {string} [variant="standalone"] - Display variant:
+ *   - "standalone": Full panel with logo header, wrapper styling, and footer badge.
  *   - "embedded": Minimal content without outer chrome (no header, border, shadow, footer).
- *                 Use when integrating as a section within another component (e.g., SignalMatrix).
+ * @param {string} [className] - Additional CSS class names
  *
  * @example
- * // Standalone usage (default)
- * import AIActionSignalMatrixContradictionResolver from '@site/src/components/AIActionSignalMatrixContradictionResolver';
+ * // With context (recommended) - contradictions auto-populated
+ * <ActionSignalMatrixProvider>
+ *   <AIActionSignalMatrixContradictionResolver />
+ * </ActionSignalMatrixProvider>
  *
+ * @example
+ * // With explicit props (backward compatible)
  * <AIActionSignalMatrixContradictionResolver contradictions={contradictions} />
  *
  * @example
- * // Embedded usage (within SignalMatrix)
- * <AIActionSignalMatrixContradictionResolver variant="embedded" contradictions={contradictions} />
+ * // Embedded variant (within another component)
+ * <AIActionSignalMatrixContradictionResolver variant="embedded" />
  */
 
 import React, { memo } from "react";
+import { useActionSignalMatrix } from "@site/src/hooks/useActionSignalMatrix";
 import styles from "./styles.module.css";
 
 // ============================================================================
@@ -342,11 +350,15 @@ const NoContradictionsState = memo(() => (
 // ============================================================================
 
 export function AIActionSignalMatrixContradictionResolver({
-  contradictions = null,
+  contradictions: contradictionsProp = null,
   variant = "standalone",
   className = "",
 }) {
   const isEmbedded = variant === "embedded";
+
+  // Get contradictions from context (if available), with props as fallback
+  const signalsContext = useActionSignalMatrix();
+  const contradictions = contradictionsProp ?? signalsContext?.contradictions ?? null;
   const hasContradictions = contradictions && contradictions.length > 0;
 
   const wrapperClass = `${styles.contradictionResolverWrapper} ${

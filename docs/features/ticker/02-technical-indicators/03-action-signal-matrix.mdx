@@ -14,11 +14,11 @@ image: ../assets/20260122/oscillators-dashboard-preview.png
 import { NBISLayout } from "@site/src/components/TickerLayout";
 import { TickerSelector } from "@site/src/components/TickerSelector";
 import { AnalysisCard } from "@site/src/components/AnalysisCard";
-import { SignalMatrix } from "@site/src/components/SignalMatrix";
+import { ActionSignalMatrix } from "@site/src/components/ActionSignalMatrix";
 
 <NBISLayout timeframe="1D">
   <TickerSelector title="Technical Indicators | Action Signal Matrix" />
-  <SignalMatrix daysToShow={30} />
+  <ActionSignalMatrix daysToShow={30} />
   <AnalysisCard
     title="Technical Indicators"
     description="Multi-indicator momentum analysis with Buy/Add, Sell/Trim, Hold signal matrix"    
