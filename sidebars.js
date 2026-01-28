@@ -34,11 +34,11 @@ module.exports = {
         },
         {
           type: "category",
-          label: "Oscillators Dashboard",
+          label: "Technical Indicators",
           items: [
-            "nbis/oscillators-dashboard/1h",
-            "nbis/oscillators-dashboard/1d",
-            "nbis/oscillators-dashboard/1w",
+            "nbis/technical-indicators/1h",
+            "nbis/technical-indicators/1d",
+            "nbis/technical-indicators/1w",
           ],
         },
       ],

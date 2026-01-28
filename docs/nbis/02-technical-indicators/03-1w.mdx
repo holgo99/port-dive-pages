@@ -1,9 +1,9 @@
 ---
-id: 1d
+id: 1w
 hide_title: true
-sidebar_label: 1D
-pagination_label: Oscillators Dashboard - 1D
-description: "NBIS 1D Multi-indicator oscillators dashboard with RSI, Williams %R, Stochastic, ADX, and MACD analysis. Gauge indicators, chart visualization, and buy/sell signal confirmation for informed trading decisions."
+sidebar_label: 1W
+pagination_label: Technical Indicators - 1W
+description: "NBIS 1W Multi-indicator dashboards with RSI, Williams %R, Stochastic, ADX, and MACD analysis. Gauge indicators, chart visualization, and buy/sell signal confirmation for informed trading decisions."
 keywords:
   - RSI indicator
   - NBIS technical analysis
@@ -27,8 +27,8 @@ import { MovingAveragesDashboard } from "@site/src/components/MovingAveragesDash
 import { OscillatorsDashboard } from "@site/src/components/OscillatorsDashboard";
 import { SignalMatrix } from "@site/src/components/SignalMatrix";
 
-<NBISLayout timeframe="1D">
-  <TickerHeader title="Oscillators Dashboard" />
+<NBISLayout timeframe="1W">
+  <TickerHeader title="Technical Indicators" />
   <MovingAveragesDashboard daysToShow={30} />
   <OscillatorsDashboard daysToShow={30} />
   <SignalMatrix daysToShow={30} />
