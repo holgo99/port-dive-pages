@@ -26,6 +26,7 @@
 
 import React, { useMemo } from "react";
 import styles from "./styles.module.css";
+import { useWaveCount } from "@site/src/hooks/useWaveCount";
 
 /**
  * SVG Icons for the panel
@@ -473,16 +474,21 @@ export function VerdictPanel({
   validation,
   invalidation,
   outcomeState = "balanced",
-  verdict,
-  isCorrective = false,
+  verdict = undefined,
+  isCorrective = undefined,
   className = "",
 }) {
+  const waveCounts = useWaveCount();
+  const activeVerdict = verdict ?? waveCounts.activeScenario.verdict;
+  const activeIsCorrective =
+    isCorrective ?? waveCounts.activeScenario.mode === "CORRECTIVE";
+
   const parsedContent = useMemo(() => {
-    if (verdict) {
-      return parseVerdictMarkdown(verdict);
+    if (activeVerdict) {
+      return parseVerdictMarkdown(activeVerdict);
     }
     return null;
-  }, [verdict]);
+  }, [activeVerdict]);
 
   // Use parsed content or props, with parsed taking precedence for legacy support
   const displayScenario =
@@ -498,11 +504,13 @@ export function VerdictPanel({
   const displayProbability = parsedContent?.probability || probability || 60;
   const displayPriceTargets = priceTargets || { low: null, high: null };
 
-  const validationColorClass = isCorrective ? styles.coral : styles.teal;
-  const invalidationColorClass = isCorrective ? styles.teal : styles.coral;
+  const validationColorClass = activeIsCorrective ? styles.coral : styles.teal;
+  const invalidationColorClass = activeIsCorrective
+    ? styles.teal
+    : styles.coral;
 
   const wrapperClass = `${styles.verdictPanelWrapper} ${
-    isCorrective ? styles.verdictPanelCorrective : ""
+    activeIsCorrective ? styles.verdictPanelCorrective : ""
   } ${className}`.trim();
 
   return (
@@ -546,7 +554,7 @@ export function VerdictPanel({
         <ThesisHeroCard
           scenario={displayScenario}
           thesisContent={displayThesisContent}
-          isCorrective={isCorrective}
+          isCorrective={activeIsCorrective}
         />
       )}
 
@@ -573,7 +581,7 @@ export function VerdictPanel({
 
         {/* Top Decision Tree SVG */}
         <DecisionTreeSVG
-          isCorrective={isCorrective}
+          isCorrective={activeIsCorrective}
           outcomeState={outcomeState}
         />
 
@@ -640,7 +648,7 @@ export function VerdictPanel({
 
             {/* Bottom Connection SVG (desktop only) */}
             <BottomConnectionSVG
-              isCorrective={isCorrective}
+              isCorrective={activeIsCorrective}
               outcomeState={outcomeState}
             />
 
@@ -648,7 +656,7 @@ export function VerdictPanel({
             <div className={styles.outcomeContainer}>
               <OutcomeCard
                 outcomeState={outcomeState}
-                isCorrective={isCorrective}
+                isCorrective={activeIsCorrective}
               />
             </div>
           </div>

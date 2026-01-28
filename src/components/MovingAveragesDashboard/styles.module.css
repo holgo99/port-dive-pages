@@ -47,10 +47,11 @@
     --premium-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
 
     /* Typography */
-    --font-family-premium: "Inter", -apple-system, BlinkMacSystemFont,
-        "Segoe UI", Roboto, sans-serif;
-    --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-        monospace;
+    --font-family-premium:
+        "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        sans-serif;
+    --font-family-mono:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -63,6 +64,7 @@
     border-radius: 20px;
     overflow: hidden;
     font-family: var(--font-family-premium);
+    margin-bottom: 24px;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */

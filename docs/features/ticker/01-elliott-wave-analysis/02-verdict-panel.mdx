@@ -12,7 +12,8 @@ import { NBISLayout } from "@site/src/components/TickerLayout";
 import { TickerHeader } from "@site/src/components/TickerHeader";
 import { ShareElliotWave } from "@site/src/components/ShareElliotWave.jsx";
 import { AnalysisCard } from "@site/src/components/AnalysisCard";
-import { WaveCountAnalysis } from "@site/src/components/WaveCountAnalysis";
+import { WaveCountProvider } from "@site/src/hooks/useWaveCount";
+import { VerdictPanel } from "@site/src/components/VerdictPanel";
 
 <NBISLayout timeframe="1D">
     <ShareElliotWave />
@@ -20,7 +21,9 @@ import { WaveCountAnalysis } from "@site/src/components/WaveCountAnalysis";
         title="Elliott Wave Count | Verdict Panel"
         subtitle="Apr 2025 → Jun 2026 (Projection) | ATH: $141.10"
     />
-    <WaveCountAnalysis />
+    <WaveCountProvider>
+        <VerdictPanel />
+    </WaveCountProvider>
     <AnalysisCard
         title="Elliott Wave Analysis"
         description="Complete wave count analysis with target levels and risk management"
