@@ -1,35 +1,56 @@
-import React, { useState, useEffect } from "react";
+/**
+ * TickerAnalysisPage - REFACTORED
+ *
+ * New Architecture:
+ * - Tab-based navigation for analysis sections
+ * - Split layout: 61.4% Tabs + 38.6% TickerDetails
+ * - MainDashboard, WaveCountAnalysis, MovingAveragesDashboard, OscillatorsDashboard, SignalMatrix tabs
+ * - Dynamic ticker details sidebar
+ *
+ * @component
+ */
+
+import React, { useState } from "react";
 import Layout from "@theme/Layout";
-//import { useTheme } from "@docusaurus/theme-common";
 import styles from "./ticker-analysis.module.css";
 
-// Import your custom components
-import { TickerLayout } from "@site/src/components/TickerLayout";
-import { TickerHeader } from "@site/src/components/TickerHeader";
+// Import tab components
+import { MainDashboard } from "@site/src/components/MainDashboard";
 import { WaveCountAnalysis } from "@site/src/components/WaveCountAnalysis";
 import { MovingAveragesDashboard } from "@site/src/components/MovingAveragesDashboard";
 import { OscillatorsDashboard } from "@site/src/components/OscillatorsDashboard";
 import { SignalMatrix } from "@site/src/components/SignalMatrix";
+
+// Import layout components
+import { TickerLayout } from "@site/src/components/TickerLayout";
+import { TickerHeader } from "@site/src/components/TickerHeader";
+import { TabsContainer } from "@site/src/components/TabsContainer";
+import { TickerDetails } from "@site/src/components/TickerDetails";
 import { AnalysisCard } from "@site/src/components/AnalysisCard";
+
+// Import config
 import { useTickerConfig } from "@site/src/hooks/useTickerConfig";
 import nbisConfig from "@site/data/tickers/nbis.json";
 
 /**
- * TickerAnalysisPage
- *
- * Complete ticker analysis dashboard with:
- * - Wave count analysis
- * - Moving averages
- * - Oscillators
- * - Signal matrix
- * - Comprehensive analysis card
+ * Tab definitions
+ */
+const ANALYSIS_TABS = [
+  { id: "main", label: "MainDashboard" },
+  { id: "wave", label: "WaveCountAnalysis" },
+  { id: "ma", label: "MovingAveragesDashboard" },
+  { id: "oscillators", label: "OscillatorsDashboard" },
+  { id: "signals", label: "SignalMatrix" },
+];
+
+/**
+ * Main Page Component
  */
 export default function TickerAnalysisPage() {
-  //const { isDarkMode } = useTheme().isDark;
-
-  const [selectedTicker, setSelectedTicker] = useState("AAPL");
+  const [selectedTicker, setSelectedTicker] = useState("NBIS");
   const [timeframe, setTimeframe] = useState("1D");
-  const [analysisData, setAnalysisData] = useState({
+  const [activeTab, setActiveTab] = useState("main");
+  const [analysisData] = useState({
     title: "Full Analysis",
     subtitle: "Apr 2025 → Jun 2026 (Projection) | ATH: $141.10",
     athPrice: 141.1,
@@ -40,19 +61,41 @@ export default function TickerAnalysisPage() {
 
   const daysToShow = 30;
   const timeframeOptions = ["1H", "1D", "1W"];
+  const tickerConfig = nbisConfig;
 
-  // Handle ticker selection
   const handleTickerChange = (e) => {
     setSelectedTicker(e.target.value);
   };
 
-  // Handle timeframe change
   const handleTimeframeChange = (newTimeframe) => {
     setTimeframe(newTimeframe);
   };
 
-  //const tickerConfig = useTickerConfig();
-  const tickerConfig = nbisConfig;
+  /**
+   * Render active tab content
+   */
+  const renderTabContent = () => {
+    const props = {
+      ticker: selectedTicker,
+      timeframe: timeframe,
+      daysToShow: daysToShow,
+    };
+
+    switch (activeTab) {
+      case "main":
+        return <MainDashboard {...props} analysisData={analysisData} />;
+      case "wave":
+        return <WaveCountAnalysis {...props} />;
+      case "ma":
+        return <MovingAveragesDashboard {...props} />;
+      case "oscillators":
+        return <OscillatorsDashboard {...props} />;
+      case "signals":
+        return <SignalMatrix {...props} />;
+      default:
+        return <MainDashboard {...props} analysisData={analysisData} />;
+    }
+  };
 
   return (
     <Layout
@@ -79,7 +122,9 @@ export default function TickerAnalysisPage() {
               {timeframeOptions.map((tf) => (
                 <button
                   key={tf}
-                  className={`${styles.timeframeBtn} ${timeframe === tf ? styles.active : ""}`}
+                  className={`${styles.timeframeBtn} ${
+                    timeframe === tf ? styles.active : ""
+                  }`}
                   onClick={() => handleTimeframeChange(tf)}
                 >
                   {tf}
@@ -99,47 +144,38 @@ export default function TickerAnalysisPage() {
             />
           </div>
 
-          {/* Grid Container - 2 columns on desktop, 1 on mobile */}
-          <div className={styles.gridContainer}>
-            {/* Left Column - Wave Analysis */}
-            <div className={styles.column}>
-              <WaveCountAnalysis
-                ticker={selectedTicker}
-                timeframe={timeframe}
-              />
-              {/* Signal Matrix */}
-              <SignalMatrix daysToShow={daysToShow} ticker={selectedTicker} />
+          {/* Split Layout: Tabs (61.4%) + TickerDetails (38.6%) */}
+          <div className={styles.splitContainer}>
+            {/* Left Column - Tabs Container (61.4%) */}
+            <div className={styles.tabsColumn}>
+              <TabsContainer
+                tabs={ANALYSIS_TABS}
+                activeTab={activeTab}
+                onTabChange={setActiveTab}
+              >
+                {renderTabContent()}
+              </TabsContainer>
+
+              {/* Full Width Analysis Card */}
+              <div className={styles.fullWidthSection}>
+                <AnalysisCard
+                  title="Comprehensive Analysis"
+                  description="Complete analysis with target levels and risk management strategies"
+                  attribution={`${daysToShow} daily candles • Projection to ${analysisData.projectionEnd} • Last updated: ${analysisData.lastUpdated}`}
+                  analysisDate={analysisData.analysisDate}
+                  ticker={selectedTicker}
+                  timeframe={timeframe}
+                />
+              </div>
             </div>
 
-            {/* Right Column - Technical Indicators */}
-            <div className={styles.column}>
-              {/* Moving Averages */}
-              <MovingAveragesDashboard
-                daysToShow={daysToShow}
-                ticker={selectedTicker}
-              />
-
-              {/* Oscillators */}
-              <OscillatorsDashboard
-                daysToShow={daysToShow}
-                ticker={selectedTicker}
-              />
+            {/* Right Column - Ticker Details (38.6%) */}
+            <div className={styles.detailsColumn}>
+              <TickerDetails ticker={selectedTicker} />
             </div>
           </div>
 
-          {/* Analysis Card - Full Width */}
-          <div className={styles.fullWidthSection}>
-            <AnalysisCard
-              title="Comprehensive Analysis"
-              description="Complete analysis with target levels and risk management strategies"
-              attribution={`${daysToShow} daily candles • Projection to ${analysisData.projectionEnd} • Last updated: ${analysisData.lastUpdated}`}
-              analysisDate={analysisData.analysisDate}
-              ticker={selectedTicker}
-              timeframe={timeframe}
-            />
-          </div>
-
-          {/* Metadata Section */}
+          {/* Metadata Section - Full Width */}
           <div className={styles.metadataSection}>
             <div className={styles.metadataCard}>
               <div className={styles.metadataLabel}>ATH Price</div>
