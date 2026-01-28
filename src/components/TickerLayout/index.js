@@ -31,6 +31,7 @@ import {
 import { WaveCountProvider } from "@site/src/hooks/useWaveCount";
 import { MovingAveragesSignalsProvider } from "@site/src/hooks/useMovingAveragesSignals";
 import { ActionSignalMatrixProvider } from "@site/src/hooks/useActionSignalMatrix";
+import { TickerIntelProvider } from "@site/src/hooks/useTickerIntel";
 
 // Import ticker configs
 import nbisConfig from "@site/data/tickers/nbis.json";
@@ -59,7 +60,9 @@ export function NBISLayout({
         <WaveCountProvider>
           <MovingAveragesSignalsProvider>
             <ActionSignalMatrixProvider>
-              <div className={className}>{children}</div>
+              <TickerIntelProvider>
+                <div className={className}>{children}</div>
+              </TickerIntelProvider>
             </ActionSignalMatrixProvider>
           </MovingAveragesSignalsProvider>
         </WaveCountProvider>
@@ -94,7 +97,9 @@ export function TickerLayout({
         <WaveCountProvider>
           <MovingAveragesSignalsProvider>
             <ActionSignalMatrixProvider>
-              <div className={className}>{children}</div>
+              <TickerIntelProvider>
+                <div className={className}>{children}</div>
+              </TickerIntelProvider>
             </ActionSignalMatrixProvider>
           </MovingAveragesSignalsProvider>
         </WaveCountProvider>

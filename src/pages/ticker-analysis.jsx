@@ -4,7 +4,7 @@
  * New Architecture:
  * - Tab-based navigation for analysis sections
  * - Split layout: 61.4% Tabs + 38.6% AITickerIntel
- * - MainDashboard, WaveCountAnalysis, MovingAveragesDashboard, OscillatorsDashboard, ActionSignalMatrix tabs
+ * - TickerIntelDashboard, WaveCountAnalysis, MovingAveragesDashboard, OscillatorsDashboard, ActionSignalMatrix tabs
  * - Dynamic ticker details sidebar
  * - TickerSelector component for unified ticker/timeframe selection
  *
@@ -16,7 +16,7 @@ import Layout from "@theme/Layout";
 import styles from "./ticker-analysis.module.css";
 
 // Import tab components
-import { MainDashboard } from "@site/src/components/MainDashboard";
+import { TickerIntelDashboard } from "@site/src/components/TickerIntelDashboard";
 import { WaveCountAnalysis } from "@site/src/components/WaveCountAnalysis";
 import { MovingAveragesDashboard } from "@site/src/components/MovingAveragesDashboard";
 import { OscillatorsDashboard } from "@site/src/components/OscillatorsDashboard";
@@ -56,7 +56,7 @@ const AVAILABLE_TICKERS = Object.values(TICKER_CONFIGS).map((config) => ({
  * Tab definitions
  */
 const ANALYSIS_TABS = [
-  { id: "main", label: "MainDashboard" },
+  { id: "main", label: "TickerIntelDashboard" },
   { id: "wave", label: "WaveCountAnalysis" },
   { id: "ma", label: "MovingAveragesDashboard" },
   { id: "oscillators", label: "OscillatorsDashboard" },
@@ -111,7 +111,7 @@ export default function TickerAnalysisPage() {
 
     switch (activeTab) {
       case "main":
-        return <MainDashboard {...props} analysisData={analysisData} />;
+        return <TickerIntelDashboard {...props} analysisData={analysisData} />;
       case "wave":
         return <WaveCountAnalysis {...props} />;
       case "ma":
@@ -121,7 +121,7 @@ export default function TickerAnalysisPage() {
       case "signals":
         return <ActionSignalMatrix {...props} />;
       default:
-        return <MainDashboard {...props} analysisData={analysisData} />;
+        return <TickerIntelDashboard {...props} analysisData={analysisData} />;
     }
   };
 
