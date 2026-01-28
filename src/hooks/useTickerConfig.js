@@ -23,7 +23,10 @@
 
 import { createContext, useContext, useMemo } from "react";
 
-// Default config shape for type safety
+// Import ticker configs
+import nbisTickerConfig from "@site/data/tickers/nbis.json";
+
+//  Default config shape for type safety
 const defaultTickerConfig = {
   ticker: "",
   tickerName: "",
@@ -53,7 +56,7 @@ const TickerConfigContext = createContext(defaultTickerConfig);
 export const TickerConfigProvider = ({ config, children }) => {
   // Merge provided config with defaults
   const mergedConfig = useMemo(() => {
-    if (!config) return defaultTickerConfig;
+    if (!config) config = nbisTickerConfig;
 
     return {
       ...defaultTickerConfig,
