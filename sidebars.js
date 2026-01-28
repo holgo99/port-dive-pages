@@ -34,10 +34,7 @@ module.exports = {
             {
               type: "category",
               label: "Elliott Wave Analysis",
-              items: [
-                "features/ticker/elliott-wave-analysis/chart-overlay",
-                "features/ticker/elliott-wave-analysis/verdict-panel",
-              ],
+              items: ["features/ticker/elliott-wave-analysis/chart-overlay"],
             },
             {
               type: "category",
@@ -52,6 +49,7 @@ module.exports = {
               type: "category",
               label: "AI Features",
               items: [
+                "features/ticker/ai-features/ai-verdict-panel",
                 "features/ticker/ai-features/ai-signal-contradiction-resolution",
               ],
             },

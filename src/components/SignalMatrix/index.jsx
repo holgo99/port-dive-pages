@@ -1242,10 +1242,14 @@ export function SignalMatrix({
       />
 
       {/* AI Contradiction Resolution - Premium Feature */}
-      <ContradictionResolver
-        variant="embedded"
-        contradictions={contradictions}
-      />
+      <div
+        className={`${styles.matrixSection} ${styles.aiContradictionResolverSection}`}
+      >
+        <ContradictionResolver
+          variant="embedded"
+          contradictions={contradictions}
+        />
+      </div>
 
       {/* Footer */}
       <footer className={styles.signalMatrixFooter}>

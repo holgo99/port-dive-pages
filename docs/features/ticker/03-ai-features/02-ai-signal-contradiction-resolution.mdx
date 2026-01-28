@@ -13,11 +13,11 @@ image: ../assets/20260122/oscillators-dashboard-preview.png
 import { NBISLayout } from "@site/src/components/TickerLayout";
 import { TickerHeader } from "@site/src/components/TickerHeader";
 import { AnalysisCard } from "@site/src/components/AnalysisCard";
-import { SignalMatrix } from "@site/src/components/SignalMatrix";
+import { ContradictionResolver } from "@site/src/components/ContradictionResolver";
 
 <NBISLayout timeframe="1D">
-  <TickerHeader title="AI Features | AI Signal Contradiction Resolution" />
-  <SignalMatrix daysToShow={30} />
+  <TickerHeader title="AI Features | AI Signal Contradiction Resolution" />  
+  <ContradictionResolver />
   <AnalysisCard
     title="AI Features"
     description="Multi-indicator momentum analysis with Buy/Add, Sell/Trim, Hold signal matrix"    

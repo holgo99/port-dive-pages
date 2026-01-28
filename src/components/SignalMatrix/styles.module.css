@@ -136,6 +136,9 @@
     );
 }
 
+.aiContradictionResolverSection {
+}
+
 .matrixHeader {
     display: flex;
     align-items: center;
@@ -674,7 +677,8 @@
 }
 
 @keyframes pulseConflict {
-    0%, 100% {
+    0%,
+    100% {
         box-shadow:
             0 0 20px rgba(var(--portdive-blue-rgb), 0.12),
             inset 0 0 10px rgba(var(--portdive-blue-rgb), 0.08);
@@ -910,11 +914,7 @@
 
 .confidenceFill {
     height: 100%;
-    background: linear-gradient(
-        90deg,
-        var(--portdive-blue) 0%,
-        #5b8aff 100%
-    );
+    background: linear-gradient(90deg, var(--portdive-blue) 0%, #5b8aff 100%);
     border-radius: 5px;
     box-shadow: 0 0 12px rgba(var(--portdive-blue-rgb), 0.4);
     transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
