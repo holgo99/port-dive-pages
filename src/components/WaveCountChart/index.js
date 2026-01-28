@@ -7,6 +7,20 @@ import { PORTDIVE_THEME } from "@site/src/components/PortDiveTheme";
 // ============================================================================
 
 /**
+ * Generates SVG path "d" attribute from array of pivot points
+ * @param {Array} pivots - Array of {idx, price} objects
+ * @param {Function} idxToX - Function to convert index to X coordinate
+ * @param {Function} priceToY - Function to convert price to Y coordinate
+ * @returns {string} SVG path d attribute
+ */
+const generateWavePath = (pivots, idxToX, priceToY) => {
+  if (!pivots || pivots.length < 2) return "";
+  return pivots
+    .map((p, i) => `${i === 0 ? "M" : "L"} ${idxToX(p.idx)},${priceToY(p.price)}`)
+    .join(" ");
+};
+
+/**
  * WaveCountChart renders Elliott Wave analysis overlays
  * Must be used as a child of ChartCanvas to access chart context
  *
@@ -121,10 +135,36 @@ const WaveCountChart = memo(
       [],
     );
 
+    // Render labels for an array of pivots
+    const renderPivotLabels = useCallback(
+      (pivots, color, isMinor = false) => {
+        if (!pivots || pivots.length === 0) return null;
+        return pivots
+          .filter((p) => p.label) // Only render pivots with labels
+          .map((pivot, i) => {
+            const x = idxToX(pivot.idx);
+            const y = priceToY(pivot.price);
+            // Determine if label should be above (peaks) or below (lows)
+            // For simplicity, alternate or use price comparison
+            const prevPivot = pivots[pivots.indexOf(pivot) - 1];
+            const nextPivot = pivots[pivots.indexOf(pivot) + 1];
+            const isPeak =
+              (prevPivot && pivot.price > prevPivot.price) ||
+              (nextPivot && pivot.price > nextPivot.price);
+            return renderWaveLabel(x, y, pivot.label, isPeak, color, isMinor);
+          });
+      },
+      [idxToX, priceToY, renderWaveLabel],
+    );
+
     // Get projected target price
     const projectedPrice = activeCount?.projected?.at(-1)?.price || null;
 
     if (!activeCount) return null;
+
+    // Get pivots and minorWaves arrays
+    const pivots = activeCount.pivots || [];
+    const minorWaves = activeCount.minorWaves || [];
 
     return (
       <g className="wave-count-overlay">
@@ -282,195 +322,93 @@ const WaveCountChart = memo(
           </g>
         )}
 
-        {/* Motive Wave lines - Primary count */}
-        {analysisState.showMotiveWaves && activeWaveCountId === "primary" && (
-          <g>
-            <path
-              d={`M ${idxToX(activeCount.pivots.wave1Start.idx)},${priceToY(activeCount.pivots.wave1Start.price)}
-                L ${idxToX(activeCount.pivots.wave1Peak.idx)},${priceToY(activeCount.pivots.wave1Peak.price)}
-                L ${idxToX(activeCount.pivots.wave2Low.idx)},${priceToY(activeCount.pivots.wave2Low.price)}
-                L ${idxToX(activeCount.pivots.wave3Peak.idx)},${priceToY(activeCount.pivots.wave3Peak.price)}
-                L ${idxToX(activeCount.pivots.wave4Low.idx)},${priceToY(activeCount.pivots.wave4Low.price)}`}
-              fill="none"
-              stroke={activeCount.color}
-              strokeWidth="2.5"
-              opacity="0.8"
-              strokeLinejoin="round"
-            />
-            {renderWaveLabel(
-              idxToX(activeCount.pivots.wave1Peak.idx),
-              priceToY(activeCount.pivots.wave1Peak.price),
-              activeCount.pivots.wave1Peak.label,
-              true,
-              activeCount.color,
-            )}
-            {renderWaveLabel(
-              idxToX(activeCount.pivots.wave2Low.idx),
-              priceToY(activeCount.pivots.wave2Low.price),
-              activeCount.pivots.wave2Low.label,
-              false,
-              activeCount.color,
-            )}
-            {renderWaveLabel(
-              idxToX(activeCount.pivots.wave3Peak.idx),
-              priceToY(activeCount.pivots.wave3Peak.price),
-              activeCount.pivots.wave3Peak.label,
-              true,
-              activeCount.color,
-            )}
-            {renderWaveLabel(
-              idxToX(activeCount.pivots.wave4Low.idx),
-              priceToY(activeCount.pivots.wave4Low.price),
-              activeCount.pivots.wave4Low.label,
-              false,
-              activeCount.color,
-            )}
-          </g>
-        )}
-
-        {/* Motive Wave lines - Alt2 count */}
-        {analysisState.showMotiveWaves && activeWaveCountId === "alt2" && (
-          <g>
-            <path
-              d={`M ${idxToX(activeCount.pivots.wave1Start.idx)},${priceToY(activeCount.pivots.wave1Start.price)}
-                L ${idxToX(activeCount.pivots.wave1Peak.idx)},${priceToY(activeCount.pivots.wave1Peak.price)}
-                L ${idxToX(activeCount.pivots.wave2Low.idx)},${priceToY(activeCount.pivots.wave2Low.price)}
-                L ${idxToX(activeCount.pivots.wave3Peak.idx)},${priceToY(activeCount.pivots.wave3Peak.price)}`}
-              fill="none"
-              stroke={activeCount.color}
-              strokeWidth="2.5"
-              opacity="0.8"
-              strokeLinejoin="round"
-            />
-            {renderWaveLabel(
-              idxToX(activeCount.pivots.wave1Peak.idx),
-              priceToY(activeCount.pivots.wave1Peak.price),
-              activeCount.pivots.wave1Peak.label,
-              true,
-              activeCount.color,
-            )}
-            {renderWaveLabel(
-              idxToX(activeCount.pivots.wave2Low.idx),
-              priceToY(activeCount.pivots.wave2Low.price),
-              activeCount.pivots.wave2Low.label,
-              false,
-              activeCount.color,
-            )}
-            {renderWaveLabel(
-              idxToX(activeCount.pivots.wave3Peak.idx),
-              priceToY(activeCount.pivots.wave3Peak.price),
-              activeCount.pivots.wave3Peak.label,
-              true,
-              activeCount.color,
-            )}
-          </g>
-        )}
-
-        {/* Corrective Wave lines - Alt1 count */}
-        {analysisState.showCorrectiveWaves && activeWaveCountId === "alt1" && (
-          <g>
-            <path
-              d={`M ${idxToX(activeCount.pivots.wave1Start.idx)},${priceToY(activeCount.pivots.wave1Start.price)}
-                L ${idxToX(activeCount.pivots.waveALow.idx)},${priceToY(activeCount.pivots.waveALow.price)}
-                L ${idxToX(activeCount.pivots.waveBPeak.idx)},${priceToY(activeCount.pivots.waveBPeak.price)}`}
-              fill="none"
-              stroke={activeCount.color}
-              strokeWidth="2.5"
-              opacity="0.8"
-              strokeLinejoin="round"
-            />
-            {renderWaveLabel(
-              idxToX(activeCount.pivots.waveALow.idx),
-              priceToY(activeCount.pivots.waveALow.price),
-              activeCount.pivots.waveALow.label,
-              false,
-              activeCount.color,
-            )}
-            {renderWaveLabel(
-              idxToX(activeCount.pivots.waveBPeak.idx),
-              priceToY(activeCount.pivots.waveBPeak.price),
-              activeCount.pivots.waveBPeak.label,
-              true,
-              activeCount.color,
-            )}
-          </g>
-        )}
-
-        {/* Minor waves - Primary count */}
-        {analysisState.showMinorWaves &&
+        {/* Motive Wave lines - Primary count (using array-based pivots) */}
+        {analysisState.showMotiveWaves &&
           activeWaveCountId === "primary" &&
-          activeCount.minorWaves && (
+          pivots.length > 0 && (
             <g>
               <path
-                d={`M ${idxToX(activeCount.pivots.wave4Low.idx)},${priceToY(activeCount.pivots.wave4Low.price)}
-                L ${idxToX(activeCount.minorWaves.minorIPeak.idx)},${priceToY(activeCount.minorWaves.minorIPeak.price)}
-                L ${idxToX(activeCount.minorWaves.minorIILow.idx)},${priceToY(activeCount.minorWaves.minorIILow.price)}
-                L ${idxToX(data.length - 1)},${priceToY(currentPrice)}`}
+                d={generateWavePath(pivots, idxToX, priceToY)}
+                fill="none"
+                stroke={activeCount.color}
+                strokeWidth="2.5"
+                opacity="0.8"
+                strokeLinejoin="round"
+              />
+              {renderPivotLabels(pivots, activeCount.color)}
+            </g>
+          )}
+
+        {/* Motive Wave lines - Alt2 count (using array-based pivots) */}
+        {analysisState.showMotiveWaves &&
+          activeWaveCountId === "alt2" &&
+          pivots.length > 0 && (
+            <g>
+              <path
+                d={generateWavePath(pivots, idxToX, priceToY)}
+                fill="none"
+                stroke={activeCount.color}
+                strokeWidth="2.5"
+                opacity="0.8"
+                strokeLinejoin="round"
+              />
+              {renderPivotLabels(pivots, activeCount.color)}
+            </g>
+          )}
+
+        {/* Corrective Wave lines - Alt1 count (using array-based pivots) */}
+        {analysisState.showCorrectiveWaves &&
+          activeWaveCountId === "alt1" &&
+          pivots.length > 0 && (
+            <g>
+              <path
+                d={generateWavePath(pivots, idxToX, priceToY)}
+                fill="none"
+                stroke={activeCount.color}
+                strokeWidth="2.5"
+                opacity="0.8"
+                strokeLinejoin="round"
+              />
+              {renderPivotLabels(pivots, activeCount.color)}
+            </g>
+          )}
+
+        {/* Minor waves - Primary count (using array-based minorWaves) */}
+        {analysisState.showMinorWaves &&
+          activeWaveCountId === "primary" &&
+          minorWaves.length > 0 && (
+            <g>
+              {/* Connect from last pivot to first minor wave, then through minor waves to current price */}
+              <path
+                d={`${generateWavePath(
+                  [pivots.at(-1), ...minorWaves],
+                  idxToX,
+                  priceToY,
+                )} L ${idxToX(data.length - 1)},${priceToY(currentPrice)}`}
                 fill="none"
                 stroke={activeCount.color}
                 strokeWidth="1.5"
                 strokeDasharray="6,4"
                 opacity="0.7"
               />
-              {renderWaveLabel(
-                idxToX(activeCount.minorWaves.minorIPeak.idx),
-                priceToY(activeCount.minorWaves.minorIPeak.price),
-                activeCount.minorWaves.minorIPeak.label,
-                true,
-                activeCount.color,
-                true,
-              )}
-              {renderWaveLabel(
-                idxToX(activeCount.minorWaves.minorIILow.idx),
-                priceToY(activeCount.minorWaves.minorIILow.price),
-                activeCount.minorWaves.minorIILow.label,
-                false,
-                activeCount.color,
-                true,
-              )}
+              {renderPivotLabels(minorWaves, activeCount.color, true)}
             </g>
           )}
 
-        {/* Minor waves - Alt2 count (W-X-Y) */}
+        {/* Minor waves - Alt2 count (W-X-Y) - using array-based minorWaves */}
         {analysisState.showMinorWaves &&
           activeWaveCountId === "alt2" &&
-          activeCount.minorWaves?.waveWStart && (
+          minorWaves.length > 0 && (
             <g>
               <path
-                d={`M ${idxToX(activeCount.minorWaves.waveWStart.idx)},${priceToY(activeCount.minorWaves.waveWStart.price)}
-                L ${idxToX(activeCount.minorWaves.waveWLow.idx)},${priceToY(activeCount.minorWaves.waveWLow.price)}
-                L ${idxToX(activeCount.minorWaves.waveXPeak.idx)},${priceToY(activeCount.minorWaves.waveXPeak.price)}
-                L ${idxToX(activeCount.minorWaves.waveYLow.idx)},${priceToY(activeCount.minorWaves.waveYLow.price)}`}
+                d={generateWavePath(minorWaves, idxToX, priceToY)}
                 fill="none"
                 stroke={PORTDIVE_THEME.secondary}
                 strokeWidth="1.5"
                 strokeDasharray="6,4"
                 opacity="0.7"
               />
-              {renderWaveLabel(
-                idxToX(activeCount.minorWaves.waveWLow.idx),
-                priceToY(activeCount.minorWaves.waveWLow.price),
-                activeCount.minorWaves.waveWLow.label,
-                false,
-                PORTDIVE_THEME.secondary,
-                true,
-              )}
-              {renderWaveLabel(
-                idxToX(activeCount.minorWaves.waveXPeak.idx),
-                priceToY(activeCount.minorWaves.waveXPeak.price),
-                activeCount.minorWaves.waveXPeak.label,
-                true,
-                PORTDIVE_THEME.secondary,
-                true,
-              )}
-              {renderWaveLabel(
-                idxToX(activeCount.minorWaves.waveYLow.idx),
-                priceToY(activeCount.minorWaves.waveYLow.price),
-                activeCount.minorWaves.waveYLow.label,
-                false,
-                PORTDIVE_THEME.secondary,
-                true,
-              )}
+              {renderPivotLabels(minorWaves, PORTDIVE_THEME.secondary, true)}
             </g>
           )}
 

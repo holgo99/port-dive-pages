@@ -5,44 +5,44 @@
     "probability": "35%",
     "mode": "MOTIVE",
     "color": "PORTDIVE_THEME.primary",
-    "pivots": {
-      "wave1Start": {
+    "pivots": [
+      {
         "idx": 197,
         "price": 18.31
       },
-      "wave1Peak": {
+      {
         "idx": 254,
         "price": 55.75,
         "label": "1"
       },
-      "wave2Low": {
+      {
         "idx": 261,
         "price": 43.89,
         "label": "2"
       },
-      "wave3Peak": {
+      {
         "idx": 326,
         "price": 141.1,
         "label": "3"
       },
-      "wave4Low": {
+      {
         "idx": 373,
         "price": 75.25,
         "label": "4"
       }
-    },
-    "minorWaves": {
-      "minorIPeak": {
+    ],
+    "minorWaves": [
+      {
         "idx": 394,
         "price": 110.5,
         "label": "i"
       },
-      "minorIILow": {
+      {
         "idx": 398,
         "price": 91.36,
         "label": "ii"
       }
-    },
+    ],
     "projected": [
       {
         "idx": 373,
@@ -130,23 +130,23 @@
     "probability": "45%",
     "mode": "CORRECTIVE",
     "color": "PORTDIVE_THEME.secondary",
-    "pivots": {
-      "wave1Start": {
+    "pivots": [
+      {
         "idx": 326,
         "price": 141.1
       },
-      "waveALow": {
+      {
         "idx": 374,
         "price": 75.25,
         "label": "A"
       },
-      "waveBPeak": {
+      {
         "idx": 393,
         "price": 110.5,
         "label": "B"
       }
-    },
-    "minorWaves": {},
+    ],
+    "minorWaves": [],
     "projected": [
       {
         "idx": 393,
@@ -228,48 +228,48 @@
     "probability": "20%",
     "mode": "CORRECTIVE",
     "color": "PORTDIVE_THEME.primary",
-    "pivots": {
-      "wave1Start": {
+    "pivots": [
+      {
         "idx": 197,
         "price": 18.31
       },
-      "wave1Peak": {
+      {
         "idx": 254,
         "price": 55.75,
         "label": "1"
       },
-      "wave2Low": {
+      {
         "idx": 261,
         "price": 43.89,
         "label": "2"
       },
-      "wave3Peak": {
+      {
         "idx": 326,
         "price": 141.1,
         "label": "3"
       }
-    },
-    "minorWaves": {
-      "waveWStart": {
+    ],
+    "minorWaves": [
+      {
         "idx": 326,
         "price": 141.1
       },
-      "waveWLow": {
+      {
         "idx": 374,
         "price": 75.25,
         "label": "W"
       },
-      "waveXPeak": {
+      {
         "idx": 394,
         "price": 110.5,
         "label": "X"
       },
-      "waveYLow": {
+      {
         "idx": 398,
         "price": 91.36,
         "label": "Y"
       }
-    },
+    ],
     "projected": [
       {
         "idx": 326,
