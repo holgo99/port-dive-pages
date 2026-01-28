@@ -32,7 +32,7 @@ import styles from "./styles.module.css";
 const MA_CONFIG = {
   SMA_50: {
     key: "SMA_50",
-    dataKey: "SMA_50",
+    dataKey: "50_MA",
     label: "SMA(50)",
     description: "50-Day Simple Moving Average",
     color: "fast",
@@ -40,7 +40,7 @@ const MA_CONFIG = {
   },
   SMA_200: {
     key: "SMA_200",
-    dataKey: "SMA_200",
+    dataKey: "200_MA",
     label: "SMA(200)",
     description: "200-Day Simple Moving Average",
     color: "slow",
@@ -48,7 +48,7 @@ const MA_CONFIG = {
   },
   EMA_50: {
     key: "EMA_50",
-    dataKey: "EMA_50",
+    dataKey: "50_EMA",
     label: "EMA(50)",
     description: "50-Day Exponential Moving Average",
     color: "fast",
@@ -56,7 +56,7 @@ const MA_CONFIG = {
   },
   EMA_200: {
     key: "EMA_200",
-    dataKey: "EMA_200",
+    dataKey: "200_EMA",
     label: "EMA(200)",
     description: "200-Day Exponential Moving Average",
     color: "slow",
@@ -640,10 +640,10 @@ export function MovingAveragesDashboard({
     // Calculate price range for charts
     const allPrices = recent.flatMap((d) => [
       d.close,
-      d.SMA_50,
-      d.SMA_200,
-      d.EMA_50,
-      d.EMA_200,
+      d["50_MA"],
+      d["200_MA"],
+      d["50_EMA"],
+      d["200_EMA"],
     ]).filter((v) => v != null);
 
     const minPrice = Math.min(...allPrices) * 0.95;
@@ -670,11 +670,11 @@ export function MovingAveragesDashboard({
 
   // Check for crossover signals
   const smaSignal = useMemo(() => {
-    return checkGoldenCross(recentData, "SMA_50", "SMA_200");
+    return checkGoldenCross(recentData, "50_MA", "200_MA");
   }, [recentData]);
 
   const emaSignal = useMemo(() => {
-    return checkGoldenCross(recentData, "EMA_50", "EMA_200");
+    return checkGoldenCross(recentData, "50_EMA", "200_EMA");
   }, [recentData]);
 
   if (!data || data.length === 0) {
@@ -706,12 +706,12 @@ export function MovingAveragesDashboard({
         <div className={styles.maGrid}>
           <MACard
             config={MA_CONFIG.SMA_50}
-            value={latestData?.SMA_50}
+            value={latestData?.["50_MA"]}
             price={currentPrice}
           />
           <MACard
             config={MA_CONFIG.SMA_200}
-            value={latestData?.SMA_200}
+            value={latestData?.["200_MA"]}
             price={currentPrice}
           />
         </div>
@@ -722,13 +722,13 @@ export function MovingAveragesDashboard({
           lines={[
             { dataKey: "close", color: "teal", strokeWidth: 2, label: "Price" },
             {
-              dataKey: "SMA_50",
+              dataKey: "50_MA",
               color: "fast",
               strokeWidth: 2,
               label: "SMA(50)",
             },
             {
-              dataKey: "SMA_200",
+              dataKey: "200_MA",
               color: "slow",
               strokeWidth: 2,
               dashed: true,
@@ -752,12 +752,12 @@ export function MovingAveragesDashboard({
         <div className={styles.maGrid}>
           <MACard
             config={MA_CONFIG.EMA_50}
-            value={latestData?.EMA_50}
+            value={latestData?.["50_EMA"]}
             price={currentPrice}
           />
           <MACard
             config={MA_CONFIG.EMA_200}
-            value={latestData?.EMA_200}
+            value={latestData?.["200_EMA"]}
             price={currentPrice}
           />
         </div>
@@ -768,13 +768,13 @@ export function MovingAveragesDashboard({
           lines={[
             { dataKey: "close", color: "teal", strokeWidth: 2, label: "Price" },
             {
-              dataKey: "EMA_50",
+              dataKey: "50_EMA",
               color: "fast",
               strokeWidth: 2,
               label: "EMA(50)",
             },
             {
-              dataKey: "EMA_200",
+              dataKey: "200_EMA",
               color: "slow",
               strokeWidth: 2,
               dashed: true,
