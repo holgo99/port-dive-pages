@@ -52,6 +52,7 @@ module.exports = {
                 "features/ticker/ai-features/ai-wave-count-analysis-verdict-panel",
                 "features/ticker/ai-features/ai-moving-averages-signals-resolver",
                 "features/ticker/ai-features/ai-action-signal-matrix-contradiction-resolver",
+                "features/ticker/ai-features/ai-ticker-intel",
               ],
             },
           ],
