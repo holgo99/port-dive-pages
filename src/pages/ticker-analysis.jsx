@@ -27,8 +27,13 @@ import { ActionSignalMatrix } from "@site/src/components/ActionSignalMatrix";
 import { TickerLayout } from "@site/src/components/TickerLayout";
 import { TickerSelector } from "@site/src/components/TickerSelector";
 import { TabsContainer } from "@site/src/components/TabsContainer";
-import { AITickerIntel } from "@site/src/components/AITickerIntel";
 import { AnalysisCard } from "@site/src/components/AnalysisCard";
+
+// Import AI* sidebar components
+import AITickerIntel from "@site/src/components/AITickerIntel";
+import { AIWaveCountAnalysisVerdictPanel } from "@site/src/components/AIWaveCountAnalysisVerdictPanel";
+import AIMovingAveragesSignalsResolver from "@site/src/components/AIMovingAveragesSignalsResolver";
+import AIActionSignalMatrixContradictionResolver from "@site/src/components/AIActionSignalMatrixContradictionResolver";
 
 // Import ticker configs
 import nbisConfig from "@site/data/tickers/nbis.json";
@@ -126,6 +131,32 @@ export default function TickerAnalysisPage() {
     }
   };
 
+  /**
+   * Render sidebar content based on active tab
+   * Each tab has a corresponding AI* component for the details column
+   */
+  const renderSidebarContent = () => {
+    switch (activeTab) {
+      case "main":
+        return <AITickerIntel ticker={selectedTicker} />;
+      case "wave":
+        return <AIWaveCountAnalysisVerdictPanel ticker={selectedTicker} />;
+      case "ma":
+        return <AIMovingAveragesSignalsResolver ticker={selectedTicker} />;
+      case "oscillators":
+        // TBD - placeholder for now
+        return (
+          <div className={styles.placeholderSidebar}>
+            <p>Oscillators AI component coming soon</p>
+          </div>
+        );
+      case "signals":
+        return <AIActionSignalMatrixContradictionResolver ticker={selectedTicker} />;
+      default:
+        return <AITickerIntel ticker={selectedTicker} />;
+    }
+  };
+
   return (
     <Layout
       title="Ticker Analysis Dashboard"
@@ -175,9 +206,9 @@ export default function TickerAnalysisPage() {
               </div>
             </div>
 
-            {/* Right Column - Ticker Details (φ minor = 38.2%) */}
+            {/* Right Column - Dynamic AI* Sidebar (φ minor = 38.2%) */}
             <div className={styles.detailsColumn}>
-              <AITickerIntel ticker={selectedTicker} />
+              {renderSidebarContent()}
             </div>
           </div>
 
